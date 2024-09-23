@@ -1,40 +1,6 @@
-
-#' @title Implement IRS
-#' @description Set the value of exogenous variables related to
-#' IRS
-#' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-#' @export
-IRS <- function(t, pars) {
-  UseMethod("IRS", pars$irs)
-}
-
 #' @title Set no irs
 #' @description The null model for irs
-#' @inheritParams IRS
-#' @return an **`xds`** object
-#' @export
-IRS.none <- function(t, pars) {
-  return(pars)
-}
-
-#' @title Set up "no irs"
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-#' @export
-setup_no_irs <- function(pars) {
-  irs <- list()
-  class(irs) = 'none'
-  irs$name = 'none'
-  pars$irs <- irs
-  pars <- setup_irs_effectsizes("none", pars, list())
-  return(pars)
-}
-
-#' @title Set no irs
-#' @description The null model for irs
-#' @inheritParams IRS
+#' @inheritParams ramp.xds::IRS
 #' @return [list]
 #' @export
 IRS.dynamic <- function(t, pars) {
@@ -64,7 +30,7 @@ xds_setup_irs = function(pars,
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
                         effectsizes_name = 'none', effectsizes_opts = list()){
-  pars = dynamic_vector_control(pars)
+  pars = ramp.xds::dynamic_vector_control(pars)
   irss <- list()
   class(irss) <- 'dynamic'
   pars <- setup_spray_houses(spray_houses_name, pars, spray_houses_opts)

@@ -20,15 +20,19 @@ home:
     - authors
     - dev
 reference:
+- title: Vector Control
+  desc: |
+    Specialized methods to implement dynamic vector control
 - title: Bed Nets
   desc: |
     Specialized methods to implement Bed Nets
   contents:
-  - BedNet
-  - BedNet.none
-  - setup_no_bednets
   - BedNet.dynamic
   - xds_setup_bednets
+- subtitle: Distribute Bed Nets
+  desc: |
+    Specialized methods to distribute bed nets
+  contents:
   - DistributeBedNets
   - setup_distribute_bednets
   - DistributeBedNets.none
@@ -36,6 +40,10 @@ reference:
   - DistributeBedNets.func
   - setup_distribute_bednets.func
   - setup_distribute_bednets_func
+- subtitle: Bed Net Ownership
+  desc: |
+    Specialized methods to model bed net ownership
+  contents:
   - OwnBedNets
   - setup_own_bednets
   - OwnBedNets.none
@@ -43,6 +51,10 @@ reference:
   - OwnBedNets.func
   - setup_own_bednets.func
   - setup_own_bednets_func
+- subtitle: Bed Net usage
+  desc: |
+    Specialized methods to model bed net ownership
+  contents:
   - UseBedNets
   - setup_use_bednets
   - UseBedNets.none
@@ -50,10 +62,18 @@ reference:
   - UseBedNets.func
   - setup_use_bednets.func
   - setup_use_bednets_func
+- subtitle: Bed Net Effects
+  desc: |
+    Specialized methods to model bed net effects
+  contents:
   - BedNetEffects
   - setup_bednet_effects
   - BedNetEffects.none
   - setup_bednet_effects.none
+- subtitle: Bed Net Coverage
+  desc: |
+    Specialized methods to model bed net coverage
+  contents:
   - BedNetCoverage
   - setup_bednet_coverage
   - BedNetCoverage.none
@@ -61,9 +81,11 @@ reference:
   - BedNetCoverage.func
   - setup_bednet_coverage.func
   - setup_bednet_coverage_func
-  - BedNetEffectSizes
+- subtitle: Bed Net Effect Sizes
+  desc: |
+    Specialized methods to model bed net effect sizes
+  contents:
   - setup_bednet_effectsizes
-  - BedNetEffectSizes.none
   - setup_bednet_effectsizes.none
   - BedNetEffectSizes.func
   - setup_bednet_effectsizes.func
@@ -72,23 +94,32 @@ reference:
   - setup_bednet_effectsizes.lemenach
   - setup_bednet_effectsizes_lemenach
   - compute_bednet_effect_sizes_lemenach
-- subtitle: Indoor Residual Spraying
+- title: Indoor Residual Spraying
   desc: |
     Methods to implement IRS
   contents:
-  - IRS
-  - IRS.none
-  - setup_no_irs
   - IRS.dynamic
   - xds_setup_irs
+- subtitle: Spray Houses
+  desc: |
+    Methods to implement house spraying
+  contents:
   - SprayHouses
   - setup_spray_houses
   - SprayHouses.none
   - setup_spray_houses.none
+- subtitle: IRS Effects
+  desc: |
+    Methods to implement irs effects
+  contents:
   - IRSEffects
   - setup_irs_effects
   - IRSEffects.none
   - setup_irs_effects.none
+- subtitle: IRS Coverage
+  desc: |
+    Methods to implement irs coverage
+  contents:
   - IRSCoverage
   - setup_irs_coverage
   - IRSCoverage.none
@@ -96,27 +127,38 @@ reference:
   - IRSCoverage.func
   - setup_irs_coverage.func
   - setup_irs_coverage_func
-  - IRSEffectSizes
+- subtitle: IRS Effect Sizes
+  desc: |
+    Methods to implement irs effect sizes
+  contents:
   - setup_irs_effectsizes
-  - IRSEffectSizes.none
   - setup_irs_effectsizes.none
-- subtitle: Larval Source Management (LSM)
+- title: Larval Source Management (LSM)
   desc: |
     Methods to implement LSM
   contents:
-  - LSM
-  - LSM.none
-  - setup_no_lsm
   - LSM.dynamic
   - xds_setup_lsm
+- subtitle: Treat Habitats
+  desc: |
+    Methods to implement habitat treatment
+  contents:
   - TreatHabitats
   - setup_treat_habitats
   - TreatHabitats.none
   - setup_treat_habitats.none
+- subtitle: LSM Effects
+  desc: |
+    Methods to implement LSM effects
+  contents:
   - LSMEffects
   - setup_lsm_effects
   - LSMEffects.none
   - setup_lsm_effects.none
+- subtitle: LSM Coverage
+  desc: |
+    Methods to implement LSM coverage
+  contents:
   - LSMCoverage
   - setup_lsm_coverage
   - LSMCoverage.none
@@ -124,27 +166,40 @@ reference:
   - LSMCoverage.func
   - setup_lsm_coverage.func
   - setup_lsm_coverage_func
+- subtitle: LSM Effect Sizes
+  desc: |
+    Methods to implement LSM effect sizes
+  contents:
   - LSMEffectSizes
   - setup_lsm_effectsizes
   - LSMEffectSizes.none
   - setup_lsm_effectsizes.none
-- subtitle: Area Spraying
+- title: Area Spraying
   desc: |
     Methods to implement area spraying
   contents:
-  - AreaSpray
-  - AreaSpray.none
-  - setup_no_area_spray
   - AreaSpray.dynamic
   - xds_setup_area_spray
+- subtitle: Spray Area
+  desc: |
+    Methods to implement area spraying
+  contents:
   - SprayArea
   - setup_spray_area
   - SprayArea.none
   - setup_spray_area.none
+- subtitle: Area Spraying Effects
+  desc: |
+    Methods to implement the effects of area spraying
+  contents:
   - AreaSprayEffects
   - setup_area_spray_effects
   - AreaSprayEffects.none
   - setup_area_spray_effects.none
+- subtitle: Area Spraying Coverage
+  desc: |
+    Methods to implement area spraying coverage
+  contents:
   - AreaSprayCoverage
   - setup_area_spray_coverage
   - AreaSprayCoverage.none
@@ -152,27 +207,40 @@ reference:
   - AreaSprayCoverage.func
   - setup_area_spray_coverage.func
   - setup_area_spray_coverage_func
+- subtitle: Area Spraying Effect Sizes
+  desc: |
+    Methods to implement area spraying effect sizes
+  contents:
   - AreaSprayEffectSizes
   - setup_area_spray_effectsizes
   - AreaSprayEffectSizes.none
   - setup_area_spray_effectsizes.none
-- subtitle: Sugar Baits
+- title: Sugar Baits
   desc: |
     Methods to implement sugar baits
   contents:
-  - SugarBaits
-  - SugarBaits.none
-  - setup_no_sugar_baits
   - SugarBaits.dynamic
   - xds_setup_sugar_baits
+- subtitle: Sugar Bait Distribution
+  desc: |
+    Methods to distribute sugar bait
+  contents:
   - DistributeSugarBaits
   - setup_distribute_sugar_baits
   - DistributeSugarBaits.none
   - setup_distribute_sugar_baits.none
+- subtitle: Sugar Bait Effects
+  desc: |
+    Methods to implement sugar bait effects
+  contents:
   - SugarBaitEffects
   - setup_sugar_bait_effects
   - SugarBaitEffects.none
   - setup_sugar_bait_effects.none
+- subtitle: Sugar Bait Coverage
+  desc: |
+    Methods to implement sugar bait coverage
+  contents:
   - SugarBaitCoverage
   - setup_sugar_bait_coverage
   - SugarBaitCoverage.none
@@ -180,8 +248,11 @@ reference:
   - SugarBaitCoverage.func
   - setup_sugar_bait_coverage.func
   - setup_sugar_bait_coverage_func
+- subtitle: Sugar Bait Effect Sizes
+  desc: |
+    Methods to implement sugar bait effect sizes
+  contents:
   - SugarBaitEffectSizes
   - setup_sugar_bait_effectsizes
   - SugarBaitEffectSizes.none
   - setup_sugar_bait_effectsizes.none
-

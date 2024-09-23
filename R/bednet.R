@@ -1,40 +1,7 @@
 
-#' @title Set the bednet
-#' @description Set the value of exogenous variables related to
-#' bednet
-#' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-#' @export
-BedNet <- function(t, pars) {
-  UseMethod("BedNet", pars$bednets)
-}
-
 #' @title Set no bednet
 #' @description The null model for bednet
-#' @inheritParams BedNet
-#' @return [list]
-#' @export
-BedNet.none <- function(t, pars) {
-  return(pars)
-}
-
-#' @title Set up "no bednet"
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-#' @export
-setup_no_bednets <- function(pars) {
-  bednets <- list()
-  bednets$name <- 'none'
-  class(bednets) <- 'none'
-  pars$bednets <- bednets
-  pars$bednets$effectsizes <- bednets
-  return(pars)
-}
-
-#' @title Set no bednet
-#' @description The null model for bednet
-#' @inheritParams BedNet
+#' @inheritParams ramp.xds::BedNet
 #' @return [list]
 #' @export
 BedNet.dynamic <- function(t, pars) {
@@ -44,8 +11,8 @@ BedNet.dynamic <- function(t, pars) {
    pars <- BedNetEffects(t, pars)
    pars <- BedNetCoverage(t, pars)
    return(pars)
-
 }
+
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
@@ -64,6 +31,7 @@ BedNet.dynamic <- function(t, pars) {
 #' @param coverage_opts options for the bed net coverage model
 #' @param effectsizes_name the name of a model for bed net effect sizes
 #' @param effectsizes_opts options for the bed net effect sizes model
+#' @importFrom ramp.xds dynamic_vector_control
 #' @return an **`xds`** object
 #' @export
 xds_setup_bednets = function(pars,

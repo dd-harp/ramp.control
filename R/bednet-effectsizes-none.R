@@ -1,12 +1,4 @@
 
-#' @title Set no bednet_effectsizes
-#' @description The null model for bednet_effectsizes
-#' @inheritParams BedNetEffectSizes
-#' @return [list]
-#' @export
-BedNetEffectSizes.none <- function(t, pars, s) {
-  return(pars)
-}
 
 #' @title Set up "no bednet_effectsizes"
 #' @inheritParams setup_bednet_effectsizes

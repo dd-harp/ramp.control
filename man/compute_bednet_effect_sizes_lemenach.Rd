@@ -41,5 +41,5 @@ Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
 }
 \references{
 {This implements the model for ITN effect sizes
-from \insertRef{LeMenachA2007_ITN}{ramp.xds}}
+from \insertRef{LeMenachA2007_ITN}{ramp.control}}
 }

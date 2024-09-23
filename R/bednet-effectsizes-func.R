@@ -1,7 +1,7 @@
 
 #' @title Set no bednet
 #' @description The null model for bednet
-#' @inheritParams BedNetEffectSizes
+#' @inheritParams ramp.xds::BedNetEffectSizes
 #' @return [list]
 #' @export
 BedNetEffectSizes.func <- function(t, pars, s) {

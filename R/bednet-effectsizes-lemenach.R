@@ -38,7 +38,7 @@ setup_bednet_effectsizes_lemenach = function(pars, opts=list(),
 
 #' @title Modify baseline values due to vector control
 #' @description Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
-#' @inheritParams BedNetEffectSizes
+#' @inheritParams ramp.xds::BedNetEffectSizes
 #' @return a named [list]
 #' @importFrom stats pexp
 #' @seealso [compute_bednet_effect_sizes_lemenach()]
@@ -72,7 +72,7 @@ BedNetEffectSizes.lemenach <- function(t, pars, s){
 #' @param ss probability of mosquito successfully feeding upon contact with ITN
 #' @return an **`xds`** model object
 #' @references{This implements the model for ITN effect sizes
-#' from \insertRef{LeMenachA2007_ITN}{ramp.xds}}
+#' from \insertRef{LeMenachA2007_ITN}{ramp.control}}
 #' @importFrom stats pexp
 compute_bednet_effect_sizes_lemenach = function(ix, phi, ff, qq, gg, tau0_frac=c(0.68/3, 2.32/3), rr=0.56, ss=0.03){
   f=ff[ix]; q=qq[ix]; g=gg[ix]

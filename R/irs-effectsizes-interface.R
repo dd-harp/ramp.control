@@ -1,14 +1,3 @@
-#' @title Set the irs_effectsizes
-#' @description Set the value of exogenous variables related to
-#' irs_effectsizes
-#' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @param s vector species index
-#' @return an **`xds`** object
-#' @export
-IRSEffectSizes <- function(t, pars, s) {
-  UseMethod("IRSEffectSizes", pars$irs$effectsizes)
-}
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not

@@ -1,20 +1,27 @@
 Package: ramp.control
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Vector Control for RAMP 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: c(
+      person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849"))
+    )
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Remotes: github::dd-harp/ramp.xds
+RdMacros: Rdpack
 Depends:
   ramp.xds
 Imports:
-  DescTools,
   Rdpack
+Suggests:
+    knitr,
+    MASS, 
+    expm,
+    deSolve,
+    viridisLite,
+    testthat (>= 3.0.0)
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
-RdMacros: Rdpack

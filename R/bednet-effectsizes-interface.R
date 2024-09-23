@@ -1,17 +1,6 @@
 # see examples in betnet-effectsizes-func.R
 # see examples in betnet-effectsizes-lemenach.R
 
-#' @title Set the bednet_effectsizes
-#' @description Set the value of exogenous variables related to
-#' bednet_effectsizes
-#' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @param s the vector species index
-#' @return an **`xds`** object
-#' @export
-BedNetEffectSizes <- function(t, pars, s) {
-  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes)
-}
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not

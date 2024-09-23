@@ -9,7 +9,7 @@
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \value{
 [list]
