@@ -9,3 +9,12 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Remotes: github::dd-harp/ramp.xds
+Depends:
+  ramp.xds
+Imports:
+  DescTools,
+  Rdpack
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+RdMacros: Rdpack
