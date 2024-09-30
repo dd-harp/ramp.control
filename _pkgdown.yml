@@ -20,9 +20,6 @@ home:
     - authors
     - dev
 reference:
-- title: Vector Control
-  desc: |
-    Specialized methods to implement dynamic vector control
 - title: Bed Nets
   desc: |
     Specialized methods to implement Bed Nets
@@ -133,6 +130,10 @@ reference:
   contents:
   - setup_irs_effectsizes
   - setup_irs_effectsizes.none
+  - IRSEffectSizes.simple
+  - setup_irs_effectsizes.simple
+  - setup_irs_effectsizes_simple
+  - compute_irs_effect_sizes_simple
 - title: Larval Source Management (LSM)
   desc: |
     Methods to implement LSM
