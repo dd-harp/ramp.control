@@ -32,6 +32,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSEffectSizes.simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSEffects.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSEffects.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/LSM.dynamic.html</loc></url>
@@ -63,6 +64,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/UseBedNets.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/UseBedNets.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_bednet_effect_sizes_lemenach.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_irs_effect_sizes_simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray_coverage.html</loc></url>
@@ -98,6 +100,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effects.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effectsizes.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effectsizes.none.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effectsizes.simple.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effectsizes_simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm_coverage.none.html</loc></url>
