@@ -13,6 +13,19 @@ BedNet.dynamic <- function(t, pars) {
    return(pars)
 }
 
+#' @title Set no bednet
+#' @description The null model for bednet
+#' @inheritParams ramp.xds::BedNet
+#' @return [list]
+#' @export
+BedNetEffectSizes.dynamic <- function(t, pars) {
+  pars <- DistributeBedNets(t, pars)
+  pars <- OwnBedNets(t, pars)
+  pars <- UseBedNets(t, pars)
+  pars <- BedNetEffects(t, pars)
+  pars <- BedNetCoverage(t, pars)
+  return(pars)
+}
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
