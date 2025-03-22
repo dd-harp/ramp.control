@@ -1,7 +1,30 @@
 
+
+#' @title Set the LSM
+#' @description Set the value of exogenous variables related to
+#' LSM
+#' @param t current simulation time
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
+#' @export
+LSM <- function(t, pars) {
+  UseMethod("LSM", pars$lsm)
+}
+
+
 #' @title Set no LSM
 #' @description The null model for LSM
-#' @inheritParams ramp.xds::LSM
+#' @inheritParams LSM
+#' @return an **`xds`** object
+#' @export
+LSM.none <- function(t, pars) {
+  return(pars)
+}
+
+
+#' @title Set no LSM
+#' @description The null model for LSM
+#' @inheritParams LSM
 #' @return [list]
 #' @export
 LSM.dynamic <- function(t, pars) {
@@ -10,6 +33,24 @@ LSM.dynamic <- function(t, pars) {
   pars <- LSMCoverage(t, pars)
   return(pars)
 }
+
+
+
+#' @title Set up "no LSM"
+#' @param pars an **`xds`** object
+#' @return an **`xds`** object
+#' @export
+setup_no_lsm <- function(pars) {
+  NoLSM <- list()
+  NoLSM$class <- 'none'
+  class(NoLSM) <- 'none'
+  pars$lsm <- NoLSM
+  pars$lsm$coverage <- NoLSM
+  pars$lsm$effectsizes <- list()
+  pars$lsm$effectsizes[[1]] <- NoLSM
+  return(pars)
+}
+
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not

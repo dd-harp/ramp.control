@@ -1,12 +1,13 @@
-#' @title Set the lsm_effectsizes
-#' @description Set the value of exogenous variables related to
-#' lsm_effectsizes
+
+#' @title Set up LSM effect sizes
+#' @description Set up effect sizes for LSM
 #' @param t current simulation time
 #' @param pars an **`xds`** object
+#' @param s vector species index
 #' @return an **`xds`** object
 #' @export
-LSMEffectSizes <- function(t, pars) {
-  UseMethod("LSMEffectSizes", pars$lsm$effectsizes)
+LSMEffectSizes <- function(t, pars, s) {
+  UseMethod("LSMEffectSizes", pars$lsm$effectsizes[[s]])
 }
 
 #' @title Set up dynamic forcing

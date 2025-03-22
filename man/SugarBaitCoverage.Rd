@@ -2,7 +2,7 @@
 % Please edit documentation in R/sugar_bait-coverage-interface.R
 \name{SugarBaitCoverage}
 \alias{SugarBaitCoverage}
-\title{Set the sugar bait coverage}
+\title{Set the SugarBaitCoverage}
 \usage{
 SugarBaitCoverage(t, pars)
 }
@@ -15,6 +15,6 @@ SugarBaitCoverage(t, pars)
 an **`xds`** object
 }
 \description{
-Set the coverage levels of
-sugar baits
+Set the value of exogenous variables related to
+Sugar Baits
 }

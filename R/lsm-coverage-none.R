@@ -1,12 +1,14 @@
 
-#' @title Set no lsm_coverage
-#' @description The null model for lsm_coverage
+
+#' @title Set no LSMCoverage
+#' @description The null model for LSMCoverage
 #' @inheritParams LSMCoverage
-#' @return [list]
+#' @return an **`xds`** object
 #' @export
 LSMCoverage.none <- function(t, pars) {
   return(pars)
 }
+
 
 #' @title Set up "no lsm_coverage"
 #' @inheritParams setup_lsm_coverage
