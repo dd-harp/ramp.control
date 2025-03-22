@@ -2,7 +2,7 @@
 % Please edit documentation in R/sugar_bait-coverage-none.R
 \name{SugarBaitCoverage.none}
 \alias{SugarBaitCoverage.none}
-\title{Set no sugar bait coverage}
+\title{No sugar baits}
 \usage{
 \method{SugarBaitCoverage}{none}(t, pars)
 }
@@ -15,5 +15,5 @@
 [list]
 }
 \description{
-The model for no sugar bait coverage
+The null model for sugar baits
 }

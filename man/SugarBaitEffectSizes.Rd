@@ -2,18 +2,21 @@
 % Please edit documentation in R/sugar_bait-effectsizes-interface.R
 \name{SugarBaitEffectSizes}
 \alias{SugarBaitEffectSizes}
-\title{Compute sugar bait effect sizes}
+\title{Set the SugarBaitEffectSizes}
 \usage{
-SugarBaitEffectSizes(t, pars)
+SugarBaitEffectSizes(t, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{pars}{an **`xds`** object}
+
+\item{s}{vector species index}
 }
 \value{
 an **`xds`** object
 }
 \description{
-Set the effect sizes of sugar baits
+Set the value of exogenous variables related to
+Sugar Baits
 }

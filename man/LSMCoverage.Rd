@@ -2,7 +2,7 @@
 % Please edit documentation in R/lsm-coverage-interface.R
 \name{LSMCoverage}
 \alias{LSMCoverage}
-\title{Set the lsm_coverage}
+\title{Set the LSMCoverage}
 \usage{
 LSMCoverage(t, pars)
 }
@@ -16,5 +16,5 @@ an **`xds`** object
 }
 \description{
 Set the value of exogenous variables related to
-lsm_coverage
+LSMCoverage
 }

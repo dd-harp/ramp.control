@@ -2,7 +2,7 @@
 % Please edit documentation in R/lsm-coverage-none.R
 \name{LSMCoverage.none}
 \alias{LSMCoverage.none}
-\title{Set no lsm_coverage}
+\title{Set no LSMCoverage}
 \usage{
 \method{LSMCoverage}{none}(t, pars)
 }
@@ -12,8 +12,8 @@
 \item{pars}{an **`xds`** object}
 }
 \value{
-[list]
+an **`xds`** object
 }
 \description{
-The null model for lsm_coverage
+The null model for LSMCoverage
 }

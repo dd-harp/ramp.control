@@ -1,7 +1,7 @@
 
-#' @title Set the sugar bait coverage
-#' @description Set the coverage levels of
-#' sugar baits
+#' @title Set the SugarBaitCoverage
+#' @description Set the value of exogenous variables related to
+#' Sugar Baits
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object

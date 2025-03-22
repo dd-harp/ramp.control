@@ -1,6 +1,7 @@
 
-#' @title Set no sugar bait coverage
-#' @description The model for no sugar bait coverage
+
+#' @title No sugar baits
+#' @description The null model for sugar baits
 #' @inheritParams SugarBaitCoverage
 #' @return [list]
 #' @export

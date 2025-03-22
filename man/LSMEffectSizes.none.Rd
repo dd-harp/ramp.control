@@ -2,18 +2,20 @@
 % Please edit documentation in R/lsm-effectsizes-none.R
 \name{LSMEffectSizes.none}
 \alias{LSMEffectSizes.none}
-\title{Set no lsm_effectsizes}
+\title{Set no LSMEffectSizes}
 \usage{
-\method{LSMEffectSizes}{none}(t, pars)
+\method{LSMEffectSizes}{none}(t, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{pars}{an **`xds`** object}
+
+\item{s}{vector species index}
 }
 \value{
-[list]
+an **`xds`** object
 }
 \description{
-The null model for lsm_effectsizes
+The null model for LSMEffectSizes
 }

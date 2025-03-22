@@ -1,11 +1,14 @@
-#' @title Compute sugar bait effect sizes
-#' @description Set the effect sizes of sugar baits
+
+#' @title Set the SugarBaitEffectSizes
+#' @description Set the value of exogenous variables related to
+#' Sugar Baits
 #' @param t current simulation time
 #' @param pars an **`xds`** object
+#' @param s vector species index
 #' @return an **`xds`** object
 #' @export
-SugarBaitEffectSizes <- function(t, pars) {
-  UseMethod("SugarBaitEffectSizes", pars$sugar_baits$effectsizes)
+SugarBaitEffectSizes <- function(t, pars, s) {
+  UseMethod("SugarBaitEffectSizes", pars$sugar_baits$effectsizes[[s]])
 }
 
 #' @title Set up sugar baits effect sizes

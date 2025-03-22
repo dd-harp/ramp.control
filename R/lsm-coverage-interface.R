@@ -1,7 +1,7 @@
 
-#' @title Set the lsm_coverage
+#' @title Set the LSMCoverage
 #' @description Set the value of exogenous variables related to
-#' lsm_coverage
+#' LSMCoverage
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @return an **`xds`** object

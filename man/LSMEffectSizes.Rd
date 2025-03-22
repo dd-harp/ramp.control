@@ -2,19 +2,20 @@
 % Please edit documentation in R/lsm-effectsizes-interface.R
 \name{LSMEffectSizes}
 \alias{LSMEffectSizes}
-\title{Set the lsm_effectsizes}
+\title{Set up LSM effect sizes}
 \usage{
-LSMEffectSizes(t, pars)
+LSMEffectSizes(t, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{pars}{an **`xds`** object}
+
+\item{s}{vector species index}
 }
 \value{
 an **`xds`** object
 }
 \description{
-Set the value of exogenous variables related to
-lsm_effectsizes
+Set up effect sizes for LSM
 }
