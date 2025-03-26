@@ -3,8 +3,12 @@ navbar:
   left:
   - text: Articles
     menu:
+    - text: Bed Nets
+      href: articles/BedNets.html
     - text: Vector Control Example
       href: articles/vc_lemenach.html
+    - text: IRS
+      href: articles/IRS.html
   - text: Functions
     href: reference/index.html
   right:
