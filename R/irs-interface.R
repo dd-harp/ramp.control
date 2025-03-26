@@ -19,7 +19,6 @@ IRS <- function(t, pars) {
 IRS.dynamic <- function(t, pars) {
   pars <- SprayHouses(t, pars)
   pars <- IRSEffects(t, pars)
-  pars <- IRSCoverage(t, pars)
   return(pars)
 }
 
@@ -40,12 +39,12 @@ IRS.dynamic <- function(t, pars) {
 #' @param effectsizes_opts options for the bed net effect sizes model
 #' @return an **`xds`** object
 #' @export
-xds_setup_irs = function(pars,
+setup_irs = function(pars,
                         spray_houses_name = 'none', spray_houses_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
                         effectsizes_name = 'none', effectsizes_opts = list()){
-  pars = ramp.xds::dynamic_vector_control(pars)
+  pars = dynamic_vector_control(pars)
   irss <- list()
   class(irss) <- 'dynamic'
   pars <- setup_spray_houses(spray_houses_name, pars, spray_houses_opts)

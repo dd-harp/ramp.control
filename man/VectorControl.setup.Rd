@@ -4,10 +4,12 @@
 \alias{VectorControl.setup}
 \title{Vector Control for Static Vector Control}
 \usage{
-\method{VectorControl}{setup}(t, pars)
+\method{VectorControl}{setup}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state vector}
 
 \item{pars}{an \strong{\code{xds}} object}
 }

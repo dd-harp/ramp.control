@@ -1,0 +1,137 @@
+---
+title: "IRS"
+subtitle: "Building Indoor Residual Spraying Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IRS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(ramp.xds)
+library(ramp.control)
+```
+
+**`ramp.control`** handles IRS in a flexible way. Four methods are defined; not all of them need to get used. 
+
++ `VectorControl::IRS` 
+
+    - `SprayHouses` -- a function to model mass distribution of nets and/or coverage  
+    
+    - `IRSEffects` -- modify mosquito behavioral parameters, including search weights 
+    
++ `VectorControl::IRSEffectSizes` 
+
+    - `IRSCoverage` -- compute IRS coverage 
+    
+    - `IRSEffectSizes` -- compute IRS effect sizes
+    
+## Coverage
+
+IRS is usually done through a malaria program, so a large number of houses are sprayed in a short period of time. One measure of coverage is the fraction of houses sprayed, $C$, but since the potency of the insecticide wanes over time, we define *coverage* as the product of the fraction of houses sprayed and potency, $P(t)$. It is an operational measure that we can define without thinking much about mosquito behaviors. Coverage is thus independent of mosquito species.  
+
+To model coverage, we developed the `sharkfin` functions in **`ramp.xds`**, the product of two sigmoidal functions -- one ramping up and the other down with different shapes. With this sharkfin function, coverage increases over 20 days from zero up to 90%, reaching 50% of the maximum on day 50. Potency wanes, reaching 50% on day 230, 180 days after the spray round. 
+
+```{r}
+par <- makepar_F_sharkfin(D=50, uk=1/3, L=180, mx=.9)
+Fsf <- make_function(par) 
+```
+
+```{r, fig.height=4, fig.width=6, echo=F}
+tt <- seq(0, 730, by = 5)
+plot(tt, Fsf(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+segments(40, 0, 40, .9, lty=2, col = grey(0.5))
+segments(60, 0, 60, .9, lty=2, col = grey(0.5))
+points(50, .45, col = grey(0.5))
+points(230, .45, col = grey(0.5))
+```
+
+
+## Effect Sizes 
+
+The effects of IRS and effect sizes are related to *realized coverage*, $\phi$: to have an effect, the mosquito must come into contact with the IRS, and the behaviors of different mosquito species affect how often they will rest on a sprayed surface. We call this contact parameter `zap.` Realized coverage is the product of coverage and the contact parameter. 
+
+Models for effect sizes translate *realized coverage* into changes in the values of mosquito bionomic parameters. In a simple model, called `simple`, mortality changes from baseline $g$ assuming that there is addtional mortality every time a mosquito blood feeds on a human and makes contact with a sprayed surface:
+
+$$ g \rightarrow g + f q \phi$$
+
+The effect sizes is the ratio of the modified mortality rate over baseline: 
+
+$$ \frac{g + fq\phi}{g} = 1 + \phi \frac{fq}{g}.$$ 
+The effect size is computed relative to a baseline bionomic parameter set, and it is returned by models for *independent* effect sizes. The effect size is returned, rather than the modified parameters, in case multiple modes of control are operating.  Later, the baseline is modified by control by taking the product of the baseline and all the independent effect sizes. 
+
+## Insecticides
+
+Information about waning potency is available from the manufacturers of insecticides, so we have developed functions with preset differences that reflect these differences.  
+
+### Actellic 
+
+```{r, fig.height=4, fig.width=6}
+actellic <- setup_irs_round("actellic", 50, .95, .8)
+Fa <- make_function(actellic)
+plot(tt, Fa(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+```
+
+### Bendiocarb
+
+```{r, fig.height=4, fig.width=6}
+bendiocarb <- setup_irs_round("bendiocarb", 50, .95, .8)
+Fb <- make_function(bendiocarb)
+plot(tt, Fb(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+```
+
+### Fludora Fusion
+
+```{r, fig.height=4, fig.width=6}
+fludora_fusion <- setup_irs_round("fludora_fusion", 50, .95, .8)
+Fff <- make_function(fludora_fusion)
+plot(tt, Fff(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+```
+
+### Sumishield
+
+```{r, fig.height=4, fig.width=6}
+sumishield <- setup_irs_round("sumishield", 50, .95, .7)
+Fs <- make_function(sumishield)
+plot(tt, Fs(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+```
+
+
+
+## Multiple Spray Rounds 
+
+We want to be able to simulate multiple spray rounds, possibly with different `zap` parameters for the different insecticides:
+
+```{r, fig.height=4, fig.width=6}
+round1 <- setup_irs_round("actellic", 50, .95, .9)
+round2 <- setup_irs_round("sumishield", 415, .95, .4)
+F1 <- make_function(round1)
+F2 <- make_function(round2)
+tt <- seq(0, 1095, by=5) 
+plot(tt, F1(tt)+F2(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
+lines(tt, F1(tt), col = "darkred")
+lines(tt, F2(tt), col = "darkblue")
+```
+
+
+```{r}
+test_irs = list(
+t_init = c(60, 240, 420, 785),
+irs_type = c("bendiocarb", "bendiocarb", "actellic", "sumishield"),
+coverage = c(.9, .85, .9, .9),
+zap = c(.95, .8, .4))
+```
+
+Now, we pass these to `setup_irs_multiround` 
+
+```{r}
+multi4 = setup_irs_multiround(opts = test_irs)
+F4r <- make_function(multi4)
+```
+
+
+```{r, fig.height=4, fig.width=6, echo=F}
+plot(tt, F4r(tt), type = "l", main="Mulitple Rounds of IRS", ylab = "Sharkfins", xlab = "Time")
+```
+

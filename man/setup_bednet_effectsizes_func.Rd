@@ -5,8 +5,6 @@
 \title{Set no bednet}
 \usage{
 setup_bednet_effectsizes_func(pars, opts)
-
-setup_bednet_effectsizes_func(pars, opts)
 }
 \arguments{
 \item{pars}{an **`xds`** object}
@@ -15,11 +13,7 @@ setup_bednet_effectsizes_func(pars, opts)
 }
 \value{
 an **`xds`** object
-
-an **`xds`** object
 }
 \description{
-The null model for bednet
-
 The null model for bednet
 }

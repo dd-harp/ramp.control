@@ -20,12 +20,26 @@ home:
     - authors
     - dev
 reference:
+- title: Vector Control
+  desc: |
+    Specialized methods to implement Bed Nets
+  contents:
+  - VectorControl.dynamic
+  - VectorControl.setup
+  - VectorControlEffectSizes.dynamic
+  - dynamic_vector_control
+  - dynamic_vector_control.none
+  - dynamic_vector_control.setup
+  - dynamic_vector_control.dynamic
 - title: Bed Nets
   desc: |
     Specialized methods to implement Bed Nets
   contents:
+  - BedNet
+  - BedNet.none
   - BedNet.dynamic
-  - xds_setup_bednets
+  - setup_no_bednets
+  - setup_bednets
 - subtitle: Distribute Bed Nets
   desc: |
     Specialized methods to distribute bed nets
@@ -82,6 +96,8 @@ reference:
   desc: |
     Specialized methods to model bed net effect sizes
   contents:
+  - BedNetEffectSizes
+  - BedNetEffectSizes.none
   - setup_bednet_effectsizes
   - setup_bednet_effectsizes.none
   - BedNetEffectSizes.func
@@ -95,8 +111,13 @@ reference:
   desc: |
     Methods to implement IRS
   contents:
+  - IRS
+  - IRSEffectSizes
+  - IRS.none
   - IRS.dynamic
-  - xds_setup_irs
+  - IRSEffectSizes.none
+  - setup_no_irs
+  - setup_irs
 - subtitle: Spray Houses
   desc: |
     Methods to implement house spraying
@@ -134,12 +155,25 @@ reference:
   - setup_irs_effectsizes.simple
   - setup_irs_effectsizes_simple
   - compute_irs_effect_sizes_simple
+- subtitle: IRS Multi Round
+  desc: |
+    Methods to implement irs effect sizes
+  contents:
+  - setup_irs_round
+  - setup_irs_round.actellic
+  - setup_irs_round.bendiocarb
+  - setup_irs_round.sumishield
+  - setup_irs_round.fludora_fusion
+  - setup_irs_multiround
 - title: Larval Source Management (LSM)
   desc: |
     Methods to implement LSM
   contents:
+  - LSM
+  - LSM.none
+  - setup_no_lsm
   - LSM.dynamic
-  - xds_setup_lsm
+  - setup_lsm
 - subtitle: Treat Habitats
   desc: |
     Methods to implement habitat treatment
@@ -179,8 +213,11 @@ reference:
   desc: |
     Methods to implement area spraying
   contents:
+  - AreaSpray
+  - AreaSpray.none
+  - setup_no_area_spray
   - AreaSpray.dynamic
-  - xds_setup_area_spray
+  - setup_area_spray
 - subtitle: Spray Area
   desc: |
     Methods to implement area spraying
@@ -220,8 +257,11 @@ reference:
   desc: |
     Methods to implement sugar baits
   contents:
+  - SugarBaits
+  - SugarBaits.none
+  - setup_no_sugar_baits
   - SugarBaits.dynamic
-  - xds_setup_sugar_baits
+  - setup_sugar_baits
 - subtitle: Sugar Bait Distribution
   desc: |
     Methods to distribute sugar bait

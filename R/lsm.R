@@ -67,7 +67,7 @@ setup_no_lsm <- function(pars) {
 #' @param effectsizes_opts options for the LSM effect sizes model
 #' @return an **`xds`** object
 #' @export
-xds_setup_lsm = function(pars,
+setup_lsm = function(pars,
                         treat_habitats_name = 'none', treat_habitats_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
