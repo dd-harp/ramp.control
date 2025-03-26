@@ -46,7 +46,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/BedNets.html">Bed Nets</a>
+    </li>
+    <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
+    </li>
+    <li>
+      <a href="../articles/IRS.html">IRS</a>
     </li>
   </ul>
 </li>
@@ -87,56 +93,80 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.control</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
+<p>Every bed net model has six configurable functions, each one
+dispatched and configured by a different object. These get called at two
+different points:</p>
+<ul>
+<li>
+<p><code>VectorControl</code> dispatches on
+<code>class(model$vector_control) == "dynamic"</code></p>
+<ul>
+<li>
+<p><code>BedNet</code> dispatches on
+<code>class(model$bednets) == "dynamic"</code></p>
+<ul>
+<li><p><code>DistributeBedNets</code> dispatches on
+<code>class(model$bednets$distribute)</code> is there to model mass
+distribution of ITNs that should sharply increase bednet
+ownership</p></li>
+<li><p><code>OwnBedNets</code> dispatches on
+<code>class(model$bednets$own)</code> is a model that can account for
+background net replacement and loss</p></li>
+<li><p><code>UseBedNets</code> dispatches on
+<code>class(model$bednets$use)</code> is a model for bed net
+usage</p></li>
+<li><p><code>BedNetEffects</code> dispatches on
+<code>class(model$bednets$effects)</code> is a function that modifies
+search weights</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>VectorControlEffectSizes</code> dispatches on
+<code>class(model$bednets) == "dynamic"</code></p>
+<ul>
+<li><p><code>BedNetCoverage</code> dispatches on
+<code>class(model$bednets$coverage[[s]])</code> for the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
+vector species</p></li>
+<li><p><code>BedNetEffectSizes</code> dispatches on
+<code>class(model$bednets$effect_size[[s]])</code> for the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
+species</p></li>
+</ul>
+</li>
+</ul>
+<p>To set all this up, we call a function with a name that calls a setup
+function and as set of options to set it up, passed as a list:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>setup_bednet <span class="ot">=</span> <span class="cf">function</span>(pars, </span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="at">dist_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">distribute =</span> <span class="fu">list</span>(),</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="at">own_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">own =</span> <span class="fu">list</span>(), </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="at">use_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">use =</span> <span class="fu">list</span>(), </span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="at">effects_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">effects =</span> <span class="fu">list</span>(), </span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="at">coverage_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">coverage =</span> <span class="fu">list</span>(),</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="at">es_name =</span> <span class="st">`</span><span class="at">none</span><span class="st">`</span>, <span class="at">effect_sizes =</span><span class="fu">list</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>)</span></code></pre></div>
+<p>In the simplest models, we can simply set coverage</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup.html" class="external-link">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cov_opts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  mean <span class="op">=</span> <span class="fl">0.5</span>, </span>
 <span>  F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
 <span>    <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">-</span><span class="fl">365</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mean</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xds_setup_bednets.html">xds_setup_bednets</a></span><span class="op">(</span><span class="va">mod</span>,</span>
+<code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="BedNets_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_bednets.html">setup_bednets</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>     coverage_name <span class="op">=</span> <span class="st">"func"</span>, coverage_opts <span class="op">=</span> <span class="va">cov_opts</span>, </span>
 <span>     effectsizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">bednets</span><span class="op">$</span><span class="va">coverage</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mean</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-7-1.png" width="700">
-Every model for</p>
-<ul>
-<li>
-<code>VectorControl</code>
-<ul>
-<li>
-<code>BedNet</code>
-<ul>
-<li><code>DistributeBedNets</code></li>
-<li><code>OwnBedNets</code></li>
-<li><code>UseBedNets</code></li>
-<li><code>BedNetEffects</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<code>VectorControlEffectSizes</code>
-<ul>
-<li><code>BedNetCoverage</code></li>
-<li><code>BedNetEffectSizes</code></li>
-</ul>
-</li>
-</ul>
-<p>setup_bednet = function(pars, dist_name = <code>basic</code>,
-distribute = list(), own_name = <code>basic</code>, own = list(),
-use_name = <code>basic</code>, use = list(), effects_name =
-<code>basic</code>, effects = list(), coverage_name =
-<code>basic</code>, coverage = list(), es_name = <code>basic</code>,
-effect_sizes =list() )</p>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">bednets</span><span class="op">$</span><span class="va">coverage</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="BedNets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

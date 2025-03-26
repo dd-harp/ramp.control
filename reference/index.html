@@ -29,7 +29,13 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/BedNets.html">Bed Nets</a>
+    </li>
+    <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
+    </li>
+    <li>
+      <a href="../articles/IRS.html">IRS</a>
     </li>
   </ul></li>
 <li>
@@ -54,15 +60,59 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
+          <h2 id="vector-control">Vector Control <a href="#vector-control" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Specialized methods to implement Bed Nets</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="VectorControl.dynamic.html">VectorControl(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Implement Vector Control</p></td>
+      </tr><tr><td>
+          <p><code><a href="VectorControl.setup.html">VectorControl(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Vector Control for Static Vector Control</p></td>
+      </tr><tr><td>
+          <p><code><a href="VectorControlEffectSizes.dynamic.html">VectorControlEffectSizes(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Distribute vector control, the null model</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_vector_control.html">dynamic_vector_control()</a></code> </p>
+        </td>
+        <td><p>Turn On Vector Control</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_vector_control.none.html">dynamic_vector_control(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Turn On Vector Control</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_vector_control.setup.html">dynamic_vector_control(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Vector Control is Turned On</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_vector_control.dynamic.html">dynamic_vector_control(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Vector Control is Turned On</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="bed-nets">Bed Nets <a href="#bed-nets" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Specialized methods to implement Bed Nets</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="BedNet.html">BedNet()</a></code> </p>
+        </td>
+        <td><p>Set the bednet</p></td>
+      </tr><tr><td>
+          <p><code><a href="BedNet.none.html">BedNet(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set no bednet</p></td>
+      </tr><tr><td>
           <p><code><a href="BedNet.dynamic.html">BedNet(<i>&lt;dynamic&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set no bednet</p></td>
       </tr><tr><td>
-          <p><code><a href="xds_setup_bednets.html">xds_setup_bednets()</a></code> </p>
+          <p><code><a href="setup_no_bednets.html">setup_no_bednets()</a></code> </p>
+        </td>
+        <td><p>Set up "no bednet"</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_bednets.html">setup_bednets()</a></code> </p>
         </td>
         <td><p>Set up dynamic forcing</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -188,7 +238,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="BedNetCoverage.html">BedNetCoverage()</a></code> </p>
         </td>
-        <td><p>Set the bednet_coverage</p></td>
+        <td><p>Set the bednet</p></td>
       </tr><tr><td>
           <p><code><a href="setup_bednet_coverage.html">setup_bednet_coverage()</a></code> </p>
         </td>
@@ -196,7 +246,7 @@
       </tr><tr><td>
           <p><code><a href="BedNetCoverage.none.html">BedNetCoverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no bednet_coverage</p></td>
+        <td><p>Set no bednet</p></td>
       </tr><tr><td>
           <p><code><a href="setup_bednet_coverage.none.html">setup_bednet_coverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -218,6 +268,14 @@
           <p class="section-desc"></p><p>Specialized methods to model bed net effect sizes</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="BedNetEffectSizes.html">BedNetEffectSizes()</a></code> </p>
+        </td>
+        <td><p>Set the bednet_effectsizes</p></td>
+      </tr><tr><td>
+          <p><code><a href="BedNetEffectSizes.none.html">BedNetEffectSizes(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set no bednet_effectsizes</p></td>
+      </tr><tr><td>
           <p><code><a href="setup_bednet_effectsizes.html">setup_bednet_effectsizes()</a></code> </p>
         </td>
         <td><p>Set up dynamic forcing</p></td>
@@ -258,11 +316,31 @@
           <p class="section-desc"></p><p>Methods to implement IRS</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="IRS.html">IRS()</a></code> </p>
+        </td>
+        <td><p>Implement IRS</p></td>
+      </tr><tr><td>
+          <p><code><a href="IRSEffectSizes.html">IRSEffectSizes()</a></code> </p>
+        </td>
+        <td><p>Set the irs_effectsizes</p></td>
+      </tr><tr><td>
+          <p><code><a href="IRS.none.html">IRS(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set no irs</p></td>
+      </tr><tr><td>
           <p><code><a href="IRS.dynamic.html">IRS(<i>&lt;dynamic&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set no irs</p></td>
       </tr><tr><td>
-          <p><code><a href="xds_setup_irs.html">xds_setup_irs()</a></code> </p>
+          <p><code><a href="IRSEffectSizes.none.html">IRSEffectSizes(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set no irs_effectsizes</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_irs.html">setup_no_irs()</a></code> </p>
+        </td>
+        <td><p>Set up "no irs"</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs.html">setup_irs()</a></code> </p>
         </td>
         <td><p>Set up dynamic forcing</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -312,7 +390,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="IRSCoverage.html">IRSCoverage()</a></code> </p>
         </td>
-        <td><p>Set the irs_coverage</p></td>
+        <td><p>Implement IRSCoverage</p></td>
       </tr><tr><td>
           <p><code><a href="setup_irs_coverage.html">setup_irs_coverage()</a></code> </p>
         </td>
@@ -320,7 +398,7 @@
       </tr><tr><td>
           <p><code><a href="IRSCoverage.none.html">IRSCoverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no irs_coverage</p></td>
+        <td><p>Set no irs</p></td>
       </tr><tr><td>
           <p><code><a href="setup_irs_coverage.none.html">setup_irs_coverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -366,15 +444,55 @@
         </td>
         <td><p>Modify baseline values due to vector control</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="irs-multi-round">IRS Multi Round <a href="#irs-multi-round" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement irs effect sizes</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="setup_irs_round.html">setup_irs_round()</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs_round.actellic.html">setup_irs_round(<i>&lt;actellic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs_round.bendiocarb.html">setup_irs_round(<i>&lt;bendiocarb&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs_round.sumishield.html">setup_irs_round(<i>&lt;sumishield&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs_round.fludora_fusion.html">setup_irs_round(<i>&lt;fludora_fusion&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_irs_multiround.html">setup_irs_multiround()</a></code> </p>
+        </td>
+        <td><p>Set up dynamic forcing</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="larval-source-management-lsm-">Larval Source Management (LSM) <a href="#larval-source-management-lsm-" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to implement LSM</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="LSM.html">LSM()</a></code> </p>
+        </td>
+        <td><p>Set the LSM</p></td>
+      </tr><tr><td>
+          <p><code><a href="LSM.none.html">LSM(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set no LSM</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_lsm.html">setup_no_lsm()</a></code> </p>
+        </td>
+        <td><p>Set up "no LSM"</p></td>
+      </tr><tr><td>
           <p><code><a href="LSM.dynamic.html">LSM(<i>&lt;dynamic&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set no LSM</p></td>
       </tr><tr><td>
-          <p><code><a href="xds_setup_lsm.html">xds_setup_lsm()</a></code> </p>
+          <p><code><a href="setup_lsm.html">setup_lsm()</a></code> </p>
         </td>
         <td><p>Set up dynamic forcing</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -424,7 +542,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="LSMCoverage.html">LSMCoverage()</a></code> </p>
         </td>
-        <td><p>Set the lsm_coverage</p></td>
+        <td><p>Set the LSMCoverage</p></td>
       </tr><tr><td>
           <p><code><a href="setup_lsm_coverage.html">setup_lsm_coverage()</a></code> </p>
         </td>
@@ -432,7 +550,7 @@
       </tr><tr><td>
           <p><code><a href="LSMCoverage.none.html">LSMCoverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no lsm_coverage</p></td>
+        <td><p>Set no LSMCoverage</p></td>
       </tr><tr><td>
           <p><code><a href="setup_lsm_coverage.none.html">setup_lsm_coverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -456,7 +574,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="LSMEffectSizes.html">LSMEffectSizes()</a></code> </p>
         </td>
-        <td><p>Set the lsm_effectsizes</p></td>
+        <td><p>Set up LSM effect sizes</p></td>
       </tr><tr><td>
           <p><code><a href="setup_lsm_effectsizes.html">setup_lsm_effectsizes()</a></code> </p>
         </td>
@@ -464,7 +582,7 @@
       </tr><tr><td>
           <p><code><a href="LSMEffectSizes.none.html">LSMEffectSizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no lsm_effectsizes</p></td>
+        <td><p>Set no LSMEffectSizes</p></td>
       </tr><tr><td>
           <p><code><a href="setup_lsm_effectsizes.none.html">setup_lsm_effectsizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -474,13 +592,25 @@
           <p class="section-desc"></p><p>Methods to implement area spraying</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="AreaSpray.html">AreaSpray()</a></code> </p>
+        </td>
+        <td><p>Spray an Area</p></td>
+      </tr><tr><td>
+          <p><code><a href="AreaSpray.none.html">AreaSpray(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>No Area Spraying</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_area_spray.html">setup_no_area_spray()</a></code> </p>
+        </td>
+        <td><p>Set up no Area Spraying</p></td>
+      </tr><tr><td>
           <p><code><a href="AreaSpray.dynamic.html">AreaSpray(<i>&lt;dynamic&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no AreaSpray</p></td>
+        <td><p>Area Spraying</p></td>
       </tr><tr><td>
-          <p><code><a href="xds_setup_area_spray.html">xds_setup_area_spray()</a></code> </p>
+          <p><code><a href="setup_area_spray.html">setup_area_spray()</a></code> </p>
         </td>
-        <td><p>Set up dynamic forcing</p></td>
+        <td><p>Set up area spraying</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="spray-area">Spray Area <a href="#spray-area" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Methods to implement area spraying</p>
@@ -520,7 +650,7 @@
       </tr><tr><td>
           <p><code><a href="setup_area_spray_effects.none.html">setup_area_spray_effects(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up no area spray effects</p></td>
+        <td><p>Set up no area spray</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h3 id="area-spraying-coverage">Area Spraying Coverage <a href="#area-spraying-coverage" class="anchor" aria-hidden="true"></a></h3>
           <p class="section-desc"></p><p>Methods to implement area spraying coverage</p>
@@ -536,7 +666,7 @@
       </tr><tr><td>
           <p><code><a href="AreaSprayCoverage.none.html">AreaSprayCoverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no area spray coverage</p></td>
+        <td><p>Set no AreaSprayCoverage</p></td>
       </tr><tr><td>
           <p><code><a href="setup_area_spray_coverage.none.html">setup_area_spray_coverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -560,7 +690,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="AreaSprayEffectSizes.html">AreaSprayEffectSizes()</a></code> </p>
         </td>
-        <td><p>Set the area spray effectsizes</p></td>
+        <td><p>Set the AreaSprayEffectSizes</p></td>
       </tr><tr><td>
           <p><code><a href="setup_area_spray_effectsizes.html">setup_area_spray_effectsizes()</a></code> </p>
         </td>
@@ -568,21 +698,33 @@
       </tr><tr><td>
           <p><code><a href="AreaSprayEffectSizes.none.html">AreaSprayEffectSizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no area_spray_effectsizes</p></td>
+        <td><p>Set no AreaSprayEffectSizes</p></td>
       </tr><tr><td>
           <p><code><a href="setup_area_spray_effectsizes.none.html">setup_area_spray_effectsizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up no area spray effectsizes</p></td>
+        <td><p>Set up no area spray</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="sugar-baits">Sugar Baits <a href="#sugar-baits" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Methods to implement sugar baits</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="SugarBaits.html">SugarBaits()</a></code> </p>
+        </td>
+        <td><p>Set the SugarBaits</p></td>
+      </tr><tr><td>
+          <p><code><a href="SugarBaits.none.html">SugarBaits(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>No sugar baits</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_sugar_baits.html">setup_no_sugar_baits()</a></code> </p>
+        </td>
+        <td><p>Set up no sugar baits</p></td>
+      </tr><tr><td>
           <p><code><a href="SugarBaits.dynamic.html">SugarBaits(<i>&lt;dynamic&gt;</i>)</a></code> </p>
         </td>
         <td><p>Set no sugar baits</p></td>
       </tr><tr><td>
-          <p><code><a href="xds_setup_sugar_baits.html">xds_setup_sugar_baits()</a></code> </p>
+          <p><code><a href="setup_sugar_baits.html">setup_sugar_baits()</a></code> </p>
         </td>
         <td><p>Set up dynamic forcing</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -632,7 +774,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="SugarBaitCoverage.html">SugarBaitCoverage()</a></code> </p>
         </td>
-        <td><p>Set the sugar bait coverage</p></td>
+        <td><p>Set the SugarBaitCoverage</p></td>
       </tr><tr><td>
           <p><code><a href="setup_sugar_bait_coverage.html">setup_sugar_bait_coverage()</a></code> </p>
         </td>
@@ -640,7 +782,7 @@
       </tr><tr><td>
           <p><code><a href="SugarBaitCoverage.none.html">SugarBaitCoverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set no sugar bait coverage</p></td>
+        <td><p>No sugar baits</p></td>
       </tr><tr><td>
           <p><code><a href="setup_sugar_bait_coverage.none.html">setup_sugar_bait_coverage(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
@@ -664,7 +806,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="SugarBaitEffectSizes.html">SugarBaitEffectSizes()</a></code> </p>
         </td>
-        <td><p>Compute sugar bait effect sizes</p></td>
+        <td><p>Set the SugarBaitEffectSizes</p></td>
       </tr><tr><td>
           <p><code><a href="setup_sugar_bait_effectsizes.html">setup_sugar_bait_effectsizes()</a></code> </p>
         </td>
@@ -672,11 +814,119 @@
       </tr><tr><td>
           <p><code><a href="SugarBaitEffectSizes.none.html">SugarBaitEffectSizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>No sugar bait effect sizes</p></td>
+        <td><p>No sugar baits</p></td>
       </tr><tr><td>
           <p><code><a href="setup_sugar_bait_effectsizes.none.html">setup_sugar_bait_effectsizes(<i>&lt;none&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Set up sugar bait effect sizes for no sugar baits</p></td>
+        <td><p>Set up "no sugar_bait_effectsizes"</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="health">Health <a href="#health" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Methods to implement health-based Interventions</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Health.dynamic.html">Health(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="Health.setup.html">Health(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>The `setup` case for health variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_health.html">dynamic_health()</a></code> </p>
+        </td>
+        <td><p>Set up dynamic health</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_health.none.html">dynamic_health(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic health</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_health.setup.html">dynamic_health(<i>&lt;setup&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic health</p></td>
+      </tr><tr><td>
+          <p><code><a href="dynamic_health.dynamic.html">dynamic_health(<i>&lt;dynamic&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up dynamic health</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="clinic">Clinic <a href="#clinic" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement clinic-based interventions</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Clinic.html">Clinic()</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during clinical visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="Clinic.none.html">Clinic(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during clinical visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_clinic.html">setup_no_clinic()</a></code> </p>
+        </td>
+        <td><p>Set up the none model for clinical distribution (do nothing)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="school">School <a href="#school" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement school-based interventions</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="School.html">School()</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during schoolal visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="School.none.html">School(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during schoolal visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_school.html">setup_no_school()</a></code> </p>
+        </td>
+        <td><p>Set up the none model for schoolal distribution (do nothing)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="masshealth">MassHealth <a href="#masshealth" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement clinic-based interventions</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="MassHealth.html">MassHealth()</a></code> </p>
+        </td>
+        <td><p>Methods for mass distributing health interventions</p></td>
+      </tr><tr><td>
+          <p><code><a href="MassHealth.none.html">MassHealth(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during mass_healthal visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_mass_health.html">setup_no_mass_health()</a></code> </p>
+        </td>
+        <td><p>Set up the none model for mass_healthal distribution (do nothing)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="activecasedetection">ActiveCaseDetection <a href="#activecasedetection" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement clinic-based interventions</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="ActiveCaseDetection.html">ActiveCaseDetection()</a></code> </p>
+        </td>
+        <td><p>Methods for mass distributing health interventions</p></td>
+      </tr><tr><td>
+          <p><code><a href="ActiveCaseDetection.none.html">ActiveCaseDetection(<i>&lt;none&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Methods for distributing interventions during active_case_detectional visits</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_no_active_case_detection.html">setup_no_active_case_detection()</a></code> </p>
+        </td>
+        <td><p>Set up the none model for active_case_detectional distribution (do nothing)</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h3 id="care-seeking">Care Seeking <a href="#care-seeking" class="anchor" aria-hidden="true"></a></h3>
+          <p class="section-desc"></p><p>Methods to implement care seeking</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="CareSeeking.html">CareSeeking()</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables describing care seeking</p></td>
+      </tr><tr><td>
+          <p><code><a href="CareSeeking.no_behavior.html">CareSeeking(<i>&lt;no_behavior&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set the values of exogenous variables describing care seeking</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_care_seeking_no_behavior.html">setup_care_seeking_no_behavior()</a></code> </p>
+        </td>
+        <td><p>Make parameters for the no_behavior model for care seeking (do nothing)</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

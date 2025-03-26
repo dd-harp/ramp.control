@@ -31,7 +31,13 @@ forcing and set all the"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/BedNets.html">Bed Nets</a>
+    </li>
+    <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
+    </li>
+    <li>
+      <a href="../articles/IRS.html">IRS</a>
     </li>
   </ul></li>
 <li>
@@ -66,10 +72,13 @@ forcing and set all the</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setup_irs_coverage_func</span><span class="op">(</span></span>
 <span>  <span class="va">pars</span>,</span>
+<span>  s <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  mean <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  mx <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -81,20 +90,32 @@ forcing and set all the</p>
 <dd><p>an **`xds`** object</p></dd>
 
 
+<dt id="arg-s">s<a class="anchor" aria-label="anchor" href="#arg-s"></a></dt>
+<dd><p>the vector species index</p></dd>
+
+
 <dt id="arg-opts">opts<a class="anchor" aria-label="anchor" href="#arg-opts"></a></dt>
 <dd><p>a list of options to override defaults</p></dd>
 
 
-<dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
-<dd><p>the mean irs_coverage</p></dd>
+<dt id="arg-mx">mx<a class="anchor" aria-label="anchor" href="#arg-mx"></a></dt>
+<dd><p>peak irs_coverage</p></dd>
 
 
 <dt id="arg-f-season">F_season<a class="anchor" aria-label="anchor" href="#arg-f-season"></a></dt>
-<dd><p>the seasonal signal in irs coverage</p></dd>
+<dd><p>a function describing a seasonal pattern over time</p></dd>
+
+
+<dt id="arg-season-par">season_par<a class="anchor" aria-label="anchor" href="#arg-season-par"></a></dt>
+<dd><p>an object to configure a seasonality function using [make_function]</p></dd>
 
 
 <dt id="arg-f-trend">F_trend<a class="anchor" aria-label="anchor" href="#arg-f-trend"></a></dt>
-<dd><p>a temporal trend in irs coverage</p></dd>
+<dd><p>a function describing a temporal trend over time</p></dd>
+
+
+<dt id="arg-trend-par">trend_par<a class="anchor" aria-label="anchor" href="#arg-trend-par"></a></dt>
+<dd><p>an object to configure a trends function using [make_function]</p></dd>
 
 </dl></div>
     <div id="value">
