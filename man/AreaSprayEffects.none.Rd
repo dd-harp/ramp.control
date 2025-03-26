@@ -4,14 +4,12 @@
 \alias{AreaSprayEffects.none}
 \title{Set no area spray effects}
 \usage{
-\method{AreaSprayEffects}{none}(t, pars, s)
+\method{AreaSprayEffects}{none}(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{pars}{an **`xds`** object}
-
-\item{s}{vector species index}
 }
 \value{
 [list]

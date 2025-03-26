@@ -5,8 +5,6 @@
 \title{Set up dynamic forcing}
 \usage{
 \method{setup_bednet_effectsizes}{func}(name, pars, opts = list())
-
-\method{setup_bednet_effectsizes}{func}(name, pars, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
@@ -17,14 +15,8 @@
 }
 \value{
 an **`xds`** object
-
-an **`xds`** object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
-
 If dynamic forcing has not
 already been set up, then turn on dynamic
 forcing and set all the

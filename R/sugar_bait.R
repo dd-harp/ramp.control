@@ -62,7 +62,7 @@ setup_no_sugar_baits <- function(pars) {
 #' @param effectsizes_opts options for the bed net effect sizes model
 #' @return an **`xds`** object
 #' @export
-xds_setup_sugar_baits = function(pars,
+setup_sugar_baits = function(pars,
                         distribute_sugar_baits_name = 'none', distribute_sugar_baits_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),

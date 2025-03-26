@@ -30,7 +30,7 @@ VectorControl.dynamic <- function(t, y, pars) {
 #' @inheritParams ramp.xds::VectorControl
 #' @return an **`xds`** object
 #' @export
-VectorControl.setup = function(t, pars){
+VectorControl.setup = function(t, y, pars){
   class(pars$vector_control) <- 'dynamic'
   pars <- VectorControl(t, pars)
   class(pars$vector_control) <- 'none'

@@ -49,7 +49,7 @@ setup_spray_area.none <- function(name, pars, opts=list()) {
 #' @inheritParams AreaSprayEffectSizes
 #' @return [list]
 #' @export
-AreaSprayEffects.none <- function(t, pars, s) {
+AreaSprayEffects.none <- function(t, pars) {
   return(pars)
 }
 
@@ -99,7 +99,7 @@ AreaSprayEffectSizes.none <- function(t, pars, s) {
 #' @inheritParams setup_area_spray_effects
 #' @return an **`xds`** object
 #' @export
-setup_area_spray_effect_sizes.none <- function(name='none', pars, opts=list()) {
+setup_area_spray_effectsizes.none <- function(name='none', pars, opts=list()) {
   effect_sizes <- 'none'
   class(effect_sizes) <- 'none'
   effect_sizes$class <- 'none'
