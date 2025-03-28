@@ -117,11 +117,19 @@ lines(tt, F2(tt), col = "darkblue")
 
 ```{r}
 test_irs = list(
-t_init = c(60, 240, 420, 785),
+t_init = c(60, 240, 420, 785)+730,
 irs_type = c("bendiocarb", "bendiocarb", "actellic", "sumishield"),
 coverage = c(.9, .85, .9, .9),
 zap = c(.95, .8, .4))
 ```
+
+```{r}
+m1 <- setup_irs_round("actellic", 500, .9, .1)
+Fm1 <- make_function(m1)
+plot(tt, Fm1(tt), type = "l")
+```
+
+
 
 Now, we pass these to `setup_irs_multiround` 
 
@@ -132,6 +140,53 @@ F4r <- make_function(multi4)
 
 
 ```{r, fig.height=4, fig.width=6, echo=F}
+tt = seq(0, 3650, by=10)
 plot(tt, F4r(tt), type = "l", main="Mulitple Rounds of IRS", ylab = "Sharkfins", xlab = "Time")
 ```
+
+## Adding IRS to a Model
+
+We are now to the point where we can add IRS. 
+
+```{r}
+tt0 <-  365*(0:10)
+yy0 <-  c(.7, 2, 1.4, 1.8, 0.6, .8, 1.1, 2, 1, .5, .5)
+Lo <- list(
+  Lambda = 50,
+  season_par = makepar_F_sin(),
+  trend_par = makepar_F_spline(tt=tt0, yy=yy0) 
+)
+mod <- xds_setup(Lopts=Lo, MYZname = "SI")
+mod <- xds_solve(mod)
+mod <- last_to_inits(mod) 
+mod <- xds_solve(mod, 10*365, 10)
+xds_plot_PR(mod)
+```
+```{r}
+#devtools::load_all("../ramp.xds")
+devtools::load_all()
+```
+
+```{r}
+mod_irs <- setup_irs(mod, effectsizes_name = "simple", coverage_name = "func", coverage_opts = list(mx=1, trend_par = multi4))
+```
+
+```{r}
+mod_irs$irs$coverage$F_trend(2990)
+```
+
+```{r}
+plot(tt, mod_irs$irs$coverage$F_trend(tt), type = "l")
+```
+
+```{r}
+mod_irs <- xds_solve(mod_irs, Tmax=365*8, dt=1)
+```
+
+
+```{r}
+xds_plot_PR(mod_irs, clrs="darkblue")
+xds_plot_PR(mod, add=T)
+```
+
 

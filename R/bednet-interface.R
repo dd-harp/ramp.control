@@ -60,7 +60,6 @@ setup_bednets = function(pars,
   class(bednets) <- 'dynamic'
   pars$bednets <- bednets
 
-
   pars <- setup_distribute_bednets(distribute_name, pars, distribute_opts)
   pars <- setup_own_bednets(own_name, pars, own_opts)
   pars <- setup_use_bednets(use_name, pars, use_opts)
@@ -211,7 +210,7 @@ setup_bednet_effects = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 BedNetEffectSizes <- function(t, pars, s) {
-  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes)
+  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes[[s]])
 }
 
 #' @title Set up dynamic forcing

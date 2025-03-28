@@ -20,12 +20,13 @@ setup_irs_effectsizes.simple = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 setup_irs_effectsizes_simple = function(pars, opts=list(),
-                                        contact = 0.8){
+                                        contact = 0.1){
   es <- list()
   es$name <- 'simple'
   class(es) <- 'simple'
   es$contact <- contact
-  pars$irs$effectsizes <- es
+  pars$irs$effectsizes <-  list()
+  pars$irs$effectsizes[[1]] <- es
   return(pars)
 }
 
@@ -38,11 +39,12 @@ setup_irs_effectsizes_simple = function(pars, opts=list(),
 #' @export
 IRSEffectSizes.simple <- function(t, pars, s){
   phi = pars$vars$irs_coverage
-  with(pars$irs$effectsizes,{
+  with(pars$irs$effectsizes[[s]],{
     with(pars$MYZpar[[s]],{
       es <- sapply(1:pars$nPatches,
                    compute_irs_effect_sizes_simple,
                    phi=phi, ff=f_t, qq=q_t, gg=g_t, contact)
+      if(is.na(es)) browser()
       pars$MYZpar[[s]]$es_g <- pars$MYZpar[[s]]$es_g*es
       return(pars)
     })

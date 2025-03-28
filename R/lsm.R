@@ -46,6 +46,7 @@ setup_no_lsm <- function(pars) {
   class(NoLSM) <- 'none'
   pars$lsm <- NoLSM
   pars$lsm$coverage <- NoLSM
+  pars$lsm$effects <- NoLSM
   pars$lsm$effectsizes <- list()
   pars$lsm$effectsizes[[1]] <- NoLSM
   return(pars)
