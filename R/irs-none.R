@@ -101,7 +101,9 @@ IRSEffectSizes.none <- function(t, pars, s) {
 #' @export
 setup_irs_effectsizes.none <- function(name, pars, opts) {
   effectsizes <- list()
+  effectsizes$class <- 'none'
   class(effectsizes) <- 'none'
-  pars$irs$effectsizes <- effectsizes
+  pars$irs$effectsizes <- list()
+  pars$irs$effectsizes[[1]] <- effectsizes
   return(pars)
 }

@@ -18,6 +18,7 @@ setup_no_area_spray <- function(pars) {
   class(NoAreaSpray) <- 'none'
   pars$area_spray <- NoAreaSpray
   pars$area_spray$coverage <- NoAreaSpray
+  pars$area_spray$effects <- NoAreaSpray
   pars$area_spray$effectsizes <- list()
   pars$area_spray$effectsizes[[1]] <- NoAreaSpray
   return(pars)

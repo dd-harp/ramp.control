@@ -1,10 +1,12 @@
 #' @title Set no irs_coverage
 #' @description The null model for irs_coverage
 #' @inheritParams IRSCoverage
-#' @return [list]
+#' @return an **`xds`** object
 #' @export
-IRSCoverage.func <- function(t, pars) {with(pars$irs_coverage,{
+IRSCoverage.func <- function(t, pars) {with(pars$irs$coverage,{
   pars$vars$irs_coverage = mx*pmin(pmax(0, mx*F_season(t)*F_trend(t)),1)
+  if(pars$vars$irs_coverage != pars$vars$irs_coverage) browser()
+  return(pars)
 })}
 
 #' @title Set up dynamic forcing
@@ -14,7 +16,7 @@ IRSCoverage.func <- function(t, pars) {with(pars$irs_coverage,{
 #' @inheritParams setup_irs_coverage
 #' @export
 setup_irs_coverage.func = function(name, pars, opts=list()){
-  setup_irs_coverage_func(pars, opts)
+  setup_irs_coverage_func(pars, 1, opts)
 }
 
 #' @title Set up dynamic forcing
@@ -46,6 +48,7 @@ setup_irs_coverage_func = function(pars, s=1, opts=list(),
     coverage$season_par <- season_par
     if(length(season_par)>0)
       coverage$F_season <- make_function(season_par)
+
 
     coverage$F_trend = F_trend
     coverage$trend_par <- trend_par
