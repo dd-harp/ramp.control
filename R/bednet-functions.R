@@ -183,24 +183,25 @@ BedNetEffectSizes.func <- function(t, pars, s) {
 #' @inheritParams setup_bednet_effectsizes
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes.func = function(name, pars, opts=list()){
+setup_bednet_effectsizes.func = function(name, pars, s=1, opts=list()){
   class(name) <- name
-  pars <- setup_bednet_effectsizes_func(pars, opts)
+  pars <- setup_bednet_effectsizes_func(pars, s, opts)
 }
 
 #' @title Set no bednet
 #' @description The null model for bednet
 #' @param pars an **`xds`** object
-#' @param opts a list of options to override defaults
+#' @param s the vector species index
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes_func <- function(pars, opts) {
+setup_bednet_effectsizes_func <- function(pars, s, opts) {
   pars = dynamic_vector_control(pars)
   coverage <- list()
   class(coverage) <- 'func'
   ## setup function to compute es_f
   ## setup function to compute es_q
   ## setup function to compute es_g
-  pars$bednets$coverage <- coverage
+  pars$bednets$effectsizes <- list()
+  pars$bednets$effectsizes[[s]] <- coverage
   return(pars)
 }

@@ -4,12 +4,14 @@
 \alias{setup_irs_effectsizes.none}
 \title{Set up "no irs_effectsizes"}
 \usage{
-\method{setup_irs_effectsizes}{none}(name, pars, opts)
+\method{setup_irs_effectsizes}{none}(name, pars, s, opts)
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
 \item{pars}{an **`xds`** object}
+
+\item{s}{vector species index}
 
 \item{opts}{a list of options to override defaults}
 }

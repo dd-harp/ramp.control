@@ -17,6 +17,10 @@ setup_no_bednets <- function(pars) {
   bednets$name <- 'none'
   class(bednets) <- 'none'
   pars$bednets <- bednets
+  pars$bednets$distribute <- bednets
+  pars$bednets$own <- bednets
+  pars$bednets$use <- bednets
+  pars$bednets$effects <- bednets
   pars$bednets$coverage <- bednets
   pars$bednets$effectsizes <- list()
   pars$bednets$effectsizes[[1]] <- bednets
@@ -136,10 +140,11 @@ BedNetEffectSizes.none <- function(t, pars, s) {
 #' @inheritParams setup_bednet_effectsizes
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes.none <- function(name, pars, opts) {
+setup_bednet_effectsizes.none <- function(name, pars, s, opts) {
   effectsizes <- 'none'
   class(effectsizes) <- 'none'
-  pars$bednets$effectsizes <- effectsizes
+  pars$bednets$effectsizes <- list()
+  pars$bednets$effectsizes[[s]] <- effectsizes
   return(pars)
 }
 

@@ -60,13 +60,12 @@ setup_bednets = function(pars,
   class(bednets) <- 'dynamic'
   pars$bednets <- bednets
 
-
   pars <- setup_distribute_bednets(distribute_name, pars, distribute_opts)
   pars <- setup_own_bednets(own_name, pars, own_opts)
   pars <- setup_use_bednets(use_name, pars, use_opts)
   pars <- setup_bednet_effects(effects_name, pars, effects_opts)
   pars <- setup_bednet_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_bednet_effectsizes(effectsizes_name, pars, effectsizes_opts)
+  pars <- setup_bednet_effectsizes(effectsizes_name, pars, 1, effectsizes_opts)
   return(pars)
 }
 
@@ -211,7 +210,7 @@ setup_bednet_effects = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 BedNetEffectSizes <- function(t, pars, s) {
-  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes)
+  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes[[s]])
 }
 
 #' @title Set up dynamic forcing
@@ -220,10 +219,11 @@ BedNetEffectSizes <- function(t, pars, s) {
 #' forcing and set all the
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
+#' @param s the vector species index
 #' @param opts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes = function(name, pars, opts=list()){
+setup_bednet_effectsizes = function(name, pars, s=1, opts=list()){
   class(name) <- name
   UseMethod("setup_bednet_effectsizes", name)
 }

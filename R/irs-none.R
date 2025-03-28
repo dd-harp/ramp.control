@@ -99,9 +99,11 @@ IRSEffectSizes.none <- function(t, pars, s) {
 #' @inheritParams setup_irs_effectsizes
 #' @return an **`xds`** object
 #' @export
-setup_irs_effectsizes.none <- function(name, pars, opts) {
+setup_irs_effectsizes.none <- function(name, pars, s, opts) {
   effectsizes <- list()
+  effectsizes$class <- 'none'
   class(effectsizes) <- 'none'
-  pars$irs$effectsizes <- effectsizes
+  pars$irs$effectsizes <- list()
+  pars$irs$effectsizes[[1]] <- effectsizes
   return(pars)
 }
