@@ -4,12 +4,14 @@
 \alias{setup_irs_effectsizes.simple}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_irs_effectsizes}{simple}(name, pars, opts = list())
+\method{setup_irs_effectsizes}{simple}(name, pars, s = 1, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
 \item{pars}{an **`xds`** object}
+
+\item{s}{vector species index}
 
 \item{opts}{a list of options to override defaults}
 }

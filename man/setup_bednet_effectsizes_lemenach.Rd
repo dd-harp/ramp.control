@@ -6,6 +6,7 @@
 \usage{
 setup_bednet_effectsizes_lemenach(
   pars,
+  s = 1,
   opts = list(),
   tau0_frac = c(0.68/3, 2.32/3),
   rr = 0.56,
@@ -14,6 +15,8 @@ setup_bednet_effectsizes_lemenach(
 }
 \arguments{
 \item{pars}{an **`xds`** object}
+
+\item{s}{the vector species index}
 
 \item{opts}{a list of options to override defaults}
 

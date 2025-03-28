@@ -6,7 +6,6 @@
 \usage{
 setup_irs_coverage_func(
   pars,
-  s = 1,
   opts = list(),
   mx = 1,
   F_season = F_flat,
@@ -17,8 +16,6 @@ setup_irs_coverage_func(
 }
 \arguments{
 \item{pars}{an **`xds`** object}
-
-\item{s}{the vector species index}
 
 \item{opts}{a list of options to override defaults}
 

@@ -12,7 +12,7 @@
 \item{pars}{an **`xds`** object}
 }
 \value{
-[list]
+an **`xds`** object
 }
 \description{
 The null model for irs_coverage
