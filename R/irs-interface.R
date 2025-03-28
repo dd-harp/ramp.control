@@ -50,7 +50,7 @@ setup_irs = function(pars,
   pars <- setup_spray_houses(spray_houses_name, pars, spray_houses_opts)
   pars <- setup_irs_effects(effects_name, pars, effects_opts)
   pars <- setup_irs_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_irs_effectsizes(effectsizes_name, pars, effectsizes_opts)
+  pars <- setup_irs_effectsizes(effectsizes_name, pars, 1, effectsizes_opts)
   return(pars)
 }
 
@@ -151,10 +151,11 @@ IRSEffectSizes <- function(t, pars, s) {
 #' forcing and set all the
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
+#' @param s vector species index
 #' @param opts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_irs_effectsizes = function(name, pars, opts=list()){
+setup_irs_effectsizes = function(name, pars, s=1, opts=list()){
   class(name) <- name
   UseMethod("setup_irs_effectsizes", name)
 }
