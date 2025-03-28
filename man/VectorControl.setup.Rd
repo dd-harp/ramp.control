@@ -4,7 +4,7 @@
 \alias{VectorControl.setup}
 \title{Vector Control for Static Vector Control}
 \usage{
-\method{VectorControl}{setup}(t, pars)
+VectorControl.setup(t, pars)
 }
 \arguments{
 \item{t}{current simulation time}

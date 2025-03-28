@@ -5,8 +5,6 @@
 \title{Set no bednet}
 \usage{
 \method{BedNetEffectSizes}{func}(t, pars, s)
-
-\method{BedNetEffectSizes}{func}(t, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
@@ -17,11 +15,7 @@
 }
 \value{
 [list]
-
-[list]
 }
 \description{
-The null model for bednet
-
 The null model for bednet
 }
