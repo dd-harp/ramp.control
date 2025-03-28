@@ -163,20 +163,11 @@ mod <- xds_solve(mod, 10*365, 10)
 xds_plot_PR(mod)
 ```
 ```{r}
-#devtools::load_all("../ramp.xds")
 devtools::load_all()
 ```
 
 ```{r}
 mod_irs <- setup_irs(mod, effectsizes_name = "simple", coverage_name = "func", coverage_opts = list(mx=1, trend_par = multi4))
-```
-
-```{r}
-mod_irs$irs$coverage$F_trend(2990)
-```
-
-```{r}
-plot(tt, mod_irs$irs$coverage$F_trend(tt), type = "l")
 ```
 
 ```{r}
