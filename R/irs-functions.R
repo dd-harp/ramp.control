@@ -14,7 +14,7 @@ IRSCoverage.func <- function(t, pars) {with(pars$irs$coverage,{
 #' forcing and set all the
 #' @inheritParams setup_irs_coverage
 #' @export
-setup_irs_coverage.func = function(name, pars,opts=list()){
+setup_irs_coverage.func = function(name, pars, opts=list()){
   setup_irs_coverage_func(pars, opts)
 }
 

@@ -4,12 +4,12 @@
 \alias{setup_bednet_effectsizes_func}
 \title{Set no bednet}
 \usage{
-setup_bednet_effectsizes_func(pars, opts)
+setup_bednet_effectsizes_func(pars, s, opts)
 }
 \arguments{
 \item{pars}{an **`xds`** object}
 
-\item{opts}{a list of options to override defaults}
+\item{s}{the vector species index}
 }
 \value{
 an **`xds`** object

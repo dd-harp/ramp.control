@@ -140,10 +140,11 @@ BedNetEffectSizes.none <- function(t, pars, s) {
 #' @inheritParams setup_bednet_effectsizes
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes.none <- function(name, pars, opts) {
+setup_bednet_effectsizes.none <- function(name, pars, s, opts) {
   effectsizes <- 'none'
   class(effectsizes) <- 'none'
-  pars$bednets$effectsizes <- effectsizes
+  pars$bednets$effectsizes <- list()
+  pars$bednets$effectsizes[[s]] <- effectsizes
   return(pars)
 }
 
