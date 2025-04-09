@@ -61,41 +61,7 @@ The effect sizes is the ratio of the modified mortality rate over baseline:
 $$ \frac{g + fq\phi}{g} = 1 + \phi \frac{fq}{g}.$$ 
 The effect size is computed relative to a baseline bionomic parameter set, and it is returned by models for *independent* effect sizes. The effect size is returned, rather than the modified parameters, in case multiple modes of control are operating.  Later, the baseline is modified by control by taking the product of the baseline and all the independent effect sizes. 
 
-## Insecticides
 
-Information about waning potency is available from the manufacturers of insecticides, so we have developed functions with preset differences that reflect these differences.  
-
-### Actellic 
-
-```{r, fig.height=4, fig.width=6}
-actellic <- setup_irs_round("actellic", 50, .95, .8)
-Fa <- make_function(actellic)
-plot(tt, Fa(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
-```
-
-### Bendiocarb
-
-```{r, fig.height=4, fig.width=6}
-bendiocarb <- setup_irs_round("bendiocarb", 50, .95, .8)
-Fb <- make_function(bendiocarb)
-plot(tt, Fb(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
-```
-
-### Fludora Fusion
-
-```{r, fig.height=4, fig.width=6}
-fludora_fusion <- setup_irs_round("fludora_fusion", 50, .95, .8)
-Fff <- make_function(fludora_fusion)
-plot(tt, Fff(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
-```
-
-### Sumishield
-
-```{r, fig.height=4, fig.width=6}
-sumishield <- setup_irs_round("sumishield", 50, .95, .7)
-Fs <- make_function(sumishield)
-plot(tt, Fs(tt), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
-```
 
 
 
