@@ -4,7 +4,7 @@
 \alias{Health.setup}
 \title{The `setup` case for health variables}
 \usage{
-\method{Health}{setup}(t, y, pars)
+Health.setup(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}
