@@ -10,6 +10,8 @@ setup_bednet_effectsizes_func(pars, s, opts)
 \item{pars}{an **`xds`** object}
 
 \item{s}{the vector species index}
+
+\item{opts}{an optional list of arguments}
 }
 \value{
 an **`xds`** object

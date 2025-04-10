@@ -192,6 +192,7 @@ setup_bednet_effectsizes.func = function(name, pars, s=1, opts=list()){
 #' @description The null model for bednet
 #' @param pars an **`xds`** object
 #' @param s the vector species index
+#' @param opts an optional list of arguments
 #' @return an **`xds`** object
 #' @export
 setup_bednet_effectsizes_func <- function(pars, s, opts) {
