@@ -3,9 +3,10 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   BedNets: BedNets.html
+  IRS-insectides: IRS-insectides.html
   IRS: IRS.html
   vc_lemenach: vc_lemenach.html
-last_built: 2025-03-26T20:13Z
+last_built: 2025-04-10T17:59Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
