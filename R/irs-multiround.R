@@ -53,7 +53,7 @@ setup_irs_round = function(name, t_init, coverage, zap) {
 #' @return an **`xds`** object
 #' @export
 setup_irs_round.actellic = function(name, t_init, coverage, zap) {
-  makepar_F_sharkfin(D=t_init, uk=1/3, L=100, dk = 1/90, mx=coverage*zap)
+  makepar_F_sharkfin(D=t_init, uk=1/5, L=365, dk = 1/60, mx=coverage*zap)
 }
 
 #' @title Set up dynamic forcing
@@ -64,7 +64,7 @@ setup_irs_round.actellic = function(name, t_init, coverage, zap) {
 #' @return an **`xds`** object
 #' @export
 setup_irs_round.bendiocarb = function(name, t_init, coverage, zap) {
-  makepar_F_sharkfin(D=t_init, uk=1/3, L=70, dk = 1/40, mx=coverage*zap)
+  makepar_F_sharkfin(D=t_init, uk=1/5, L=100, dk = 1/25, mx=coverage*zap)
 }
 
 #' @title Set up dynamic forcing
@@ -75,7 +75,7 @@ setup_irs_round.bendiocarb = function(name, t_init, coverage, zap) {
 #' @return an **`xds`** object
 #' @export
 setup_irs_round.fludora_fusion = function(name, t_init, coverage, zap) {
-  makepar_F_sharkfin(D=t_init, uk=1/3, L=90, dk = 1/40, mx=coverage*zap)
+  makepar_F_sharkfin(D=t_init, uk=1/5, L=310, dk = 1/35, mx=coverage*zap)
 }
 
 #' @title Set up dynamic forcing
@@ -86,5 +86,16 @@ setup_irs_round.fludora_fusion = function(name, t_init, coverage, zap) {
 #' @return an **`xds`** object
 #' @export
 setup_irs_round.sumishield = function(name, t_init, coverage, zap) {
-  makepar_F_sharkfin(D=t_init, uk=1/3, L=90, dk = 1/40, mx=coverage*zap)
+  makepar_F_sharkfin(D=t_init, uk=1/5, L=365, dk = 1/75, mx=coverage*zap)
+}
+
+#' @title Set up dynamic forcing
+#' @description If dynamic forcing has not
+#' already been set up, then turn on dynamic
+#' forcing and set all the
+#' @inheritParams setup_irs_round
+#' @return an **`xds`** object
+#' @export
+setup_irs_round.pyrethroid = function(name, t_init, coverage, zap) {
+  makepar_F_sharkfin(D=t_init, uk=1/5, L=180, dk = 1/100, mx=coverage*zap)
 }
