@@ -4,7 +4,7 @@
 \alias{Health.dynamic}
 \title{Set the values of exogenous variables}
 \usage{
-Health.dynamic(t, y, pars)
+\method{Health}{dynamic}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}

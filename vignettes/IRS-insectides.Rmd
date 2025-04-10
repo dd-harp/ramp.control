@@ -3,7 +3,7 @@ title: "IRS - Insecticides"
 subtitle: "Durability of Effects of IRS"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{IRS - Insecticidees}
+  %\VignetteIndexEntry{IRS - Insecticides}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,7 +12,7 @@ vignette: >
 library(ramp.control)
 ```
 
-```{r,}
+```{r, echo=F}
 tt <- seq(0, 730, by = 10)
 tt1 <- seq(-20, 730, by = 10)
 ```

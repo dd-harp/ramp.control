@@ -4,11 +4,7 @@
 \alias{setup_bednet_effectsizes.func}
 \title{Set up dynamic forcing}
 \usage{
-<<<<<<< HEAD
-\method{setup_bednet_effectsizes}{func}(name, pars, opts = list())
-=======
 \method{setup_bednet_effectsizes}{func}(name, pars, s = 1, opts = list())
->>>>>>> db0563d1faeb889963b6d07f2c68be34e436ff93
 }
 \arguments{
 \item{name}{the name of a model to set up}

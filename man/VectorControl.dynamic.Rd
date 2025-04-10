@@ -4,7 +4,7 @@
 \alias{VectorControl.dynamic}
 \title{Implement Vector Control}
 \usage{
-VectorControl.dynamic(t, y, pars)
+\method{VectorControl}{dynamic}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}
