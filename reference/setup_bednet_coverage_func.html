@@ -79,17 +79,21 @@ forcing and set all the</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setup_bednet_coverage_func</span><span class="op">(</span></span>
 <span>  <span class="va">pars</span>,</span>
 <span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  mean <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  mean <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">setup_bednet_coverage_func</span><span class="op">(</span></span>
 <span>  <span class="va">pars</span>,</span>
 <span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  mean <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  mean <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  F_season <span class="op">=</span> <span class="va">F_flat</span>,</span>
-<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span></span>
+<span>  season_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  F_trend <span class="op">=</span> <span class="va">F_flat</span>,</span>
+<span>  trend_par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -113,8 +117,16 @@ forcing and set all the</p>
 <dd><p>the seasonal signal in bednet coverage</p></dd>
 
 
+<dt id="arg-season-par">season_par<a class="anchor" aria-label="anchor" href="#arg-season-par"></a></dt>
+<dd><p>parameters to configure F_season</p></dd>
+
+
 <dt id="arg-f-trend">F_trend<a class="anchor" aria-label="anchor" href="#arg-f-trend"></a></dt>
 <dd><p>a temporal trend in bednet coverage</p></dd>
+
+
+<dt id="arg-trend-par">trend_par<a class="anchor" aria-label="anchor" href="#arg-trend-par"></a></dt>
+<dd><p>parameters to configure F_trend</p></dd>
 
 </dl></div>
     <div id="value">
@@ -135,7 +147,7 @@ forcing and set all the</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
