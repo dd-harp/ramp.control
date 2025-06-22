@@ -7,17 +7,21 @@
 setup_bednet_coverage_func(
   pars,
   opts = list(),
-  mean = 0,
+  mean = 1,
   F_season = F_flat,
-  F_trend = F_flat
+  season_par = list(),
+  F_trend = F_flat,
+  trend_par = list()
 )
 
 setup_bednet_coverage_func(
   pars,
   opts = list(),
-  mean = 0,
+  mean = 1,
   F_season = F_flat,
-  F_trend = F_flat
+  season_par = list(),
+  F_trend = F_flat,
+  trend_par = list()
 )
 }
 \arguments{
@@ -29,7 +33,11 @@ setup_bednet_coverage_func(
 
 \item{F_season}{the seasonal signal in bednet coverage}
 
+\item{season_par}{parameters to configure F_season}
+
 \item{F_trend}{a temporal trend in bednet coverage}
+
+\item{trend_par}{parameters to configure F_trend}
 }
 \value{
 an **`xds`** object

@@ -44,14 +44,13 @@ VectorControl.setup = function(t, y, pars){
 #' @return a named [list]
 #' @export
 VectorControlEffectSizes.dynamic <- function(t, y, pars) {
-
   pars <- BedNetCoverage(t, pars)
   pars <- IRSCoverage(t, pars)
   pars <- AreaSprayCoverage(t, pars)
   pars <- SugarBaitCoverage(t, pars)
   pars <- LSMCoverage(t, pars)
 
-  for(s in 1:pars$nVectors){
+  for(s in 1:pars$nVectorSpecies){
     pars <- BedNetEffectSizes(t, pars, s)
     pars <- IRSEffectSizes(t, pars, s)
     pars <- AreaSprayEffectSizes(t, pars, s)

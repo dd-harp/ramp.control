@@ -111,6 +111,7 @@ setup_use_bednets.func = function(name, pars, opts=list()){
 setup_use_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, F_trend=F_flat){
   use <- list()
   class(use) <- 'func'
+
   use$mean <- mean
   use$F_season <- F_season
   use$F_trend <- F_trend
@@ -146,23 +147,36 @@ setup_bednet_coverage.func = function(name, pars, opts=list()){
 #' @param opts a list of options to override defaults
 #' @param mean the mean bednet_coverage
 #' @param F_season the seasonal signal in bednet coverage
+#' @param season_par parameters to configure F_season
 #' @param F_trend a temporal trend in bednet coverage
+#' @param trend_par parameters to configure F_trend
 #' @return an **`xds`** object
 #' @export
 setup_bednet_coverage_func = function(pars, opts=list(),
-                                      mean=0,
+                                      mean=1,
                                       F_season=F_flat,
-                                      F_trend=F_flat){with(opts,{
-                                        pars = dynamic_vector_control(pars)
-                                        coverage <- list()
-                                        class(coverage) <- 'func'
-                                        coverage$name <- 'func'
-                                        coverage$mean <- mean
-                                        coverage$F_season <- F_season
-                                        coverage$F_trend <- F_trend
-                                        pars$bednets$coverage <- coverage
-                                        return(pars)
-                                      })}
+                                      season_par=list(),
+                                      F_trend=F_flat,
+                                      trend_par=list()){
+  with(opts,{
+    pars = dynamic_vector_control(pars)
+    coverage <- list()
+    class(coverage) <- 'func'
+    coverage$name <- 'func'
+    coverage$mean <- mean
+    coverage$F_season <- F_season
+    if(length(season_par)>1){
+      coverage$season_par <- season_par
+      coverage$F_season <- make_function(season_par)
+    }
+    coverage$F_trend <- F_trend
+    if(length(trend_par)>1){
+      coverage$trend_par <- trend_par
+      coverage$F_trend <- make_function(trend_par)
+    }
+    pars$bednets$coverage <- coverage
+    return(pars)
+})}
 
 #' @title Set no bednet
 #' @description The null model for bednet
