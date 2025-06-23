@@ -182,7 +182,8 @@ cov_opts <- list(
 
 ```{r}
 itn_mod <- setup_bednets(itn_mod,
-     coverage_name = "func", coverage_opts = cov_opts, 
+     coverage_name = "func", 
+     coverage_opts = cov_opts, 
      effectsizes_name = "lemenach")
 
 ```

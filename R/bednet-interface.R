@@ -17,11 +17,11 @@ BedNet <- function(t, pars) {
 #' @return [list]
 #' @export
 BedNet.dynamic <- function(t, pars) {
-   pars <- DistributeBedNets(t, pars)
-   pars <- OwnBedNets(t, pars)
-   pars <- UseBedNets(t, pars)
-   pars <- BedNetEffects(t, pars)
-   pars <- BedNetCoverage(t, pars)
+  pars <- DistributeBedNets(t, pars)
+  pars <- OwnBedNets(t, pars)
+  pars <- UseBedNets(t, pars)
+  pars <- BedNetEffects(t, pars)
+#   pars <- BedNetCoverage(t, pars)
    return(pars)
 }
 
