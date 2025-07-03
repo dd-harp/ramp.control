@@ -27,15 +27,14 @@ setup_distribute_bednets.func = function(name="func", pars, opts=list()){
 #' @param opts a list of options to override defaults
 #' @param eventT the time when a distribute occurs
 #' @param F_distribute the effects of the distribute
-#' @return an **`xds`** object
+#' @return a bed net distribution model object
 #' @export
 setup_distribute_bednets_func = function(pars, opts=list(), eventT=365, F_distribute=NULL){
   distribute <- list()
   class(distribute) <- 'func'
   distribute$eventT = eventT
   distribute$F_distribute = F_distribute
-  pars$bednets$distribute <- distribute
-  return(pars)
+  return(distribute)
 }
 
 #' @title Set no own_bednets
@@ -43,8 +42,8 @@ setup_distribute_bednets_func = function(pars, opts=list(), eventT=365, F_distri
 #' @inheritParams OwnBedNets
 #' @return [list]
 #' @export
-OwnBedNets.func <- function(t, pars) {with(pars$own_bednets,{
-  pars$vars$bednet_ownership = mean*F_season(t)*F_trend(t)
+OwnBedNets.func <- function(t, pars) {with(pars$bednets$owner_mod,{
+  pars$bednets$own = mean*F_season(t)*F_trend(t)
 })}
 
 #' @title Set up dynamic forcing
@@ -74,8 +73,7 @@ setup_own_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
   own$mean <- mean
   own$F_season <- F_season
   own$F_trend <- F_trend
-  pars$bednets$own <- own
-  return(pars)
+  return(own)
 }
 
 #' @title Set no use_bednets
@@ -83,8 +81,8 @@ setup_own_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
 #' @inheritParams UseBedNets
 #' @return [list]
 #' @export
-UseBedNets.func <- function(t, pars) {with(pars$use_bednets,{
-  pars$vars$bednet_useage = mean*F_season(t)*F_trend(t)
+UseBedNets.func <- function(t, pars) {with(pars$bednets$user_mod,{
+  pars$bednets$use = mean*F_season(t)*F_trend(t)
 })}
 
 #' @title Set up dynamic forcing
@@ -115,8 +113,7 @@ setup_use_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
   use$mean <- mean
   use$F_season <- F_season
   use$F_trend <- F_trend
-  pars$bednets$use <- use
-  return(pars)
+  return(use)
 }
 
 #' @title Set no bednet_coverage
@@ -124,8 +121,8 @@ setup_use_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
 #' @inheritParams BedNetCoverage
 #' @return [list]
 #' @export
-BedNetCoverage.func <- function(t, pars) {with(pars$bednets$coverage,{
-  pars$vars$bednet_coverage = pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
+BedNetCoverage.func <- function(t, pars) {with(pars$bednets$coverage_mod,{
+  pars$bednets$coverage = pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
   return(pars)
 })}
 
@@ -174,8 +171,7 @@ setup_bednet_coverage_func = function(pars, opts=list(),
       coverage$trend_par <- trend_par
       coverage$F_trend <- make_function(trend_par)
     }
-    pars$bednets$coverage <- coverage
-    return(pars)
+    return(coverage)
 })}
 
 #' @title Set no bednet

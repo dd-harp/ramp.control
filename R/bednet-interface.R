@@ -52,20 +52,22 @@ setup_bednets = function(pars,
                         use_name = 'none', use_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
-                        effectsizes_name = 'none', effectsizes_opts = list()){
+                        effect_sizes_name = 'none', effect_sizes_opts = list()){
 
   pars <- dynamic_vector_control(pars)
   bednets <- list()
   bednets$name <- 'dynamic'
   class(bednets) <- 'dynamic'
+  bednets$coverage <- rep(0, pars$nPatches)
   pars$bednets <- bednets
 
-  pars <- setup_distribute_bednets(distribute_name, pars, distribute_opts)
-  pars <- setup_own_bednets(own_name, pars, own_opts)
-  pars <- setup_use_bednets(use_name, pars, use_opts)
-  pars <- setup_bednet_effects(effects_name, pars, effects_opts)
-  pars <- setup_bednet_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_bednet_effectsizes(effectsizes_name, pars, 1, effectsizes_opts)
+  pars$bednets$distribute_mod <- setup_distribute_bednets(distribute_name, pars, distribute_opts)
+  pars$bednets$owner_mod <- setup_own_bednets(own_name, pars, own_opts)
+  pars$bednets$user_mod  <- setup_use_bednets(use_name, pars, use_opts)
+  pars$bednets$effects_mod <- setup_bednet_effects(effects_name, pars, effects_opts)
+  pars$bednets$coverage_mod <- setup_bednet_coverage(coverage_name, pars, coverage_opts)
+  pars$bednets$ef_sz_mod <- list()
+  pars$bednets$ef_sz_mod[[1]] <- setup_bednet_effectsizes(effect_sizes_name, pars, effect_sizes_opts)
   return(pars)
 }
 
@@ -78,7 +80,7 @@ setup_bednets = function(pars,
 #' @return an **`xds`** object
 #' @export
 DistributeBedNets <- function(t, pars) {
-  UseMethod("DistributeBedNets", pars$bednets$distribute)
+  UseMethod("DistributeBedNets", pars$bednets$distribute_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -104,7 +106,7 @@ setup_distribute_bednets = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 OwnBedNets <- function(t, pars) {
-  UseMethod("OwnBedNets", pars$bednets$own)
+  UseMethod("OwnBedNets", pars$bednets$owner_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -131,7 +133,7 @@ setup_own_bednets = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 UseBedNets <- function(t, pars) {
-  UseMethod("UseBedNets", pars$bednets$use)
+  UseMethod("UseBedNets", pars$bednets$user_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -157,7 +159,7 @@ setup_use_bednets = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 BedNetCoverage <- function(t, pars) {
-  UseMethod("BedNetCoverage", pars$bednets$coverage)
+  UseMethod("BedNetCoverage", pars$bednets$coverage_mod)
 }
 
 #' @title Set up dynamic forcing
@@ -183,7 +185,7 @@ setup_bednet_coverage = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 BedNetEffects <- function(t, pars) {
-  UseMethod("BedNetEffects", pars$bednets$effects)
+  UseMethod("BedNetEffects", pars$bednets$effects_mod)
 }
 
 #' @title Set up dynamic forcing
@@ -201,16 +203,16 @@ setup_bednet_effects = function(name, pars, opts=list()){
 }
 
 
-#' @title Set the bednet_effectsizes
-#' @description Set the value of exogenous variables related to
-#' bednet_effectsizes
+#' @title Copmute bednet effect sizes
+#' @description Compute the effect sizes
+#' associated with bed nets
 #' @param t current simulation time
 #' @param pars an **`xds`** object
 #' @param s the vector species index
 #' @return an **`xds`** object
 #' @export
 BedNetEffectSizes <- function(t, pars, s) {
-  UseMethod("BedNetEffectSizes", pars$bednets$effectsizes[[s]])
+  UseMethod("BedNetEffectSizes", pars$bednets$ef_sz_mod[[s]])
 }
 
 #' @title Set up dynamic forcing
@@ -219,11 +221,10 @@ BedNetEffectSizes <- function(t, pars, s) {
 #' forcing and set all the
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
-#' @param s the vector species index
 #' @param opts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes = function(name, pars, s=1, opts=list()){
+setup_bednet_effectsizes = function(name, pars, opts=list()){
   class(name) <- name
   UseMethod("setup_bednet_effectsizes", name)
 }

@@ -12,8 +12,8 @@ setup_irs(
   effects_opts = list(),
   coverage_name = "none",
   coverage_opts = list(),
-  effectsizes_name = "none",
-  effectsizes_opts = list()
+  effect_sizes_name = "none",
+  effect_sizes_opts = list()
 )
 }
 \arguments{

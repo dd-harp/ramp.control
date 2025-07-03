@@ -21,7 +21,7 @@ setup_distribute_bednets_func(
 \item{F_distribute}{the effects of the distribute}
 }
 \value{
-an **`xds`** object
+a bed net distribution model object
 }
 \description{
 If dynamic bednets has not

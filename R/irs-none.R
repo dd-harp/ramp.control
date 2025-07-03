@@ -13,13 +13,16 @@ IRS.none <- function(t, pars) {
 #' @return an **`xds`** object
 #' @export
 setup_no_irs <- function(pars) {
-  irs <- list()
-  class(irs) = 'none'
-  irs$name = 'none'
-  pars$irs <- irs
-  pars$irs$coverage <- irs
-  pars$irs$effectsizes <- list()
-  pars$irs$effectsizes[[1]] <- irs
+  no_irs <- list()
+  class(no_irs) = 'none'
+  no_irs$name = 'none'
+  pars$irs <- no_irs
+  pars$irs$spray_mod <- no_irs
+  pars$irs$effects_mod <- no_irs
+  pars$irs$coverage_mod <- no_irs
+
+  pars$irs$ef_sz_mod <- list()
+  pars$irs$ef_sz_mod[[1]] <- no_irs
   return(pars)
 }
 
@@ -34,14 +37,13 @@ SprayHouses.none <- function(t, pars) {
 
 #' @title Set up "no spray_houses"
 #' @inheritParams setup_spray_houses
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @return an irs spray model object
 #' @export
 setup_spray_houses.none <- function(name, pars, opts=list()) {
-  spray_houses <- 'none'
-  class(spray_houses) <- 'none'
-  pars$irs$spray_houses <- spray_houses
-  return(pars)
+  spray_houses <- list()
+  spray_houses$name <- "none"
+  class(spray_houses) <- "none"
+  return(spray_houses)
 }
 
 #' @title Set no irs_effects
@@ -55,13 +57,12 @@ IRSEffects.none <- function(t, pars) {
 
 #' @title Set up "no irs_effects"
 #' @inheritParams setup_irs_effects
-#' @return an **`xds`** object
+#' @return an irs effects model object
 #' @export
 setup_irs_effects.none <- function(name, pars, opts=list()) {
   effects <- 'none'
   class(effects) <- 'none'
-  pars$irs$effects <- effects
-  return(pars)
+  return(effects)
 }
 
 
@@ -76,13 +77,12 @@ IRSCoverage.none <- function(t, pars) {
 
 #' @title Set up "no irs_coverage"
 #' @inheritParams setup_irs_coverage
-#' @return an **`xds`** object
+#' @return an irs coverage model object
 #' @export
 setup_irs_coverage.none <- function(name='none', pars, opts=list()) {
   coverage <- 'none'
   class(coverage) <- 'none'
-  pars$irs$coverage <- coverage
-  return(pars)
+  return(coverage)
 }
 
 
@@ -97,13 +97,13 @@ IRSEffectSizes.none <- function(t, pars, s) {
 
 #' @title Set up "no irs_effectsizes"
 #' @inheritParams setup_irs_effectsizes
-#' @return an **`xds`** object
+#' @return an irs effect size model object
 #' @export
 setup_irs_effectsizes.none <- function(name, pars, s, opts) {
   effectsizes <- list()
   effectsizes$class <- 'none'
   class(effectsizes) <- 'none'
-  pars$irs$effectsizes <- list()
-  pars$irs$effectsizes[[1]] <- effectsizes
-  return(pars)
+  ef_sz_mod <- list()
+  ef_sz_mod[[1]] <- effectsizes
+  return(ef_sz_mod)
 }

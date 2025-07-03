@@ -10,7 +10,6 @@ IRS <- function(t, pars) {
   UseMethod("IRS", pars$irs)
 }
 
-
 #' @title Set no irs
 #' @description The null model for irs
 #' @inheritParams IRS
@@ -21,8 +20,6 @@ IRS.dynamic <- function(t, pars) {
   pars <- IRSEffects(t, pars)
   return(pars)
 }
-
-
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
@@ -43,14 +40,23 @@ setup_irs = function(pars,
                         spray_houses_name = 'none', spray_houses_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
-                        effectsizes_name = 'none', effectsizes_opts = list()){
+                        effect_sizes_name = 'none', effect_sizes_opts = list()){
   pars = dynamic_vector_control(pars)
-  irss <- list()
-  class(irss) <- 'dynamic'
-  pars <- setup_spray_houses(spray_houses_name, pars, spray_houses_opts)
-  pars <- setup_irs_effects(effects_name, pars, effects_opts)
-  pars <- setup_irs_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_irs_effectsizes(effectsizes_name, pars, 1, effectsizes_opts)
+  irs = list()
+  irs$name = "dynamic"
+  class(irs) = "dynamic"
+  pars$irs = irs
+
+  # Spraying, coverage, and generic effects
+  pars$irs$spray_mod <- setup_spray_houses(spray_houses_name, pars, spray_houses_opts)
+  pars$irs$effects_mod <- setup_irs_effects(effects_name, pars, effects_opts)
+  pars$irs$coverage_mod <-  setup_irs_coverage(coverage_name, pars, coverage_opts)
+  pars$irs$coverage <- list()
+
+  # The "effect sizes" model for the first vector species
+  pars$irs$ef_sz_mod <- list()
+  pars$irs$ef_sz_mod[[1]] <- setup_irs_effectsizes(effect_sizes_name, pars, effect_sizes_opts)
+
   return(pars)
 }
 
@@ -62,7 +68,7 @@ setup_irs = function(pars,
 #' @return an **`xds`** object
 #' @export
 SprayHouses <- function(t, pars) {
-  UseMethod("SprayHouses", pars$irs$spray_houses)
+  UseMethod("SprayHouses", pars$irs$spray_mod)
 }
 
 #' @title Set up dynamic irs
@@ -88,7 +94,7 @@ setup_spray_houses = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 IRSEffects <- function(t, pars) {
-  UseMethod("IRSEffects", pars$irs$effects)
+  UseMethod("IRSEffects", pars$irs$effects_mod)
 }
 
 
@@ -115,7 +121,7 @@ setup_irs_effects = function(name, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 IRSCoverage <- function(t, pars) {
-  UseMethod("IRSCoverage", pars$irs$coverage)
+  UseMethod("IRSCoverage", pars$irs$coverage_mod)
 }
 
 #' @title Set up dynamic forcing
@@ -141,8 +147,8 @@ setup_irs_coverage = function(name, pars, opts=list()){
 #' @param s vector species index
 #' @return an **`xds`** object
 #' @export
-IRSEffectSizes <- function(t, pars, s) {
-  UseMethod("IRSEffectSizes", pars$irs$effectsizes[[s]])
+IRSEffectSizes <- function(t, pars, s=1) {
+  UseMethod("IRSEffectSizes", pars$irs$ef_sz_mod[[s]])
 }
 
 #' @title Set up dynamic forcing
@@ -151,11 +157,10 @@ IRSEffectSizes <- function(t, pars, s) {
 #' forcing and set all the
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
-#' @param s vector species index
 #' @param opts a list of options to override defaults
 #' @return an **`xds`** object
 #' @export
-setup_irs_effectsizes = function(name, pars, s=1, opts=list()){
+setup_irs_effectsizes = function(name, pars, opts=list()){
   class(name) <- name
   UseMethod("setup_irs_effectsizes", name)
 }

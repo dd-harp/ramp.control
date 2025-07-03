@@ -5,8 +5,8 @@
 #' forcing and set all the
 #' @inheritParams setup_bednet_effectsizes
 #' @export
-setup_bednet_effectsizes.lemenach = function(name, pars, s=1, opts=list()){
-  pars = setup_bednet_effectsizes_lemenach(pars, s, opts)
+setup_bednet_effectsizes.lemenach = function(name, pars, opts=list()){
+  pars = setup_bednet_effectsizes_lemenach(pars, opts)
   return(pars)
 }
 
@@ -15,7 +15,6 @@ setup_bednet_effectsizes.lemenach = function(name, pars, s=1, opts=list()){
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param pars an **`xds`** object
-#' @param s the vector species index
 #' @param opts a list of options to override defaults
 #' @param tau0_frac a [numeric] vector giving the proportion of a feeding cycle spent
 #' host seeking/bloodfeeding *vs.* resting/oviposition
@@ -23,7 +22,7 @@ setup_bednet_effectsizes.lemenach = function(name, pars, s=1, opts=list()){
 #' @param ss probability of mosquito successfully feeding upon contact with ITN
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes_lemenach = function(pars, s=1, opts=list(),
+setup_bednet_effectsizes_lemenach = function(pars, opts=list(),
                                              tau0_frac = c(0.68/3, 2.32/3),
                                              rr = 0.56, ss = 0.03){
   stopifnot(sum(tau0_frac) == 1)
@@ -33,9 +32,7 @@ setup_bednet_effectsizes_lemenach = function(pars, s=1, opts=list(),
   es$tau0_frac = tau0_frac
   es$rr=rr
   es$ss=ss
-  pars$bednets$effectsizes <- list()
-  pars$bednets$effectsizes[[s]] <- es
-  return(pars)
+  return(es)
 }
 
 #' @title Modify baseline values due to vector control
@@ -46,8 +43,8 @@ setup_bednet_effectsizes_lemenach = function(pars, s=1, opts=list(),
 #' @seealso [compute_bednet_effect_sizes_lemenach()]
 #' @export
 BedNetEffectSizes.lemenach <- function(t, pars, s){
-  phi = pars$vars$bednet_coverage
-  with(pars$bednets$effectsizes[[s]],{
+  phi = pars$bednets$coverage
+  with(pars$bednets$ef_sz_mod[[s]],{
     with(pars$MYZpar[[s]],{
       es <- sapply(1:pars$nPatches,
                    compute_bednet_effect_sizes_lemenach,
