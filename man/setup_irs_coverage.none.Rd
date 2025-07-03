@@ -14,7 +14,7 @@
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+an irs coverage model object
 }
 \description{
 Set up "no irs_coverage"

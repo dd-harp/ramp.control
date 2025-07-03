@@ -2,7 +2,7 @@
 % Please edit documentation in R/bednet-interface.R
 \name{BedNetEffectSizes}
 \alias{BedNetEffectSizes}
-\title{Set the bednet_effectsizes}
+\title{Copmute bednet effect sizes}
 \usage{
 BedNetEffectSizes(t, pars, s)
 }
@@ -17,6 +17,6 @@ BedNetEffectSizes(t, pars, s)
 an **`xds`** object
 }
 \description{
-Set the value of exogenous variables related to
-bednet_effectsizes
+Compute the effect sizes
+associated with bed nets
 }

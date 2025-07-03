@@ -11,8 +11,6 @@
 
 \item{pars}{an **`xds`** object}
 
-\item{s}{the vector species index}
-
 \item{opts}{a list of options to override defaults}
 }
 \value{

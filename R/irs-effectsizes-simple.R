@@ -5,8 +5,8 @@
 #' forcing and set all the
 #' @inheritParams setup_irs_effectsizes
 #' @export
-setup_irs_effectsizes.simple = function(name, pars, s=1, opts=list()){
-  pars = setup_irs_effectsizes_simple(pars, s, opts)
+setup_irs_effectsizes.simple = function(name, pars, opts=list()){
+  pars = setup_irs_effectsizes_simple(pars, opts)
   return(pars)
 }
 
@@ -15,20 +15,17 @@ setup_irs_effectsizes.simple = function(name, pars, s=1, opts=list()){
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param pars an **`xds`** object
-#' @param s the vector species index
 #' @param opts a list of options to override defaults
 #' @param contact the probability of contact given coverage
 #' @return an **`xds`** object
 #' @export
-setup_irs_effectsizes_simple = function(pars, s=1, opts=list(),
+setup_irs_effectsizes_simple = function(pars, opts=list(),
                                         contact=1){
   es <- list()
   es$name <- 'simple'
   class(es) <- 'simple'
   es$contact <- contact
-  pars$irs$effectsizes <-  list()
-  pars$irs$effectsizes[[s]] <- es
-  return(pars)
+  return(es)
 }
 
 #' @title Modify baseline values due to vector control
@@ -39,7 +36,8 @@ setup_irs_effectsizes_simple = function(pars, s=1, opts=list(),
 #' @seealso [compute_irs_effect_sizes_simple()]
 #' @export
 IRSEffectSizes.simple <- function(t, pars, s){
-  phi = pars$vars$irs_coverage
+  phi = pars$irs$coverage
+  contact = pars$irs$ef_sz_mod[[s]]$contact
   with(pars$irs$effectsizes[[s]],{
     with(pars$MYZpar[[s]],{
       es <- sapply(1:pars$nPatches,
@@ -61,7 +59,7 @@ IRSEffectSizes.simple <- function(t, pars, s){
 #' @param contact the probability of contact given coverage
 #' @return an **`xds`** model object
 #' @importFrom stats pexp
-compute_irs_effect_sizes_simple = function(ix, phi, ff, qq, gg, contact=0.8){
+compute_irs_effect_sizes_simple = function(ix, phi, ff, qq, gg, contact=1){
   f=ff[ix]; q=qq[ix]; g=gg[ix]
   es = (gg+ff*qq*phi*contact)/gg
   return(c(es))

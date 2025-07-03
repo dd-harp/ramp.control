@@ -4,7 +4,7 @@
 \alias{IRSEffectSizes}
 \title{Set the irs_effectsizes}
 \usage{
-IRSEffectSizes(t, pars, s)
+IRSEffectSizes(t, pars, s = 1)
 }
 \arguments{
 \item{t}{current simulation time}

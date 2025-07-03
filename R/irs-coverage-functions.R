@@ -4,7 +4,7 @@
 #' @return an **`xds`** object
 #' @export
 IRSCoverage.func <- function(t, pars) {with(pars$irs$coverage,{
-  pars$vars$irs_coverage = mx*pmin(pmax(0, mx*F_season(t)*F_trend(t)),1)
+  pars$irs$coverage = mx*pmin(pmax(0, mx*F_season(t)*F_trend(t)),1)
   return(pars)
 })}
 

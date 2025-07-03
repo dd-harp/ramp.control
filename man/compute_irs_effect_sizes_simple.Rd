@@ -4,7 +4,7 @@
 \alias{compute_irs_effect_sizes_simple}
 \title{Modify baseline values due to vector control}
 \usage{
-compute_irs_effect_sizes_simple(ix, phi, ff, qq, gg, contact = 0.8)
+compute_irs_effect_sizes_simple(ix, phi, ff, qq, gg, contact = 1)
 }
 \arguments{
 \item{ix}{an index over nPatches}
