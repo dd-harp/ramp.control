@@ -12,7 +12,7 @@ library(deSolve)
 library(data.table)
 library(ggplot2)
 library(viridisLite)
-
+library(ramp.control)
 ## ----echo=FALSE---------------------------------------------------------------
 #devtools::load_all()
 
@@ -37,7 +37,7 @@ wf <- rep(1, nStrata)
 pfpr <- runif(n = nStrata, min = 0.25, max = 0.35)
 X <- rbinom(n = nStrata, size = HPop, prob = pfpr)
 
-searchWtsH = rep(1,3) 
+searchWtsH = rep(1,3)
 
 TaR <- matrix(
   data = c(
@@ -50,15 +50,15 @@ TaR <- t(TaR)
 
 ## -----------------------------------------------------------------------------
 f <- rep(0.3, nPatches)
-q <- rep(0.9, nPatches) 
-g <- rep(1/10, nPatches)  
-mu <- rep(0, nPatches)  
-sigma <- rep(1/100, nPatches)  
-nu <- rep(1/2, nPatches)  
+q <- rep(0.9, nPatches)
+g <- rep(1/10, nPatches)
+mu <- rep(0, nPatches)
+sigma <- rep(1/100, nPatches)
+nu <- rep(1/2, nPatches)
 eggsPerBatch <- 30
 eip <- 11
-MYZo = list(f=f, q=q, g=g, sigma=sigma, mu=mu, 
-            nu=nu, eggsPerBatch=eggsPerBatch, eip=eip) 
+MYZo = list(f=f, q=q, g=g, sigma=sigma, mu=mu,
+            nu=nu, eggsPerBatch=eggsPerBatch, eip=eip)
 
 ## -----------------------------------------------------------------------------
 calK = create_calK_herethere(nPatches)
@@ -113,40 +113,48 @@ theta <- (eta - psi*L - phi*L)/(L^2)
 
 Lo = list(psi=psi, phi=phi, theta=theta, L=L)
 
-MYZo = list(f=f, q=q, g=g, sigma=sigma, 
-            nu=nu, eggsPerBatch=eggsPerBatch, 
+MYZo = list(f=f, q=q, g=g, sigma=sigma,
+            nu=nu, eggsPerBatch=eggsPerBatch,
             M=M, Y=Y, Z=Z)
 
 ## -----------------------------------------------------------------------------
-xds_setup(MYZname="SI", Xname="SIS", Lname="basicL", 
-          nPatches=3, HPop=HPop, membership=membership, 
-          MYZopts=MYZo, calK=calK,
-          Xopts=Xo, residence=1:3, searchB=rep(1,3), 
-          TimeSpent =TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+#xds_setup(MYZname="SI", Xname="SIS", Lname="basicL",
+ #                nPatches=3, HPop=HPop, membership=membership,
+  #               MYZopts=MYZo, calK=calK,
+   #              Xopts=Xo, residence=1:3, searchB=rep(1,3),
+    #             TimeSpent =TaR, searchQ=rep(1,3), Lopts=Lo) -> itn_mod
+
+xds_setup_cohort(Xname="SIS") -> itn_mod
 
 ## -----------------------------------------------------------------------------
-itn_mod <- xds_solve(itn_mod, Tmax=1830, dt=15)
+tt = seq(0, 1830, by = 15)
+#itn_mod <- xds_solve(itn_mod, Tmax=1830, dt=15)
+itn_mod <- xds_solve_cohort(itn_mod, times=tt)
 itn_mod <- last_to_inits(itn_mod)
 
 ## -----------------------------------------------------------------------------
 cov_opts <- list(
-  mean = 0.5, 
+  mean = 0.5,
   F_season = function(t)
     {ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1))}
 )
 
 ## -----------------------------------------------------------------------------
-itn_mod <- xds_setup_bednets(itn_mod,
-     coverage_name = "func", coverage_opts = cov_opts, 
+itn_mod <- setup_bednets(itn_mod,
+     coverage_name = "func", coverage_opts = cov_opts,
      effectsizes_name = "lemenach")
 
 
 ## -----------------------------------------------------------------------------
-tt = seq(0, 1830, by = 15) 
+tt = seq(0, 1830, by = 15)
 with(cov_opts, plot(tt, mean*F_season(tt), type ="l"))
 
 ## ----solve--------------------------------------------------------------------
-xds_solve(itn_mod, 1830, dt=15) -> itn_mod
+itn_mod$nHostSpecies <- 1
+itn_mod$nVectorSpecies <- 1
+itn_mod$nVectors <- 1
+itn_mod <- setup_other_variables(itn_mod)
+xds_solve_cohort(itn_mod, times = tt) -> itn_mod
 
 ## ----fig.height=7, fig.width=6------------------------------------------------
 par(mfrow = c(2,1))
