@@ -4,12 +4,12 @@
 \alias{add_irs_round}
 \title{Set up dynamic forcing}
 \usage{
-add_irs_round(pars, irs_type, t_init, coverage, zap = 1)
+add_irs_round(pars, type, t_init, coverage, zap = 1)
 }
 \arguments{
 \item{pars}{the `ramp.xds` object}
 
-\item{irs_type}{the name of the IRS type}
+\item{type}{the name of the IRS type}
 
 \item{t_init}{the time when IRS started}
 

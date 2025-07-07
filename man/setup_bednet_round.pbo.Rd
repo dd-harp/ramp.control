@@ -4,10 +4,10 @@
 \alias{setup_bednet_round.pbo}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_bednet_round}{pbo}(bednet_type, t_init, coverage, zap = 1)
+\method{setup_bednet_round}{pbo}(type, t_init, coverage, zap = 1)
 }
 \arguments{
-\item{bednet_type}{the name of the BedNet type}
+\item{type}{the name of the BedNet type}
 
 \item{t_init}{the time when BedNet started}
 

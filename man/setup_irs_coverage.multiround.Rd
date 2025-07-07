@@ -4,7 +4,7 @@
 \alias{setup_irs_coverage.multiround}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_irs_coverage}{multiround}(irs_type, pars, opts = list())
+\method{setup_irs_coverage}{multiround}(type, pars, opts = list())
 }
 \arguments{
 \item{pars}{an **`xds`** object}
