@@ -251,6 +251,7 @@ is constant for all time.</p>
 <span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cov_opts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  mean <span class="op">=</span> <span class="fl">0.7</span>, </span>
 <span>  F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
 <span>    <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">-</span><span class="fl">365</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -258,7 +259,7 @@ is constant for all time.</p>
 <code class="sourceCode R"><span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_bednets.html">setup_bednets</a></span><span class="op">(</span><span class="va">itn_mod</span>,</span>
 <span>     coverage_name <span class="op">=</span> <span class="st">"func"</span>, </span>
 <span>     coverage_opts <span class="op">=</span> <span class="va">cov_opts</span>, </span>
-<span>     effectsizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span></code></pre></div>
+<span>     effect_sizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span></code></pre></div>
 <p>If we ran the model at this point, we would get the baseline.
 Instead, we set up a time-varying function to compute the coverage of
 ITNs at any time point. We use a sine curve with a period of 365 days
@@ -266,10 +267,13 @@ which goes from 0 to 1 over that period, with the phase shifted so that
 at 0 it returns 0. The function also returns 0 for any
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t&lt;0</annotation></semantics></math>.
 This must be a function that takes a single argument <code>t</code>
-(time) and returns a scalar value.</p>
+(time) and returns a scalar value. We note that this seasonality
+function exceeds one. When we evaluate it, values get chopped.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1830</span>, by <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fl">.7</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BedNetCoverage.html">BedNetCoverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">itn_mod</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">itn_mod</span><span class="op">$</span><span class="va">bednets</span><span class="op">$</span><span class="va">coverage</span>, col <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vc_lemenach_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <p>We use the null model of human demographic dynamics, which assumes
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>

@@ -71,11 +71,11 @@ forcing and set all the</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">setup_irs_multiround</span><span class="op">(</span></span>
+<span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  t_init <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  coverage <span class="op">=</span> <span class="fl">0.8</span>,</span>
-<span>  irs_type <span class="op">=</span> <span class="st">"actellic"</span>,</span>
-<span>  zap <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  type <span class="op">=</span> <span class="st">"actellic"</span>,</span>
+<span>  zap <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,7 +83,11 @@ forcing and set all the</p>
     <h2>Arguments</h2>
 
 
-<dl><dt id="arg-t-init">t_init<a class="anchor" aria-label="anchor" href="#arg-t-init"></a></dt>
+<dl><dt id="arg-opts">opts<a class="anchor" aria-label="anchor" href="#arg-opts"></a></dt>
+<dd><p>a list of options to override defaults</p></dd>
+
+
+<dt id="arg-t-init">t_init<a class="anchor" aria-label="anchor" href="#arg-t-init"></a></dt>
 <dd><p>the time when IRS started</p></dd>
 
 
@@ -91,16 +95,12 @@ forcing and set all the</p>
 <dd><p>the coverage achieved</p></dd>
 
 
-<dt id="arg-irs-type">irs_type<a class="anchor" aria-label="anchor" href="#arg-irs-type"></a></dt>
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>the IRS type</p></dd>
 
 
 <dt id="arg-zap">zap<a class="anchor" aria-label="anchor" href="#arg-zap"></a></dt>
 <dd><p>the contact parameter</p></dd>
-
-
-<dt id="arg-opts">opts<a class="anchor" aria-label="anchor" href="#arg-opts"></a></dt>
-<dd><p>a list of options to override defaults</p></dd>
 
 </dl></div>
     <div id="value">

@@ -26,6 +26,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNet.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetCoverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetCoverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetCoverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetCoverage.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetEffectSizes.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/BedNetEffectSizes.html</loc></url>
@@ -49,6 +50,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRS.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSCoverage.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSEffectSizes.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/IRSEffectSizes.none.html</loc></url>
@@ -94,6 +96,8 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl.dynamic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControl.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/VectorControlEffectSizes.dynamic.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/add_bednet_round.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/add_irs_round.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_bednet_effect_sizes_lemenach.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/compute_irs_effect_sizes_simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_health.dynamic.html</loc></url>
@@ -105,6 +109,10 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_vector_control.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_vector_control.setup.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_multiround.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/none_obj.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_cover_bednet.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_cover_irs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray_coverage.html</loc></url>
@@ -116,6 +124,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray_effectsizes.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_coverage.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_coverage_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_effects.html</loc></url>
@@ -126,6 +135,10 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_effectsizes.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_effectsizes_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_effectsizes_lemenach.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_multiround.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_round.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_round.pbo.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednet_round_generic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_bednets.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_care_seeking_no_behavior.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_distribute_bednets.func.html</loc></url>
@@ -137,6 +150,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_coverage.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_coverage_func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_effects.html</loc></url>
@@ -152,6 +166,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_round.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_round.pyrethroid.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_round.sumishield.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_irs_round_generic.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm_coverage.func.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_lsm_coverage.html</loc></url>

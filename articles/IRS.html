@@ -97,21 +97,48 @@ Spraying Models</h3>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.control</span><span class="op">)</span></span></code></pre></div>
 <p><strong><code>ramp.control</code></strong> handles IRS in a flexible
 way. Four methods are defined; not all of them need to get used.</p>
+<hr>
+<p>The <code>irs</code> model object</p>
+<p><code>irs</code></p>
+<ul>
+<li><p><code>$spray_mod</code></p></li>
+<li><p><code>$effects_mod</code></p></li>
+<li><p><code>$coverage_mod</code></p></li>
+<li><p><strong>coverage</strong></p></li>
+<li>
+<p><code>$ef_sz_mod</code></p>
+<ul>
+<li><p>[[1]] - for species 1</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>For the <strong><code>xds</code></strong> model object called
+<code>model</code>:</p>
 <ul>
 <li>
 <p><code>VectorControl::IRS</code></p>
 <ul>
 <li><p><code>SprayHouses</code> – a function to model mass distribution
-of nets and/or coverage</p></li>
+of nets and/or coverage dispatched by
+<code>class(model$irs$spray_mod)</code></p></li>
 <li><p><code>IRSEffects</code> – modify mosquito behavioral parameters,
-including search weights</p></li>
+including search weights dispatched by
+<code>class(model$irs$effects_mod)</code></p></li>
 </ul>
 </li>
 <li>
 <p><code>VectorControl::IRSEffectSizes</code></p>
 <ul>
-<li><p><code>IRSCoverage</code> – compute IRS coverage</p></li>
-<li><p><code>IRSEffectSizes</code> – compute IRS effect sizes</p></li>
+<li><p><code>IRSCoverage</code> – compute IRS coverage dispatched by
+<code>class(model$irs$coverage_mod)</code></p></li>
+<li><p>After evaluating <code>IRSCoverage</code>, values are stored at
+<code>model$irs$coverage</code></p></li>
+<li><p><code>IRSEffectSizes</code> – compute IRS effect sizes dispatched
+by <code>class(model$irs$ef_sz_mod[[s]])</code> (for the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>s</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup><annotation encoding="application/x-tex">s^{th}</annotation></semantics></math>
+species)</p></li>
 </ul>
 </li>
 </ul>
@@ -138,7 +165,7 @@ reaching 50% on day 230, 180 days after the spray round.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">par</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkfin.html">makepar_F_sharkfin</a></span><span class="op">(</span>D<span class="op">=</span><span class="fl">50</span>, uk<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, L<span class="op">=</span><span class="fl">180</span>, mx<span class="op">=</span><span class="fl">.9</span><span class="op">)</span></span>
 <span><span class="va">Fsf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">par</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="effect-sizes">Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"></a>
@@ -175,37 +202,38 @@ independent effect sizes.</p>
 different <code>zap</code> parameters for the different
 insecticides:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">round1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"actellic"</span>, <span class="fl">50</span>, <span class="fl">.95</span>, <span class="fl">.9</span><span class="op">)</span></span>
-<span><span class="va">round2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"sumishield"</span>, <span class="fl">415</span>, <span class="fl">.95</span>, <span class="fl">.4</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">round1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"actellic"</span>, <span class="fl">50</span>, <span class="fl">.95</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">round2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"sumishield"</span>, <span class="fl">415</span>, <span class="fl">.95</span><span class="op">)</span></span>
 <span><span class="va">F1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">round1</span><span class="op">)</span></span>
 <span><span class="va">F2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">round2</span><span class="op">)</span></span>
 <span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1095</span>, by<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">+</span><span class="fu">F2</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, main<span class="op">=</span><span class="st">"Coverage"</span>, ylab <span class="op">=</span> <span class="st">"A Sharkfin Function"</span>, xlab <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu">F1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu">F2</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, main<span class="op">=</span><span class="st">"Coverage"</span>, ylab <span class="op">=</span> <span class="st">"A Sharkfin Function"</span>, xlab <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F2</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_irs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>t_init <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">240</span>, <span class="fl">420</span>, <span class="fl">785</span><span class="op">)</span><span class="op">+</span><span class="fl">730</span>,</span>
-<span>irs_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bendiocarb"</span>, <span class="st">"bendiocarb"</span>, <span class="st">"actellic"</span>, <span class="st">"sumishield"</span><span class="op">)</span>,</span>
+<span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bendiocarb"</span>, <span class="st">"bendiocarb"</span>, <span class="st">"actellic"</span>, <span class="st">"sumishield"</span><span class="op">)</span>,</span>
 <span>coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.9</span>, <span class="fl">.85</span>, <span class="fl">.9</span>, <span class="fl">.9</span><span class="op">)</span>,</span>
-<span>zap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.95</span>, <span class="fl">.8</span>, <span class="fl">.4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>zap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.95</span>, <span class="fl">.8</span>, <span class="fl">0.8</span>, <span class="fl">.4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"actellic"</span>, <span class="fl">500</span>, <span class="fl">.9</span>, <span class="fl">.1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs_round.html">setup_irs_round</a></span><span class="op">(</span><span class="st">"actellic"</span>, <span class="fl">500</span>, <span class="fl">.9</span><span class="op">)</span></span>
 <span><span class="va">Fm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">Fm1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>Now, we pass these to <code>setup_irs_multiround</code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">multi4</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_irs_multiround.html">setup_irs_multiround</a></span><span class="op">(</span>opts <span class="op">=</span> <span class="va">test_irs</span><span class="op">)</span></span>
-<span><span class="va">F4r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">multi4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
+<code class="sourceCode R"><span><span class="va">multi4</span> <span class="op">=</span> <span class="fu"><a href="../reference/setup_irs_multiround.html">setup_irs_multiround</a></span><span class="op">(</span>opts <span class="op">=</span> <span class="va">test_irs</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">F4r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">multi4</span><span class="op">$</span><span class="va">rounds_par</span><span class="op">)</span></span></code></pre></div>
+<p><img src="IRS_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="adding-irs-to-a-model">Adding IRS to a Model<a class="anchor" aria-label="anchor" href="#adding-irs-to-a-model"></a>
 </h2>
 <p>We are now to the point where we can add IRS.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt0</span> <span class="op">&lt;-</span>  <span class="fl">365</span><span class="op">*</span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">yy0</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.7</span>, <span class="fl">2</span>, <span class="fl">1.4</span>, <span class="fl">1.8</span>, <span class="fl">0.6</span>, <span class="fl">.8</span>, <span class="fl">1.1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span></span>
 <span><span class="va">Lo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -218,15 +246,36 @@ insecticides:</p>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> </span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod</span>, <span class="fl">10</span><span class="op">*</span><span class="fl">365</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs.html">setup_irs</a></span><span class="op">(</span><span class="va">mod</span>, effectsizes_name <span class="op">=</span> <span class="st">"simple"</span>, coverage_name <span class="op">=</span> <span class="st">"func"</span>, coverage_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mx<span class="op">=</span><span class="fl">1</span>, trend_par <span class="op">=</span> <span class="va">multi4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="IRS_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod_irs</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">8</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod_irs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs.html">setup_irs</a></span><span class="op">(</span><span class="va">mod</span>, effect_sizes_name <span class="op">=</span> <span class="st">"simple"</span>, coverage_name <span class="op">=</span> <span class="st">"multiround"</span>, coverage_opts <span class="op">=</span> <span class="va">test_irs</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod_irs</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">8</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_irs</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_irs_round.html">add_irs_round</a></span><span class="op">(</span><span class="va">mod_irs</span>, <span class="st">"bendiocarb"</span>, <span class="fl">300</span>, <span class="fl">.9</span>, <span class="fl">.9</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">type</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "bendiocarb" "bendiocarb" "actellic"   "sumishield" "bendiocarb"</span></span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">t_init</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1]  790  970 1150 1515  300</span></span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">coverage</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.90 0.85 0.90 0.90 0.90</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">zap</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.95 0.80 0.80 0.40 0.90</span></span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod_irs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod_irs1</span>, <span class="fl">10</span><span class="op">*</span><span class="fl">365</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_irs</span>, clrs<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod_irs1</span>, clrs<span class="op">=</span> <span class="st">"darkred"</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p><img src="IRS_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>
   </div>
 
