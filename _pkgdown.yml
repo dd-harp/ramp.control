@@ -347,3 +347,22 @@ reference:
   - CareSeeking
   - CareSeeking.no_behavior
   - setup_care_seeking_no_behavior
+- subtitle: New Functions
+  desc: |
+    need sorting
+  contents:
+  - BedNetCoverage.multiround
+  - IRSCoverage.multiround
+  - add_bednet_round
+  - add_irs_round
+  - makepar_F_multiround
+  - none_obj
+  - setup_F_cover_bednet
+  - setup_F_cover_irs
+  - setup_bednet_coverage.multiround
+  - setup_bednet_multiround
+  - setup_bednet_round
+  - setup_bednet_round.pbo
+  - setup_bednet_round_generic
+  - setup_irs_coverage.multiround
+  - setup_irs_round_generic
