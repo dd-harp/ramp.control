@@ -4,10 +4,10 @@
 \alias{setup_irs_round.fludora_fusion}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_irs_round}{fludora_fusion}(irs_type, t_init, coverage, zap = 1)
+\method{setup_irs_round}{fludora_fusion}(type, t_init, coverage, zap = 1)
 }
 \arguments{
-\item{irs_type}{the name of the IRS type}
+\item{type}{the name of the IRS type}
 
 \item{t_init}{the time when IRS started}
 

@@ -4,10 +4,10 @@
 \alias{setup_irs_round}
 \title{Set up dynamic forcing}
 \usage{
-setup_irs_round(irs_type, t_init, coverage, zap = 1)
+setup_irs_round(type, t_init, coverage, zap = 1)
 }
 \arguments{
-\item{irs_type}{the name of the IRS type}
+\item{type}{the name of the IRS type}
 
 \item{t_init}{the time when IRS started}
 

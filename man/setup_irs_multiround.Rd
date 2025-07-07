@@ -8,7 +8,7 @@ setup_irs_multiround(
   opts = list(),
   t_init = 1,
   coverage = 0.8,
-  irs_type = "actellic",
+  type = "actellic",
   zap = 1
 )
 }
@@ -19,7 +19,7 @@ setup_irs_multiround(
 
 \item{coverage}{the coverage achieved}
 
-\item{irs_type}{the IRS type}
+\item{type}{the IRS type}
 
 \item{zap}{the contact parameter}
 }

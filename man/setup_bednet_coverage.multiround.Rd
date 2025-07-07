@@ -4,9 +4,11 @@
 \alias{setup_bednet_coverage.multiround}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_bednet_coverage}{multiround}(bednet_type, pars, opts = list())
+\method{setup_bednet_coverage}{multiround}(name, pars, opts = list())
 }
 \arguments{
+\item{name}{the name of a model to set up}
+
 \item{pars}{an **`xds`** object}
 
 \item{opts}{a list of options to override defaults}

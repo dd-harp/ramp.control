@@ -8,7 +8,7 @@ setup_bednet_multiround(
   opts = list(),
   t_init = 1,
   coverage = 0.8,
-  bednet_type = "PBO",
+  type = "PBO",
   zap = 1
 )
 }
@@ -19,7 +19,7 @@ setup_bednet_multiround(
 
 \item{coverage}{the coverage achieved}
 
-\item{bednet_type}{the BedNet type}
+\item{type}{the BedNet type}
 
 \item{zap}{the contact parameter}
 }
