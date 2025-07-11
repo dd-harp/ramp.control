@@ -34,9 +34,9 @@ setup_irs_coverage.multiround = function(type, pars, opts=list()){
 #' @return an **`xds`** object
 #' @export
 setup_irs_multiround = function(opts=list(),
-                                t_init = 1,
-                                coverage=.8,
-                                type = "actellic",
+                                t_init = 0,
+                                coverage = 0,
+                                type = "none",
                                 zap = 1){
   with(opts,{
     nRounds <- length(t_init)
@@ -71,8 +71,10 @@ setup_irs_multiround = function(opts=list(),
 setup_F_cover_irs = function(cover){
 
   rounds <- list()
+  rounds[[1]] = makepar_F_zero()
   for(i in 1:cover$nRounds)
-    rounds[[i]] = with(cover, setup_irs_round(type[i], t_init[i], coverage[i], zap[i]))
+    rounds[[i+1]] = with(cover,
+                       setup_irs_round(type[i], t_init[i], coverage[i], zap[i]))
 
   rounds_par <- makepar_F_multiround(cover$nRounds, rounds)
   cover$rounds <- rounds
@@ -132,6 +134,17 @@ setup_irs_round = function(type, t_init, coverage, zap=1) {
 #' @export
 setup_irs_round_generic = function(t_init, uk=1/5, L=365, dk=1/60, coverage=.7, zap=1) {
   makepar_F_sharkfin(D=t_init, uk=uk, L=L, dk = dk, mx=coverage)
+}
+
+#' @title Set up dynamic forcing
+#' @description If dynamic forcing has not
+#' already been set up, then turn on dynamic
+#' forcing and set all the
+#' @inheritParams setup_irs_round
+#' @return an **`xds`** object
+#' @export
+setup_irs_round.none = function(type, t_init, coverage, zap=1) {
+  makepar_F_zero()
 }
 
 #' @title Set up dynamic forcing
