@@ -35,7 +35,7 @@ setup_bednet_coverage.multiround = function(name, pars, opts=list()){
 setup_bednet_multiround = function(opts=list(),
                                 t_init = 1,
                                 coverage=.8,
-                                type = "PBO",
+                                type = "pbo",
                                 zap = 1){
   with(opts,{
     nRounds <- length(t_init)
@@ -59,11 +59,7 @@ setup_bednet_multiround = function(opts=list(),
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param cover a mo
-#' @param t_init the time when BedNet started
-#' @param coverage the coverage achieved
-#' @param type the BedNet type
-#' @param zap the contact parameter
+#' @param cover a list with parameters for all the rounds
 #' @return an **`xds`** object
 #' @export
 setup_F_cover_bednet = function(cover){

@@ -102,14 +102,14 @@ reference:
   contents:
   - BedNetEffectSizes
   - BedNetEffectSizes.none
-  - setup_bednet_effectsizes
-  - setup_bednet_effectsizes.none
+  - setup_bednet_effect_sizes
+  - setup_bednet_effect_sizes.none
   - BedNetEffectSizes.func
-  - setup_bednet_effectsizes.func
-  - setup_bednet_effectsizes_func
+  - setup_bednet_effect_sizes.func
+  - setup_bednet_effect_sizes_func
   - BedNetEffectSizes.lemenach
-  - setup_bednet_effectsizes.lemenach
-  - setup_bednet_effectsizes_lemenach
+  - setup_bednet_effect_sizes.lemenach
+  - setup_bednet_effect_sizes_lemenach
   - compute_bednet_effect_sizes_lemenach
 - title: Indoor Residual Spraying
   desc: |
@@ -153,11 +153,11 @@ reference:
   desc: |
     Methods to implement irs effect sizes
   contents:
-  - setup_irs_effectsizes
-  - setup_irs_effectsizes.none
+  - setup_irs_effect_sizes
+  - setup_irs_effect_sizes.none
   - IRSEffectSizes.simple
-  - setup_irs_effectsizes.simple
-  - setup_irs_effectsizes_simple
+  - setup_irs_effect_sizes.simple
+  - setup_irs_effect_sizes_simple
   - compute_irs_effect_sizes_simple
 - subtitle: IRS Multi Round
   desc: |
@@ -366,3 +366,4 @@ reference:
   - setup_bednet_round_generic
   - setup_irs_coverage.multiround
   - setup_irs_round_generic
+  - setup_irs_round.none

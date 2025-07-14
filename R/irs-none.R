@@ -96,10 +96,10 @@ IRSEffectSizes.none <- function(t, pars, s) {
 }
 
 #' @title Set up "no irs_effectsizes"
-#' @inheritParams setup_irs_effectsizes
+#' @inheritParams setup_irs_effect_sizes
 #' @return an irs effect size model object
 #' @export
-setup_irs_effectsizes.none <- function(name, pars, s, opts) {
+setup_irs_effect_sizes.none <- function(name, pars, opts) {
   effectsizes <- list()
   effectsizes$class <- 'none'
   class(effectsizes) <- 'none'

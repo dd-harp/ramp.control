@@ -2,7 +2,7 @@
 % Please edit documentation in R/bednet-none.R
 \name{BedNetEffectSizes.none}
 \alias{BedNetEffectSizes.none}
-\title{Set no bednet_effectsizes}
+\title{Set no bednet_effect_sizes}
 \usage{
 \method{BedNetEffectSizes}{none}(t, pars, s)
 }
@@ -17,5 +17,5 @@
 [list]
 }
 \description{
-The null model for bednet_effectsizes
+The null model for bednet_effect_sizes
 }

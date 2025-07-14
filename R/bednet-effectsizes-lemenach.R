@@ -3,11 +3,10 @@
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @inheritParams setup_bednet_effectsizes
+#' @inheritParams setup_bednet_effect_sizes
 #' @export
-setup_bednet_effectsizes.lemenach = function(name, pars, opts=list()){
-  pars = setup_bednet_effectsizes_lemenach(pars, opts)
-  return(pars)
+setup_bednet_effect_sizes.lemenach = function(name, pars, opts=list()){
+  setup_bednet_effect_sizes_lemenach(pars, opts)
 }
 
 #' @title Set up dynamic forcing
@@ -20,9 +19,9 @@ setup_bednet_effectsizes.lemenach = function(name, pars, opts=list()){
 #' host seeking/bloodfeeding *vs.* resting/oviposition
 #' @param rr probability of mosquito being repelled upon contact with ITN
 #' @param ss probability of mosquito successfully feeding upon contact with ITN
-#' @return an **`xds`** object
+#' @return a bed net effect size model object
 #' @export
-setup_bednet_effectsizes_lemenach = function(pars, opts=list(),
+setup_bednet_effect_sizes_lemenach = function(pars, opts=list(),
                                              tau0_frac = c(0.68/3, 2.32/3),
                                              rr = 0.56, ss = 0.03){
   stopifnot(sum(tau0_frac) == 1)

@@ -18,7 +18,7 @@ IRSCoverage.multiround <- function(t, pars) {with(pars$irs$coverage_mod,{
 #' @inheritParams setup_irs_coverage
 #' @return an **`xds`** object
 #' @export
-setup_irs_coverage.multiround = function(type, pars, opts=list()){
+setup_irs_coverage.multiround = function(name, pars, opts=list()){
   setup_irs_multiround(opts)
 }
 
@@ -61,11 +61,7 @@ setup_irs_multiround = function(opts=list(),
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param cover a mo
-#' @param t_init the time when irs started
-#' @param coverage the coverage achieved
-#' @param type the irs type
-#' @param zap the contact parameter
+#' @param cover a coverage model object
 #' @return an **`xds`** object
 #' @export
 setup_F_cover_irs = function(cover){
