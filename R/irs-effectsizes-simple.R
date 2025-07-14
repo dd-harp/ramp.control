@@ -3,11 +3,10 @@
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @inheritParams setup_irs_effectsizes
+#' @inheritParams setup_irs_effect_sizes
 #' @export
-setup_irs_effectsizes.simple = function(name, pars, opts=list()){
-  pars = setup_irs_effectsizes_simple(pars, opts)
-  return(pars)
+setup_irs_effect_sizes.simple = function(name, pars, opts=list()){
+  setup_irs_effect_sizes_simple(pars, opts)
 }
 
 #' @title Set up dynamic forcing
@@ -19,7 +18,7 @@ setup_irs_effectsizes.simple = function(name, pars, opts=list()){
 #' @param contact the probability of contact given coverage
 #' @return an **`xds`** object
 #' @export
-setup_irs_effectsizes_simple = function(pars, opts=list(),
+setup_irs_effect_sizes_simple = function(pars, opts=list(),
                                         contact=1){
   es <- list()
   es$name <- 'simple'

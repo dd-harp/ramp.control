@@ -32,8 +32,8 @@ IRS.dynamic <- function(t, pars) {
 #' @param effects_opts options for the bed net effects model
 #' @param coverage_name the name of a model for bed net coverage
 #' @param coverage_opts options for the bed net coverage model
-#' @param effectsizes_name the name of a model for bed net effect sizes
-#' @param effectsizes_opts options for the bed net effect sizes model
+#' @param effect_sizes_name the name of a model for bed net effect sizes
+#' @param effect_sizes_opts options for the bed net effect sizes model
 #' @return an **`xds`** object
 #' @export
 setup_irs = function(pars,
@@ -55,7 +55,7 @@ setup_irs = function(pars,
 
   # The "effect sizes" model for the first vector species
   pars$irs$ef_sz_mod <- list()
-  pars$irs$ef_sz_mod[[1]] <- setup_irs_effectsizes(effect_sizes_name, pars, effect_sizes_opts)
+  pars$irs$ef_sz_mod[[1]] <- setup_irs_effect_sizes(effect_sizes_name, pars, effect_sizes_opts)
 
   return(pars)
 }
@@ -158,10 +158,10 @@ IRSEffectSizes <- function(t, pars, s=1) {
 #' @param name the name of a model to set up
 #' @param pars an **`xds`** object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return an irs effect size model object
 #' @export
-setup_irs_effectsizes = function(name, pars, opts=list()){
+setup_irs_effect_sizes = function(name, pars, opts=list()){
   class(name) <- name
-  UseMethod("setup_irs_effectsizes", name)
+  UseMethod("setup_irs_effect_sizes", name)
 }
 

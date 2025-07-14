@@ -7,15 +7,7 @@
 setup_F_cover_irs(cover)
 }
 \arguments{
-\item{cover}{a mo}
-
-\item{t_init}{the time when irs started}
-
-\item{coverage}{the coverage achieved}
-
-\item{type}{the irs type}
-
-\item{zap}{the contact parameter}
+\item{cover}{a coverage model object}
 }
 \value{
 an **`xds`** object

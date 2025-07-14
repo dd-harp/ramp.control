@@ -4,9 +4,11 @@
 \alias{setup_irs_coverage.multiround}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_irs_coverage}{multiround}(type, pars, opts = list())
+\method{setup_irs_coverage}{multiround}(name, pars, opts = list())
 }
 \arguments{
+\item{name}{the name of a model to set up}
+
 \item{pars}{an **`xds`** object}
 
 \item{opts}{a list of options to override defaults}

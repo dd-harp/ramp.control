@@ -190,29 +190,24 @@ BedNetEffectSizes.func <- function(t, pars, s) {
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @inheritParams setup_bednet_effectsizes
+#' @inheritParams setup_bednet_effect_sizes
 #' @return an **`xds`** object
 #' @export
-setup_bednet_effectsizes.func = function(name, pars, s=1, opts=list()){
-  class(name) <- name
-  pars <- setup_bednet_effectsizes_func(pars, s, opts)
+setup_bednet_effect_sizes.func = function(name, pars, opts=list()){
+  setup_bednet_effect_sizes_func(pars, opts)
 }
 
 #' @title Set no bednet
 #' @description The null model for bednet
 #' @param pars an **`xds`** object
-#' @param s the vector species index
 #' @param opts an optional list of arguments
-#' @return an **`xds`** object
+#' @return a bednet effect size model object
 #' @export
-setup_bednet_effectsizes_func <- function(pars, s, opts) {
-  pars = dynamic_vector_control(pars)
+setup_bednet_effect_sizes_func <- function(pars, opts) {
   coverage <- list()
   class(coverage) <- 'func'
   ## setup function to compute es_f
   ## setup function to compute es_q
   ## setup function to compute es_g
-  pars$bednets$effectsizes <- list()
-  pars$bednets$effectsizes[[s]] <- coverage
-  return(pars)
+  return(coverage)
 }

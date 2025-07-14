@@ -7,15 +7,7 @@
 setup_F_cover_bednet(cover)
 }
 \arguments{
-\item{cover}{a mo}
-
-\item{t_init}{the time when BedNet started}
-
-\item{coverage}{the coverage achieved}
-
-\item{type}{the BedNet type}
-
-\item{zap}{the contact parameter}
+\item{cover}{a list with parameters for all the rounds}
 }
 \value{
 an **`xds`** object

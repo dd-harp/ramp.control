@@ -31,9 +31,9 @@ setup_irs(
 
 \item{coverage_opts}{options for the bed net coverage model}
 
-\item{effectsizes_name}{the name of a model for bed net effect sizes}
+\item{effect_sizes_name}{the name of a model for bed net effect sizes}
 
-\item{effectsizes_opts}{options for the bed net effect sizes model}
+\item{effect_sizes_opts}{options for the bed net effect sizes model}
 }
 \value{
 an **`xds`** object

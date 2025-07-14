@@ -8,7 +8,7 @@ setup_bednet_multiround(
   opts = list(),
   t_init = 1,
   coverage = 0.8,
-  type = "PBO",
+  type = "pbo",
   zap = 1
 )
 }
