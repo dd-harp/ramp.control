@@ -60,6 +60,7 @@ BedNetEffectSizes.lemenach <- function(t, pars, s){
 #' @description Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
 # https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-6-10
 #' @param ix an index over nPatches
+#' @importFrom Rdpack reprompt
 #' @param phi ITN coverage
 #' @param ff baseline blood feeding rate
 #' @param qq baseline human fraction
