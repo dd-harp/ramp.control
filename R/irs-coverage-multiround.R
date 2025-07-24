@@ -73,7 +73,7 @@ setup_F_cover_irs = function(cover){
   rounds <- list()
   rounds[[1]] = makepar_F_zero()
   for(i in 1:cover$nRounds)
-    rounds[[i+1]] = with(cover,
+    rounds[[i]] = with(cover,
                        setup_irs_round(type[i], t_init[i], coverage[i], zap[i]))
 
   rounds_par <- makepar_F_multiround(cover$nRounds, rounds)
