@@ -5,7 +5,6 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_irs_coverage_func(
-  pars,
   opts = list(),
   mx = 1,
   F_season = F_flat,
@@ -15,8 +14,6 @@ setup_irs_coverage_func(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
-
 \item{opts}{a list of options to override defaults}
 
 \item{mx}{peak irs_coverage}
@@ -33,7 +30,6 @@ setup_irs_coverage_func(
 an **`xds`** object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+Set up a simple function
+to model IRS coverage
 }

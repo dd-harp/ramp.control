@@ -14,7 +14,7 @@ setup_irs_coverage(name, pars, opts = list())
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+an IRS coverage model object
 }
 \description{
 If dynamic forcing has not

@@ -367,3 +367,10 @@ reference:
   - setup_irs_coverage.multiround
   - setup_irs_round_generic
   - setup_irs_round.none
+- title: Visualization
+  desc: |
+    Plot various quantities
+  contents:
+  - show_coverage
+  - show_coverage.irs
+  - show_coverage.bednet
