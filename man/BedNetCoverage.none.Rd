@@ -4,15 +4,15 @@
 \alias{BedNetCoverage.none}
 \title{Set no bednet}
 \usage{
-\method{BedNetCoverage}{none}(t, pars)
+\method{BedNetCoverage}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for bednet

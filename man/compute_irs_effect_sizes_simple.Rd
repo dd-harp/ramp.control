@@ -20,7 +20,7 @@ compute_irs_effect_sizes_simple(ix, phi, ff, qq, gg, contact = 1)
 \item{contact}{the probability of contact given coverage}
 }
 \value{
-an **`xds`** model object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Implements a model published in 2007

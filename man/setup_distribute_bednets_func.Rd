@@ -5,14 +5,14 @@
 \title{Set up dynamic bednets}
 \usage{
 setup_distribute_bednets_func(
-  pars,
+  xds_obj,
   opts = list(),
   eventT = 365,
   F_distribute = NULL
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 

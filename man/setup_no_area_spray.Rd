@@ -4,13 +4,13 @@
 \alias{setup_no_area_spray}
 \title{Set up no Area Spraying}
 \usage{
-setup_no_area_spray(pars)
+setup_no_area_spray(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 Set up no Area Spraying

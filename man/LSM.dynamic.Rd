@@ -4,15 +4,15 @@
 \alias{LSM.dynamic}
 \title{Set no LSM}
 \usage{
-\method{LSM}{dynamic}(t, pars)
+\method{LSM}{dynamic}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for LSM

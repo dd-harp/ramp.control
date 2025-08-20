@@ -5,20 +5,20 @@
 #' forcing and set all the
 #' @inheritParams setup_irs_effect_sizes
 #' @export
-setup_irs_effect_sizes.simple = function(name, pars, opts=list()){
-  setup_irs_effect_sizes_simple(pars, opts)
+setup_irs_effect_sizes.simple = function(name, xds_obj, opts=list()){
+  setup_irs_effect_sizes_simple(xds_obj, opts)
 }
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param contact the probability of contact given coverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_irs_effect_sizes_simple = function(pars, opts=list(),
+setup_irs_effect_sizes_simple = function(xds_obj, opts=list(),
                                         contact=1){
   es <- list()
   es$name <- 'simple'
@@ -34,16 +34,16 @@ setup_irs_effect_sizes_simple = function(pars, opts=list(),
 #' @importFrom stats pexp
 #' @seealso [compute_irs_effect_sizes_simple()]
 #' @export
-IRSEffectSizes.simple <- function(t, pars, s){
-  phi = pars$irs$coverage
-  contact = pars$irs$ef_sz_mod[[s]]$contact
-  with(pars$irs$effectsizes[[s]],{
-    with(pars$MYZpar[[s]],{
-      es <- sapply(1:pars$nPatches,
+IRSEffectSizes.simple <- function(t, xds_obj, s){
+  phi = xds_obj$irs$coverage
+  contact = xds_obj$irs$ef_sz_mod[[s]]$contact
+  with(xds_obj$irs$effectsizes[[s]],{
+    with(xds_obj$MYZpar[[s]],{
+      es <- sapply(1:xds_obj$nPatches,
                    compute_irs_effect_sizes_simple,
                    phi=phi, ff=f_t, qq=q_t, gg=g_t, contact)
-      pars$MYZpar[[s]]$es_g <- pars$MYZpar[[s]]$es_g*es
-      return(pars)
+      xds_obj$MYZpar[[s]]$es_g <- xds_obj$MYZpar[[s]]$es_g*es
+      return(xds_obj)
     })
 })}
 
@@ -56,7 +56,7 @@ IRSEffectSizes.simple <- function(t, pars, s){
 #' @param qq baseline human fraction
 #' @param gg baseline mosquito mortality rate
 #' @param contact the probability of contact given coverage
-#' @return an **`xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @importFrom stats pexp
 compute_irs_effect_sizes_simple = function(ix, phi, ff, qq, gg, contact=1){
   f=ff[ix]; q=qq[ix]; g=gg[ix]

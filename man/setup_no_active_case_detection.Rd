@@ -4,13 +4,13 @@
 \alias{setup_no_active_case_detection}
 \title{Set up the none model for active_case_detectional distribution (do nothing)}
 \usage{
-setup_no_active_case_detection(pars)
+setup_no_active_case_detection(xds_obj)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up the none model for active_case_detectional distribution (do nothing)

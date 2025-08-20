@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_own_bednets_func(
-  pars,
+  xds_obj,
   opts = list(),
   mean = 0.7,
   F_season = F_flat,
@@ -13,7 +13,7 @@ setup_own_bednets_func(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 
@@ -24,7 +24,7 @@ setup_own_bednets_func(
 \item{F_trend}{a temporal trend in bednet ownership}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

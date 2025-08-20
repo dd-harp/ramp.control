@@ -4,17 +4,17 @@
 \alias{setup_area_spray_effectsizes.none}
 \title{Set up no area spray}
 \usage{
-\method{setup_area_spray_effectsizes}{none}(name = "none", pars, opts = list())
+\method{setup_area_spray_effectsizes}{none}(name = "none", xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 Set up no area spray

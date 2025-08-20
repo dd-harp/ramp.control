@@ -4,13 +4,13 @@
 \alias{setup_care_seeking_no_behavior}
 \title{Make parameters for the no_behavior model for care seeking (do nothing)}
 \usage{
-setup_care_seeking_no_behavior(pars)
+setup_care_seeking_no_behavior(xds_obj)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{xds_obj}{a  \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Make parameters for the no_behavior model for care seeking (do nothing)

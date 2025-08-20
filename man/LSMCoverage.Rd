@@ -4,15 +4,15 @@
 \alias{LSMCoverage}
 \title{Set the LSMCoverage}
 \usage{
-LSMCoverage(t, pars)
+LSMCoverage(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set the value of exogenous variables related to

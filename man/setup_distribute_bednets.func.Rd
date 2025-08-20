@@ -4,12 +4,12 @@
 \alias{setup_distribute_bednets.func}
 \title{Set up dynamic bednets}
 \usage{
-\method{setup_distribute_bednets}{func}(name = "func", pars, opts = list())
+\method{setup_distribute_bednets}{func}(name = "func", xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{opts}{a list of options to override defaults}
 }

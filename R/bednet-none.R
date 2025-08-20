@@ -4,24 +4,24 @@
 #' @inheritParams BedNet
 #' @return [list]
 #' @export
-BedNet.none <- function(t, pars) {
-  return(pars)
+BedNet.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no bednet"
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_bednets <- function(pars) {
-  pars$bednets <- none_obj()
-  pars$bednets$distribute_mod <- none_obj()
-  pars$bednets$owner_mod <- none_obj()
-  pars$bednets$user_mod <- none_obj()
-  pars$bednets$effects_mod <- none_obj()
-  pars$bednets$coverage_mod <- none_obj()
-  pars$bednets$ef_sz_mod <- list()
-  pars$bednets$ef_sz_mod[[1]] <- none_obj()
-  return(pars)
+setup_no_bednets <- function(xds_obj) {
+  xds_obj$bednets <- none_obj()
+  xds_obj$bednets$distribute_mod <- none_obj()
+  xds_obj$bednets$owner_mod <- none_obj()
+  xds_obj$bednets$user_mod <- none_obj()
+  xds_obj$bednets$effects_mod <- none_obj()
+  xds_obj$bednets$coverage_mod <- none_obj()
+  xds_obj$bednets$ef_sz_mod <- list()
+  xds_obj$bednets$ef_sz_mod[[1]] <- none_obj()
+  return(xds_obj)
 }
 
 #' @title Set no distribute_bednets
@@ -29,32 +29,32 @@ setup_no_bednets <- function(pars) {
 #' @inheritParams DistributeBedNets
 #' @return [list]
 #' @export
-DistributeBedNets.none <- function(t, pars) {
-  return(pars)
+DistributeBedNets.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no distribute_bednets"
 #' @inheritParams setup_distribute_bednets
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_distribute_bednets.none <- function(name, pars, opts) {
+setup_distribute_bednets.none <- function(name, xds_obj, opts) {
   return(none_obj())
 }
 
 #' @title Set no own_bednets
 #' @description The null model for own_bednets
 #' @inheritParams OwnBedNets
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-OwnBedNets.none <- function(t, pars) {
-  return(pars)
+OwnBedNets.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no own_bednets"
 #' @inheritParams setup_own_bednets
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_own_bednets.none <- function(name, pars, opts) {
+setup_own_bednets.none <- function(name, xds_obj, opts) {
   return(none_obj())
 }
 
@@ -63,15 +63,15 @@ setup_own_bednets.none <- function(name, pars, opts) {
 #' @inheritParams UseBedNets
 #' @return [list]
 #' @export
-UseBedNets.none <- function(t, pars) {
-  return(pars)
+UseBedNets.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no use_bednets"
 #' @inheritParams setup_use_bednets
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_use_bednets.none <- function(name, pars, opts) {
+setup_use_bednets.none <- function(name, xds_obj, opts) {
   return(none_obj())
 }
 
@@ -80,15 +80,15 @@ setup_use_bednets.none <- function(name, pars, opts) {
 #' @inheritParams BedNetEffects
 #' @return [list]
 #' @export
-BedNetEffects.none <- function(t, pars) {
-  return(pars)
+BedNetEffects.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no bednet_effects"
 #' @inheritParams setup_bednet_effects
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_effects.none <- function(name, pars, opts=list()) {
+setup_bednet_effects.none <- function(name, xds_obj, opts=list()) {
   return(none_obj())
 }
 
@@ -97,15 +97,15 @@ setup_bednet_effects.none <- function(name, pars, opts=list()) {
 #' @inheritParams BedNetCoverage
 #' @return [list]
 #' @export
-BedNetCoverage.none <- function(t, pars) {
-  return(pars)
+BedNetCoverage.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no bednet_coverage"
 #' @inheritParams setup_bednet_coverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_coverage.none <- function(name, pars, opts=list()) {
+setup_bednet_coverage.none <- function(name, xds_obj, opts=list()) {
   return(none_obj())
 }
 
@@ -114,15 +114,15 @@ setup_bednet_coverage.none <- function(name, pars, opts=list()) {
 #' @inheritParams BedNetEffectSizes
 #' @return [list]
 #' @export
-BedNetEffectSizes.none <- function(t, pars, s) {
-  return(pars)
+BedNetEffectSizes.none <- function(t, xds_obj, s) {
+  return(xds_obj)
 }
 
 #' @title Set up "no bednet_effect_sizes"
 #' @inheritParams setup_bednet_effect_sizes
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_effect_sizes.none <- function(name, pars, opts) {
+setup_bednet_effect_sizes.none <- function(name, xds_obj, opts) {
   return(none_obj())
 }
 

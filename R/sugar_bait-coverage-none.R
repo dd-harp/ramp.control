@@ -3,19 +3,19 @@
 #' @title No sugar baits
 #' @description The null model for sugar baits
 #' @inheritParams SugarBaitCoverage
-#' @return [list]
+#' @return a **`ramp.xds`** model object
 #' @export
-SugarBaitCoverage.none <- function(t, pars) {
-  return(pars)
+SugarBaitCoverage.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up no sugar bait coverage
 #' @inheritParams setup_sugar_bait_coverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** object
 #' @export
-setup_sugar_bait_coverage.none <- function(name='none', pars, opts=list()) {
+setup_sugar_bait_coverage.none <- function(name='none', xds_obj, opts=list()) {
   coverage <- 'none'
   class(coverage) <- 'none'
-  pars$sugar_baits$coverage <- coverage
-  return(pars)
+  xds_obj$sugar_baits$coverage <- coverage
+  return(xds_obj)
 }

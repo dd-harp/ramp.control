@@ -10,8 +10,7 @@ vignette: >
 
 ```{r}
 library(ramp.xds)
-#library(ramp.control)
-devtools::load_all()
+library(ramp.control)
 ```
 
 
@@ -88,12 +87,9 @@ xds_plot_EIR(model)
 model <- setup_irs(model, coverage_name = "func", coverage_opts=list(trend_par = irs_par, mx=1), effect_sizes_name = "simple")
 ```
 
-```{r}
-devtools::load_all()
-```
 
 ```{r}
-show_coverage(tt, model, "irs")
+show_irs_coverage(tt, model)
 ```
 
 ```{r}
@@ -198,12 +194,12 @@ mod_irs <- setup_irs(mod, effect_sizes_name = "simple", coverage_name = "multiro
 ```
 
 ```{r}
-show_coverage(tt, mod_irs, "irs")
+show_irs_coverage(tt, mod_irs)
 ```
 ```{r}
 mod_irs$irs$coverage_mod$coverage[2] = 0.3
 mod_irs$irs$coverage_mod <- setup_F_cover_irs(mod_irs$irs$coverage_mod)
-show_coverage(tt, mod_irs, "irs")
+show_irs_coverage(tt, mod_irs)
 ```
 
 ```{r}

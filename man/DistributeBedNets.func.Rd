@@ -4,15 +4,15 @@
 \alias{DistributeBedNets.func}
 \title{Set no distribute_bednets}
 \usage{
-\method{DistributeBedNets}{func}(t, pars)
+\method{DistributeBedNets}{func}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for distribute_bednets

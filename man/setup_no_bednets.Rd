@@ -4,13 +4,13 @@
 \alias{setup_no_bednets}
 \title{Set up "no bednet"}
 \usage{
-setup_no_bednets(pars)
+setup_no_bednets(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up "no bednet"

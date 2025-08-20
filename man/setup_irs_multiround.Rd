@@ -24,7 +24,7 @@ setup_irs_multiround(
 \item{zap}{the contact parameter}
 }
 \value{
-an IRS coverage model object
+a IRS coverage model object
 }
 \description{
 Set up a function that computes

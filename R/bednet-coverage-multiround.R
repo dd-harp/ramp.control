@@ -3,11 +3,11 @@
 #' @title Set no bednet_coverage
 #' @description The null model for bednet_coverage
 #' @inheritParams BedNetCoverage
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
-BedNetCoverage.multiround <- function(t, pars) {with(pars$bednet$coverage_mod,{
-  pars$bednets$coverage = F_cover(t)
-  return(pars)
+BedNetCoverage.multiround <- function(t, xds_obj) {with(xds_obj$bednet$coverage_mod,{
+  xds_obj$bednets$coverage = F_cover(t)
+  return(xds_obj)
 })}
 
 #' @title Set up dynamic forcing
@@ -15,9 +15,9 @@ BedNetCoverage.multiround <- function(t, pars) {with(pars$bednet$coverage_mod,{
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @inheritParams setup_bednet_coverage
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
-setup_bednet_coverage.multiround = function(name, pars, opts=list()){
+setup_bednet_coverage.multiround = function(name, xds_obj, opts=list()){
   setup_bednet_multiround(opts)
 }
 
@@ -30,7 +30,7 @@ setup_bednet_coverage.multiround = function(name, pars, opts=list()){
 #' @param coverage the coverage achieved
 #' @param type the BedNet type
 #' @param zap the contact parameter
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
 setup_bednet_multiround = function(opts=list(),
                                 t_init = 1,
@@ -60,7 +60,7 @@ setup_bednet_multiround = function(opts=list(),
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param cover a list with parameters for all the rounds
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
 setup_F_cover_bednet = function(cover){
 
@@ -80,21 +80,21 @@ setup_F_cover_bednet = function(cover){
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars the `ramp.xds` object
+#' @param xds_obj the `ramp.xds` object
 #' @param type the name of the BedNet type
 #' @param t_init the time when BedNet started
 #' @param coverage the coverage achieved
 #' @param zap the coverage achieved
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
-add_bednet_round = function(pars, type, t_init, coverage, zap=1) {
+add_bednet_round = function(xds_obj, type, t_init, coverage, zap=1) {
   opts <- list()
-  opts$type = c(pars$bednet$coverage_mod$type, type)
-  opts$t_init = c(pars$bednet$coverage_mod$t_init, t_init)
-  opts$coverage = c(pars$bednet$coverage_mod$coverage, coverage)
-  opts$zap = c(pars$bednet$coverage_mod$zap, zap)
-  pars$bednets$coverage_mod = setup_bednet_multiround(opts)
-  return(pars)
+  opts$type = c(xds_obj$bednet$coverage_mod$type, type)
+  opts$t_init = c(xds_obj$bednet$coverage_mod$t_init, t_init)
+  opts$coverage = c(xds_obj$bednet$coverage_mod$coverage, coverage)
+  opts$zap = c(xds_obj$bednet$coverage_mod$zap, zap)
+  xds_obj$bednets$coverage_mod = setup_bednet_multiround(opts)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic forcing
@@ -105,7 +105,7 @@ add_bednet_round = function(pars, type, t_init, coverage, zap=1) {
 #' @param t_init the time when BedNet started
 #' @param coverage the coverage achieved
 #' @param zap contact scaling
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
 setup_bednet_round = function(type, t_init, coverage, zap=1) {
   class(type) <- type
@@ -122,7 +122,7 @@ setup_bednet_round = function(type, t_init, coverage, zap=1) {
 #' @param dk decay shape parameter
 #' @param coverage the coverage achieved
 #' @param zap contact scaling parameter
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
 setup_bednet_round_generic = function(t_init, uk=1/5, L=365, dk=1/60, coverage=.7, zap=1) {
   makepar_F_sharkfin(D=t_init, uk=uk, L=L, dk = dk, mx=coverage^zap)
@@ -133,7 +133,7 @@ setup_bednet_round_generic = function(t_init, uk=1/5, L=365, dk=1/60, coverage=.
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @inheritParams setup_bednet_round
-#' @return an **`xds`** object
+#' @return a **`xds`** object
 #' @export
 setup_bednet_round.pbo = function(type, t_init, coverage, zap=1) {
   makepar_F_sharkfin(D=t_init, uk=1/5, L=365, dk = 1/60, mx=coverage^zap)

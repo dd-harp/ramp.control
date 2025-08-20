@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_area_spray_coverage_func(
-  pars,
+  xds_obj,
   opts = list(),
   mean = 0,
   F_season = F_flat,
@@ -13,7 +13,7 @@ setup_area_spray_coverage_func(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 
 \item{opts}{a list of options to override defaults}
 
@@ -24,7 +24,7 @@ setup_area_spray_coverage_func(
 \item{F_trend}{a temporal trend in area spray coverage}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

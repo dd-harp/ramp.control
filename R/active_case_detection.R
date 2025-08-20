@@ -1,32 +1,32 @@
 # generic methods for mass distribution of drugs, vaccines, etc.
 
 #' @title Methods for mass distributing health interventions
-#' @description This method dispatches on the type of `pars$active_case_detection`.
+#' @description This method dispatches on the type of `xds_obj$active_case_detection`.
 #' @param t current simulation time
 #' @param y state variables
-#' @param pars a [list]
-#' @return [list]
+#' @param xds_obj a a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-ActiveCaseDetection <- function(t, y, pars) {
-  UseMethod("ActiveCaseDetection", pars$active_case_detection)
+ActiveCaseDetection <- function(t, y, xds_obj) {
+  UseMethod("ActiveCaseDetection", xds_obj$active_case_detection)
 }
 
 #' @title Methods for distributing interventions during active_case_detectional visits
 #' @description Implements [ActiveCaseDetection] for the none model (do nothing)
 #' @inheritParams ActiveCaseDetection
-#' @return [list]
+#' @return a **`ramp.xds`** model object
 #' @export
-ActiveCaseDetection.none <- function(t, y, pars) {
-  return(pars)
+ActiveCaseDetection.none <- function(t, y, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up the none model for active_case_detectional distribution (do nothing)
-#' @param pars a [list]
-#' @return [list]
+#' @param xds_obj a a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_active_case_detection  <- function(pars) {
+setup_no_active_case_detection  <- function(xds_obj) {
   active_case_detection <- list()
   class(active_case_detection) <- 'none'
-  pars$active_case_detection <- active_case_detection
-  return(pars)
+  xds_obj$active_case_detection <- active_case_detection
+  return(xds_obj)
 }

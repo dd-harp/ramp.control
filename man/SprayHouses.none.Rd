@@ -4,15 +4,15 @@
 \alias{SprayHouses.none}
 \title{Set no spray_houses}
 \usage{
-\method{SprayHouses}{none}(t, pars)
+\method{SprayHouses}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for spray_houses

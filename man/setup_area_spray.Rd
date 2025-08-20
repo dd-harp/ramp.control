@@ -5,7 +5,7 @@
 \title{Set up area spraying}
 \usage{
 setup_area_spray(
-  pars,
+  xds_obj,
   spray_area_name = "none",
   spray_area_opts = list(),
   effects_name = "none",
@@ -17,7 +17,7 @@ setup_area_spray(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{spray_area_name}{the name of a model for mass bed net distribution}
 
@@ -36,7 +36,7 @@ setup_area_spray(
 \item{effectsizes_opts}{options for the bed net effect sizes model}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} object
 }
 \description{
 If the dynamic switch has not

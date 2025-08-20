@@ -4,15 +4,15 @@
 \alias{BedNetEffects.none}
 \title{Set no bednet_effects}
 \usage{
-\method{BedNetEffects}{none}(t, pars)
+\method{BedNetEffects}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for bednet_effects

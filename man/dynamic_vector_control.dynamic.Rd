@@ -4,17 +4,17 @@
 \alias{dynamic_vector_control.dynamic}
 \title{Vector Control is Turned On}
 \usage{
-\method{dynamic_vector_control}{dynamic}(pars)
+\method{dynamic_vector_control}{dynamic}(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If
-`class(pars$vector_control) == 'dynamic'`
+\code{class(xds_obj$vector_control) == 'dynamic'}
 then dynamic vector control has been turned
-on. The unmodified **`xds`** object is returned.
+on. The unmodified \strong{\code{ramp.xds}} model object is returned.
 }

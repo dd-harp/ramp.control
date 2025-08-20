@@ -4,15 +4,15 @@
 \alias{UseBedNets.func}
 \title{Set no use_bednets}
 \usage{
-\method{UseBedNets}{func}(t, pars)
+\method{UseBedNets}{func}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for use_bednets

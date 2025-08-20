@@ -4,17 +4,17 @@
 \alias{setup_sugar_bait_coverage}
 \title{Set up dynamic forcing}
 \usage{
-setup_sugar_bait_coverage(name, pars, opts = list())
+setup_sugar_bait_coverage(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the module name}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 
 \item{opts}{a list of options to override the defaults}
 }
 \value{
-an **`xds`** object
+an \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

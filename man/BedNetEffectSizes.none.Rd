@@ -4,17 +4,17 @@
 \alias{BedNetEffectSizes.none}
 \title{Set no bednet_effect_sizes}
 \usage{
-\method{BedNetEffectSizes}{none}(t, pars, s)
+\method{BedNetEffectSizes}{none}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{s}{the vector species index}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for bednet_effect_sizes

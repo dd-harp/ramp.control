@@ -4,15 +4,15 @@
 \alias{SugarBaitCoverage.none}
 \title{No sugar baits}
 \usage{
-\method{SugarBaitCoverage}{none}(t, pars)
+\method{SugarBaitCoverage}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for sugar baits

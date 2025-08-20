@@ -3,11 +3,11 @@
 #' @description Set the value of exogenous variables related to
 #' lsm_effects_lsm
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-LSMEffects <- function(t, pars) {
-  UseMethod("LSMEffects", pars$lsm$effects)
+LSMEffects <- function(t, xds_obj) {
+  UseMethod("LSMEffects", xds_obj$lsm$effects)
 }
 
 
@@ -16,11 +16,11 @@ LSMEffects <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' lsm and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_lsm_effects = function(name, pars, opts=list()){
+setup_lsm_effects = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_lsm_effects", name)
 }

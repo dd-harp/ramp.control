@@ -10,7 +10,7 @@ setup_F_cover_bednet(cover)
 \item{cover}{a list with parameters for all the rounds}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

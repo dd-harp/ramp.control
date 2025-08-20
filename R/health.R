@@ -4,12 +4,12 @@
 #' values of health variables and then revert
 #' the `none` case
 #' @inheritParams ramp.xds::Health
-#' @return an **`xds`** object
-Health.setup = function(t, y, pars){
-  class(pars$health) <- 'dynamic'
-  pars <- Health(t, y, pars)
-  class(pars$health) <- 'none'
-  return(pars)
+#' @return a **`ramp.xds`** model object
+Health.setup = function(t, y, xds_obj){
+  class(xds_obj$health) <- 'dynamic'
+  xds_obj <- Health(t, y, xds_obj)
+  class(xds_obj$health) <- 'none'
+  return(xds_obj)
 }
 
 #' @title Set the values of exogenous variables
@@ -21,64 +21,64 @@ Health.setup = function(t, y, pars){
 #' - Behavior
 #' - ActiveCaseDetection
 #' @inheritParams ramp.xds::Health
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @seealso [dynamic_health]
-Health.dynamic = function(t, y, pars){
-  pars <- Clinic(t, y, pars)
-  pars <- School(t, pars)
-  pars <- MassHealth(t, pars)
-  #  pars <- Behavior(t, pars)
-  pars <- ActiveCaseDetection(t, y, pars)
-  return(pars)
+Health.dynamic = function(t, y, xds_obj){
+  xds_obj <- Clinic(t, y, xds_obj)
+  xds_obj <- School(t, xds_obj)
+  xds_obj <- MassHealth(t, xds_obj)
+  #  xds_obj <- Behavior(t, xds_obj)
+  xds_obj <- ActiveCaseDetection(t, y, xds_obj)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic health
 #' @description If dynamic health has not
 #' already been set up, then turn on dynamic
 #' health and set all the
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
-dynamic_health = function(pars){
-  UseMethod("dynamic_health", pars$health)
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
+dynamic_health = function(xds_obj){
+  UseMethod("dynamic_health", xds_obj$health)
 }
 
 #' @title Set up dynamic health
 #' @description If dynamic health has not
 #' already been set up, then turn on dynamic
 #' health and set all the
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-dynamic_health.none = function(pars){
+dynamic_health.none = function(xds_obj){
   health <- 'dynamic'
   class(health) <- 'dynamic'
-  pars$health <- health
-  pars <- setup_no_clinic(pars)
-  pars <- setup_no_school(pars)
-  pars <- setup_no_mass_health(pars)
-  #  pars <- setup_no_behavior(pars)
-  pars <- setup_no_active_case_detection(pars)
-  return(pars)
+  xds_obj$health <- health
+  xds_obj <- setup_no_clinic(xds_obj)
+  xds_obj <- setup_no_school(xds_obj)
+  xds_obj <- setup_no_mass_health(xds_obj)
+  #  xds_obj <- setup_no_behavior(xds_obj)
+  xds_obj <- setup_no_active_case_detection(xds_obj)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic health
 #' @description If dynamic health has not
 #' already been set up, then turn on dynamic
 #' health and set all the
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-dynamic_health.setup = function(pars){
-  return(pars)
+dynamic_health.setup = function(xds_obj){
+  return(xds_obj)
 }
 
 #' @title Set up dynamic health
 #' @description If dynamic health has not
 #' already been set up, then turn on dynamic
 #' health and set all the
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-dynamic_health.dynamic = function(pars){
-  return(pars)
+dynamic_health.dynamic = function(xds_obj){
+  return(xds_obj)
 }

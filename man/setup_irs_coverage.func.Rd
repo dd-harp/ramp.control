@@ -4,12 +4,12 @@
 \alias{setup_irs_coverage.func}
 \title{Set up a function for IRS coverage}
 \usage{
-\method{setup_irs_coverage}{func}(name, pars, opts = list())
+\method{setup_irs_coverage}{func}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
@@ -18,5 +18,5 @@ An IRS coverage model object
 }
 \description{
 A set up utility function for
-[IRSCoverage]. Set up a s
+\link{IRSCoverage}. Set up a s
 }

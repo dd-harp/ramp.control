@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_bednet_coverage_func(
-  pars,
+  xds_obj,
   opts = list(),
   mean = 1,
   F_season = F_flat,
@@ -15,7 +15,7 @@ setup_bednet_coverage_func(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 
@@ -30,7 +30,7 @@ setup_bednet_coverage_func(
 \item{trend_par}{parameters to configure F_trend}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

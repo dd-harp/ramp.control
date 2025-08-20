@@ -4,52 +4,52 @@
 #' @description Set the value of exogenous variables related to
 #' LSM
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-LSM <- function(t, pars) {
-  UseMethod("LSM", pars$lsm)
+LSM <- function(t, xds_obj) {
+  UseMethod("LSM", xds_obj$lsm)
 }
 
 
 #' @title Set no LSM
 #' @description The null model for LSM
 #' @inheritParams LSM
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-LSM.none <- function(t, pars) {
-  return(pars)
+LSM.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 
 #' @title Set no LSM
 #' @description The null model for LSM
 #' @inheritParams LSM
-#' @return [list]
+#' @return a **`ramp.xds`** model object
 #' @export
-LSM.dynamic <- function(t, pars) {
-  pars <- TreatHabitats(t, pars)
-  pars <- LSMEffects(t, pars)
-  pars <- LSMCoverage(t, pars)
-  return(pars)
+LSM.dynamic <- function(t, xds_obj) {
+  xds_obj <- TreatHabitats(t, xds_obj)
+  xds_obj <- LSMEffects(t, xds_obj)
+  xds_obj <- LSMCoverage(t, xds_obj)
+  return(xds_obj)
 }
 
 
 
 #' @title Set up "no LSM"
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_lsm <- function(pars) {
+setup_no_lsm <- function(xds_obj) {
   NoLSM <- list()
   NoLSM$class <- 'none'
   class(NoLSM) <- 'none'
-  pars$lsm <- NoLSM
-  pars$lsm$coverage <- NoLSM
-  pars$lsm$effects <- NoLSM
-  pars$lsm$effectsizes <- list()
-  pars$lsm$effectsizes[[1]] <- NoLSM
-  return(pars)
+  xds_obj$lsm <- NoLSM
+  xds_obj$lsm$coverage <- NoLSM
+  xds_obj$lsm$effects <- NoLSM
+  xds_obj$lsm$effectsizes <- list()
+  xds_obj$lsm$effectsizes[[1]] <- NoLSM
+  return(xds_obj)
 }
 
 
@@ -57,7 +57,7 @@ setup_no_lsm <- function(pars) {
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param treat_habitats_name the name of a model for mass LSM distribution
 #' @param treat_habitats_opts options for the LSM distribution model
 #' @param effects_name the name of a model for LSM effects
@@ -66,21 +66,21 @@ setup_no_lsm <- function(pars) {
 #' @param coverage_opts options for the LSM coverage model
 #' @param effectsizes_name the name of a model for LSM effect sizes
 #' @param effectsizes_opts options for the LSM effect sizes model
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_lsm = function(pars,
+setup_lsm = function(xds_obj,
                         treat_habitats_name = 'none', treat_habitats_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
                         effectsizes_name = 'none', effectsizes_opts = list()){
-  pars = dynamic_vector_control(pars)
+  xds_obj = dynamic_vector_control(xds_obj)
   LSM <- list()
   class(LSM) <- 'dynamic'
-  pars$lsm <- LSM
-  pars <- setup_treat_habitats(treat_habitats_name, pars, treat_habitats_opts)
-  pars <- setup_lsm_effects(effects_name, pars, effects_opts)
-  pars <- setup_lsm_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_lsm_effectsizes(effectsizes_name, pars, effectsizes_opts)
-  return(pars)
+  xds_obj$lsm <- LSM
+  xds_obj <- setup_treat_habitats(treat_habitats_name, xds_obj, treat_habitats_opts)
+  xds_obj <- setup_lsm_effects(effects_name, xds_obj, effects_opts)
+  xds_obj <- setup_lsm_coverage(coverage_name, xds_obj, coverage_opts)
+  xds_obj <- setup_lsm_effectsizes(effectsizes_name, xds_obj, effectsizes_opts)
+  return(xds_obj)
 }
 

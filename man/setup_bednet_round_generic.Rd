@@ -27,7 +27,7 @@ setup_bednet_round_generic(
 \item{zap}{contact scaling parameter}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

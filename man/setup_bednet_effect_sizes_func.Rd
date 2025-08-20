@@ -4,10 +4,10 @@
 \alias{setup_bednet_effect_sizes_func}
 \title{Set no bednet}
 \usage{
-setup_bednet_effect_sizes_func(pars, opts)
+setup_bednet_effect_sizes_func(xds_obj, opts)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{an optional list of arguments}
 }

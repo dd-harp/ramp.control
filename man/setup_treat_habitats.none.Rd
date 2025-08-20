@@ -4,17 +4,17 @@
 \alias{setup_treat_habitats.none}
 \title{Set up "no treat_habitats"}
 \usage{
-\method{setup_treat_habitats}{none}(name, pars, opts = list())
+\method{setup_treat_habitats}{none}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up "no treat_habitats"

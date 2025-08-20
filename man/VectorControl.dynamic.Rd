@@ -4,17 +4,17 @@
 \alias{VectorControl.dynamic}
 \title{Implement Vector Control}
 \usage{
-\method{VectorControl}{dynamic}(t, y, pars)
+\method{VectorControl}{dynamic}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-a named [list]
+a named \link{list}
 }
 \description{
 Implements various forms
@@ -24,6 +24,6 @@ control is set up and configured separately.
 \note{
 This a junction to implement various modes of
 vector control.
-Non-trivial vector control modules are in
-[**`ramp.control`**](https://github.com/dd-harp/ramp.control).
+Vector control modules require
+\href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }

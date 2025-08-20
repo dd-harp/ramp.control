@@ -2,28 +2,28 @@
 #' @title Set no irs
 #' @description The null model for irs
 #' @inheritParams IRS
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-IRS.none <- function(t, pars) {
-  return(pars)
+IRS.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no irs"
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_irs <- function(pars) {
+setup_no_irs <- function(xds_obj) {
   no_irs <- list()
   class(no_irs) = 'none'
   no_irs$name = 'none'
-  pars$irs <- no_irs
-  pars$irs$spray_mod <- no_irs
-  pars$irs$effects_mod <- no_irs
-  pars$irs$coverage_mod <- no_irs
+  xds_obj$irs <- no_irs
+  xds_obj$irs$spray_mod <- no_irs
+  xds_obj$irs$effects_mod <- no_irs
+  xds_obj$irs$coverage_mod <- no_irs
 
-  pars$irs$ef_sz_mod <- list()
-  pars$irs$ef_sz_mod[[1]] <- no_irs
-  return(pars)
+  xds_obj$irs$ef_sz_mod <- list()
+  xds_obj$irs$ef_sz_mod[[1]] <- no_irs
+  return(xds_obj)
 }
 
 #' @title Set no spray_houses
@@ -31,15 +31,15 @@ setup_no_irs <- function(pars) {
 #' @inheritParams SprayHouses
 #' @return [list]
 #' @export
-SprayHouses.none <- function(t, pars) {
-  return(pars)
+SprayHouses.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no spray_houses"
 #' @inheritParams setup_spray_houses
-#' @return an irs spray model object
+#' @return a irs spray model object
 #' @export
-setup_spray_houses.none <- function(name, pars, opts=list()) {
+setup_spray_houses.none <- function(name, xds_obj, opts=list()) {
   spray_houses <- list()
   spray_houses$name <- "none"
   class(spray_houses) <- "none"
@@ -49,17 +49,17 @@ setup_spray_houses.none <- function(name, pars, opts=list()) {
 #' @title Set no irs_effects
 #' @description The null model for irs_effects
 #' @inheritParams IRSEffects
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-IRSEffects.none <- function(t, pars) {
-  return(pars)
+IRSEffects.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no irs_effects"
 #' @inheritParams setup_irs_effects
-#' @return an irs effects model object
+#' @return a irs effects model object
 #' @export
-setup_irs_effects.none <- function(name, pars, opts=list()) {
+setup_irs_effects.none <- function(name, xds_obj, opts=list()) {
   effects <- 'none'
   class(effects) <- 'none'
   return(effects)
@@ -69,17 +69,17 @@ setup_irs_effects.none <- function(name, pars, opts=list()) {
 #' @title Set no irs
 #' @description The null model for irs
 #' @inheritParams IRSCoverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-IRSCoverage.none <- function(t, pars) {
-  return(pars)
+IRSCoverage.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up "no irs_coverage"
 #' @inheritParams setup_irs_coverage
-#' @return an irs coverage model object
+#' @return a irs coverage model object
 #' @export
-setup_irs_coverage.none <- function(name='none', pars, opts=list()) {
+setup_irs_coverage.none <- function(name='none', xds_obj, opts=list()) {
   coverage <- 'none'
   class(coverage) <- 'none'
   return(coverage)
@@ -89,17 +89,17 @@ setup_irs_coverage.none <- function(name='none', pars, opts=list()) {
 #' @title Set no irs_effectsizes
 #' @description The null model for irs_effectsizes
 #' @inheritParams IRSEffectSizes
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-IRSEffectSizes.none <- function(t, pars, s) {
-  return(pars)
+IRSEffectSizes.none <- function(t, xds_obj, s) {
+  return(xds_obj)
 }
 
 #' @title Set up "no irs_effectsizes"
 #' @inheritParams setup_irs_effect_sizes
-#' @return an irs effect size model object
+#' @return a irs effect size model object
 #' @export
-setup_irs_effect_sizes.none <- function(name, pars, opts) {
+setup_irs_effect_sizes.none <- function(name, xds_obj, opts) {
   effectsizes <- list()
   effectsizes$class <- 'none'
   class(effectsizes) <- 'none'

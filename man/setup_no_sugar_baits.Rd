@@ -4,13 +4,13 @@
 \alias{setup_no_sugar_baits}
 \title{Set up no sugar baits}
 \usage{
-setup_no_sugar_baits(pars)
+setup_no_sugar_baits(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up no sugar baits

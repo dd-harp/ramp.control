@@ -4,17 +4,17 @@
 \alias{SugarBaitEffectSizes}
 \title{Set the SugarBaitEffectSizes}
 \usage{
-SugarBaitEffectSizes(t, pars, s)
+SugarBaitEffectSizes(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set the value of exogenous variables related to

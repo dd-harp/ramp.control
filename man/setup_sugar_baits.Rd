@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_sugar_baits(
-  pars,
+  xds_obj,
   distribute_sugar_baits_name = "none",
   distribute_sugar_baits_opts = list(),
   effects_name = "none",
@@ -17,7 +17,7 @@ setup_sugar_baits(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{distribute_sugar_baits_name}{the name of a model for mass bed net distribution}
 
@@ -36,7 +36,7 @@ setup_sugar_baits(
 \item{effectsizes_opts}{options for the bed net effect sizes model}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

@@ -4,17 +4,17 @@
 \alias{setup_sugar_bait_coverage.none}
 \title{Set up no sugar bait coverage}
 \usage{
-\method{setup_sugar_bait_coverage}{none}(name = "none", pars, opts = list())
+\method{setup_sugar_bait_coverage}{none}(name = "none", xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the module name}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 
 \item{opts}{a list of options to override the defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} object
 }
 \description{
 Set up no sugar bait coverage

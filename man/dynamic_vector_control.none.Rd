@@ -4,20 +4,20 @@
 \alias{dynamic_vector_control.none}
 \title{Turn On Vector Control}
 \usage{
-\method{dynamic_vector_control}{none}(pars)
+\method{dynamic_vector_control}{none}(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If
-`class(pars$vector_control) == 'none'`
+\code{class(xds_obj$vector_control) == 'none'}
 then dynamic vector_control has not
 been set up by any other function.
-This sets `class(vector_control) <- 'dynamic'` and
+This sets \code{class(vector_control) <- 'dynamic'} and
 then sets up a  trivial module for every mode of
 vector control.
 }

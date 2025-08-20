@@ -3,20 +3,20 @@
 #' @title Set no LSMCoverage
 #' @description The null model for LSMCoverage
 #' @inheritParams LSMCoverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-LSMCoverage.none <- function(t, pars) {
-  return(pars)
+LSMCoverage.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 
 #' @title Set up "no lsm_coverage"
 #' @inheritParams setup_lsm_coverage
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_lsm_coverage.none <- function(name='none', pars, opts=list()) {
+setup_lsm_coverage.none <- function(name='none', xds_obj, opts=list()) {
   coverage <- 'none'
   class(coverage) <- 'none'
-  pars$lsm$coverage <- coverage
-  return(pars)
+  xds_obj$lsm$coverage <- coverage
+  return(xds_obj)
 }

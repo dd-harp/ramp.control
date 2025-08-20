@@ -4,10 +4,10 @@
 \alias{add_bednet_round}
 \title{Set up dynamic forcing}
 \usage{
-add_bednet_round(pars, type, t_init, coverage, zap = 1)
+add_bednet_round(xds_obj, type, t_init, coverage, zap = 1)
 }
 \arguments{
-\item{pars}{the `ramp.xds` object}
+\item{xds_obj}{the \code{ramp.xds} object}
 
 \item{type}{the name of the BedNet type}
 
@@ -18,7 +18,7 @@ add_bednet_round(pars, type, t_init, coverage, zap = 1)
 \item{zap}{the coverage achieved}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

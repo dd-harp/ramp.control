@@ -4,15 +4,15 @@
 \alias{DistributeSugarBaits.none}
 \title{Distribute no sugar baits}
 \usage{
-\method{DistributeSugarBaits}{none}(t, pars)
+\method{DistributeSugarBaits}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The model for no sugar bait distribution

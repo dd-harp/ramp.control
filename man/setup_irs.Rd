@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_irs(
-  pars,
+  xds_obj,
   spray_houses_name = "none",
   spray_houses_opts = list(),
   effects_name = "none",
@@ -17,7 +17,7 @@ setup_irs(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{spray_houses_name}{the name of a model for mass bed net distribution}
 
@@ -36,7 +36,7 @@ setup_irs(
 \item{effect_sizes_opts}{options for the bed net effect sizes model}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

@@ -4,17 +4,17 @@
 \alias{SugarBaitEffectSizes.none}
 \title{No sugar baits}
 \usage{
-\method{SugarBaitEffectSizes}{none}(t, pars, s)
+\method{SugarBaitEffectSizes}{none}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for sugar baits

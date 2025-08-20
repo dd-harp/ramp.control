@@ -4,15 +4,15 @@
 \alias{LSMEffects.none}
 \title{Set no lsm_effects}
 \usage{
-\method{LSMEffects}{none}(t, pars)
+\method{LSMEffects}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for lsm_effects

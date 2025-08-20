@@ -20,14 +20,14 @@ setup_irs_coverage_func(
 
 \item{F_season}{a function describing a seasonal pattern over time}
 
-\item{season_par}{an object to configure a seasonality function using [make_function]}
+\item{season_par}{an model object to configure a seasonality function using \link{make_function}}
 
 \item{F_trend}{a function describing a temporal trend over time}
 
-\item{trend_par}{an object to configure a trends function using [make_function]}
+\item{trend_par}{an model object to configure a trends function using \link{make_function}}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up a simple function

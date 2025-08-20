@@ -3,11 +3,11 @@
 #' @description Set the value of exogenous variables related to
 #' bednet
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @return a **`ramp.xds`** model object
 #' @export
-BedNet <- function(t, pars) {
-  UseMethod("BedNet", pars$bednets)
+BedNet <- function(t, xds_obj) {
+  UseMethod("BedNet", xds_obj$bednets)
 }
 
 
@@ -16,13 +16,13 @@ BedNet <- function(t, pars) {
 #' @inheritParams BedNet
 #' @return [list]
 #' @export
-BedNet.dynamic <- function(t, pars) {
-  pars <- DistributeBedNets(t, pars)
-  pars <- OwnBedNets(t, pars)
-  pars <- UseBedNets(t, pars)
-  pars <- BedNetEffects(t, pars)
-#   pars <- BedNetCoverage(t, pars)
-   return(pars)
+BedNet.dynamic <- function(t, xds_obj) {
+  xds_obj <- DistributeBedNets(t, xds_obj)
+  xds_obj <- OwnBedNets(t, xds_obj)
+  xds_obj <- UseBedNets(t, xds_obj)
+  xds_obj <- BedNetEffects(t, xds_obj)
+#   xds_obj <- BedNetCoverage(t, xds_obj)
+   return(xds_obj)
 }
 
 
@@ -31,7 +31,7 @@ BedNet.dynamic <- function(t, pars) {
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param distribute_name the name of a model for mass bed net distribution
 #' @param distribute_opts options for the bed net distribution model
 #' @param own_name the name of a model for bed net ownership
@@ -44,9 +44,9 @@ BedNet.dynamic <- function(t, pars) {
 #' @param coverage_opts options for the bed net coverage model
 #' @param effect_sizes_name the name of a model for bed net effect sizes
 #' @param effect_sizes_opts options for the bed net effect sizes model
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednets = function(pars,
+setup_bednets = function(xds_obj,
                         distribute_name = 'none', distribute_opts = list(),
                         own_name = 'none', own_opts = list(),
                         use_name = 'none', use_opts = list(),
@@ -54,21 +54,21 @@ setup_bednets = function(pars,
                         coverage_name = 'none', coverage_opts = list(),
                         effect_sizes_name = 'none', effect_sizes_opts = list()){
 
-  pars <- dynamic_vector_control(pars)
+  xds_obj <- dynamic_vector_control(xds_obj)
   bednets <- list()
   bednets$name <- 'dynamic'
   class(bednets) <- 'dynamic'
-  bednets$coverage <- rep(0, pars$nPatches)
-  pars$bednets <- bednets
+  bednets$coverage <- rep(0, xds_obj$nPatches)
+  xds_obj$bednets <- bednets
 
-  pars$bednets$distribute_mod <- setup_distribute_bednets(distribute_name, pars, distribute_opts)
-  pars$bednets$owner_mod <- setup_own_bednets(own_name, pars, own_opts)
-  pars$bednets$user_mod  <- setup_use_bednets(use_name, pars, use_opts)
-  pars$bednets$effects_mod <- setup_bednet_effects(effects_name, pars, effects_opts)
-  pars$bednets$coverage_mod <- setup_bednet_coverage(coverage_name, pars, coverage_opts)
-  pars$bednets$ef_sz_mod <- list()
-  pars$bednets$ef_sz_mod[[1]] <- setup_bednet_effect_sizes(effect_sizes_name, pars, effect_sizes_opts)
-  return(pars)
+  xds_obj$bednets$distribute_mod <- setup_distribute_bednets(distribute_name, xds_obj, distribute_opts)
+  xds_obj$bednets$owner_mod <- setup_own_bednets(own_name, xds_obj, own_opts)
+  xds_obj$bednets$user_mod  <- setup_use_bednets(use_name, xds_obj, use_opts)
+  xds_obj$bednets$effects_mod <- setup_bednet_effects(effects_name, xds_obj, effects_opts)
+  xds_obj$bednets$coverage_mod <- setup_bednet_coverage(coverage_name, xds_obj, coverage_opts)
+  xds_obj$bednets$ef_sz_mod <- list()
+  xds_obj$bednets$ef_sz_mod[[1]] <- setup_bednet_effect_sizes(effect_sizes_name, xds_obj, effect_sizes_opts)
+  return(xds_obj)
 }
 
 
@@ -76,11 +76,11 @@ setup_bednets = function(pars,
 #' @description Set the value of exogenous variables related to
 #' distribute_bednets
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-DistributeBedNets <- function(t, pars) {
-  UseMethod("DistributeBedNets", pars$bednets$distribute_mod)
+DistributeBedNets <- function(t, xds_obj) {
+  UseMethod("DistributeBedNets", xds_obj$bednets$distribute_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -88,11 +88,11 @@ DistributeBedNets <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' bednets and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_distribute_bednets = function(name, pars, opts=list()){
+setup_distribute_bednets = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_distribute_bednets", name)
 }
@@ -102,11 +102,11 @@ setup_distribute_bednets = function(name, pars, opts=list()){
 #' @description Set the value of exogenous variables related to
 #' own_bednets
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @return a **`ramp.xds`** model object
 #' @export
-OwnBedNets <- function(t, pars) {
-  UseMethod("OwnBedNets", pars$bednets$owner_mod)
+OwnBedNets <- function(t, xds_obj) {
+  UseMethod("OwnBedNets", xds_obj$bednets$owner_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -114,11 +114,11 @@ OwnBedNets <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' bednets and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_own_bednets = function(name, pars, opts=list()){
+setup_own_bednets = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_own_bednets", name)
 }
@@ -129,11 +129,11 @@ setup_own_bednets = function(name, pars, opts=list()){
 #' @description Set the value of exogenous variables related to
 #' use_bednets
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @return a **`ramp.xds`** model object
 #' @export
-UseBedNets <- function(t, pars) {
-  UseMethod("UseBedNets", pars$bednets$user_mod)
+UseBedNets <- function(t, xds_obj) {
+  UseMethod("UseBedNets", xds_obj$bednets$user_mod)
 }
 
 #' @title Set up dynamic bednets
@@ -141,11 +141,11 @@ UseBedNets <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' bednets and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_use_bednets = function(name, pars, opts=list()){
+setup_use_bednets = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_use_bednets", name)
 }
@@ -155,11 +155,11 @@ setup_use_bednets = function(name, pars, opts=list()){
 #' @description Set the value of exogenous variables related to
 #' bednet
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @return a **`ramp.xds`** model object
 #' @export
-BedNetCoverage <- function(t, pars) {
-  UseMethod("BedNetCoverage", pars$bednets$coverage_mod)
+BedNetCoverage <- function(t, xds_obj) {
+  UseMethod("BedNetCoverage", xds_obj$bednets$coverage_mod)
 }
 
 #' @title Set up dynamic forcing
@@ -167,11 +167,11 @@ BedNetCoverage <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_coverage = function(name, pars, opts=list()){
+setup_bednet_coverage = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_bednet_coverage", name)
 }
@@ -181,11 +181,11 @@ setup_bednet_coverage = function(name, pars, opts=list()){
 #' @description Set the value of exogenous variables related to
 #' bednet_effects
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @return a **`ramp.xds`** model object
 #' @export
-BedNetEffects <- function(t, pars) {
-  UseMethod("BedNetEffects", pars$bednets$effects_mod)
+BedNetEffects <- function(t, xds_obj) {
+  UseMethod("BedNetEffects", xds_obj$bednets$effects_mod)
 }
 
 #' @title Set up dynamic forcing
@@ -193,11 +193,11 @@ BedNetEffects <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_effects = function(name, pars, opts=list()){
+setup_bednet_effects = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_bednet_effects", name)
 }
@@ -207,12 +207,12 @@ setup_bednet_effects = function(name, pars, opts=list()){
 #' @description Compute the effect sizes
 #' associated with bed nets
 #' @param t current simulation time
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param s the vector species index
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-BedNetEffectSizes <- function(t, pars, s) {
-  UseMethod("BedNetEffectSizes", pars$bednets$ef_sz_mod[[s]])
+BedNetEffectSizes <- function(t, xds_obj, s) {
+  UseMethod("BedNetEffectSizes", xds_obj$bednets$ef_sz_mod[[s]])
 }
 
 #' @title Set up dynamic forcing
@@ -220,11 +220,11 @@ BedNetEffectSizes <- function(t, pars, s) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`**  model object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_effect_sizes = function(name, pars, opts=list()){
+setup_bednet_effect_sizes = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_bednet_effect_sizes", name)
 }

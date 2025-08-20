@@ -16,7 +16,7 @@ setup_bednet_round(type, t_init, coverage, zap = 1)
 \item{zap}{contact scaling}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

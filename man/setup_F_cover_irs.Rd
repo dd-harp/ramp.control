@@ -10,7 +10,7 @@ setup_F_cover_irs(cover)
 \item{cover}{a coverage model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

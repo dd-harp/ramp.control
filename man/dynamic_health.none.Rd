@@ -4,13 +4,13 @@
 \alias{dynamic_health.none}
 \title{Set up dynamic health}
 \usage{
-\method{dynamic_health}{none}(pars)
+\method{dynamic_health}{none}(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic health has not

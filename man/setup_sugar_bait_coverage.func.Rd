@@ -4,12 +4,12 @@
 \alias{setup_sugar_bait_coverage.func}
 \title{Set up dynamic sugar bait coverage function}
 \usage{
-\method{setup_sugar_bait_coverage}{func}(name, pars, opts = list())
+\method{setup_sugar_bait_coverage}{func}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the module name}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 
 \item{opts}{a list of options to override the defaults}
 }

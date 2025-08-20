@@ -2,22 +2,22 @@
 % Please edit documentation in R/health.R
 \name{Health.setup}
 \alias{Health.setup}
-\title{The `setup` case for health variables}
+\title{The \code{setup} case for health variables}
 \usage{
-\method{Health}{setup}(t, y, pars)
+\method{Health}{setup}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Call all the functions to set the
 values of health variables and then revert
-the `none` case
+the \code{none} case
 }

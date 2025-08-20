@@ -4,18 +4,18 @@
 \alias{VectorControlEffectSizes.dynamic}
 \title{Distribute vector control, the null model}
 \usage{
-\method{VectorControlEffectSizes}{dynamic}(t, y, pars)
+\method{VectorControlEffectSizes}{dynamic}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
-a named [list]
+a named \link{list}
 }
 \description{
-Implements [VectorControl] for the control model of vector control (do nothing)
+Implements \link{VectorControl} for the control model of vector control (do nothing)
 }

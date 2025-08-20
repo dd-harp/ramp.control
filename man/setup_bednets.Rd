@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_bednets(
-  pars,
+  xds_obj,
   distribute_name = "none",
   distribute_opts = list(),
   own_name = "none",
@@ -21,7 +21,7 @@ setup_bednets(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{distribute_name}{the name of a model for mass bed net distribution}
 
@@ -48,7 +48,7 @@ setup_bednets(
 \item{effect_sizes_opts}{options for the bed net effect sizes model}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not
