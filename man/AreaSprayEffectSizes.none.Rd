@@ -4,17 +4,17 @@
 \alias{AreaSprayEffectSizes.none}
 \title{Set no AreaSprayEffectSizes}
 \usage{
-\method{AreaSprayEffectSizes}{none}(t, pars, s)
+\method{AreaSprayEffectSizes}{none}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{s}{vector species index}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for AreaSprayEffectSizes

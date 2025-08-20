@@ -4,15 +4,15 @@
 \alias{SprayArea.none}
 \title{Set no spray_area}
 \usage{
-\method{SprayArea}{none}(t, pars)
+\method{SprayArea}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for spray_area

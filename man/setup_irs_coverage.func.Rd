@@ -2,19 +2,21 @@
 % Please edit documentation in R/irs-coverage-functions.R
 \name{setup_irs_coverage.func}
 \alias{setup_irs_coverage.func}
-\title{Set up dynamic forcing}
+\title{Set up a function for IRS coverage}
 \usage{
-\method{setup_irs_coverage}{func}(name, pars, opts = list())
+\method{setup_irs_coverage}{func}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
+\value{
+An IRS coverage model object
+}
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+A set up utility function for
+\link{IRSCoverage}. Set up a s
 }

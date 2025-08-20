@@ -26,18 +26,18 @@ compute_bednet_effect_sizes_lemenach(
 
 \item{gg}{baseline mosquito mortality rate}
 
-\item{tau0_frac}{a [numeric] vector giving the proportion of a feeding cycle spent
-host seeking/bloodfeeding *vs.* resting/oviposition}
+\item{tau0_frac}{a \link{numeric} vector giving the proportion of a feeding cycle spent
+host seeking/bloodfeeding \emph{vs.} resting/oviposition}
 
 \item{rr}{probability of mosquito being repelled upon contact with ITN}
 
 \item{ss}{probability of mosquito successfully feeding upon contact with ITN}
 }
 \value{
-an **`xds`** model object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
+Implements \link{BedNetEffectSizes} for the Le Menach ITN model of vector control
 }
 \references{
 {This implements the model for ITN effect sizes

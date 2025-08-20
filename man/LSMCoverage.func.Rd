@@ -4,15 +4,15 @@
 \alias{LSMCoverage.func}
 \title{Set no lsm_coverage}
 \usage{
-\method{LSMCoverage}{func}(t, pars)
+\method{LSMCoverage}{func}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for lsm_coverage

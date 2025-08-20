@@ -4,15 +4,15 @@
 \alias{IRS.dynamic}
 \title{Set no irs}
 \usage{
-\method{IRS}{dynamic}(t, pars)
+\method{IRS}{dynamic}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+\link{list}
 }
 \description{
 The null model for irs

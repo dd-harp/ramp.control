@@ -4,17 +4,17 @@
 \alias{setup_irs_effect_sizes.none}
 \title{Set up "no irs_effectsizes"}
 \usage{
-\method{setup_irs_effect_sizes}{none}(name, pars, opts)
+\method{setup_irs_effect_sizes}{none}(name, xds_obj, opts)
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an irs effect size model object
+a irs effect size model object
 }
 \description{
 Set up "no irs_effectsizes"

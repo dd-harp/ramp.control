@@ -3,11 +3,11 @@
 #' @description Set the value of exogenous variables related to
 #' distribute_sugar_baits_sugar_baits
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** object
+#' @return a **`ramp.xds`** object
 #' @export
-DistributeSugarBaits <- function(t, pars) {
-  UseMethod("DistributeSugarBaits", pars$sugar_baits$distribute)
+DistributeSugarBaits <- function(t, xds_obj) {
+  UseMethod("DistributeSugarBaits", xds_obj$sugar_baits$distribute)
 }
 
 
@@ -16,11 +16,11 @@ DistributeSugarBaits <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' sugar_baits and set all the
 #' @param name the name of a model to set up
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** object
 #' @param opts a list of options to override defaults
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** object
 #' @export
-setup_distribute_sugar_baits = function(name, pars, opts=list()){
+setup_distribute_sugar_baits = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_distribute_sugar_baits", name)
 }

@@ -16,5 +16,5 @@ a multiround function
 }
 \description{
 Return an object to configure
-a function [make_function.sigmoid]
+a function \link{make_function.sigmoid}
 }

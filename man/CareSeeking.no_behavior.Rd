@@ -4,18 +4,18 @@
 \alias{CareSeeking.no_behavior}
 \title{Set the values of exogenous variables describing care seeking}
 \usage{
-\method{CareSeeking}{no_behavior}(t, y, pars)
+\method{CareSeeking}{no_behavior}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a  \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-Implements [CareSeeking] for the no_behavior model of care seeking (do nothing)
+Implements \link{CareSeeking} for the no_behavior model of care seeking (do nothing)
 }

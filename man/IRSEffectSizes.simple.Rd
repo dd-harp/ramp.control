@@ -4,21 +4,21 @@
 \alias{IRSEffectSizes.simple}
 \title{Modify baseline values due to vector control}
 \usage{
-\method{IRSEffectSizes}{simple}(t, pars, s)
+\method{IRSEffectSizes}{simple}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-a named [list]
+a named \link{list}
 }
 \description{
-Implements [IRSEffectSizes] for the Le Menach IRS model of vector control
+Implements \link{IRSEffectSizes} for the Le Menach IRS model of vector control
 }
 \seealso{
-[compute_irs_effect_sizes_simple()]
+\code{\link[=compute_irs_effect_sizes_simple]{compute_irs_effect_sizes_simple()}}
 }

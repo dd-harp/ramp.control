@@ -4,13 +4,13 @@
 \alias{setup_no_lsm}
 \title{Set up "no LSM"}
 \usage{
-setup_no_lsm(pars)
+setup_no_lsm(xds_obj)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up "no LSM"

@@ -4,17 +4,17 @@
 \alias{setup_spray_area}
 \title{Set up dynamic lsm}
 \usage{
-setup_spray_area(name, pars, opts = list())
+setup_spray_area(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} object
 }
 \description{
 If dynamic lsm has not

@@ -4,15 +4,15 @@
 \alias{AreaSprayCoverage.none}
 \title{Set no AreaSprayCoverage}
 \usage{
-\method{AreaSprayCoverage}{none}(t, pars)
+\method{AreaSprayCoverage}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for AreaSprayCoverage

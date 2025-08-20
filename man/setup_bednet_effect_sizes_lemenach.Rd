@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_bednet_effect_sizes_lemenach(
-  pars,
+  xds_obj,
   opts = list(),
   tau0_frac = c(0.68/3, 2.32/3),
   rr = 0.56,
@@ -13,12 +13,12 @@ setup_bednet_effect_sizes_lemenach(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 
-\item{tau0_frac}{a [numeric] vector giving the proportion of a feeding cycle spent
-host seeking/bloodfeeding *vs.* resting/oviposition}
+\item{tau0_frac}{a \link{numeric} vector giving the proportion of a feeding cycle spent
+host seeking/bloodfeeding \emph{vs.} resting/oviposition}
 
 \item{rr}{probability of mosquito being repelled upon contact with ITN}
 

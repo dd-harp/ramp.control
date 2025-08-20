@@ -3,11 +3,11 @@
 #' @description Set the value of exogenous variables related to
 #' Sugar Baits
 #' @param t current simulation time
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-SugarBaits <- function(t, pars) {
-  UseMethod("SugarBaits", pars$sugar_baits)
+SugarBaits <- function(t, xds_obj) {
+  UseMethod("SugarBaits", xds_obj$sugar_baits)
 }
 
 #' @title No sugar baits
@@ -15,8 +15,8 @@ SugarBaits <- function(t, pars) {
 #' @inheritParams SugarBaits
 #' @return [list]
 #' @export
-SugarBaits.none <- function(t, pars) {
-  return(pars)
+SugarBaits.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set no sugar baits
@@ -24,26 +24,26 @@ SugarBaits.none <- function(t, pars) {
 #' @inheritParams SugarBaits
 #' @return [list]
 #' @export
-SugarBaits.dynamic <- function(t, pars) {
-  pars <- DistributeSugarBaits(t, pars)
-  pars <- SugarBaitEffects(t, pars)
-  pars <- SugarBaitCoverage(t, pars)
-  return(pars)
+SugarBaits.dynamic <- function(t, xds_obj) {
+  xds_obj <- DistributeSugarBaits(t, xds_obj)
+  xds_obj <- SugarBaitEffects(t, xds_obj)
+  xds_obj <- SugarBaitCoverage(t, xds_obj)
+  return(xds_obj)
 }
 
 
 #' @title Set up no sugar baits
-#' @param pars an **`xds`** object
-#' @return an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_no_sugar_baits <- function(pars) {
+setup_no_sugar_baits <- function(xds_obj) {
   NoSugarBaits <- list()
   class(NoSugarBaits) <- 'none'
-  pars$sugar_baits <- NoSugarBaits
-  pars$sugar_baits$coverage <- NoSugarBaits
-  pars$sugar_baits$effectsizes <- list()
-  pars$sugar_baits$effectsizes[[1]] <- NoSugarBaits
-  return(pars)
+  xds_obj$sugar_baits <- NoSugarBaits
+  xds_obj$sugar_baits$coverage <- NoSugarBaits
+  xds_obj$sugar_baits$effectsizes <- list()
+  xds_obj$sugar_baits$effectsizes[[1]] <- NoSugarBaits
+  return(xds_obj)
 }
 
 
@@ -51,7 +51,7 @@ setup_no_sugar_baits <- function(pars) {
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param distribute_sugar_baits_name the name of a model for mass bed net distribution
 #' @param distribute_sugar_baits_opts options for the bed net distribution model
 #' @param effects_name the name of a model for bed net effects
@@ -60,21 +60,21 @@ setup_no_sugar_baits <- function(pars) {
 #' @param coverage_opts options for the bed net coverage model
 #' @param effectsizes_name the name of a model for bed net effect sizes
 #' @param effectsizes_opts options for the bed net effect sizes model
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_sugar_baits = function(pars,
+setup_sugar_baits = function(xds_obj,
                         distribute_sugar_baits_name = 'none', distribute_sugar_baits_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
                         effectsizes_name = 'none', effectsizes_opts = list()){
-  pars = dynamic_vector_control(pars)
+  xds_obj = dynamic_vector_control(xds_obj)
   SugarBaits <- list()
   class(SugarBaits) <- 'dynamic'
-  pars$sugar_baits <- SugarBaits
-  pars <- setup_distribute_sugar_baits(distribute_sugar_baits_name, pars, distribute_sugar_baits_opts)
-  pars <- setup_sugar_bait_effects(effects_name, pars, effects_opts)
-  pars <- setup_sugar_bait_coverage(coverage_name, pars, coverage_opts)
-  pars <- setup_sugar_bait_effectsizes(effectsizes_name, pars, effectsizes_opts)
-  return(pars)
+  xds_obj$sugar_baits <- SugarBaits
+  xds_obj <- setup_distribute_sugar_baits(distribute_sugar_baits_name, xds_obj, distribute_sugar_baits_opts)
+  xds_obj <- setup_sugar_bait_effects(effects_name, xds_obj, effects_opts)
+  xds_obj <- setup_sugar_bait_coverage(coverage_name, xds_obj, coverage_opts)
+  xds_obj <- setup_sugar_bait_effectsizes(effectsizes_name, xds_obj, effectsizes_opts)
+  return(xds_obj)
 }
 

@@ -4,10 +4,10 @@
 \alias{add_irs_round}
 \title{Set up dynamic forcing}
 \usage{
-add_irs_round(pars, type, t_init, coverage, zap = 1)
+add_irs_round(xds_obj, type, t_init, coverage, zap = 1)
 }
 \arguments{
-\item{pars}{the `ramp.xds` object}
+\item{xds_obj}{the \code{ramp.xds} model object}
 
 \item{type}{the name of the IRS type}
 
@@ -18,7 +18,7 @@ add_irs_round(pars, type, t_init, coverage, zap = 1)
 \item{zap}{the coverage achieved}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

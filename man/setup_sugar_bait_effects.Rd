@@ -4,17 +4,17 @@
 \alias{setup_sugar_bait_effects}
 \title{Set up a sugar bait effects model}
 \usage{
-setup_sugar_bait_effects(name, pars, opts = list())
+setup_sugar_bait_effects(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up a sugar bait effects model

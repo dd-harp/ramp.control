@@ -4,17 +4,17 @@
 \alias{setup_irs_coverage.none}
 \title{Set up "no irs_coverage"}
 \usage{
-\method{setup_irs_coverage}{none}(name = "none", pars, opts = list())
+\method{setup_irs_coverage}{none}(name = "none", xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an irs coverage model object
+a irs coverage model object
 }
 \description{
 Set up "no irs_coverage"

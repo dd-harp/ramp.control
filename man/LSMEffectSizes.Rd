@@ -4,17 +4,17 @@
 \alias{LSMEffectSizes}
 \title{Set up LSM effect sizes}
 \usage{
-LSMEffectSizes(t, pars, s)
+LSMEffectSizes(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up effect sizes for LSM

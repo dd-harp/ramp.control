@@ -24,7 +24,7 @@ setup_bednet_multiround(
 \item{zap}{the contact parameter}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

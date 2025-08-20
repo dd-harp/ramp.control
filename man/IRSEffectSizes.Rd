@@ -4,17 +4,17 @@
 \alias{IRSEffectSizes}
 \title{Set the irs_effectsizes}
 \usage{
-IRSEffectSizes(t, pars, s = 1)
+IRSEffectSizes(t, xds_obj, s = 1)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set the value of exogenous variables related to

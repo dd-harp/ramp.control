@@ -4,27 +4,29 @@
 \alias{Health.dynamic}
 \title{Set the values of exogenous variables}
 \usage{
-\method{Health}{dynamic}(t, y, pars)
+\method{Health}{dynamic}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 With dynamic health, exogenous variables
 can be set in one of four function calls:
-- Clinic
-- School
-- MassHealth
-- Behavior
-- ActiveCaseDetection
+\itemize{
+\item Clinic
+\item School
+\item MassHealth
+\item Behavior
+\item ActiveCaseDetection
+}
 }
 \seealso{
-[dynamic_health]
+\link{dynamic_health}
 }

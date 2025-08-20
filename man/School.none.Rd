@@ -4,18 +4,18 @@
 \alias{School.none}
 \title{Methods for distributing interventions during schoolal visits}
 \usage{
-\method{School}{none}(t, y, pars)
+\method{School}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-Implements [School] for the none model (do nothing)
+Implements \link{School} for the none model (do nothing)
 }

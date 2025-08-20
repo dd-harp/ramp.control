@@ -4,17 +4,17 @@
 \alias{setup_irs_effect_sizes_simple}
 \title{Set up dynamic forcing}
 \usage{
-setup_irs_effect_sizes_simple(pars, opts = list(), contact = 1)
+setup_irs_effect_sizes_simple(xds_obj, opts = list(), contact = 1)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 
 \item{contact}{the probability of contact given coverage}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

@@ -4,17 +4,17 @@
 \alias{LSMEffectSizes.none}
 \title{Set no LSMEffectSizes}
 \usage{
-\method{LSMEffectSizes}{none}(t, pars, s)
+\method{LSMEffectSizes}{none}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{s}{vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for LSMEffectSizes

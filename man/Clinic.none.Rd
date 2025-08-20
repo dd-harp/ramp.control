@@ -4,18 +4,18 @@
 \alias{Clinic.none}
 \title{Methods for distributing interventions during clinical visits}
 \usage{
-\method{Clinic}{none}(t, y, pars)
+\method{Clinic}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-Implements [Clinic] for the none model (do nothing)
+Implements \link{Clinic} for the none model (do nothing)
 }

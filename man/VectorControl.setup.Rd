@@ -4,21 +4,21 @@
 \alias{VectorControl.setup}
 \title{Vector Control for Static Vector Control}
 \usage{
-\method{VectorControl}{setup}(t, y, pars)
+\method{VectorControl}{setup}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{an \strong{\code{xds}} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-The `setup` case runs the `dynamic`
+The \code{setup} case runs the \code{dynamic}
 case once, to set the values of variables for
-static models. It then reverts to `none` so that
+static models. It then reverts to \code{none} so that
 those values are not changed again.
 }

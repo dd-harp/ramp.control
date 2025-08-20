@@ -5,15 +5,15 @@
 #' forcing and set all the
 #' @inheritParams setup_bednet_effect_sizes
 #' @export
-setup_bednet_effect_sizes.lemenach = function(name, pars, opts=list()){
-  setup_bednet_effect_sizes_lemenach(pars, opts)
+setup_bednet_effect_sizes.lemenach = function(name, xds_obj, opts=list()){
+  setup_bednet_effect_sizes_lemenach(xds_obj, opts)
 }
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param tau0_frac a [numeric] vector giving the proportion of a feeding cycle spent
 #' host seeking/bloodfeeding *vs.* resting/oviposition
@@ -21,7 +21,7 @@ setup_bednet_effect_sizes.lemenach = function(name, pars, opts=list()){
 #' @param ss probability of mosquito successfully feeding upon contact with ITN
 #' @return a bed net effect size model object
 #' @export
-setup_bednet_effect_sizes_lemenach = function(pars, opts=list(),
+setup_bednet_effect_sizes_lemenach = function(xds_obj, opts=list(),
                                              tau0_frac = c(0.68/3, 2.32/3),
                                              rr = 0.56, ss = 0.03){
   stopifnot(sum(tau0_frac) == 1)
@@ -41,17 +41,17 @@ setup_bednet_effect_sizes_lemenach = function(pars, opts=list(),
 #' @importFrom stats pexp
 #' @seealso [compute_bednet_effect_sizes_lemenach()]
 #' @export
-BedNetEffectSizes.lemenach <- function(t, pars, s){
-  phi = pars$bednets$coverage
-  with(pars$bednets$ef_sz_mod[[s]],{
-    with(pars$MYZpar[[s]],{
-      es <- sapply(1:pars$nPatches,
+BedNetEffectSizes.lemenach <- function(t, xds_obj, s){
+  phi = xds_obj$bednets$coverage
+  with(xds_obj$bednets$ef_sz_mod[[s]],{
+    with(xds_obj$MYZpar[[s]],{
+      es <- sapply(1:xds_obj$nPatches,
                    compute_bednet_effect_sizes_lemenach,
                    phi=phi, ff=f_t, qq=q_t, gg=g_t, tau0_frac=tau0_frac, rr=rr, ss=ss)
-      pars$MYZpar[[s]]$es_f <- pars$MYZpar[[s]]$es_f*es[1,]
-      pars$MYZpar[[s]]$es_q <- pars$MYZpar[[s]]$es_q*es[2,]
-      pars$MYZpar[[s]]$es_g <- pars$MYZpar[[s]]$es_g*es[3,]
-      return(pars)
+      xds_obj$MYZpar[[s]]$es_f <- xds_obj$MYZpar[[s]]$es_f*es[1,]
+      xds_obj$MYZpar[[s]]$es_q <- xds_obj$MYZpar[[s]]$es_q*es[2,]
+      xds_obj$MYZpar[[s]]$es_g <- xds_obj$MYZpar[[s]]$es_g*es[3,]
+      return(xds_obj)
     })
 })}
 
@@ -69,7 +69,7 @@ BedNetEffectSizes.lemenach <- function(t, pars, s){
 #' host seeking/bloodfeeding *vs.* resting/oviposition
 #' @param rr probability of mosquito being repelled upon contact with ITN
 #' @param ss probability of mosquito successfully feeding upon contact with ITN
-#' @return an **`xds`** model object
+#' @return a **`ramp.xds`** model object
 #' @references{This implements the model for ITN effect sizes
 #' from \insertRef{LeMenachA2007_ITN}{ramp.control}}
 #' @importFrom stats pexp

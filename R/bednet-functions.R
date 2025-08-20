@@ -4,9 +4,9 @@
 #' @inheritParams DistributeBedNets
 #' @return [list]
 #' @export
-DistributeBedNets.func <- function(t, pars) {
-  #F_distribute_bednets(t, pars)
-  return(pars)
+DistributeBedNets.func <- function(t, xds_obj) {
+  #F_distribute_bednets(t, xds_obj)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic bednets
@@ -15,21 +15,21 @@ DistributeBedNets.func <- function(t, pars) {
 #' bednets and set all the
 #' @inheritParams setup_distribute_bednets
 #' @export
-setup_distribute_bednets.func = function(name="func", pars, opts=list()){
-  pars <- setup_distribute_bednets_func(pars, opts)
+setup_distribute_bednets.func = function(name="func", xds_obj, opts=list()){
+  xds_obj <- setup_distribute_bednets_func(xds_obj, opts)
 }
 
 #' @title Set up dynamic bednets
 #' @description If dynamic bednets has not
 #' already been set up, then turn on dynamic
 #' bed net  and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param eventT the time when a distribute occurs
 #' @param F_distribute the effects of the distribute
 #' @return a bed net distribution model object
 #' @export
-setup_distribute_bednets_func = function(pars, opts=list(), eventT=365, F_distribute=NULL){
+setup_distribute_bednets_func = function(xds_obj, opts=list(), eventT=365, F_distribute=NULL){
   distribute <- list()
   class(distribute) <- 'func'
   distribute$eventT = eventT
@@ -42,8 +42,8 @@ setup_distribute_bednets_func = function(pars, opts=list(), eventT=365, F_distri
 #' @inheritParams OwnBedNets
 #' @return [list]
 #' @export
-OwnBedNets.func <- function(t, pars) {with(pars$bednets$owner_mod,{
-  pars$bednets$own = mean*F_season(t)*F_trend(t)
+OwnBedNets.func <- function(t, xds_obj) {with(xds_obj$bednets$owner_mod,{
+  xds_obj$bednets$own = mean*F_season(t)*F_trend(t)
 })}
 
 #' @title Set up dynamic forcing
@@ -52,22 +52,22 @@ OwnBedNets.func <- function(t, pars) {with(pars$bednets$owner_mod,{
 #' forcing and set all the
 #' @inheritParams setup_own_bednets
 #' @export
-setup_own_bednets.func = function(name, pars, opts=list()){
-  pars = setup_own_bednets_func(pars, opts)
+setup_own_bednets.func = function(name, xds_obj, opts=list()){
+  xds_obj = setup_own_bednets_func(xds_obj, opts)
 }
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param mean mean bednet ownership
 #' @param F_season the seasonal signal in bednet ownership
 #' @param F_trend a temporal trend in bednet ownership
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_own_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, F_trend=F_flat){
+setup_own_bednets_func = function(xds_obj, opts=list(), mean=0.7, F_season=F_flat, F_trend=F_flat){
   own <- list()
   class(own) <- 'func'
   own$mean <- mean
@@ -81,8 +81,8 @@ setup_own_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
 #' @inheritParams UseBedNets
 #' @return [list]
 #' @export
-UseBedNets.func <- function(t, pars) {with(pars$bednets$user_mod,{
-  pars$bednets$use = mean*F_season(t)*F_trend(t)
+UseBedNets.func <- function(t, xds_obj) {with(xds_obj$bednets$user_mod,{
+  xds_obj$bednets$use = mean*F_season(t)*F_trend(t)
 })}
 
 #' @title Set up dynamic forcing
@@ -91,22 +91,22 @@ UseBedNets.func <- function(t, pars) {with(pars$bednets$user_mod,{
 #' forcing and set all the
 #' @inheritParams setup_use_bednets
 #' @export
-setup_use_bednets.func = function(name, pars, opts=list()){
-  pars = setup_use_bednets_func(pars, opts)
+setup_use_bednets.func = function(name, xds_obj, opts=list()){
+  xds_obj = setup_use_bednets_func(xds_obj, opts)
 }
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param mean mean bednet useership
 #' @param F_season the seasonal signal in bednet useership
 #' @param F_trend a temporal trend in bednet useership
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_use_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, F_trend=F_flat){
+setup_use_bednets_func = function(xds_obj, opts=list(), mean=0.7, F_season=F_flat, F_trend=F_flat){
   use <- list()
   class(use) <- 'func'
 
@@ -121,9 +121,9 @@ setup_use_bednets_func = function(pars, opts=list(), mean=0.7, F_season=F_flat, 
 #' @inheritParams BedNetCoverage
 #' @return [list]
 #' @export
-BedNetCoverage.func <- function(t, pars) {with(pars$bednets$coverage_mod,{
-  pars$bednets$coverage = pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
-  return(pars)
+BedNetCoverage.func <- function(t, xds_obj) {with(xds_obj$bednets$coverage_mod,{
+  xds_obj$bednets$coverage = pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
+  return(xds_obj)
 })}
 
 #' @title Set up dynamic forcing
@@ -132,31 +132,31 @@ BedNetCoverage.func <- function(t, pars) {with(pars$bednets$coverage_mod,{
 #' forcing and set all the
 #' @inheritParams setup_bednet_coverage
 #' @export
-setup_bednet_coverage.func = function(name, pars, opts=list()){
-  setup_bednet_coverage_func(pars, opts)
+setup_bednet_coverage.func = function(name, xds_obj, opts=list()){
+  setup_bednet_coverage_func(xds_obj, opts)
 }
 
 #' @title Set up dynamic forcing
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts a list of options to override defaults
 #' @param mean the mean bednet_coverage
 #' @param F_season the seasonal signal in bednet coverage
 #' @param season_par parameters to configure F_season
 #' @param F_trend a temporal trend in bednet coverage
 #' @param trend_par parameters to configure F_trend
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_coverage_func = function(pars, opts=list(),
+setup_bednet_coverage_func = function(xds_obj, opts=list(),
                                       mean=1,
                                       F_season=F_flat,
                                       season_par=list(),
                                       F_trend=F_flat,
                                       trend_par=list()){
   with(opts,{
-    pars = dynamic_vector_control(pars)
+    xds_obj = dynamic_vector_control(xds_obj)
     coverage <- list()
     class(coverage) <- 'func'
     coverage$name <- 'func'
@@ -179,11 +179,11 @@ setup_bednet_coverage_func = function(pars, opts=list(),
 #' @inheritParams BedNetEffectSizes
 #' @return [list]
 #' @export
-BedNetEffectSizes.func <- function(t, pars, s) {
+BedNetEffectSizes.func <- function(t, xds_obj, s) {
   ## set es_f
   ## set es_q
   ## set es_g
-  return(pars)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic forcing
@@ -191,19 +191,19 @@ BedNetEffectSizes.func <- function(t, pars, s) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @inheritParams setup_bednet_effect_sizes
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_bednet_effect_sizes.func = function(name, pars, opts=list()){
-  setup_bednet_effect_sizes_func(pars, opts)
+setup_bednet_effect_sizes.func = function(name, xds_obj, opts=list()){
+  setup_bednet_effect_sizes_func(xds_obj, opts)
 }
 
 #' @title Set no bednet
 #' @description The null model for bednet
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`ramp.xds`** model object
 #' @param opts an optional list of arguments
 #' @return a bednet effect size model object
 #' @export
-setup_bednet_effect_sizes_func <- function(pars, opts) {
+setup_bednet_effect_sizes_func <- function(xds_obj, opts) {
   coverage <- list()
   class(coverage) <- 'func'
   ## setup function to compute es_f

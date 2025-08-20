@@ -5,7 +5,7 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_lsm(
-  pars,
+  xds_obj,
   treat_habitats_name = "none",
   treat_habitats_opts = list(),
   effects_name = "none",
@@ -17,7 +17,7 @@ setup_lsm(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{treat_habitats_name}{the name of a model for mass LSM distribution}
 
@@ -36,7 +36,7 @@ setup_lsm(
 \item{effectsizes_opts}{options for the LSM effect sizes model}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

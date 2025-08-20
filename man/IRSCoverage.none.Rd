@@ -4,15 +4,15 @@
 \alias{IRSCoverage.none}
 \title{Set no irs}
 \usage{
-\method{IRSCoverage}{none}(t, pars)
+\method{IRSCoverage}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for irs

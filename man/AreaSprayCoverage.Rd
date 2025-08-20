@@ -4,15 +4,15 @@
 \alias{AreaSprayCoverage}
 \title{Set the area spray coverage}
 \usage{
-AreaSprayCoverage(t, pars)
+AreaSprayCoverage(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} object
 }
 \description{
 Set the value of exogenous variables related to

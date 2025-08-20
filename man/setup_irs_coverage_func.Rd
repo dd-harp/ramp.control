@@ -5,7 +5,6 @@
 \title{Set up dynamic forcing}
 \usage{
 setup_irs_coverage_func(
-  pars,
   opts = list(),
   mx = 1,
   F_season = F_flat,
@@ -15,25 +14,22 @@ setup_irs_coverage_func(
 )
 }
 \arguments{
-\item{pars}{an **`xds`** object}
-
 \item{opts}{a list of options to override defaults}
 
 \item{mx}{peak irs_coverage}
 
 \item{F_season}{a function describing a seasonal pattern over time}
 
-\item{season_par}{an object to configure a seasonality function using [make_function]}
+\item{season_par}{an model object to configure a seasonality function using \link{make_function}}
 
 \item{F_trend}{a function describing a temporal trend over time}
 
-\item{trend_par}{an object to configure a trends function using [make_function]}
+\item{trend_par}{an model object to configure a trends function using \link{make_function}}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+Set up a simple function
+to model IRS coverage
 }

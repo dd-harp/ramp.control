@@ -4,17 +4,17 @@
 \alias{AreaSprayEffectSizes}
 \title{Set the AreaSprayEffectSizes}
 \usage{
-AreaSprayEffectSizes(t, pars, s)
+AreaSprayEffectSizes(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{s}{vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} object
 }
 \description{
 Set the value of exogenous variables related to

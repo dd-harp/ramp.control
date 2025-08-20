@@ -4,12 +4,12 @@
 \alias{setup_irs_effect_sizes.simple}
 \title{Set up dynamic forcing}
 \usage{
-\method{setup_irs_effect_sizes}{simple}(name, pars, opts = list())
+\method{setup_irs_effect_sizes}{simple}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
 \item{opts}{a list of options to override defaults}
 }

@@ -4,17 +4,17 @@
 \alias{BedNetEffectSizes}
 \title{Copmute bednet effect sizes}
 \usage{
-BedNetEffectSizes(t, pars, s)
+BedNetEffectSizes(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{s}{the vector species index}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Compute the effect sizes

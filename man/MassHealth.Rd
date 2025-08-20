@@ -4,18 +4,18 @@
 \alias{MassHealth}
 \title{Methods for mass distributing health interventions}
 \usage{
-MassHealth(t, y, pars)
+MassHealth(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-This method dispatches on the type of `pars$mass_health`.
+This method dispatches on the type of \code{xds_obj$mass_health}.
 }

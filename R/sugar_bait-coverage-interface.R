@@ -3,11 +3,11 @@
 #' @description Set the value of exogenous variables related to
 #' Sugar Baits
 #' @param t current simulation time
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`xds`** object
 #' @return an **`xds`** object
 #' @export
-SugarBaitCoverage <- function(t, pars) {
-  UseMethod("SugarBaitCoverage", pars$sugar_baits$coverage)
+SugarBaitCoverage <- function(t, xds_obj) {
+  UseMethod("SugarBaitCoverage", xds_obj$sugar_baits$coverage)
 }
 
 #' @title Set up dynamic forcing
@@ -15,11 +15,11 @@ SugarBaitCoverage <- function(t, pars) {
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #' @param name the module name
-#' @param pars an **`xds`** object
+#' @param xds_obj a **`xds`** object
 #' @param opts a list of options to override the defaults
 #' @return an **`xds`** object
 #' @export
-setup_sugar_bait_coverage = function(name, pars, opts=list()){
+setup_sugar_bait_coverage = function(name, xds_obj, opts=list()){
   class(name) <- name
   UseMethod("setup_sugar_bait_coverage", name)
 }

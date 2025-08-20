@@ -4,17 +4,17 @@
 \alias{setup_bednet_effect_sizes}
 \title{Set up dynamic forcing}
 \usage{
-setup_bednet_effect_sizes(name, pars, opts = list())
+setup_bednet_effect_sizes(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 If dynamic forcing has not

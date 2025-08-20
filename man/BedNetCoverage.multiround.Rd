@@ -4,15 +4,15 @@
 \alias{BedNetCoverage.multiround}
 \title{Set no bednet_coverage}
 \usage{
-\method{BedNetCoverage}{multiround}(t, pars)
+\method{BedNetCoverage}{multiround}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 The null model for bednet_coverage

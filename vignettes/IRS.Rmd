@@ -13,10 +13,6 @@ library(ramp.xds)
 library(ramp.control)
 ```
 
-```{r, echo=F}
-#devtools::load_all() 
-```
-
 
 **`ramp.control`** handles IRS in a flexible way. 
 Four methods are defined; not all of them need to get used. 
@@ -66,8 +62,8 @@ IRS is usually done through a malaria program, so a large number of houses are s
 To model coverage, we developed the `sharkfin` functions in **`ramp.xds`**, the product of two sigmoidal functions -- one ramping up and the other down with different shapes. With this sharkfin function, coverage increases over 20 days from zero up to 90%, reaching 50% of the maximum on day 50. Potency wanes, reaching 50% on day 230, 180 days after the spray round. 
 
 ```{r}
-par <- makepar_F_sharkfin(D=50, uk=1/3, L=180, mx=.9)
-Fsf <- make_function(par) 
+irs_par <- makepar_F_sharkfin(D=50, uk=1/3, L=180, mx=.9)
+Fsf <- make_function(irs_par) 
 ```
 
 ```{r, fig.height=4, fig.width=6, echo=F}
@@ -79,6 +75,27 @@ points(50, .45, col = grey(0.5))
 points(230, .45, col = grey(0.5))
 ```
 
+```{r}
+model <- xds_setup(MYZname = "SI", Lopts = list(Lambda=40, season_par=makepar_F_sin()))
+model <- xds_solve(model, 2000)
+model <- last_to_inits(model)
+model <- xds_solve(model, 1100)
+xds_plot_EIR(model)
+```
+
+```{r}
+model <- setup_irs(model, coverage_name = "func", coverage_opts=list(trend_par = irs_par, mx=1), effect_sizes_name = "simple")
+```
+
+
+```{r}
+show_irs_coverage(tt, model)
+```
+
+```{r}
+model <- xds_solve(model, 1100)
+xds_plot_EIR(model)
+```
 
 # Effect Sizes 
 
@@ -174,6 +191,15 @@ xds_plot_PR(mod)
 
 ```{r}
 mod_irs <- setup_irs(mod, effect_sizes_name = "simple", coverage_name = "multiround", coverage_opts = test_irs)
+```
+
+```{r}
+show_irs_coverage(tt, mod_irs)
+```
+```{r}
+mod_irs$irs$coverage_mod$coverage[2] = 0.3
+mod_irs$irs$coverage_mod <- setup_F_cover_irs(mod_irs$irs$coverage_mod)
+show_irs_coverage(tt, mod_irs)
 ```
 
 ```{r}

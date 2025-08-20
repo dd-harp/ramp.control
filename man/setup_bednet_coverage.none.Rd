@@ -4,17 +4,17 @@
 \alias{setup_bednet_coverage.none}
 \title{Set up "no bednet_coverage"}
 \usage{
-\method{setup_bednet_coverage}{none}(name, pars, opts = list())
+\method{setup_bednet_coverage}{none}(name, xds_obj, opts = list())
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up "no bednet_coverage"

@@ -4,15 +4,15 @@
 \alias{SugarBaitEffects.none}
 \title{Set up no sugar bait effects}
 \usage{
-\method{SugarBaitEffects}{none}(t, pars)
+\method{SugarBaitEffects}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up no sugar bait effects

@@ -4,15 +4,15 @@
 \alias{SugarBaitCoverage.func}
 \title{Set up sugar bait coverage function}
 \usage{
-\method{SugarBaitCoverage}{func}(t, pars)
+\method{SugarBaitCoverage}{func}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up sugar bait coverage function

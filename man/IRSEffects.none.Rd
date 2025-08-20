@@ -4,15 +4,15 @@
 \alias{IRSEffects.none}
 \title{Set no irs_effects}
 \usage{
-\method{IRSEffects}{none}(t, pars)
+\method{IRSEffects}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for irs_effects

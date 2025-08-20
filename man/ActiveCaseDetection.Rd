@@ -4,18 +4,18 @@
 \alias{ActiveCaseDetection}
 \title{Methods for mass distributing health interventions}
 \usage{
-ActiveCaseDetection(t, y, pars)
+ActiveCaseDetection(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-This method dispatches on the type of `pars$active_case_detection`.
+This method dispatches on the type of \code{xds_obj$active_case_detection}.
 }

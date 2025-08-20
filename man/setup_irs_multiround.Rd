@@ -24,10 +24,9 @@ setup_irs_multiround(
 \item{zap}{the contact parameter}
 }
 \value{
-an **`xds`** object
+a IRS coverage model object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+Set up a function that computes
+irs coverage over time.
 }

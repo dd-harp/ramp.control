@@ -16,7 +16,7 @@
 \item{zap}{contact scaling}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 If dynamic forcing has not

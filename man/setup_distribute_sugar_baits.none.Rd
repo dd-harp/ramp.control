@@ -4,17 +4,17 @@
 \alias{setup_distribute_sugar_baits.none}
 \title{Set up distribution for the no sugar baits model}
 \usage{
-\method{setup_distribute_sugar_baits}{none}(name, pars, opts)
+\method{setup_distribute_sugar_baits}{none}(name, xds_obj, opts)
 }
 \arguments{
 \item{name}{the name of a model to set up}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 
 \item{opts}{a list of options to override defaults}
 }
 \value{
-an **`xds`** object
+a \strong{\code{xds}} object
 }
 \description{
 Set up distribution for the no sugar baits model

@@ -4,13 +4,13 @@
 \alias{setup_no_school}
 \title{Set up the none model for schoolal distribution (do nothing)}
 \usage{
-setup_no_school(pars)
+setup_no_school(xds_obj)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up the none model for schoolal distribution (do nothing)

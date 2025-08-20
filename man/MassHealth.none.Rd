@@ -4,18 +4,18 @@
 \alias{MassHealth.none}
 \title{Methods for distributing interventions during mass_healthal visits}
 \usage{
-\method{MassHealth}{none}(t, y, pars)
+\method{MassHealth}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-Implements [MassHealth] for the none model (do nothing)
+Implements \link{MassHealth} for the none model (do nothing)
 }

@@ -4,15 +4,15 @@
 \alias{LSM.none}
 \title{Set no LSM}
 \usage{
-\method{LSM}{none}(t, pars)
+\method{LSM}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-an **`xds`** object
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for LSM

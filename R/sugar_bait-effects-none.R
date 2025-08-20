@@ -1,19 +1,19 @@
 #' @title Set up no sugar bait effects
 #' @description Set up no sugar bait effects
 #' @inheritParams SugarBaitEffects
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-SugarBaitEffects.none <- function(t, pars) {
-  return(pars)
+SugarBaitEffects.none <- function(t, xds_obj) {
+  return(xds_obj)
 }
 
 #' @title Set up no sugar bait effects
 #' @inheritParams setup_sugar_bait_effects
-#' @return an **`xds`** object
+#' @return a **`ramp.xds`** model object
 #' @export
-setup_sugar_bait_effects.none <- function(name, pars, opts=list()) {
+setup_sugar_bait_effects.none <- function(name, xds_obj, opts=list()) {
   effects <- 'none'
   class(effects) <- 'none'
-  pars$sugar_baits$effects <- effects
-  return(pars)
+  xds_obj$sugar_baits$effects <- effects
+  return(xds_obj)
 }

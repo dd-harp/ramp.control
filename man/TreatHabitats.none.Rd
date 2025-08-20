@@ -4,15 +4,15 @@
 \alias{TreatHabitats.none}
 \title{Set no treat_habitats}
 \usage{
-\method{TreatHabitats}{none}(t, pars)
+\method{TreatHabitats}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for treat_habitats

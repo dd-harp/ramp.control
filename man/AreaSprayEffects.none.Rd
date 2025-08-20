@@ -4,15 +4,15 @@
 \alias{AreaSprayEffects.none}
 \title{Set no area spray effects}
 \usage{
-\method{AreaSprayEffects}{none}(t, pars)
+\method{AreaSprayEffects}{none}(t, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
 The null model for AreaSprayEffectSizes

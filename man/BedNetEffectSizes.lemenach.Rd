@@ -4,21 +4,21 @@
 \alias{BedNetEffectSizes.lemenach}
 \title{Modify baseline values due to vector control}
 \usage{
-\method{BedNetEffectSizes}{lemenach}(t, pars, s)
+\method{BedNetEffectSizes}{lemenach}(t, xds_obj, s)
 }
 \arguments{
 \item{t}{current simulation time}
 
-\item{pars}{an **`xds`** object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{s}{the vector species index}
 }
 \value{
-a named [list]
+a named \link{list}
 }
 \description{
-Implements [BedNetEffectSizes] for the Le Menach ITN model of vector control
+Implements \link{BedNetEffectSizes} for the Le Menach ITN model of vector control
 }
 \seealso{
-[compute_bednet_effect_sizes_lemenach()]
+\code{\link[=compute_bednet_effect_sizes_lemenach]{compute_bednet_effect_sizes_lemenach()}}
 }

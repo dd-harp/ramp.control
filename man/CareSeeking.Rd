@@ -4,18 +4,18 @@
 \alias{CareSeeking}
 \title{Set the values of exogenous variables describing care seeking}
 \usage{
-CareSeeking(t, y, pars)
+CareSeeking(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state variables}
 
-\item{pars}{a [list]}
+\item{xds_obj}{a  \strong{\code{ramp.xds}} model object}
 }
 \value{
-[list]
+a \strong{\code{ramp.xds}} model object
 }
 \description{
-This method dispatches on the type of `pars$CARE_SEEKING`.
+This method dispatches on the type of \code{xds_obj$CARE_SEEKING}.
 }
