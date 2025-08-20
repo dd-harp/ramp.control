@@ -108,9 +108,17 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_vector_control.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_vector_control.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/dynamic_vector_control.setup.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_bednet_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_bednet_coverage.multiround.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_irs_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/get_irs_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/makepar_F_multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/none_obj.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_bednet_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_bednet_coverage.multiround.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_irs_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/set_irs_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_cover_bednet.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_F_cover_irs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_area_spray.html</loc></url>
@@ -209,5 +217,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_use_bednets.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_use_bednets.none.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/setup_use_bednets_func.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/show_bednet_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/show_irs_coverage.html</loc></url>
 </urlset>
 

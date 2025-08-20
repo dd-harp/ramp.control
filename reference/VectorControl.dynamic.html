@@ -71,7 +71,7 @@ control is set up and configured separately.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'dynamic'</span></span>
-<span><span class="fu">VectorControl</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">pars</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">VectorControl</span><span class="op">(</span><span class="va">t</span>, <span class="va">y</span>, <span class="va">xds_obj</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,20 +86,20 @@ control is set up and configured separately.</p>
 <dd><p>state vector</p></dd>
 
 
-<dt id="arg-pars">pars<a class="anchor" aria-label="anchor" href="#arg-pars"></a></dt>
-<dd><p>an <strong><code>xds</code></strong> object</p></dd>
+<dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
+<dd><p>a <strong><code>ramp.xds</code></strong> model object</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a named [list]</p>
+    <p>a named <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></p>
     </div>
     <div id="note">
     <h2>Note</h2>
     <p>This a junction to implement various modes of
 vector control.
-Non-trivial vector control modules are in
-[**`ramp.control`**](https://github.com/dd-harp/ramp.control).</p>
+Vector control modules require
+<a href="https://github.com/dd-harp/ramp.control" class="external-link"><strong><code>ramp.control</code></strong></a>.</p>
     </div>
 
   </div>
