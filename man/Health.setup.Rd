@@ -10,8 +10,6 @@
 \item{t}{current simulation time}
 
 \item{y}{state vector}
-
-\item{xds_obj}{an \strong{\code{ramp.xds}} model object}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

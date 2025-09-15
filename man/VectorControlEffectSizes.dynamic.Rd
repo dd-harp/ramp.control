@@ -10,8 +10,6 @@
 \item{t}{current simulation time}
 
 \item{y}{state vector}
-
-\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
 a named \link{list}
