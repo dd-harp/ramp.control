@@ -2,22 +2,18 @@
 % Please edit documentation in R/bednet-coverage-multiround.R
 \name{setup_bednet_coverage.multiround}
 \alias{setup_bednet_coverage.multiround}
-\title{Set up dynamic forcing}
+\title{Set Up a Bed Net Coverage Function}
 \usage{
-\method{setup_bednet_coverage}{multiround}(name, xds_obj, opts = list())
+\method{setup_bednet_coverage}{multiround}(name = "func", xds_obj, options = list())
 }
 \arguments{
-\item{name}{the name of a model to set up}
+\item{name}{the model name}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{opts}{a list of options to override defaults}
-}
-\value{
-a \strong{\code{xds}} object
+\item{options}{a list of options to override defaults}
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+This sets up a function to set the value of bed net
+coverage
 }

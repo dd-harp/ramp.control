@@ -11,14 +11,19 @@
 
 \item{y}{state vector}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-The \code{setup} case runs the \code{dynamic}
-case once, to set the values of variables for
-static models. It then reverts to \code{none} so that
-those values are not changed again.
+The \code{setup} case runs the \code{dynamic_vector_control}
+and \code{dynamic_vc_effect_sizes} once, to ensure
+that everything is configured
+properly for static models. It then changes the
+case back to \code{static}
+
+This calls both functions, so there
+is no \code{setup} method for \code{VectorControlEffectSizes}
+is needed
 }

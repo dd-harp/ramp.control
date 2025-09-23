@@ -84,7 +84,12 @@ setup_bednets = function(...,
 In the simplest models, we can simply set coverage 
 
 ```{r}
-mod <- xds_setup(MYZname = "SI")
+mod <- xds_setup(MYname = "SI")
+```
+
+```{r}
+mod <- setup_vector_control(mod)
+mod <- xds_solve(mod)
 ```
 
 ```{r}
@@ -104,9 +109,12 @@ with(cov_opts, plot(tt, F_season(tt), type = "l"))
 mod <- setup_bednets(mod,
      coverage_name = "func", coverage_opts = cov_opts, 
      effect_sizes_name = "lemenach")
+```
 
+
+```{r}
 tt = seq(0:730)
-with(mod$bednets$coverage_mod, plot(tt, F_season(tt), type = "l"))
+show_bednet_coverage(tt, mod)
 ```
 
 ## Effect Sizes 

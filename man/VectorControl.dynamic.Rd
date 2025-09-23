@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{VectorControl.dynamic}
 \alias{VectorControl.dynamic}
-\title{Implement Vector Control}
+\title{Dynamic Vector Control}
 \usage{
 \method{VectorControl}{dynamic}(t, y, xds_obj)
 }
@@ -11,19 +11,15 @@
 
 \item{y}{state vector}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
 a named \link{list}
 }
 \description{
-Implements various forms
-of vector control. Each mode for vector
-control is set up and configured separately.
+Calls \code{dynamic_vector_control}
 }
 \note{
-This a junction to implement various modes of
+This the function that implements various modes of
 vector control.
-Vector control modules require
-\href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }

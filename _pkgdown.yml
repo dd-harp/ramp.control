@@ -4,7 +4,7 @@ navbar:
   - text: Articles
     menu:
     - text: Bed Nets
-      href: articles/BedNets.html
+      href: articles/Bed_Nets.html
     - text: Vector Control Example
       href: articles/vc_lemenach.html
     - text: IRS
@@ -26,354 +26,184 @@ home:
 reference:
 - title: Vector Control
   desc: |
-    Specialized methods to implement Bed Nets
+    Specialized methods to manage the vector control junction
   contents:
+  - setup_vector_control
+  - setup_vector_control.none
+  - setup_vector_control.static
+  - setup_vector_control.setup
+  - setup_vector_control.dynamic
+  - dynamic_vector_control
+  - dynamic_vc_effect_sizes
   - VectorControl.dynamic
+  - VectorControl.static
   - VectorControl.setup
   - VectorControlEffectSizes.dynamic
-  - dynamic_vector_control
-  - dynamic_vector_control.none
-  - dynamic_vector_control.setup
-  - dynamic_vector_control.dynamic
+  - VectorControlEffectSizes.static
 - title: Bed Nets
   desc: |
     Specialized methods to implement Bed Nets
   contents:
-  - BedNet
-  - BedNet.none
-  - BedNet.dynamic
-  - setup_no_bednets
+  - setup_bednet_object
   - setup_bednets
-- subtitle: Distribute Bed Nets
-  desc: |
-    Specialized methods to distribute bed nets
-  contents:
-  - DistributeBedNets
-  - setup_distribute_bednets
-  - DistributeBedNets.none
-  - setup_distribute_bednets.none
-  - DistributeBedNets.func
-  - setup_distribute_bednets.func
-  - setup_distribute_bednets_func
+  - Bed_Net
+  - Bed_Net.none
+  - Bed_Net.static
+  - Bed_Net.dynamic
 - subtitle: Bed Net Ownership
   desc: |
     Specialized methods to model bed net ownership
   contents:
-  - OwnBedNets
-  - setup_own_bednets
-  - OwnBedNets.none
-  - setup_own_bednets.none
-  - OwnBedNets.func
-  - setup_own_bednets.func
-  - setup_own_bednets_func
+  - setup_bednet_own
+  - setup_bednet_own.none
+  - Own_Bed_Net
+  - Own_Bed_Net.none
 - subtitle: Bed Net usage
   desc: |
     Specialized methods to model bed net ownership
   contents:
-  - UseBedNets
-  - setup_use_bednets
-  - UseBedNets.none
-  - setup_use_bednets.none
-  - UseBedNets.func
-  - setup_use_bednets.func
-  - setup_use_bednets_func
+  - setup_bednet_use
+  - setup_bednet_use.none
+  - Use_Bed_Net
+  - Use_Bed_Net.none
 - subtitle: Bed Net Effects
   desc: |
     Specialized methods to model bed net effects
   contents:
-  - BedNetEffects
   - setup_bednet_effects
-  - BedNetEffects.none
   - setup_bednet_effects.none
+  - Bed_Net_Effects
+  - Bed_Net_Effects.none
 - subtitle: Bed Net Coverage
   desc: |
     Specialized methods to model bed net coverage
   contents:
-  - BedNetCoverage
   - setup_bednet_coverage
-  - BedNetCoverage.none
   - setup_bednet_coverage.none
-  - BedNetCoverage.func
   - setup_bednet_coverage.func
-  - setup_bednet_coverage_func
+  - make_bednet_coverage_function
+  - Bed_Net_Coverage
+  - Bed_Net_Coverage.none
+  - Bed_Net_Coverage.func
+  - get_bednet_coverage
+  - change_bednet_coverage
+  - show_bednet_coverage
+- subtitle: Bed Net Multiround Coverage
+  desc: |
+    Specialized methods to model bed net coverage
+  contents:
+  - setup_bednet_coverage.multiround
+  - make_bednet_multiround
+  - Bed_Net_Coverage.multiround
+  - make_F_cover_bednet
+  - change_bednet_coverage.multiround
+  - add_bednet_round
+  - make_bednet_round
+  - make_bednet_round_generic
+  - make_bednet_round.pbo
 - subtitle: Bed Net Effect Sizes
   desc: |
     Specialized methods to model bed net effect sizes
   contents:
-  - BedNetEffectSizes
-  - BedNetEffectSizes.none
   - setup_bednet_effect_sizes
   - setup_bednet_effect_sizes.none
-  - BedNetEffectSizes.func
-  - setup_bednet_effect_sizes.func
-  - setup_bednet_effect_sizes_func
-  - BedNetEffectSizes.lemenach
+  - Bed_Net_Effect_Sizes
+  - Bed_Net_Effect_Sizes.none
   - setup_bednet_effect_sizes.lemenach
-  - setup_bednet_effect_sizes_lemenach
+  - make_bednet_effect_sizes_lemenach
+  - Bed_Net_Effect_Sizes.lemenach
   - compute_bednet_effect_sizes_lemenach
-- title: Indoor Residual Spraying
+- title: IRS
   desc: |
-    Methods to implement IRS
+    Specialized methods to implement IRS
   contents:
-  - IRS
-  - IRSEffectSizes
-  - IRS.none
-  - IRS.dynamic
-  - IRSEffectSizes.none
-  - setup_no_irs
+  - setup_irs_object
   - setup_irs
+  - IRS
+  - IRS.none
+  - IRS.static
+  - IRS.dynamic
 - subtitle: Spray Houses
   desc: |
-    Methods to implement house spraying
+    Specialized methods to model house spraying
   contents:
-  - SprayHouses
   - setup_spray_houses
-  - SprayHouses.none
   - setup_spray_houses.none
+  - SprayHouses
+  - SprayHouses.none
 - subtitle: IRS Effects
   desc: |
-    Methods to implement irs effects
+    Specialized methods to model IRS effects
   contents:
-  - IRSEffects
   - setup_irs_effects
-  - IRSEffects.none
   - setup_irs_effects.none
-- subtitle: IRS Coverage
+  - IRS_Effects
+  - IRS_Effects.none
+- subtitle: IRS Effect_sizes
   desc: |
-    Methods to implement irs coverage
-  contents:
-  - IRSCoverage
-  - setup_irs_coverage
-  - IRSCoverage.none
-  - setup_irs_coverage.none
-  - IRSCoverage.func
-  - setup_irs_coverage.func
-  - setup_irs_coverage_func
-- subtitle: IRS Effect Sizes
-  desc: |
-    Methods to implement irs effect sizes
+    Specialized methods to model IRS Effect Sizes
   contents:
   - setup_irs_effect_sizes
   - setup_irs_effect_sizes.none
-  - IRSEffectSizes.simple
+  - IRS_Effect_Sizes
+  - IRS_Effect_Sizes.none
   - setup_irs_effect_sizes.simple
-  - setup_irs_effect_sizes_simple
+  - make_irs_effect_sizes_simple
+  - IRS_Effect_Sizes.simple
   - compute_irs_effect_sizes_simple
-- subtitle: IRS Multi Round
+- subtitle: IRS Coverage
   desc: |
-    Methods to implement irs effect sizes
+    Specialized methods to model IRS coverage
   contents:
-  - setup_irs_round
-  - setup_irs_round.actellic
-  - setup_irs_round.pyrethroid
-  - setup_irs_round.bendiocarb
-  - setup_irs_round.sumishield
-  - setup_irs_round.fludora_fusion
-  - setup_irs_multiround
-- title: Larval Source Management (LSM)
+  - setup_irs_coverage
+  - setup_irs_coverage.none
+  - setup_irs_coverage.func
+  - make_irs_coverage_func
+  - IRS_Coverage
+  - IRS_Coverage.none
+  - IRS_Coverage.func
+  - get_irs_coverage
+  - change_irs_coverage
+  - show_irs_coverage
+- subtitle: IRS Pesticides
   desc: |
-    Methods to implement LSM
+    Profiles for common IRS pesticides
   contents:
-  - LSM
-  - LSM.none
-  - setup_no_lsm
-  - LSM.dynamic
-  - setup_lsm
-- subtitle: Treat Habitats
+  - make_irs_round
+  - make_irs_round_generic
+  - make_irs_round.none
+  - make_irs_round.actellic
+  - make_irs_round.bendiocarb
+  - make_irs_round.fludora_fusion
+  - make_irs_round.sumishield
+  - make_irs_round.pyrethroid
+- subtitle: IRS Multiround Coverage
   desc: |
-    Methods to implement habitat treatment
+    Specialized methods to model IRS coverage
   contents:
-  - TreatHabitats
-  - setup_treat_habitats
-  - TreatHabitats.none
-  - setup_treat_habitats.none
-- subtitle: LSM Effects
+  - setup_irs_coverage.multiround
+  - IRS_Coverage.multiround
+  - add_irs_round
+  - make_irs_multiround
+  - setup_F_cover_irs
+- title: LSM
   desc: |
-    Methods to implement LSM effects
+    Specialized methods to model LSM
   contents:
-  - LSMEffects
-  - setup_lsm_effects
-  - LSMEffects.none
-  - setup_lsm_effects.none
-- subtitle: LSM Coverage
-  desc: |
-    Methods to implement LSM coverage
-  contents:
-  - LSMCoverage
-  - setup_lsm_coverage
-  - LSMCoverage.none
-  - setup_lsm_coverage.none
-  - LSMCoverage.func
-  - setup_lsm_coverage.func
-  - setup_lsm_coverage_func
-- subtitle: LSM Effect Sizes
-  desc: |
-    Methods to implement LSM effect sizes
-  contents:
-  - LSMEffectSizes
-  - setup_lsm_effectsizes
-  - LSMEffectSizes.none
-  - setup_lsm_effectsizes.none
-- title: Area Spraying
-  desc: |
-    Methods to implement area spraying
-  contents:
-  - AreaSpray
-  - AreaSpray.none
-  - setup_no_area_spray
-  - AreaSpray.dynamic
-  - setup_area_spray
-- subtitle: Spray Area
-  desc: |
-    Methods to implement area spraying
-  contents:
-  - SprayArea
-  - setup_spray_area
-  - SprayArea.none
-  - setup_spray_area.none
-- subtitle: Area Spraying Effects
-  desc: |
-    Methods to implement the effects of area spraying
-  contents:
-  - AreaSprayEffects
-  - setup_area_spray_effects
-  - AreaSprayEffects.none
-  - setup_area_spray_effects.none
-- subtitle: Area Spraying Coverage
-  desc: |
-    Methods to implement area spraying coverage
-  contents:
-  - AreaSprayCoverage
-  - setup_area_spray_coverage
-  - AreaSprayCoverage.none
-  - setup_area_spray_coverage.none
-  - AreaSprayCoverage.func
-  - setup_area_spray_coverage.func
-  - setup_area_spray_coverage_func
-- subtitle: Area Spraying Effect Sizes
-  desc: |
-    Methods to implement area spraying effect sizes
-  contents:
-  - AreaSprayEffectSizes
-  - setup_area_spray_effectsizes
-  - AreaSprayEffectSizes.none
-  - setup_area_spray_effectsizes.none
+  - setup_lsm_object
 - title: Sugar Baits
   desc: |
-    Methods to implement sugar baits
+    Specialized methods to model Sugar Baits
   contents:
-  - SugarBaits
-  - SugarBaits.none
-  - setup_no_sugar_baits
-  - SugarBaits.dynamic
-  - setup_sugar_baits
-- subtitle: Sugar Bait Distribution
+  - setup_atsb_object
+- title: Area Spraying
   desc: |
-    Methods to distribute sugar bait
+    Specialized methods to model area spraying
   contents:
-  - DistributeSugarBaits
-  - setup_distribute_sugar_baits
-  - DistributeSugarBaits.none
-  - setup_distribute_sugar_baits.none
-- subtitle: Sugar Bait Effects
+  - setup_area_spray_object
+- title: Utilities
   desc: |
-    Methods to implement sugar bait effects
+    Useful Functions
   contents:
-  - SugarBaitEffects
-  - setup_sugar_bait_effects
-  - SugarBaitEffects.none
-  - setup_sugar_bait_effects.none
-- subtitle: Sugar Bait Coverage
-  desc: |
-    Methods to implement sugar bait coverage
-  contents:
-  - SugarBaitCoverage
-  - setup_sugar_bait_coverage
-  - SugarBaitCoverage.none
-  - setup_sugar_bait_coverage.none
-  - SugarBaitCoverage.func
-  - setup_sugar_bait_coverage.func
-  - setup_sugar_bait_coverage_func
-- subtitle: Sugar Bait Effect Sizes
-  desc: |
-    Methods to implement sugar bait effect sizes
-  contents:
-  - SugarBaitEffectSizes
-  - setup_sugar_bait_effectsizes
-  - SugarBaitEffectSizes.none
-  - setup_sugar_bait_effectsizes.none
-- title: Health
-  desc: |
-    Methods to implement health-based Interventions
-  contents:
-  - Health.dynamic
-  - Health.setup
-  - dynamic_health
-  - dynamic_health.none
-  - dynamic_health.setup
-  - dynamic_health.dynamic
-- subtitle: Clinic
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - Clinic
-  - Clinic.none
-  - setup_no_clinic
-- subtitle: School
-  desc: |
-    Methods to implement school-based interventions
-  contents:
-  - School
-  - School.none
-  - setup_no_school
-- subtitle: MassHealth
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - MassHealth
-  - MassHealth.none
-  - setup_no_mass_health
-- subtitle: ActiveCaseDetection
-  desc: |
-    Methods to implement clinic-based interventions
-  contents:
-  - ActiveCaseDetection
-  - ActiveCaseDetection.none
-  - setup_no_active_case_detection
-- subtitle: Care Seeking
-  desc: |
-    Methods to implement care seeking
-  contents:
-  - CareSeeking
-  - CareSeeking.no_behavior
-  - setup_care_seeking_no_behavior
-- subtitle: New Functions
-  desc: |
-    need sorting
-  contents:
-  - BedNetCoverage.multiround
-  - IRSCoverage.multiround
-  - add_bednet_round
-  - add_irs_round
+  - make_none_object
   - makepar_F_multiround
-  - none_obj
-  - setup_F_cover_bednet
-  - setup_F_cover_irs
-  - setup_bednet_coverage.multiround
-  - setup_bednet_multiround
-  - setup_bednet_round
-  - setup_bednet_round.pbo
-  - setup_bednet_round_generic
-  - setup_irs_coverage.multiround
-  - setup_irs_round_generic
-  - setup_irs_round.none
-  - get_bednet_coverage
-  - get_bednet_coverage.multiround
-  - get_irs_coverage
-  - get_irs_coverage.multiround
-  - set_bednet_coverage
-  - set_bednet_coverage.multiround
-  - set_irs_coverage
-  - set_irs_coverage.multiround
-  - show_bednet_coverage
-  - show_irs_coverage

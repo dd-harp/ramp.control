@@ -3,25 +3,28 @@
 #' @title IRS Coverage with Multiple Rounds
 #' @description A model for IRS coverage over time
 #' when there have been several, different IRS models
-#' @inheritParams IRSCoverage
+#' @inheritParams IRS_Coverage
 #' @return a **`ramp.xds`** model object
 #' @export
-IRSCoverage.multiround <- function(t, xds_obj) {with(xds_obj$irs$coverage_mod,{
-  xds_obj$irs$coverage = F_cover(t)
-  return(xds_obj)
+IRS_Coverage.multiround <- function(t, y, xds_obj) {
+  with(xds_obj$irs_obj$cover_obj,{
+    xds_obj$irs_obj$coverage = F_cover(t)
+    return(xds_obj)
 })}
 
 #' @title Set up dynamic forcing
 #'
 #' @description A set up utility function for
-#' [IRSCoverage].
+#' [IRS_Coverage].
 #'
 #' @inheritParams setup_irs_coverage
 #'
 #' @return a IRS coverage model object
 #' @export
-setup_irs_coverage.multiround = function(name, xds_obj, opts=list()){
-  setup_irs_multiround(opts)
+setup_irs_coverage.multiround = function(name, xds_obj, options=list()){
+  xds_obj$irs_obj
+  xds_obj$irs_obj$cover_obj <- make_irs_multiround(options)
+  return(xds_obj)
 }
 
 #' @title Set up dynamic forcing
@@ -29,7 +32,7 @@ setup_irs_coverage.multiround = function(name, xds_obj, opts=list()){
 #' @description Set up a function that computes
 #' irs coverage over time.
 #'
-#' @param opts a list of options to override defaults
+#' @param options a list of options to override defaults
 #' @param t_init the time when IRS started
 #' @param coverage the coverage achieved
 #' @param type the IRS type
@@ -37,12 +40,12 @@ setup_irs_coverage.multiround = function(name, xds_obj, opts=list()){
 #'
 #' @return a IRS coverage model object
 #' @export
-setup_irs_multiround = function(opts=list(),
+make_irs_multiround = function(options=list(),
                                 t_init = 0,
                                 coverage = 0,
                                 type = "none",
                                 zap = 1){
-  with(opts,{
+  with(options,{
     nRounds <- length(t_init)
     stopifnot(length(coverage) == nRounds)
     stopifnot(length(type) == nRounds)
@@ -74,7 +77,7 @@ setup_F_cover_irs = function(cover){
   if(cover$nRounds==0) rounds[[1]] = makepar_F_zero()
   if(cover$nRounds>0)
     for(i in 1:cover$nRounds)
-      rounds[[i]] = with(cover, setup_irs_round(type[i], t_init[i], coverage[i], zap[i]))
+      rounds[[i]] = with(cover, make_irs_round(type[i], t_init[i], coverage[i], zap[i]))
 
   rounds_par <- makepar_F_multiround(cover$nRounds, rounds)
   cover$rounds <- rounds
@@ -96,12 +99,12 @@ setup_F_cover_irs = function(cover){
 #' @return a **`ramp.xds`** model object
 #' @export
 add_irs_round = function(xds_obj, type, t_init, coverage, zap=1) {
-  opts <- list()
-  opts$type = c(xds_obj$irs$coverage_mod$type, type)
-  opts$t_init = c(xds_obj$irs$coverage_mod$t_init, t_init)
-  opts$coverage = c(xds_obj$irs$coverage_mod$coverage, coverage)
-  opts$zap = c(xds_obj$irs$coverage_mod$zap, zap)
-  xds_obj$irs$coverage_mod = setup_irs_multiround(opts)
+  options <- list()
+  options$type = c(xds_obj$irs$coverage_mod$type, type)
+  options$t_init = c(xds_obj$irs$coverage_mod$t_init, t_init)
+  options$coverage = c(xds_obj$irs$coverage_mod$coverage, coverage)
+  options$zap = c(xds_obj$irs$coverage_mod$zap, zap)
+  xds_obj$irs$coverage_mod = make_irs_multiround(options)
   return(xds_obj)
 }
 
