@@ -1,11 +1,16 @@
-
-#' Make an empty list of class "none"
+#' @title Make "none" object
 #'
-#' @returns an empty list of class "none"
+#' @description
+#' Make a "none" object
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @return a **`ramp.xds`** model object
+#'
 #' @export
-none_obj = function(){
- none_obj <- list()
- class(none_obj) <- "none"
- none_obj$name <- "none"
- return(none_obj)
+make_none_object = function(xds_obj){
+  none_list <- list()
+  none_list$name <- "none"
+  class(none_list) = "none"
+  return(none_list)
 }

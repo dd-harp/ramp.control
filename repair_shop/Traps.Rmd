@@ -1,0 +1,52 @@
+---
+title: "Mosquito Traps"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mosquito Traps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The **`ramp.xds`** interfaces were designed to simulate mosquito sampling with three kinds of traps:
+
++ **blood traps:** attract mosquitoes while searching for blood 
+
++ **oviposition traps:** attract mosquitoes while searching for habitats 
+
++ **sugar traps:** attract mosquitoes while searching for sugar
+
+These modules are *ports* that establish a design template for adding new modules to **`ramp.forcing.`** The models developed herein include static models and models with generic forcing.
+
+All modules set up objects, a variable describing the number of traps, and vector species trap search weights. Trap availability for each species is computed as a product: the number of traps times search weights.
+
+## Design
+
+The primary concern for the design template was *extensibility.* 
+
++ The default case is `static.` The number of traps and the search weights do not change with time. 
+
++ Default setup values are set to zero traps and search weights of one. The `change_*` functions check the new values, update the stored values, and trigger setup to ensure the blood feeding or egg laying interfaces are updated.
+
++ The simple case establishes a design template: the trap model object calls the static setup function and sets the number of traps to zero and the search weights to 1. 
+
++ Each trap type defines a function to set up dynamical forcing on the number of traps as a function of time.  
+
++ To ensure extensibility, the function to compute traps calls a function called `get_variables(t, y, xds_obj, s)` that is attached to the trap object. In the static functions, `get_variables` returns the stored values. New models can write functions that use any information stored on the `xds_obj.` 
+
+The functions in trap modules are:
+
++ `setup_trap_obj` 
++ `get_N_traps`
++ `change_N_traps`
++ `change_trap_weights`
++ `Traps,` an `S3` class with `static` and `setup` and `dynamic` cases  
++ `trap_dynamics` 
++ `trap_availability` 
++ `setup_F_trap,` an `S3` class with `static` and `ts_func` cases 
+
+Sugar availability does not affect blood feeding or egg laying directly: the `setup` case for `Traps` is thus not written.  
+
+## Oviposition Traps
+
+Oviposition trap availability is 
+

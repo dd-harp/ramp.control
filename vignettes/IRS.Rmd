@@ -13,6 +13,9 @@ library(ramp.xds)
 library(ramp.control)
 ```
 
+```{r}
+#devtools::load_all()
+```
 
 **`ramp.control`** handles IRS in a flexible way. 
 Four methods are defined; not all of them need to get used. 
@@ -76,7 +79,7 @@ points(230, .45, col = grey(0.5))
 ```
 
 ```{r}
-model <- xds_setup(MYZname = "SI", Lopts = list(Lambda=40, season_par=makepar_F_sin()))
+model <- xds_setup(MYname = "SI", Loptions = list(Lambda=40, season_par=makepar_F_sin()))
 model <- xds_solve(model, 2000)
 model <- last_to_inits(model)
 model <- xds_solve(model, 1100)
@@ -119,8 +122,8 @@ We want to be able to simulate multiple spray rounds, possibly with different `z
 
 
 ```{r, fig.height=4, fig.width=6}
-round1 <- setup_irs_round("actellic", 50, .95, 1)
-round2 <- setup_irs_round("sumishield", 415, .95)
+round1 <- make_irs_round("actellic", 50, .95, 1)
+round2 <- make_irs_round("sumishield", 415, .95)
 F1 <- make_function(round1)
 F2 <- make_function(round2)
 tt <- seq(0, 1095, by=5) 
@@ -139,7 +142,7 @@ zap = c(.95, .8, 0.8, .4))
 ```
 
 ```{r}
-m1 <- setup_irs_round("actellic", 500, .9)
+m1 <- make_irs_round("actellic", 500, .9)
 Fm1 <- make_function(m1)
 plot(tt, Fm1(tt), type = "l")
 ```
@@ -149,14 +152,14 @@ plot(tt, Fm1(tt), type = "l")
 Now, we pass these to `setup_irs_multiround` 
 
 ```{r}
-nullit = setup_irs_multiround()
+nullit = make_irs_multiround()
 Fn <- make_function(nullit$rounds_par)
 
 Fn(c(1:5))
 ```
 
 ```{r}
-multi4 = setup_irs_multiround(opts = test_irs)
+multi4 = make_irs_multiround(options = test_irs)
 ```
 
 
@@ -182,7 +185,7 @@ Lo <- list(
   season_par = makepar_F_sin(),
   trend_par = makepar_F_spline(tt=tt0, yy=yy0) 
 )
-mod <- xds_setup(Lopts=Lo, MYZname = "SI")
+mod <- xds_setup(Loptions=Lo, MYname = "SI")
 mod <- xds_solve(mod)
 mod <- last_to_inits(mod) 
 mod <- xds_solve(mod, 10*365, 10)
@@ -196,9 +199,9 @@ mod_irs <- setup_irs(mod, effect_sizes_name = "simple", coverage_name = "multiro
 ```{r}
 show_irs_coverage(tt, mod_irs)
 ```
-```{r}
-mod_irs$irs$coverage_mod$coverage[2] = 0.3
-mod_irs$irs$coverage_mod <- setup_F_cover_irs(mod_irs$irs$coverage_mod)
+```{r, eval=F}
+mod_irs$irs_obj$cover_obj$coverage[2] = 0.3
+mod_irs$irs_obj$cover_obj <- setup_F_cover_irs(mod_irs$irs$coverage_mod)
 show_irs_coverage(tt, mod_irs)
 ```
 

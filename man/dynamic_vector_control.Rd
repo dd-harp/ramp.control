@@ -2,23 +2,28 @@
 % Please edit documentation in R/vector_control.R
 \name{dynamic_vector_control}
 \alias{dynamic_vector_control}
-\title{Turn On Vector Control}
+\title{Vector Control Dynamics}
 \usage{
-dynamic_vector_control(xds_obj)
+dynamic_vector_control(t, y, xds_obj)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{t}{current simulation time}
+
+\item{y}{state vector}
+
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a named \link{list}
 }
 \description{
-Any function that sets up
-non-trivial vector control must
-calls this function.
-If \code{class(xds_obj$vector_control) == 'none'}
-then it is set to \code{dynamic} and the
-trivial module for every mode of
-vector control is set up. Otherwise,
-nothing happens.
+Implements various forms
+of vector control. Each mode for vector
+control is set up and configured separately.
+}
+\note{
+This a junction to implement various modes of
+vector control.
+Vector control modules require
+\href{https://github.com/dd-harp/ramp.control}{\strong{\code{ramp.control}}}.
 }
