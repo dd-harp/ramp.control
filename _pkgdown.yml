@@ -4,7 +4,7 @@ navbar:
   - text: Articles
     menu:
     - text: Bed Nets
-      href: articles/Bed_Nets.html
+      href: articles/BedNets.html
     - text: Vector Control Example
       href: articles/vc_lemenach.html
     - text: IRS
