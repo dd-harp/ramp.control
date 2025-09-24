@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiround.R
 \name{makepar_F_multiround}
 \alias{makepar_F_multiround}
-\title{Make Parameters for a Sigmoidal Function}
+\title{Make Parameters a Multiround Function}
 \usage{
 makepar_F_multiround(nRounds, rounds)
 }
@@ -16,5 +16,5 @@ a multiround function
 }
 \description{
 Return an object to configure
-a function \link{make_function.sigmoid}
+multiple \code{sharkfin} functions.
 }

@@ -5,8 +5,8 @@ Version: 1.0.0-1
 Authors@R: c(
       person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849"))
     )
-Description: Algorithms that extend `ramp.xds` models. 
-    These algorithms are designed to simulate vector control, mass treatment and mass distribution of other health interventions, and mosquito trapping. 
+Description: 
+    Algorithms that extend `ramp.xds` models. These algorithms are designed to simulate vector control, mass treatment and mass distribution of other health interventions, and mosquito trapping. 
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
