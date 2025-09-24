@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.control</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0-1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/BedNets.html">Bed Nets</a>
+      <a href="../articles/Bed_Nets.html">Bed Nets</a>
     </li>
     <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
@@ -171,24 +171,27 @@ function and as set of options to set it up, passed as a list:</p>
 </h2>
 <p>In the simplest models, we can simply set coverage</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_vector_control.html">setup_vector_control</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cov_opts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
 <span>    <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">-</span><span class="fl">365</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p><img src="BedNets_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_bednets.html">setup_bednets</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>     coverage_name <span class="op">=</span> <span class="st">"func"</span>, coverage_opts <span class="op">=</span> <span class="va">cov_opts</span>, </span>
-<span>     effect_sizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mod</span><span class="op">$</span><span class="va">bednets</span><span class="op">$</span><span class="va">coverage_mod</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<span>     effect_sizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/show_bednet_coverage.html">show_bednet_coverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<p><img src="BedNets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="effect-sizes">Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"></a>

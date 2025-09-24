@@ -19,7 +19,7 @@ forcing and set all the"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.control</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0-1</span>
       </span>
     </div>
 
@@ -31,7 +31,7 @@ forcing and set all the"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/BedNets.html">Bed Nets</a>
+      <a href="../articles/Bed_Nets.html">Bed Nets</a>
     </li>
     <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
@@ -71,7 +71,7 @@ forcing and set all the</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'simple'</span></span>
-<span><span class="fu"><a href="setup_irs_effect_sizes.html">setup_irs_effect_sizes</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">xds_obj</span>, opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="setup_irs_effect_sizes.html">setup_irs_effect_sizes</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">xds_obj</span>, s <span class="op">=</span> <span class="fl">1</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,14 +79,18 @@ forcing and set all the</p>
 
 
 <dl><dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
-<dd><p>the name of a model to set up</p></dd>
+<dd><p>the model name</p></dd>
 
 
 <dt id="arg-xds-obj">xds_obj<a class="anchor" aria-label="anchor" href="#arg-xds-obj"></a></dt>
-<dd><p>a <strong><code>ramp.xds</code></strong> model object</p></dd>
+<dd><p>a <strong><code>ramp.xds</code></strong>  model object</p></dd>
 
 
-<dt id="arg-opts">opts<a class="anchor" aria-label="anchor" href="#arg-opts"></a></dt>
+<dt id="arg-s">s<a class="anchor" aria-label="anchor" href="#arg-s"></a></dt>
+<dd><p>the vector species index</p></dd>
+
+
+<dt id="arg-options">options<a class="anchor" aria-label="anchor" href="#arg-options"></a></dt>
 <dd><p>a list of options to override defaults</p></dd>
 
 </dl></div>

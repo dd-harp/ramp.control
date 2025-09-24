@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramp.control</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0-1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/BedNets.html">Bed Nets</a>
+      <a href="../articles/Bed_Nets.html">Bed Nets</a>
     </li>
     <li>
       <a href="../articles/vc_lemenach.html">Vector Control Example</a>
@@ -154,15 +154,15 @@ so that
 <span><span class="va">nu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, <span class="va">nPatches</span><span class="op">)</span>  </span>
 <span><span class="va">eggsPerBatch</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
 <span><span class="va">eip</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
-<span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, </span>
+<span><span class="va">MYo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, mu<span class="op">=</span><span class="va">mu</span>, </span>
 <span>            nu<span class="op">=</span><span class="va">nu</span>, eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span>, eip<span class="op">=</span><span class="va">eip</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">calK</span> <span class="op">=</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/create_calK_herethere.html">create_calK_herethere</a></span><span class="op">(</span><span class="va">nPatches</span><span class="op">)</span></span>
-<span><span class="va">calK</span></span>
-<span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
-<span><span class="co">#&gt; [1,]  0.0  0.5  0.5</span></span>
-<span><span class="co">#&gt; [2,]  0.5  0.0  0.5</span></span>
-<span><span class="co">#&gt; [3,]  0.5  0.5  0.0</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">K_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_K_matrix_herethere.html">make_K_matrix_herethere</a></span><span class="op">(</span><span class="va">nPatches</span><span class="op">)</span></span>
+<span><span class="va">K_matrix</span></span></code></pre></div>
+<pre><code><span><span class="co">##      [,1] [,2] [,3]</span></span>
+<span><span class="co">## [1,]  0.0  0.5  0.5</span></span>
+<span><span class="co">## [2,]  0.5  0.0  0.5</span></span>
+<span><span class="co">## [3,]  0.5  0.5  0.0</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="equilibrium">Equilibrium<a class="anchor" aria-label="anchor" href="#equilibrium"></a>
@@ -170,7 +170,7 @@ so that
 <p>Now we compute the equilibrium conditions for the adult mosquitoes
 and human populations, such that the PfPR in the human population would
 be maintained at the input levels if conditions were unchanging.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># derived EIR to sustain equilibrium pfpr</span></span>
 <span><span class="va">EIR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">b</span>, <span class="va">nStrata</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="op">(</span><span class="va">r</span><span class="op">*</span><span class="va">X</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">HPop</span> <span class="op">-</span> <span class="va">X</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -183,7 +183,7 @@ be maintained at the input levels if conditions were unchanging.</p>
 <span><span class="co"># kappa</span></span>
 <span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">beta</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">c</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/compute_Omega_xde.html">compute_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">calK</span><span class="op">)</span></span>
+<span><span class="va">Omega</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_Omega_xde.html">make_Omega_xde</a></span><span class="op">(</span><span class="va">g</span>, <span class="va">sigma</span>, <span class="va">mu</span>, <span class="va">K_matrix</span><span class="op">)</span></span>
 <span><span class="va">Omega_inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Omega</span><span class="op">)</span></span>
 <span><span class="va">Upsilon</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="op">-</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
 <span><span class="va">Upsilon_inv</span> <span class="op">&lt;-</span> <span class="fu">expm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/expm/man/expm.html" class="external-link">expm</a></span><span class="op">(</span><span class="va">Omega</span> <span class="op">*</span> <span class="va">eip</span><span class="op">)</span></span>
@@ -207,7 +207,7 @@ maintain transmission at that level of PfPR, as well as values for
 (aquatic mosquito density) and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
 (density dependent mortality).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># aquatic habitat membership matrix (assume 1 habitat per patch)</span></span>
 <span><span class="va">calN</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">nPatches</span>, <span class="va">nHabitats</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">calN</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
@@ -232,33 +232,33 @@ set up the parameters and components of the system.</p>
 <p>We use the null model of human demographic dynamics, which assumes
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
 is constant for all time.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># adult mosquito parameters</span></span>
 <span></span>
 <span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>psi<span class="op">=</span><span class="va">psi</span>, phi<span class="op">=</span><span class="va">phi</span>, theta<span class="op">=</span><span class="va">theta</span>, L<span class="op">=</span><span class="va">L</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">MYZo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, </span>
+<span><span class="va">MYo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>f<span class="op">=</span><span class="va">f</span>, q<span class="op">=</span><span class="va">q</span>, g<span class="op">=</span><span class="va">g</span>, sigma<span class="op">=</span><span class="va">sigma</span>, </span>
 <span>            nu<span class="op">=</span><span class="va">nu</span>, eggsPerBatch<span class="op">=</span><span class="va">eggsPerBatch</span>, </span>
 <span>            M<span class="op">=</span><span class="va">M</span>, Y<span class="op">=</span><span class="va">Y</span>, Z<span class="op">=</span><span class="va">Z</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname<span class="op">=</span><span class="st">"SI"</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, Lname<span class="op">=</span><span class="st">"basicL"</span>, </span>
-<span>          nPatches<span class="op">=</span><span class="fl">3</span>, HPop<span class="op">=</span><span class="va">HPop</span>, membership<span class="op">=</span><span class="va">membership</span>, </span>
-<span>          MYZopts<span class="op">=</span><span class="va">MYZo</span>, calK<span class="op">=</span><span class="va">calK</span>,</span>
-<span>          Xopts<span class="op">=</span><span class="va">Xo</span>, residence<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, searchB<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, </span>
-<span>          TimeSpent <span class="op">=</span><span class="va">TaR</span>, searchQ<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, Lopts<span class="op">=</span><span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYname<span class="op">=</span><span class="st">"SI"</span>, Xname<span class="op">=</span><span class="st">"SIS"</span>, Lname<span class="op">=</span><span class="st">"basicL"</span>, </span>
+<span>          nPatches<span class="op">=</span><span class="fl">3</span>, HPop<span class="op">=</span><span class="va">HPop</span>, membership<span class="op">=</span><span class="va">membership</span>, </span>
+<span>          MYoptions<span class="op">=</span><span class="va">MYo</span>, K_matrix<span class="op">=</span><span class="va">K_matrix</span>,</span>
+<span>          XHoptions<span class="op">=</span><span class="va">Xo</span>, residence<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, searchB<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, </span>
+<span>          TimeSpent <span class="op">=</span><span class="va">TaR</span>, searchQ<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, Loptions<span class="op">=</span><span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">itn_mod</span>, Tmax<span class="op">=</span><span class="fl">1830</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cov_opts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cov_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  mean <span class="op">=</span> <span class="fl">0.7</span>, </span>
 <span>  F_season <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
 <span>    <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">pi</span><span class="op">*</span><span class="op">(</span><span class="va">t</span><span class="op">-</span><span class="fl">365</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_bednets.html">setup_bednets</a></span><span class="op">(</span><span class="va">itn_mod</span>,</span>
 <span>     coverage_name <span class="op">=</span> <span class="st">"func"</span>, </span>
-<span>     coverage_opts <span class="op">=</span> <span class="va">cov_opts</span>, </span>
+<span>     coverage_opts <span class="op">=</span> <span class="va">cov_options</span>, </span>
 <span>     effect_sizes_name <span class="op">=</span> <span class="st">"lemenach"</span><span class="op">)</span></span></code></pre></div>
 <p>If we ran the model at this point, we would get the baseline.
 Instead, we set up a time-varying function to compute the coverage of
@@ -269,26 +269,25 @@ at 0 it returns 0. The function also returns 0 for any
 This must be a function that takes a single argument <code>t</code>
 (time) and returns a scalar value. We note that this seasonality
 function exceeds one. When we evaluate it, values get chopped.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1830</span>, by <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fl">.7</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">itn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BedNetCoverage.html">BedNetCoverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">itn_mod</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">itn_mod</span><span class="op">$</span><span class="va">bednets</span><span class="op">$</span><span class="va">coverage</span>, col <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_options</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fl">.7</span><span class="op">*</span><span class="fu">F_season</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span><span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/show_bednet_coverage.html">show_bednet_coverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">itn_mod</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span> </span></code></pre></div>
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <p>We use the null model of human demographic dynamics, which assumes
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
 is constant for all time.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">itn_mod</span>, <span class="fl">1830</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">itn_mod</span>, <span class="fl">1830</span>, dt<span class="op">=</span><span class="fl">15</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">itn_mod</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_Y.html">xds_plot_Y</a></span><span class="op">(</span><span class="va">itn_mod</span>, clrs<span class="op">=</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, llty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_Z.html">xds_plot_Z</a></span><span class="op">(</span><span class="va">itn_mod</span>, clrs<span class="op">=</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_aEIR.html">xds_plot_aEIR</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-17-1.png" width="576"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-16-1.png" width="576"></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html">xds_plot_PR</a></span><span class="op">(</span><span class="va">itn_mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-18-1.png" width="768"></p>
+<p><img src="vc_lemenach_files/figure-html/unnamed-chunk-17-1.png" width="768"></p>
 </div>
   </div>
 
