@@ -1,4 +1,4 @@
-url: https://dd-harp.github.io/ramp.xds
+url: https://dd-harp.github.io/ramp.control
 navbar:
   left:
   - text: Articles
@@ -13,7 +13,7 @@ navbar:
     href: reference/index.html
   right:
   - icon: fa-github
-    href: https://github.com/dd-harp/ramp.xds/
+    href: https://github.com/dd-harp/ramp.control/
 home:
   sidebar:
     structure:
@@ -185,7 +185,7 @@ reference:
   - IRS_Coverage.multiround
   - add_irs_round
   - make_irs_multiround
-  - setup_F_cover_irs
+  - make_F_cover_irs
 - title: LSM
   desc: |
     Specialized methods to model LSM

@@ -58,7 +58,7 @@ make_irs_multiround = function(options=list(),
     cover$type = type
     cover$zap = checkIt(zap, nRounds)
 
-    cover = setup_F_cover_irs(cover)
+    cover = make_F_cover_irs(cover)
 
     return(cover)
 })}
@@ -71,7 +71,7 @@ make_irs_multiround = function(options=list(),
 #' @param cover a coverage model object
 #' @return a **`ramp.xds`** model object
 #' @export
-setup_F_cover_irs = function(cover){
+make_F_cover_irs = function(cover){
 
   rounds <- list()
   if(cover$nRounds==0) rounds[[1]] = makepar_F_zero()
