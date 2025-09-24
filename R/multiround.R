@@ -1,10 +1,15 @@
 
-#' @title Make Parameters for a Sigmoidal Function
+#' @title Make Parameters for a Multiround Function
+#'
 #' @description Return an object to configure
-#' a function [make_function.sigmoid]
+#' multiple `sharkfin` functions representing
+#' coverage levels over many mass
+#'
 #' @param nRounds the rate parameter
 #' @param rounds the rounds
+#'
 #' @return a multiround function
+#'
 #' @export
 makepar_F_multiround = function(nRounds, rounds){
 
