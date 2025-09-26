@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiround.R
 \name{makepar_F_multiround}
 \alias{makepar_F_multiround}
-\title{Make Parameters a Multiround Function}
+\title{Make Parameters for a Multiround Function}
 \usage{
 makepar_F_multiround(nRounds, rounds)
 }
@@ -16,5 +16,6 @@ a multiround function
 }
 \description{
 Return an object to configure
-multiple \code{sharkfin} functions.
+multiple \code{sharkfin} functions representing
+coverage levels over many mass
 }

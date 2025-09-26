@@ -27,6 +27,20 @@ setup_irs_coverage.multiround = function(name, xds_obj, options=list()){
   return(xds_obj)
 }
 
+#' Set values for irs coverage
+#'
+#' @param coverage coverage parameters
+#' @param xds_obj  a **`ramp.xds`** model object
+#'
+#' @returns a **`ramp.xds`** model object
+#'
+#' @export
+change_irs_coverage.multiround = function(coverage, xds_obj){
+  xds_obj$irs_obj$cover_obj$coverage = coverage
+  xds_obj$irs_obj$cover_obj <-  make_F_cover_irs(xds_obj$irs_obj$cover_obj)
+  return(xds_obj)
+}
+
 #' @title Set up dynamic forcing
 #'
 #' @description Set up a function that computes
