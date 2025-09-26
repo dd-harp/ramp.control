@@ -51,6 +51,7 @@
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_coverage.multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/compute_bednet_effect_sizes_lemenach.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/compute_irs_effect_sizes_simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/dynamic_vc_effect_sizes.html</loc></url>
