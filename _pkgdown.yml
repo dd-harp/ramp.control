@@ -185,6 +185,7 @@ reference:
   - IRS_Coverage.multiround
   - add_irs_round
   - make_irs_multiround
+  - change_irs_coverage.multiround
   - make_F_cover_irs
 - title: LSM
   desc: |
