@@ -91,7 +91,8 @@ make_F_cover_bednet = function(cover){
 #'
 #' @export
 change_bednet_coverage.multiround = function(coverage, xds_obj){
-  xds_obj$bednet$cover_obj$coverage = coverage
+  xds_obj$bednet_obj$cover_obj$coverage = coverage
+  xds_obj$bednet_obj$cover_obj <-  make_F_cover_bednet(xds_obj$bednet_obj$cover_obj)
   return(xds_obj)
 }
 

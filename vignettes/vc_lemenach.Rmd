@@ -20,7 +20,8 @@ library(viridisLite)
 ```
 
 ```{r, echo=FALSE} 
-#devtools::load_all()
+devtools::load_all()
+devtools::load_all("~/git/ramp.xds")
 ```
 
 ## Parameters
@@ -169,7 +170,7 @@ itn_mod <- last_to_inits(itn_mod)
 
 ```{r}
 cov_options <- list(
-  mean = 0.7, 
+  mean = 0.2, 
   F_season = function(t)
     {ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1))}
 )
@@ -188,7 +189,7 @@ If we ran the model at this point, we would get the baseline. Instead, we set up
 
 ```{r}
 tt = seq(0, 1830, by = 15) 
-with(cov_options, plot(tt, .7*F_season(tt), type ="l"))
+with(cov_options, plot(tt, 0.2*F_season(tt), type ="l", lwd = 2, lty=2, col = "darkred"))
 show_bednet_coverage(tt, itn_mod, add=T) 
 ```
 
@@ -197,14 +198,14 @@ We use the null model of human demographic dynamics, which assumes $H$ is consta
 
 
 ```{r solve}
-xds_solve(itn_mod, 1830, dt=15) -> itn_mod
+xds_solve(itn_mod, 1825, 15) -> itn_mod
 ```
 
 ```{r, fig.height=7, fig.width=6}
 par(mfrow = c(2,1))
 xds_plot_Y(itn_mod, clrs=turbo(3), llty=2)
 xds_plot_Z(itn_mod, clrs=turbo(3), add=T)
-xds_plot_aEIR(itn_mod)
+xds_plot_EIR(itn_mod)
 ```
 
 ```{r, fig.height=5, fig.width=8}
