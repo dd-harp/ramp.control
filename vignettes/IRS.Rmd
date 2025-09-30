@@ -201,7 +201,7 @@ show_irs_coverage(tt, mod_irs)
 ```
 ```{r, eval=F}
 mod_irs$irs_obj$cover_obj$coverage[2] = 0.3
-mod_irs$irs_obj$cover_obj <- setup_F_cover_irs(mod_irs$irs$coverage_mod)
+mod_irs$irs_obj$cover_obj <- make_F_cover_irs(mod_irs$irs_obj$cover_obj)
 show_irs_coverage(tt, mod_irs)
 ```
 
@@ -221,10 +221,10 @@ mod_irs1 <- add_irs_round(mod_irs, "bendiocarb", 300, .9, .9)
 
 
 ```{r}
-mod_irs1$irs$coverage_mod$type
-mod_irs1$irs$coverage_mod$t_init
-mod_irs1$irs$coverage_mod$coverage
-mod_irs1$irs$coverage_mod$zap
+mod_irs1$irs_obj$cover_obj$type
+mod_irs1$irs_obj$cover_obj$t_init
+mod_irs1$irs_obj$cover_obj$coverage
+mod_irs1$irs_obj$cover_obj$zap
 ```
 
 ```{r}

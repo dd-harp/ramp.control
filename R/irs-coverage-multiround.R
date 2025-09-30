@@ -114,11 +114,11 @@ make_F_cover_irs = function(cover){
 #' @export
 add_irs_round = function(xds_obj, type, t_init, coverage, zap=1) {
   options <- list()
-  options$type = c(xds_obj$irs$coverage_mod$type, type)
-  options$t_init = c(xds_obj$irs$coverage_mod$t_init, t_init)
-  options$coverage = c(xds_obj$irs$coverage_mod$coverage, coverage)
-  options$zap = c(xds_obj$irs$coverage_mod$zap, zap)
-  xds_obj$irs$coverage_mod = make_irs_multiround(options)
+  options$type = c(xds_obj$irs_obj$cover_obj$type, type)
+  options$t_init = c(xds_obj$irs_obj$cover_obj$t_init, t_init)
+  options$coverage = c(xds_obj$irs_obj$cover_obj$coverage, coverage)
+  options$zap = c(xds_obj$irs_obj$cover_obj$zap, zap)
+  xds_obj$irs$cover_obj = make_irs_multiround(options)
   return(xds_obj)
 }
 
