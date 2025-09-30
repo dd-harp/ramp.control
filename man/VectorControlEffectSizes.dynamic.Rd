@@ -17,5 +17,5 @@
 a named \link{list}
 }
 \description{
-Implements \link{VectorControl} for the control model of vector control (do nothing)
+Implements \link[ramp.xds:VectorControl]{ramp.xds::VectorControl} for the control model of vector control (do nothing)
 }
