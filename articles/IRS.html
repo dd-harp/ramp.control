@@ -278,7 +278,7 @@ insecticides:</p>
 <p><img src="IRS_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_irs</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">$</span><span class="va">coverage</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">=</span> <span class="fl">0.3</span></span>
-<span><span class="va">mod_irs</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span> <span class="op">&lt;-</span> <span class="fu">setup_F_cover_irs</span><span class="op">(</span><span class="va">mod_irs</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">)</span></span>
+<span><span class="va">mod_irs</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_F_cover_irs.html">make_F_cover_irs</a></span><span class="op">(</span><span class="va">mod_irs</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/show_irs_coverage.html">show_irs_coverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mod_irs</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_irs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">mod_irs</span>, Tmax<span class="op">=</span><span class="fl">365</span><span class="op">*</span><span class="fl">8</span>, dt<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
@@ -289,17 +289,17 @@ insecticides:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_irs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_irs_round.html">add_irs_round</a></span><span class="op">(</span><span class="va">mod_irs</span>, <span class="st">"bendiocarb"</span>, <span class="fl">300</span>, <span class="fl">.9</span>, <span class="fl">.9</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">type</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "bendiocarb"</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">$</span><span class="va">type</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "bendiocarb" "bendiocarb" "actellic"   "sumishield"</span></span></code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">t_init</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 300</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">$</span><span class="va">t_init</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1]  790  970 1150 1515</span></span></code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">coverage</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0.9</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">$</span><span class="va">coverage</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.90 0.85 0.90 0.90</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs</span><span class="op">$</span><span class="va">coverage_mod</span><span class="op">$</span><span class="va">zap</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0.9</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">mod_irs1</span><span class="op">$</span><span class="va">irs_obj</span><span class="op">$</span><span class="va">cover_obj</span><span class="op">$</span><span class="va">zap</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.95 0.80 0.80 0.40</span></span></code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_irs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">mod_irs1</span>, <span class="fl">10</span><span class="op">*</span><span class="fl">365</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
