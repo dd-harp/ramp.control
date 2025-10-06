@@ -1,7 +1,7 @@
 Package: ramp.control
 Type: Package
 Title: Control for RAMP 
-Version: 1.0.0-1
+Version: 1.0.1-0
 Authors@R: c(
       person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849"))
     )

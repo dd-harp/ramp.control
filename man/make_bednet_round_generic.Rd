@@ -9,8 +9,8 @@ make_bednet_round_generic(
   uk = 1/5,
   L = 365,
   dk = 1/60,
-  coverage = 0.7,
-  zap = 1
+  peak = 0.7,
+  contact = 1
 )
 }
 \arguments{
@@ -22,9 +22,9 @@ make_bednet_round_generic(
 
 \item{dk}{decay shape parameter}
 
-\item{coverage}{the coverage achieved}
+\item{peak}{the peak access achieved}
 
-\item{zap}{contact scaling parameter}
+\item{contact}{contact scaling parameter}
 }
 \value{
 a \strong{\code{xds}} object

@@ -4,7 +4,7 @@
 \alias{setup_bednet_coverage.multiround}
 \title{Set Up a Bed Net Coverage Function}
 \usage{
-\method{setup_bednet_coverage}{multiround}(name = "func", xds_obj, options = list())
+\method{setup_bednet_coverage}{multiround}(name = "multiround", xds_obj, options = list())
 }
 \arguments{
 \item{name}{the model name}

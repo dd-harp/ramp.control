@@ -2,32 +2,20 @@
 % Please edit documentation in R/bednet-coverage-multiround.R
 \name{make_bednet_multiround}
 \alias{make_bednet_multiround}
-\title{Set up dynamic forcing}
+\title{Make the Multiround Bednet Coverage Object}
 \usage{
-make_bednet_multiround(
-  options = list(),
-  t_init = 1,
-  coverage = 0.8,
-  zap = 1,
-  type = "pbo"
-)
+make_bednet_multiround(xds_obj, options = list())
 }
 \arguments{
-\item{options}{a list of options to override defaults}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{t_init}{the time when BedNet started}
-
-\item{coverage}{the coverage achieved}
-
-\item{zap}{the contact parameter}
-
-\item{type}{the BedNet type}
+\item{options}{set up options to override defaults}
 }
 \value{
 a \strong{\code{xds}} object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+Using information about the events (see \link{setup_bednet_events}),
+including a parameter describing access, this makes a
+function that computes coverage over time.
 }
