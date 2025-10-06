@@ -4,16 +4,16 @@
 \alias{make_bednet_round}
 \title{Set up dynamic forcing}
 \usage{
-make_bednet_round(type, t_init, coverage, zap = 1)
+make_bednet_round(type, t_init, peak, contact = 1)
 }
 \arguments{
 \item{type}{the name of the BedNet type}
 
 \item{t_init}{the time when BedNet started}
 
-\item{coverage}{the coverage achieved}
+\item{peak}{the peack access achieved}
 
-\item{zap}{contact scaling}
+\item{contact}{contact scaling}
 }
 \value{
 a \strong{\code{xds}} object

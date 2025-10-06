@@ -96,11 +96,15 @@ reference:
   - make_bednet_multiround
   - Bed_Net_Coverage.multiround
   - make_F_cover_bednet
-  - change_bednet_coverage.multiround
+  - change_bednet_contact_multiround
   - add_bednet_round
   - make_bednet_round
   - make_bednet_round_generic
   - make_bednet_round.pbo
+  - get_bednet_contact
+  - setup_bednet_events
+  - show_bednet_events
+  - show_events
 - subtitle: Bed Net Effect Sizes
   desc: |
     Specialized methods to model bed net effect sizes
@@ -165,6 +169,8 @@ reference:
   - get_irs_coverage
   - change_irs_coverage
   - show_irs_coverage
+  - setup_irs_events
+  - show_irs_events
 - subtitle: IRS Pesticides
   desc: |
     Profiles for common IRS pesticides

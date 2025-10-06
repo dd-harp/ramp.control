@@ -1,0 +1,10 @@
+---
+title: "Mass Treatment"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mass Treatment}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The 

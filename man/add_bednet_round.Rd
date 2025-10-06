@@ -4,18 +4,16 @@
 \alias{add_bednet_round}
 \title{Set up dynamic forcing}
 \usage{
-add_bednet_round(xds_obj, type, t_init, coverage, zap = 1)
+add_bednet_round(xds_obj, jdate, net_type, peak_access)
 }
 \arguments{
 \item{xds_obj}{the \code{ramp.xds} object}
 
-\item{type}{the name of the BedNet type}
+\item{jdate}{the julian date of the bed net mass distribution round}
 
-\item{t_init}{the time when BedNet started}
+\item{net_type}{the type of net used}
 
-\item{coverage}{the coverage achieved}
-
-\item{zap}{the coverage achieved}
+\item{peak_access}{the fraction of the population with access to a bed net}
 }
 \value{
 a \strong{\code{xds}} object
