@@ -40,7 +40,6 @@ setup_irs_events = function(xds_obj, jdates, pesticides, frac_sprayed){
 #'
 #' @export
 show_irs_events = function(xds_obj, mn=0, mx=1, clr="#4686FBFF", add=FALSE){
-  if(add==FALSE) show_fit(xds_obj)
   with(xds_obj$irs_obj$events,{
     for(i in 1:N){
       if(jdate[i]>0){
