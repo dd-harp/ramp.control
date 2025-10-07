@@ -12,32 +12,97 @@ library(ramp.xds)
 library(ramp.control)
 ```
 
-To set up mass treatment, we need a model that is capable of it. 
+**`ramp.control`** has utilities to set up and simulate mass treatment, including: 
 
-```{r, fig.height=4, fig.width=7}
-model <- xds_setup_eir(Xname = "SIS", eir=1/365, 
-                          season_par = makepar_F_sin()) 
-model <- xds_solve(model, times = c(3650, 3650))
-model <- last_to_inits(model) 
-model <- xds_solve(model,Tmax=730)
-xds_plot_PR(model)
-```
++ mass drug administration (MDA) 
++ mass screen and treat (MSAT)  
 
-To set up mass treatment, we call `setup_mass_treat_events` and passing the start time (`start` - a Julian date), the number of days it will take to treat (`span`), the fraction treated (`frac_treated`) and whether screening is required before testing (`test`). 
+In the following, we demonstrate how, and then we discuss the implementation. 
+
+
+## Basic Setup 
+
+The first step is basic setup. Before setting up MDA, it's a good idea to check that module is capable of handling mass treatment. To see if a module supports it, look at the skill set. For example, we can check whether the `SIS` supports MDA or MSAT. 
 
 ```{r}
-start = 180
-span = 10 
-frac_treated = 0.9
-test = FALSE 
-model1 <- setup_mass_treat_events(model, start, span, frac_treated, test)
+skill_set_XH("SIS")$mda
 ```
 
-Now we solve and compare:
+The `SIS` module supports MDA. 
+
+The next step is basic setup: 
+
+```{r}
+base_model <- xds_setup_eir(Xname = "SIS", 
+                       eir=1/365, 
+                       season_par = makepar_F_sin(phase=120))
+```
+
+Next we solve it. 
 
 ```{r, fig.height=4, fig.width=7}
-model1 <- xds_solve(model1, Tmax=730)
-xds_plot_PR(model)
-xds_plot_PR(model1, add=T, clrs = "darkred")
+base_model <- burnin(base_model) 
+base_model <- xds_solve(base_model,Tmax=1095)
+xds_plot_PR(base_model)
 ```
 
+## Mass Treatment Events 
+
+Adding mass treatment is an *advanced setup option.* The function call is **`setup_mass_treat_events`.** To use it, we need to pass:
+
++ `start` -- the julian date(s) 
+
++ `span` -- the length of the event
+
++ `frac_treated` -- the fraction that will be treated
+
++ `test` -- whether testing is done
+
+    - `test=TRUE` configures MSAT 
+    
+    - `test=FALSE` configures MDA 
+
+This sets up two rounds of MDA starting on days 180 and 480.  Each round lasts 10 days, and treats 90% of the population.  
+
+```{r}
+start = c(180, 480)
+span = c(10,10)
+frac_treated = c(0.9, 0.9)
+test = c(FALSE, FALSE) 
+mda_model <- setup_mass_treat_events(base_model, start, span, frac_treated, test)
+```
+
+Now we solve the base_model with MDA and compare it to the baseline:
+
+```{r, fig.height=4, fig.width=7}
+mda_model <- xds_solve(mda_model, Tmax=1095)
+xds_plot_PR(base_model)
+xds_plot_PR(mda_model, add=T, clrs = "darkred")
+```
+
+## Add Events 
+
+To add another round of irs, use **`add_mass_treat_events`**
+
+```{r}
+mda_model_1 <- add_mass_treat_events(mda_model, 600, 10, .9, FALSE)
+mda_model_1 <- xds_solve(mda_model_1, Tmax=1095)
+```
+
+If no mass treatment events have been set up, the function calls `setup_mass_treat_events` 
+
+```{r}
+mda_model_2 <- add_mass_treat_events(base_model, 600, 10, .9, FALSE)
+mda_model_2 <- xds_solve(mda_model_2, Tmax=1095)
+```
+
+This plot compares all four models:
+
+```{r, fig.height=4, fig.width=7}
+xds_plot_PR(mda_model_2, clrs="darkblue")
+xds_plot_PR(mda_model_1, add=T, clrs = "purple4")
+xds_plot_PR(base_model, add=T)
+xds_plot_PR(mda_model, add=T, clrs = "darkred")
+```
+
+## Notes 

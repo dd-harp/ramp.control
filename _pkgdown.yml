@@ -34,6 +34,7 @@ reference:
     Specialized methods to manage the vector control junction
   contents:
   - setup_mass_treat_events
+  - add_mass_treat_events
   - setup_mass_treat_multiround
   - make_mass_treat_multiround
   - make_F_mass_treat
