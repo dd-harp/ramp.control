@@ -4,16 +4,16 @@
 \alias{setup_mass_treat_events}
 \title{Set Up Mass Treatment Events}
 \usage{
-setup_mass_treat_events(xds_obj, jdates, span, frac_treated, test)
+setup_mass_treat_events(xds_obj, jdates, span, frac_tot, test)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
 \item{jdates}{the julian dates of mass treatment events}
 
-\item{span}{the treatment period}
+\item{span}{the treatment period (in days)}
 
-\item{frac_treated}{the fraction treated}
+\item{frac_tot}{the fraction treated}
 
 \item{test}{FALSE for mass drug administration; TRUE for mass screen and treat}
 }

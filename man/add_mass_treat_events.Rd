@@ -4,7 +4,7 @@
 \alias{add_mass_treat_events}
 \title{Set Up Mass Treatment Events}
 \usage{
-add_mass_treat_events(xds_obj, jdates, span, frac_treated, test)
+add_mass_treat_events(xds_obj, jdates, span, frac_tot, test)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -13,7 +13,7 @@ add_mass_treat_events(xds_obj, jdates, span, frac_treated, test)
 
 \item{span}{the treatment period}
 
-\item{frac_treated}{the fraction treated}
+\item{frac_tot}{the fraction treated}
 
 \item{test}{FALSE for mass drug administration; TRUE for mass screen and treat}
 }
