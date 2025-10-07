@@ -31,6 +31,36 @@ setup_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
   return(xds_obj)
 }
 
+#' Set Up Mass Treatment Events
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param jdates the julian dates of mass treatment events
+#' @param span the treatment period
+#' @param frac_treated the fraction treated
+#' @param test FALSE for mass drug administration; TRUE for mass screen and treat
+#'
+#' @returns a **`ramp.xds`**  model object
+#'
+#' @export
+add_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
+  M = length(jdates)
+  stopifnot(length(span)==M)
+  stopifnot(length(frac_treated)==M)
+  stopifnot(length(test)==M)
+
+  with(xds_obj$events_obj,
+    if(!exists("mass_treat"))
+      return(setup_mass_treat_events(xds_obj, jdates, span, frac_treated, test)))
+
+  xds_obj$events_obj$mass_treat$jdate = c(xds_obj$events_obj$mass_treat$jdate, jdates)
+  xds_obj$events_obj$mass_treat$span = c(xds_obj$events_obj$mass_treat$span, span)
+  xds_obj$events_obj$mass_treat$frac_treated = c(xds_obj$events_obj$mass_treat$frac_treated,frac_treated)
+  xds_obj$events_obj$mass_treat$test = c(xds_obj$events_obj$mass_treat$test,test)
+  xds_obj <- setup_mass_treat_multiround(xds_obj)
+
+  return(xds_obj)
+}
+
 #' @title Set Up a Bed Net Function
 #'
 #' @description
@@ -101,13 +131,13 @@ make_mass_treat_multiround = function(xds_obj, screen){
 make_F_mass_treat = function(treat){with(treat,{
   rounds <- list()
   for(i in 1:treat$nRounds){
-    rate = -log(1-frac_treated)/span[i]
+    rate = -log(1-frac_treated[i])/span[i]
     pars <- makepar_F_sharkfin(D=t_init[i], L=span[i], uk=3, dk=3, mx=rate)
     rounds[[i]] = pars
-    rounds_par <- makepar_F_multiround(treat$nRounds, rounds)
-    treat$rounds <- rounds
-    treat$rounds_par <- rounds_par
-    treat$F_treat <- make_function(rounds_par)
   }
+  rounds_par <- makepar_F_multiround(treat$nRounds, rounds)
+  treat$rounds <- rounds
+  treat$rounds_par <- rounds_par
+  treat$F_treat <- make_function(rounds_par)
   return(treat)
 })}

@@ -16,12 +16,12 @@ setup_irs_events = function(xds_obj, jdates, pesticides, frac_sprayed){
   stopifnot(length(pesticides)==N)
   stopifnot(length(frac_sprayed)==N)
 
-  xds_obj$irs_obj$events = list()
-  xds_obj$irs_obj$events$N = N
-  xds_obj$irs_obj$events$jdate = jdates
-  xds_obj$irs_obj$events$type  = pesticides
-  xds_obj$irs_obj$events$peak  = frac_sprayed
-  xds_obj$irs_obj$events$round = rep(FALSE, N)
+  xds_obj$events_obj$irs = list()
+  xds_obj$events_obj$irs$N = N
+  xds_obj$events_obj$irs$jdate = jdates
+  xds_obj$events_obj$irs$type  = pesticides
+  xds_obj$events_obj$irs$peak  = frac_sprayed
+  xds_obj$events_obj$irs$round = rep(FALSE, N)
 
   return(xds_obj)
 }
