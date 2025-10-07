@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramp.control</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,13 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/BedNets.html">Bed Nets</a></li>
     <li><a class="dropdown-item" href="../articles/vc_lemenach.html">Vector Control Example</a></li>
     <li><a class="dropdown-item" href="../articles/IRS.html">IRS</a></li>
+    <li><a class="dropdown-item" href="../articles/MassTreatment.html">Mass Treatment</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
@@ -69,7 +70,35 @@
 
     
     
-<p>The</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/" class="external-link">ramp.xds</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.control</span><span class="op">)</span></span></code></pre></div>
+<p>To set up mass treatment, we need a model that is capable of it.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.html" class="external-link">xds_setup_eir</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, eir<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, </span>
+<span>                          season_par <span class="op">=</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3650</span>, <span class="fl">3650</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html" class="external-link">last_to_inits</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> </span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span>,Tmax<span class="op">=</span><span class="fl">730</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MassTreatment_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p>To set up mass treatment, we call
+<code>setup_mass_treat_events</code> and passing the start time
+(<code>start</code> - a Julian date), the number of days it will take to
+treat (<code>span</code>), the fraction treated
+(<code>frac_treated</code>) and whether screening is required before
+testing (<code>test</code>).</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">start</span> <span class="op">=</span> <span class="fl">180</span></span>
+<span><span class="va">span</span> <span class="op">=</span> <span class="fl">10</span> </span>
+<span><span class="va">frac_treated</span> <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="va">test</span> <span class="op">=</span> <span class="cn">FALSE</span> </span>
+<span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_mass_treat_events.html">setup_mass_treat_events</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">start</span>, <span class="va">span</span>, <span class="va">frac_treated</span>, <span class="va">test</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model1</span>, Tmax<span class="op">=</span><span class="fl">730</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">model1</span>, add<span class="op">=</span><span class="cn">T</span>, clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MassTreatment_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
   </main>
 </div>
 
