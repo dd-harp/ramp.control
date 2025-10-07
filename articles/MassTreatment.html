@@ -94,6 +94,7 @@ testing (<code>test</code>).</p>
 <span><span class="va">frac_treated</span> <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="va">test</span> <span class="op">=</span> <span class="cn">FALSE</span> </span>
 <span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_mass_treat_events.html">setup_mass_treat_events</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">start</span>, <span class="va">span</span>, <span class="va">frac_treated</span>, <span class="va">test</span><span class="op">)</span></span></code></pre></div>
+<p>Now we solve and compare:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model1</span>, Tmax<span class="op">=</span><span class="fl">730</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
