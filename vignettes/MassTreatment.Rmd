@@ -42,7 +42,7 @@ Next we solve it.
 
 ```{r, fig.height=4, fig.width=7}
 base_model <- burnin(base_model) 
-base_model <- xds_solve(base_model,Tmax=1095)
+base_model <- xds_solve(base_model, 1095,5)
 xds_plot_PR(base_model)
 ```
 
@@ -75,34 +75,53 @@ mda_model <- setup_mass_treat_events(base_model, start, span, frac_treated, test
 Now we solve the base_model with MDA and compare it to the baseline:
 
 ```{r, fig.height=4, fig.width=7}
-mda_model <- xds_solve(mda_model, Tmax=1095)
+mda_model <- xds_solve(mda_model, 1095,5)
 xds_plot_PR(base_model)
 xds_plot_PR(mda_model, add=T, clrs = "darkred")
 ```
 
 ## Add Events 
 
-To add another round of irs, use **`add_mass_treat_events`**
+To add another round of mass treatment, use **`add_mass_treat_events`.** This adds an extra round on day 600 that is like the others 2 rounds. 
 
-```{r}
+```{r, fig.height=4, fig.width=7}
+tt <- seq(0, 1095, by = 1)
 mda_model_1 <- add_mass_treat_events(mda_model, 600, 10, .9, FALSE)
-mda_model_1 <- xds_solve(mda_model_1, Tmax=1095)
+mda_model_1 <- xds_solve(mda_model_1, 1095,5)
+show_mda(tt, mda_model_1)
 ```
 
-If no mass treatment events have been set up, the function calls `setup_mass_treat_events` 
+If no mass treatment events have been set up, the function calls `setup_mass_treat_events.` This adds a mass treatment event to the `base_model`
 
-```{r}
+```{r, fig.height=4, fig.width=7}
 mda_model_2 <- add_mass_treat_events(base_model, 600, 10, .9, FALSE)
-mda_model_2 <- xds_solve(mda_model_2, Tmax=1095)
+mda_model_2 <- xds_solve(mda_model_2, 1095,5)
+show_mda(tt, mda_model_2)
 ```
 
 This plot compares all four models:
 
 ```{r, fig.height=4, fig.width=7}
 xds_plot_PR(mda_model_2, clrs="darkblue")
-xds_plot_PR(mda_model_1, add=T, clrs = "purple4")
+xds_plot_PR(mda_model_1, add=T, clrs = "purple3")
 xds_plot_PR(base_model, add=T)
 xds_plot_PR(mda_model, add=T, clrs = "darkred")
 ```
 
 ## Notes 
+
+Treatment during the span of an event occurs at a fixed rate. The shape of the treatment curve is a variant of a `sharkfin` function:
+
+```{r, fig.height=4, fig.width=7}
+tt <- seq(598, 612, by = .1)
+show_mda(tt, mda_model_1)
+```
+
+The total area under the curve is calibrated to reach the right fraction treated: in this case, 90%. We can check this:
+
+```{r}
+mda <- mda_model_1$mass_treat_obj$mda_obj$F_treat
+t_frac = 1-exp(-integrate(mda, 595, 615)$val)
+approx_equal(.9, t_frac, tol = 1e-6) 
+```
+

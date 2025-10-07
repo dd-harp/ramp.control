@@ -27,12 +27,12 @@ setup_bednet_events = function(xds_obj, jdates, net_type, peak_access){
   stopifnot(length(net_type)==N)
   stopifnot(length(peak_access)==N)
 
-  xds_obj$bednet_obj$events = list()
-  xds_obj$bednet_obj$events$N = N
-  xds_obj$bednet_obj$events$jdate = jdates
-  xds_obj$bednet_obj$events$type  = net_type
-  xds_obj$bednet_obj$events$peak  = peak_access
-  xds_obj$bednet_obj$events$contact = rep(1, N)
+  xds_obj$events_obj$bednet = list()
+  xds_obj$events_obj$bednet$N = N
+  xds_obj$events_obj$bednet$jdate = jdates
+  xds_obj$events_obj$bednet$type  = net_type
+  xds_obj$events_obj$bednet$peak  = peak_access
+  xds_obj$events_obj$bednet$contact = rep(1, N)
 
   return(xds_obj)
 }
@@ -176,11 +176,11 @@ add_bednet_round = function(xds_obj, jdate, net_type, peak_access) {
   N_new = length(jdate)
   stopifnot(length(net_type) == N_new)
   stopifnot(length(peak_access) == N_new)
-  xds_obj$bednet_obj$events$N = xds_obj$bednet_obj$events$N + N_new
-  xds_obj$bednet_obj$events$jdate = c(xds_obj$bednet_obj$events$jdate, jdate)
-  xds_obj$bednet_obj$events$net_type = c(xds_obj$bednet_obj$events$net_type, net_type)
-  xds_obj$bednet_obj$events$peak_access = c(xds_obj$bednet_obj$events$peak_access, peak_access)
-  xds_obj$bednet_obj$events$contact = c(xds_obj$bednet_obj$events$contact, rep(1, N_new))
+  xds_obj$events_obj$bednet$N = xds_obj$events_obj$bednet$N + N_new
+  xds_obj$events_obj$bednet$jdate = c(xds_obj$events_obj$bednet$jdate, jdate)
+  xds_obj$events_obj$bednet$net_type = c(xds_obj$events_obj$bednet$net_type, net_type)
+  xds_obj$events_obj$bednet$peak_access = c(xds_obj$events_obj$bednet$peak_access, peak_access)
+  xds_obj$events_obj$bednet$contact = c(xds_obj$events_obj$bednet$contact, rep(1, N_new))
   return(xds_obj)
 }
 

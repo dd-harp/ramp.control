@@ -10,6 +10,8 @@ Description:
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://dd-harp.github.io/ramp.control
+BugReports: https://github.com/dd-harp/ramp.control/issues
 Remotes: github::dd-harp/ramp.xds
 RdMacros: Rdpack
 Roxygen: list(markdown = TRUE)
