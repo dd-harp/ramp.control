@@ -54,7 +54,7 @@ Adding mass treatment is an *advanced setup option.* The function call is **`set
 
 + `span` -- the length of the event
 
-+ `frac_treated` -- the fraction that will be treated
++ `frac_tot` -- the fraction that will be treated (for `mda`) or tested (for `msat`)
 
 + `test` -- whether testing is done
 
@@ -67,9 +67,9 @@ This sets up two rounds of MDA starting on days 180 and 480.  Each round lasts 1
 ```{r}
 start = c(180, 480)
 span = c(10,10)
-frac_treated = c(0.9, 0.9)
+frac_tot = c(0.9, 0.9)
 test = c(FALSE, FALSE) 
-mda_model <- setup_mass_treat_events(base_model, start, span, frac_treated, test)
+mda_model <- setup_mass_treat_events(base_model, start, span, frac_tot, test)
 ```
 
 Now we solve the base_model with MDA and compare it to the baseline:
@@ -110,6 +110,28 @@ xds_plot_PR(mda_model, add=T, clrs = "darkred")
 
 ## Notes 
 
+
+### Mass Treatment Ports 
+
+To understand how the mass treatment ports are set up, we can look inside the `SIS` module. The relevant lines in `dXHdt.SIS` are these:
+
+```
+r_t <- r + mda(t) + d_rdt*msat(t)
+dI <- foi*(H-I) - r_t*I + D_matrix %*% I 
+```
+
+In this case, both `mda` and `msat` work like the parameter $r,$ so inside the code, a term is computed: `r_t = r+mda(t)+d_rdt*msat(t),` where `d_rdt` is a parameter that describes the probability of testing positive by RDT. Perhaps most importantly, mass treatment functions return a per-capita rate. 
+
+This model explained in the documentation for the function: 
+
+```{r, eval=F}
+help(dXHdt.SIS)
+```
+
+During setup, The functions `mda` and `msat` are assigned to a function that returns $0.$  Advanced setup replaces `mda` or `msat` with a new function.
+
+### Mass Treatment Functions 
+
 Treatment during the span of an event occurs at a fixed rate. The shape of the treatment curve is a variant of a `sharkfin` function:
 
 ```{r, fig.height=4, fig.width=7}
@@ -117,7 +139,7 @@ tt <- seq(598, 612, by = .1)
 show_mda(tt, mda_model_1)
 ```
 
-The total area under the curve is calibrated to reach the right fraction treated: in this case, 90%. We can check this:
+The total area under the curve is calibrated to reach the right fraction treated (for `mda`) or tested (for `msat`): in this case, 90%. We can check this:
 
 ```{r}
 mda <- mda_model_1$mass_treat_obj$mda_obj$F_treat

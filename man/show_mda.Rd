@@ -10,6 +10,10 @@ show_mda(tt, xds_obj, clr = "black", add = FALSE)
 \item{tt}{a set of time points}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
+
+\item{add}{if FALSE, use plot to draw new axes}
+
+\item{clrs}{the line color(s)}
 }
 \value{
 an \strong{\code{xds}} model object

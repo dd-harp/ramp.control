@@ -3,17 +3,17 @@
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
 #' @param jdates the julian dates of mass treatment events
-#' @param span the treatment period
-#' @param frac_treated the fraction treated
+#' @param span the treatment period (in days)
+#' @param frac_tot the fraction treated
 #' @param test FALSE for mass drug administration; TRUE for mass screen and treat
 #'
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-setup_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
+setup_mass_treat_events = function(xds_obj, jdates, span, frac_tot, test){
   N = length(jdates)
   stopifnot(length(span)==N)
-  stopifnot(length(frac_treated)==N)
+  stopifnot(length(frac_tot)==N)
   stopifnot(length(test)==N)
 
   with(xds_obj,if(!exists("events_obj"))
@@ -23,7 +23,7 @@ setup_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
   xds_obj$events_obj$mass_treat$N = N
   xds_obj$events_obj$mass_treat$jdate = jdates
   xds_obj$events_obj$mass_treat$span = span
-  xds_obj$events_obj$mass_treat$frac_treated = frac_treated
+  xds_obj$events_obj$mass_treat$frac_tot = frac_tot
   xds_obj$events_obj$mass_treat$test = test
 
   xds_obj <- setup_mass_treat_multiround(xds_obj)
@@ -36,28 +36,28 @@ setup_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
 #' @param xds_obj a **`ramp.xds`**  model object
 #' @param jdates the julian dates of mass treatment events
 #' @param span the treatment period
-#' @param frac_treated the fraction treated
+#' @param frac_tot the fraction treated
 #' @param test FALSE for mass drug administration; TRUE for mass screen and treat
 #'
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-add_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
+add_mass_treat_events = function(xds_obj, jdates, span, frac_tot, test){
   M = length(jdates)
   stopifnot(length(span)==M)
-  stopifnot(length(frac_treated)==M)
+  stopifnot(length(frac_tot)==M)
   stopifnot(length(test)==M)
 
   with(xds_obj$events_obj,
     if(!exists("mass_treat"))
-      return(setup_mass_treat_events(xds_obj, jdates, span, frac_treated, test)))
+      return(setup_mass_treat_events(xds_obj, jdates, span, frac_tot, test)))
 
   new_jdates = c(xds_obj$events_obj$mass_treat$jdate, jdates)
   new_span = c(xds_obj$events_obj$mass_treat$span, span)
-  new_frac_treated = c(xds_obj$events_obj$mass_treat$frac_treated,frac_treated)
+  new_frac_tot = c(xds_obj$events_obj$mass_treat$frac_tot,frac_tot)
   new_test = c(xds_obj$events_obj$mass_treat$test,test)
 
-  xds_obj <- setup_mass_treat_events(xds_obj, new_jdates, new_span, new_frac_treated, new_test)
+  xds_obj <- setup_mass_treat_events(xds_obj, new_jdates, new_span, new_frac_tot, new_test)
 
   return(xds_obj)
 }
@@ -117,7 +117,7 @@ make_mass_treat_multiround = function(xds_obj, screen){
       treat$nRounds = nRounds
       treat$t_init  = jdate[ix]
       treat$span    = span[ix]
-      treat$frac_treated = frac_treated[ix]
+      treat$frac_tot = frac_tot[ix]
       treat = make_F_mass_treat(treat)
     }
     return(treat)
@@ -134,7 +134,7 @@ make_mass_treat_multiround = function(xds_obj, screen){
 make_F_mass_treat = function(treat){with(treat,{
   rounds <- list()
   for(i in 1:treat$nRounds){
-    rate = -log(1-frac_treated[i])/span[i]
+    rate = -log(1-frac_tot[i])/span[i]
     pars <- makepar_F_sharkfin(D=t_init[i], L=span[i], uk=3, dk=3, mx=rate)
     rounds[[i]] = pars
   }
@@ -150,6 +150,8 @@ make_F_mass_treat = function(treat){with(treat,{
 #'
 #' @param tt a set of time points
 #' @param xds_obj a **`ramp.xds`**  model object
+#' @param clr the line color(s)
+#' @param add if FALSE, use plot to draw new axes
 #'
 #' @return an **`xds`** model object
 #'
@@ -166,6 +168,8 @@ show_mda = function(tt, xds_obj, clr="black", add=FALSE){
 #'
 #' @param tt a set of time points
 #' @param xds_obj a **`ramp.xds`**  model object
+#' @param clr the line color(s)
+#' @param add if FALSE, use plot to draw new axes
 #'
 #' @return an **`xds`** model object
 #'
