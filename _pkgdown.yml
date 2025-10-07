@@ -12,6 +12,8 @@ navbar:
       href: articles/vc_lemenach.html
     - text: IRS
       href: articles/IRS.html
+    - text: Mass Treatment
+      href: articles/MassTreatment.html
   - text: Functions
     href: reference/index.html
   right:
@@ -27,6 +29,14 @@ home:
     - authors
     - dev
 reference:
+- title: Mass Treatment
+  desc: |
+    Specialized methods to manage the vector control junction
+  contents:
+  - setup_mass_treat_events
+  - setup_mass_treat_multiround
+  - make_mass_treat_multiround
+  - make_F_mass_treat
 - title: Vector Control
   desc: |
     Specialized methods to manage the vector control junction

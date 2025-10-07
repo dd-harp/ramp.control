@@ -32,7 +32,7 @@ setup_bednet_events = function(xds_obj, jdates, net_type, peak_access){
   xds_obj$bednet_obj$events$jdate = jdates
   xds_obj$bednet_obj$events$type  = net_type
   xds_obj$bednet_obj$events$peak  = peak_access
-  xds_obj$bednet_obj$events$contact = rep(0.05, N)
+  xds_obj$bednet_obj$events$contact = rep(1, N)
 
   return(xds_obj)
 }
@@ -41,7 +41,7 @@ setup_bednet_events = function(xds_obj, jdates, net_type, peak_access){
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
 #' @param mn the bottom of the segment
-#' @param peak the top of the segment
+#' @param mx the top of the segment
 #' @param clr a color for the line segments
 #'
 #' @importFrom graphics points text segments
@@ -49,14 +49,14 @@ setup_bednet_events = function(xds_obj, jdates, net_type, peak_access){
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-show_bednet_events = function(xds_obj, mn=0, peak=1, clr="#E4460AFF"){
+show_bednet_events = function(xds_obj, mn=0, mx=1, clr="#E4460AFF"){
   with(xds_obj$bednet_obj$events,{
     for(i in 1:N){
       if(jdate[i]>0){
-        points(peak[i]*peak, jdate[i], pch = 19, col = clr)
-        segments(jdate[i], mn, jdate[i], peak, col = clr)
+        points(peak[i]*mx, jdate[i], pch = 19, col = clr)
+        segments(jdate[i], mn, jdate[i], mx, col = clr)
         label = paste(i, "-", type[i])
-        text(jdate[i], .1*peak, label, pos=4, srt=90, col = clr)
+        text(jdate[i], .1*mx, label, pos=4, srt=90, col = clr)
       }
     }
   })
@@ -180,7 +180,7 @@ add_bednet_round = function(xds_obj, jdate, net_type, peak_access) {
   xds_obj$bednet_obj$events$jdate = c(xds_obj$bednet_obj$events$jdate, jdate)
   xds_obj$bednet_obj$events$net_type = c(xds_obj$bednet_obj$events$net_type, net_type)
   xds_obj$bednet_obj$events$peak_access = c(xds_obj$bednet_obj$events$peak_access, peak_access)
-  xds_obj$bednet_obj$events$contact = c(xds_obj$bednet_obj$events$contact, rep(.05, N_new))
+  xds_obj$bednet_obj$events$contact = c(xds_obj$bednet_obj$events$contact, rep(1, N_new))
   return(xds_obj)
 }
 

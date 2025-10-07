@@ -7,4 +7,36 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The 
+```{r}
+library(ramp.xds)
+library(ramp.control)
+```
+
+To set up mass treatment, we need a model that is capable of it. 
+
+```{r, fig.height=4, fig.width=7}
+model <- xds_setup_eir(Xname = "SIS", eir=1/365, 
+                          season_par = makepar_F_sin()) 
+model <- xds_solve(model, times = c(3650, 3650))
+model <- last_to_inits(model) 
+model <- xds_solve(model,Tmax=730)
+xds_plot_PR(model)
+```
+
+To set up mass treatment, we call `setup_mass_treat_events` and passing the start time (`start` - a Julian date), the number of days it will take to treat (`span`), the fraction treated (`frac_treated`) and whether screening is required before testing (`test`). 
+
+```{r}
+start = 180
+span = 10 
+frac_treated = 0.9
+test = FALSE 
+model1 <- setup_mass_treat_events(model, start, span, frac_treated, test)
+```
+
+
+```{r, fig.height=4, fig.width=7}
+model1 <- xds_solve(model1, Tmax=730)
+xds_plot_PR(model)
+xds_plot_PR(model1, add=T, clrs = "darkred")
+```
+
