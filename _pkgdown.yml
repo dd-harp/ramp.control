@@ -38,6 +38,8 @@ reference:
   - setup_mass_treat_multiround
   - make_mass_treat_multiround
   - make_F_mass_treat
+  - show_mda
+  - show_msat
 - title: Vector Control
   desc: |
     Specialized methods to manage the vector control junction

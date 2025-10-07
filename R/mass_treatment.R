@@ -52,11 +52,12 @@ add_mass_treat_events = function(xds_obj, jdates, span, frac_treated, test){
     if(!exists("mass_treat"))
       return(setup_mass_treat_events(xds_obj, jdates, span, frac_treated, test)))
 
-  xds_obj$events_obj$mass_treat$jdate = c(xds_obj$events_obj$mass_treat$jdate, jdates)
-  xds_obj$events_obj$mass_treat$span = c(xds_obj$events_obj$mass_treat$span, span)
-  xds_obj$events_obj$mass_treat$frac_treated = c(xds_obj$events_obj$mass_treat$frac_treated,frac_treated)
-  xds_obj$events_obj$mass_treat$test = c(xds_obj$events_obj$mass_treat$test,test)
-  xds_obj <- setup_mass_treat_multiround(xds_obj)
+  new_jdates = c(xds_obj$events_obj$mass_treat$jdate, jdates)
+  new_span = c(xds_obj$events_obj$mass_treat$span, span)
+  new_frac_treated = c(xds_obj$events_obj$mass_treat$frac_treated,frac_treated)
+  new_test = c(xds_obj$events_obj$mass_treat$test,test)
+
+  xds_obj <- setup_mass_treat_events(xds_obj, new_jdates, new_span, new_frac_treated, new_test)
 
   return(xds_obj)
 }
@@ -78,14 +79,16 @@ setup_mass_treat_multiround = function(xds_obj){
   xds_obj$mass_treat_obj = list()
 
   mda_obj <- make_mass_treat_multiround(xds_obj, screen=FALSE)
-  xds_obj$mass_treat_obj$mda_obj <- mda_obj
-  if(length(mda_obj) > 0)
+  if(length(mda_obj) > 0){
+    xds_obj$mass_treat_obj$mda_obj <- mda_obj
     xds_obj$XH_obj[[1]]$mda = mda_obj$F_treat
+  }
 
   msat_obj <- make_mass_treat_multiround(xds_obj, screen=TRUE)
-  xds_obj$mass_treat_obj$msat_obj <- msat_obj
-  if(length(msat_obj) > 0)
+  if(length(msat_obj) > 0){
+    xds_obj$mass_treat_obj$msat_obj <- msat_obj
     xds_obj$XH_obj[[1]]$msat = msat_obj$F_treat
+  }
 
   return(xds_obj)
 }
@@ -141,3 +144,35 @@ make_F_mass_treat = function(treat){with(treat,{
   treat$F_treat <- make_function(rounds_par)
   return(treat)
 })}
+
+#' @title Show MDA
+#' @description Plot the per-capita mass treatment rate
+#'
+#' @param tt a set of time points
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @return an **`xds`** model object
+#'
+#' @export
+show_mda = function(tt, xds_obj, clr="black", add=FALSE){
+  mda_t = xds_obj$mass_treat_obj$mda_obj$F_treat(tt)
+  if(add==FALSE)
+    graphics::plot(tt, mda_t, type = "n", xlab="Time (Days)", ylab = "Mass Treat Rate")
+  graphics::lines(tt, mda_t, col=clr)
+}
+
+#' @title Show MSAT
+#' @description Plot the per-capita mass treatment rate
+#'
+#' @param tt a set of time points
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @return an **`xds`** model object
+#'
+#' @export
+show_msat = function(tt, xds_obj, clr="black", add=FALSE){
+  msat_t = xds_obj$mass_treat_obj$msat_obj$F_treat(tt)
+  if(add==FALSE)
+    graphics::plot(tt, msat_t, type = "n", xlab="Time (Days)", ylab = "Mass Treat Rate")
+  graphics::lines(tt, msat_t, col=clr)
+}
