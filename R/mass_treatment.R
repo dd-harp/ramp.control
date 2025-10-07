@@ -150,6 +150,8 @@ make_F_mass_treat = function(treat){with(treat,{
 #'
 #' @param tt a set of time points
 #' @param xds_obj a **`ramp.xds`**  model object
+#' @param clrs the line color(s)
+#' @param add if FALSE, use plot to draw new axes
 #'
 #' @return an **`xds`** model object
 #'
@@ -166,6 +168,8 @@ show_mda = function(tt, xds_obj, clr="black", add=FALSE){
 #'
 #' @param tt a set of time points
 #' @param xds_obj a **`ramp.xds`**  model object
+#' @param clrs the line color(s)
+#' @param add if FALSE, use plot to draw new axes
 #'
 #' @return an **`xds`** model object
 #'
