@@ -33,6 +33,7 @@ test = FALSE
 model1 <- setup_mass_treat_events(model, start, span, frac_treated, test)
 ```
 
+Now we solve and compare:
 
 ```{r, fig.height=4, fig.width=7}
 model1 <- xds_solve(model1, Tmax=730)
