@@ -113,8 +113,8 @@ To use it, we need to pass:</p>
 <ul>
 <li><p><code>start</code> – the julian date(s)</p></li>
 <li><p><code>span</code> – the length of the event</p></li>
-<li><p><code>frac_treated</code> – the fraction that will be
-treated</p></li>
+<li><p><code>frac_tot</code> – the fraction that will be treated (for
+<code>mda</code>) or tested (for <code>msat</code>)</p></li>
 <li>
 <p><code>test</code> – whether testing is done</p>
 <ul>
@@ -128,9 +128,9 @@ round lasts 10 days, and treats 90% of the population.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">start</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">180</span>, <span class="fl">480</span><span class="op">)</span></span>
 <span><span class="va">span</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">frac_treated</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.9</span><span class="op">)</span></span>
+<span><span class="va">frac_tot</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.9</span><span class="op">)</span></span>
 <span><span class="va">test</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="va">mda_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_mass_treat_events.html">setup_mass_treat_events</a></span><span class="op">(</span><span class="va">base_model</span>, <span class="va">start</span>, <span class="va">span</span>, <span class="va">frac_treated</span>, <span class="va">test</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">mda_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_mass_treat_events.html">setup_mass_treat_events</a></span><span class="op">(</span><span class="va">base_model</span>, <span class="va">start</span>, <span class="va">span</span>, <span class="va">frac_tot</span>, <span class="va">test</span><span class="op">)</span></span></code></pre></div>
 <p>Now we solve the base_model with MDA and compare it to the
 baseline:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -170,20 +170,46 @@ to the <code>base_model</code></p>
 <div class="section level2">
 <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h2>
+<div class="section level3">
+<h3 id="mass-treatment-ports">Mass Treatment Ports<a class="anchor" aria-label="anchor" href="#mass-treatment-ports"></a>
+</h3>
+<p>To understand how the mass treatment ports are set up, we can look
+inside the <code>SIS</code> module. The relevant lines in
+<code>dXHdt.SIS</code> are these:</p>
+<pre><code><span><span class="va">r_t</span> <span class="op">&lt;-</span> <span class="va">r</span> <span class="op">+</span> <span class="fu">mda</span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">+</span> <span class="va">d_rdt</span><span class="op">*</span><span class="fu">msat</span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span>
+<span><span class="va">dI</span> <span class="op">&lt;-</span> <span class="va">foi</span><span class="op">*</span><span class="op">(</span><span class="va">H</span><span class="op">-</span><span class="va">I</span><span class="op">)</span> <span class="op">-</span> <span class="va">r_t</span><span class="op">*</span><span class="va">I</span> <span class="op">+</span> <span class="va">D_matrix</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">I</span> </span></code></pre>
+<p>In this case, both <code>mda</code> and <code>msat</code> work like
+the parameter <span class="math inline">\(r,\)</span> so inside the
+code, a term is computed: <code>r_t = r+mda(t)+d_rdt*msat(t),</code>
+where <code>d_rdt</code> is a parameter that describes the probability
+of testing positive by RDT. Perhaps most importantly, mass treatment
+functions return a per-capita rate.</p>
+<p>This model explained in the documentation for the function:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="va">dXHdt.SIS</span><span class="op">)</span></span></code></pre></div>
+<p>During setup, The functions <code>mda</code> and <code>msat</code>
+are assigned to a function that returns <span class="math inline">\(0.\)</span> Advanced setup replaces
+<code>mda</code> or <code>msat</code> with a new function.</p>
+</div>
+<div class="section level3">
+<h3 id="mass-treatment-functions">Mass Treatment Functions<a class="anchor" aria-label="anchor" href="#mass-treatment-functions"></a>
+</h3>
 <p>Treatment during the span of an event occurs at a fixed rate. The
 shape of the treatment curve is a variant of a <code>sharkfin</code>
 function:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">598</span>, <span class="fl">612</span>, by <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/show_mda.html">show_mda</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mda_model_1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="MassTreatment_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<p><img src="MassTreatment_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 <p>The total area under the curve is calibrated to reach the right
-fraction treated: in this case, 90%. We can check this:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+fraction treated (for <code>mda</code>) or tested (for
+<code>msat</code>): in this case, 90%. We can check this:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mda</span> <span class="op">&lt;-</span> <span class="va">mda_model_1</span><span class="op">$</span><span class="va">mass_treat_obj</span><span class="op">$</span><span class="va">mda_obj</span><span class="op">$</span><span class="va">F_treat</span></span>
 <span><span class="va">t_frac</span> <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></span><span class="op">(</span><span class="va">mda</span>, <span class="fl">595</span>, <span class="fl">615</span><span class="op">)</span><span class="op">$</span><span class="va">val</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/approx_equal.html" class="external-link">approx_equal</a></span><span class="op">(</span><span class="fl">.9</span>, <span class="va">t_frac</span>, tol <span class="op">=</span> <span class="fl">1e-6</span><span class="op">)</span> </span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
