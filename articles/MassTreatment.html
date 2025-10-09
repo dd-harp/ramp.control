@@ -144,7 +144,7 @@ baseline:</p>
 </h2>
 <p>To add another round of mass treatment, use
 <strong><code>add_mass_treat_events</code>.</strong> This adds an extra
-round on day 600 that is like the others 2 rounds.</p>
+round on day 600 that is like the other two rounds.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1095</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">mda_model_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_mass_treat_events.html">add_mass_treat_events</a></span><span class="op">(</span><span class="va">mda_model</span>, <span class="fl">600</span>, <span class="fl">10</span>, <span class="fl">.9</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -152,8 +152,8 @@ round on day 600 that is like the others 2 rounds.</p>
 <span><span class="fu"><a href="../reference/show_mda.html">show_mda</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mda_model_1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="MassTreatment_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <p>If no mass treatment events have been set up, the function calls
-<code>setup_mass_treat_events.</code> This adds a mass treatment event
-to the <code>base_model</code></p>
+<code>setup_mass_treat_events.</code> For example, the following adds a
+mass treatment event to the <code>base_model</code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mda_model_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_mass_treat_events.html">add_mass_treat_events</a></span><span class="op">(</span><span class="va">base_model</span>, <span class="fl">600</span>, <span class="fl">10</span>, <span class="fl">.9</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">mda_model_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">mda_model_2</span>, <span class="fl">1095</span>,<span class="fl">5</span><span class="op">)</span></span>
@@ -205,7 +205,7 @@ function:</p>
 fraction treated (for <code>mda</code>) or tested (for
 <code>msat</code>): in this case, 90%. We can check this:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mda</span> <span class="op">&lt;-</span> <span class="va">mda_model_1</span><span class="op">$</span><span class="va">mass_treat_obj</span><span class="op">$</span><span class="va">mda_obj</span><span class="op">$</span><span class="va">F_treat</span></span>
+<code class="sourceCode R"><span><span class="va">mda</span> <span class="op">&lt;-</span> <span class="va">mda_model_1</span><span class="op">$</span><span class="va">mda_obj</span><span class="op">$</span><span class="va">F_treat</span></span>
 <span><span class="va">t_frac</span> <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></span><span class="op">(</span><span class="va">mda</span>, <span class="fl">595</span>, <span class="fl">615</span><span class="op">)</span><span class="op">$</span><span class="va">val</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/approx_equal.html" class="external-link">approx_equal</a></span><span class="op">(</span><span class="fl">.9</span>, <span class="va">t_frac</span>, tol <span class="op">=</span> <span class="fl">1e-6</span><span class="op">)</span> </span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>

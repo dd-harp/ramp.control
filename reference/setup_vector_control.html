@@ -8,10 +8,8 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Set up Vector Control — setup_vector_control"><meta name="description" content="Any function that sets up
 vector control calls this function.
 The cases are:
-none there is an empty object
-static an object that needs to be initialized
-setup an object that must be initialized
-dynamic an object that must be evaluated every time
+none the object needs to be initialized
+done the object has been initialized
 
 
 If any function sets vector_control_obj to dynamic then
@@ -21,10 +19,8 @@ vector control is set up. Otherwise,
 nothing happens."><meta property="og:description" content="Any function that sets up
 vector control calls this function.
 The cases are:
-none there is an empty object
-static an object that needs to be initialized
-setup an object that must be initialized
-dynamic an object that must be evaluated every time
+none the object needs to be initialized
+done the object has been initialized
 
 
 If any function sets vector_control_obj to dynamic then
@@ -72,10 +68,8 @@ nothing happens."></head><body>
     <div class="ref-description section level2">
     <p>Any function that sets up
 vector control calls this function.</p>
-<p>The cases are:</p><ul><li><p><code>none</code> there is an empty object</p></li>
-<li><p><code>static</code> an object that needs to be initialized</p></li>
-<li><p><code>setup</code> an object that must be initialized</p></li>
-<li><p><code>dynamic</code> an object that must be evaluated every time</p></li>
+<p>The cases are:</p><ul><li><p><code>none</code> the object needs to be initialized</p></li>
+<li><p><code>done</code> the object has been initialized</p></li>
 </ul><p>If any function sets <code>vector_control_obj</code> to <code>dynamic</code> then
 every other
 trivial module for every mode of
