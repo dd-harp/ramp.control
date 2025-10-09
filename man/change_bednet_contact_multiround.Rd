@@ -7,7 +7,9 @@
 change_bednet_contact_multiround(contact, xds_obj)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{contact}{the contact parametter}
+
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \description{
 With multi-round bed net contact, there

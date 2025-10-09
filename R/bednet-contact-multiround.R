@@ -31,7 +31,8 @@ setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=l
 #' is a different relationship between coverage
 #' and contact in each round
 #'
-#' @inheritParams change_bednet_contact
+#' @param contact the contact parametter
+#' @param xds_obj an **`xds`** model object
 #'
 #' @export
 change_bednet_contact_multiround = function(contact, xds_obj){
