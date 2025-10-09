@@ -29,9 +29,8 @@ Bed_Net_Contact.linear <- function(t, y, xds_obj) {
 setup_bednet_contact.linear= function(name, xds_obj, options=list()){
   contact_obj <- list()
   class(contact_obj) <- "linear"
-  cp <- min(max(cp,0),1)
-  contact_obj$contact_parameter <- with(options, cp)
+  contact_obj$contact_parameter <- with(options, min(max(cp,0),1))
   xds_obj$bednet_obj$contact_obj = contact_obj
-  xds_obj$bednet_obj$contact = xds_obj$bednet_obj$coverage*cp
+  xds_obj$bednet_obj$contact = xds_obj$bednet_obj$coverage
   return(xds_obj)
 }

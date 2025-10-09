@@ -14,8 +14,8 @@ setup_bednets(
   effects_opts = list(),
   coverage_name = "none",
   coverage_opts = list(),
-  contact_name = "none",
-  contact_opts = list(),
+  contact_name = "linear",
+  contact_opts = list(cp = 1),
   effect_sizes_name = "none",
   effect_sizes_opts = list()
 )
