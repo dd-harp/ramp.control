@@ -58,11 +58,8 @@ make_bednet_coverage_function = function(options=list(),
 
 #' @title Bed Net Coverage
 #'
-#' @description This computes two quantities:
-#'
-#' + `effective_coverage`
-#'
-#' + `effective_contact`
+#' @description This computes
+#' *effective_coverage*
 #'
 #' @inheritParams Bed_Net_Coverage
 #'

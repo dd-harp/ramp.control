@@ -47,13 +47,14 @@ setup_bednets = function(xds_obj,
                         use_name = 'none', use_opts = list(),
                         effects_name = 'none', effects_opts = list(),
                         coverage_name = 'none', coverage_opts = list(),
-                        contact_name = 'none', contact_opts = list(),
+                        contact_name = 'linear', contact_opts = list(cp=1),
                         effect_sizes_name = 'none', effect_sizes_opts = list()){
 
   xds_obj <- setup_vector_control(xds_obj)
   bednet <- list()
   class(bednet) <- 'static'
   bednet$coverage <- rep(0, xds_obj$nPatches)
+  bednet$contact <- rep(0, xds_obj$nPatches)
   bednet$eff_sz_obj <- list()
   xds_obj$bednet_obj <- bednet
   xds_obj <- setup_bednet_access(access_name, xds_obj, access_opts)
