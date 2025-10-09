@@ -19,9 +19,6 @@ library(deSolve)
 library(viridisLite)
 ```
 
-```{r, echo=FALSE} 
-#devtools::load_all()
-```
 
 ## Parameters
 
@@ -169,9 +166,8 @@ itn_mod <- last_to_inits(itn_mod)
 
 ```{r}
 cov_options <- list(
-  mean = 0.2, 
-  F_season = function(t)
-    {ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1))}
+  mean = 0.3,
+  season_par = makepar_F_sin(phase = c(150, 190, 230), N=3)
 )
 ```
 
@@ -179,6 +175,8 @@ cov_options <- list(
 itn_mod <- setup_bednets(itn_mod,
      coverage_name = "func", 
      coverage_opts = cov_options, 
+     contact_name = "linear", 
+     contact_opts = list(cp=1),
      effect_sizes_name = "lemenach")
 ```
 
@@ -187,9 +185,8 @@ itn_mod <- setup_bednets(itn_mod,
 If we ran the model at this point, we would get the baseline. Instead, we set up a time-varying function to compute the coverage of ITNs at any time point. We use a sine curve with a period of 365 days which goes from 0 to 1 over that period, with the phase shifted so that at 0 it returns 0. The function also returns 0 for any $t<0$. This must be a function that takes a single argument `t` (time) and returns a scalar value. We note that this seasonality function exceeds one. When we evaluate it, values get chopped. 
 
 ```{r}
-tt = seq(0, 1830, by = 15) 
-with(cov_options, plot(tt, 0.2*F_season(tt), type ="l", lwd = 2, lty=2, col = "darkred"))
-show_bednet_coverage(tt, itn_mod, add=T) 
+tt = seq(0, 1825, by =5)
+show_bednet_coverage(tt, itn_mod) 
 ```
 
 

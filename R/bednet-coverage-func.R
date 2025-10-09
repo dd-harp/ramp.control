@@ -2,16 +2,17 @@
 #' @title Set Up a Bed Net Coverage Function
 #'
 #' @description
-#' This sets up a function to set the value of bed net
-#' coverage
+#' This sets up a function to model bed net coverage.
+#'
+#' + A function F_cover
 #'
 #' @inheritParams setup_bednet_coverage
 #' @export
 setup_bednet_coverage.func = function(name="func", xds_obj, options=list()){
   class(xds_obj$vector_control_obj) = "dynamic"
   class(xds_obj$bednet_obj) = "dynamic"
-  xds_obj$bednet_obj$coverage = rep(0, xds_obj$nPatches)
   xds_obj$bednet_obj$cover_obj <- make_bednet_coverage_function(options)
+  xds_obj$bednet_obj$coverage = rep(0, xds_obj$nPatches)
   return(xds_obj)
 }
 
@@ -55,9 +56,13 @@ make_bednet_coverage_function = function(options=list(),
   })}
 
 
-#' @title Set no bednet_coverage
+#' @title Bed Net Coverage
 #'
-#' @description The null model for bednet_coverage
+#' @description This computes two quantities:
+#'
+#' + `effective_coverage`
+#'
+#' + `effective_contact`
 #'
 #' @inheritParams Bed_Net_Coverage
 #'
@@ -65,6 +70,7 @@ make_bednet_coverage_function = function(options=list(),
 #' @export
 Bed_Net_Coverage.func <- function(t, y, xds_obj) {
   with(xds_obj$bednet_obj$cover_obj,{
-    xds_obj$bednet_obj$coverage = pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
+    coverage <- pmin(pmax(0, mean*F_season(t)*F_trend(t)),1)
+    xds_obj$bednet_obj$coverage = coverage
   return(xds_obj)
 })}

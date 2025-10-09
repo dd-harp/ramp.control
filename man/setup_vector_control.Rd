@@ -18,10 +18,8 @@ vector control calls this function.
 
 The cases are:
 \itemize{
-\item \code{none} there is an empty object
-\item \code{static} an object that needs to be initialized
-\item \code{setup} an object that must be initialized
-\item \code{dynamic} an object that must be evaluated every time
+\item \code{none} the object needs to be initialized
+\item \code{done} the object has been initialized
 }
 
 If any function sets \code{vector_control_obj} to \code{dynamic} then

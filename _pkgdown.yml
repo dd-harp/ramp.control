@@ -46,34 +46,33 @@ reference:
   contents:
   - setup_vector_control
   - setup_vector_control.none
-  - setup_vector_control.static
-  - setup_vector_control.setup
   - setup_vector_control.dynamic
-  - dynamic_vector_control
-  - dynamic_vc_effect_sizes
-  - VectorControl.dynamic
-  - VectorControl.static
-  - VectorControl.setup
-  - VectorControlEffectSizes.dynamic
-  - VectorControlEffectSizes.static
+  - VectorControl1.static
+  - VectorControl1.dynamic
+  - VectorControl2.static
+  - VectorControl2.dynamic
 - title: Bed Nets
   desc: |
     Specialized methods to implement Bed Nets
   contents:
   - setup_bednet_object
   - setup_bednets
-  - Bed_Net
-  - Bed_Net.none
-  - Bed_Net.static
-  - Bed_Net.dynamic
-- subtitle: Bed Net Ownership
+  - Bed_Net_1
+  - Bed_Net_1.none
+  - Bed_Net_1.static
+  - Bed_Net_1.dynamic
+  - Bed_Net_2
+  - Bed_Net_2.none
+  - Bed_Net_2.static
+  - Bed_Net_2.dynamic
+- subtitle: Bed Net Access
   desc: |
-    Specialized methods to model bed net ownership
+    Specialized methods to model bed net access
   contents:
-  - setup_bednet_own
-  - setup_bednet_own.none
-  - Own_Bed_Net
-  - Own_Bed_Net.none
+  - setup_bednet_access
+  - setup_bednet_access.none
+  - Bed_Net_Access
+  - Bed_Net_Access.none
 - subtitle: Bed Net usage
   desc: |
     Specialized methods to model bed net ownership
@@ -104,6 +103,22 @@ reference:
   - get_bednet_coverage
   - change_bednet_coverage
   - show_bednet_coverage
+- subtitle: Bed Net Contact
+  desc: |
+    Specialized methods to model bed net coverage
+  contents:
+  - setup_bednet_contact
+  - setup_bednet_contact.none
+  - setup_bednet_contact.linear
+  - Bed_Net_Contact
+  - Bed_Net_Contact.none
+  - Bed_Net_Contact.linear
+  - get_bednet_contact
+  - change_bednet_contact
+  - show_bednet_contact
+  - Bed_Net_Contact.multiround
+  - setup_bednet_contact.multiround
+  - add_bednet_events
 - subtitle: Bed Net Multiround Coverage
   desc: |
     Specialized methods to model bed net coverage
@@ -113,7 +128,6 @@ reference:
   - Bed_Net_Coverage.multiround
   - make_F_cover_bednet
   - change_bednet_contact_multiround
-  - add_bednet_round
   - make_bednet_round
   - make_bednet_round_generic
   - make_bednet_round.pbo
@@ -139,10 +153,14 @@ reference:
   contents:
   - setup_irs_object
   - setup_irs
-  - IRS
-  - IRS.none
-  - IRS.static
-  - IRS.dynamic
+  - IRS_1
+  - IRS_1.none
+  - IRS_1.static
+  - IRS_1.dynamic
+  - IRS_2
+  - IRS_2.none
+  - IRS_2.static
+  - IRS_2.dynamic
 - subtitle: Spray Houses
   desc: |
     Specialized methods to model house spraying
@@ -183,10 +201,30 @@ reference:
   - IRS_Coverage.none
   - IRS_Coverage.func
   - get_irs_coverage
-  - change_irs_coverage
   - show_irs_coverage
   - setup_irs_events
   - show_irs_events
+- subtitle: IRS Contact
+  desc: |
+    Specialized methods to model IRS coverage
+  contents:
+  - setup_irs_contact
+  - setup_irs_contact.none
+  - setup_irs_contact.func
+  - make_irs_contact_func
+  - IRS_Contact
+  - IRS_Contact.none
+  - IRS_Contact.func
+  - get_irs_contact
+  - show_irs_contact
+  - setup_irs_events
+  - show_irs_events
+  - IRS_Contact.multiround
+  - add_irs_events
+  - setup_irs_contact.multiround
+  - change_irs_contact
+  - change_irs_contact_multiround
+  - change_irs_coverage
 - subtitle: IRS Pesticides
   desc: |
     Profiles for common IRS pesticides
@@ -205,9 +243,7 @@ reference:
   contents:
   - setup_irs_coverage.multiround
   - IRS_Coverage.multiround
-  - add_irs_round
   - make_irs_multiround
-  - change_irs_coverage.multiround
   - make_F_cover_irs
 - title: LSM
   desc: |
@@ -230,3 +266,5 @@ reference:
   contents:
   - make_none_object
   - makepar_F_multiround
+
+

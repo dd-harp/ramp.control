@@ -14,6 +14,8 @@
 \item{options}{a list of options to override defaults}
 }
 \description{
-This sets up a function to set the value of bed net
-coverage
+This sets up a function to model bed net coverage.
+\itemize{
+\item A function F_cover
+}
 }
