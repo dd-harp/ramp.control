@@ -109,9 +109,9 @@ reference:
   contents:
   - setup_bednet_contact
   - setup_bednet_contact.none
-  - setup_bednet_contact.linear
   - Bed_Net_Contact
   - Bed_Net_Contact.none
+  - setup_bednet_contact.linear
   - Bed_Net_Contact.linear
   - get_bednet_contact
   - change_bednet_contact
@@ -211,6 +211,8 @@ reference:
   - setup_irs_contact
   - setup_irs_contact.none
   - setup_irs_contact.func
+  - setup_irs_contact.linear
+  - IRS_Contact.linear
   - make_irs_contact_func
   - IRS_Contact
   - IRS_Contact.none
