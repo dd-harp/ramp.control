@@ -2,7 +2,7 @@
 % Please edit documentation in R/bednet-coverage-func.R
 \name{Bed_Net_Coverage.func}
 \alias{Bed_Net_Coverage.func}
-\title{Set no bednet_coverage}
+\title{Bed Net Coverage}
 \usage{
 \method{Bed_Net_Coverage}{func}(t, y, xds_obj)
 }
@@ -17,5 +17,9 @@
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-The null model for bednet_coverage
+This computes two quantities:
+\itemize{
+\item \code{effective_coverage}
+\item \code{effective_contact}
+}
 }

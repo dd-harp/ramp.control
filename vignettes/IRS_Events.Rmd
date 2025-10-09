@@ -1,0 +1,9 @@
+---
+title: "IRS Events"
+subtitle: "Simulating Multiple Indoor Residual Spraying Rounds"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IRS Events}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

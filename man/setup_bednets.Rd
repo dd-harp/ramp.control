@@ -6,14 +6,16 @@
 \usage{
 setup_bednets(
   xds_obj,
-  own_name = "none",
-  own_opts = list(),
+  access_name = "none",
+  access_opts = list(),
   use_name = "none",
   use_opts = list(),
   effects_name = "none",
   effects_opts = list(),
   coverage_name = "none",
   coverage_opts = list(),
+  contact_name = "none",
+  contact_opts = list(),
   effect_sizes_name = "none",
   effect_sizes_opts = list()
 )
@@ -21,9 +23,9 @@ setup_bednets(
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{own_name}{the name of a model for bed net ownership}
+\item{access_name}{the name of a model for bed net access}
 
-\item{own_opts}{options for the bed net ownership model}
+\item{access_opts}{options for the bed net access model}
 
 \item{use_name}{the name of a model for bed net usage}
 
@@ -36,6 +38,10 @@ setup_bednets(
 \item{coverage_name}{the name of a model for bed net coverage}
 
 \item{coverage_opts}{options for the bed net coverage model}
+
+\item{contact_name}{the name of a model for bed net contact}
+
+\item{contact_opts}{options for the bed net contact model}
 
 \item{effect_sizes_name}{the name of a model for bed net effect sizes}
 

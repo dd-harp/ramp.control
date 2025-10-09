@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{setup_vector_control.static}
 \alias{setup_vector_control.static}
-\title{Vector Control is Static}
+\title{Set Up Vector Control}
 \usage{
 \method{setup_vector_control}{static}(xds_obj)
 }
@@ -13,9 +13,9 @@
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-If \code{class(xds_obj$vector_control) == 'static'}
-then vector control has already been set up.
-
-This changes the class to to 'setup' to force
-the model to run \code{dynamic_vector_control} once.
+If
+\code{class(xds_obj$vector_control_obj) == 'none'}
+this function sets up the
+objects for all implemented modes of vector control.
 }
+\keyword{internal}

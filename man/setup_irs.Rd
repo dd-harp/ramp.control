@@ -12,6 +12,8 @@ setup_irs(
   effects_opts = list(),
   coverage_name = "none",
   coverage_opts = list(),
+  contact_name = "none",
+  contact_opts = list(),
   effect_sizes_name = "none",
   effect_sizes_opts = list()
 )
@@ -30,6 +32,10 @@ setup_irs(
 \item{coverage_name}{the name of a model for bed net coverage}
 
 \item{coverage_opts}{options for the bed net coverage model}
+
+\item{contact_name}{the name of a model for bed net contact}
+
+\item{contact_opts}{options for the bed net contact model}
 
 \item{effect_sizes_name}{the name of a model for bed net effect sizes}
 

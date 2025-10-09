@@ -43,7 +43,7 @@ make_bednet_effect_sizes_lemenach = function(options=list(),
 #' @seealso [compute_bednet_effect_sizes_lemenach()]
 #' @export
 Bed_Net_Effect_Sizes.lemenach <- function(t, y, xds_obj, s){
-  phi = xds_obj$bednet_obj$coverage
+  phi = xds_obj$bednet_obj$contact
   with(xds_obj$bednet_obj$eff_sz_obj[[s]],{
     with(xds_obj$MY_obj[[s]],{
       es <- sapply(1:xds_obj$nPatches,
@@ -52,6 +52,7 @@ Bed_Net_Effect_Sizes.lemenach <- function(t, y, xds_obj, s){
       xds_obj$MY_obj[[s]]$es_f <- xds_obj$MY_obj[[s]]$es_f*es[1,]
       xds_obj$MY_obj[[s]]$es_q <- xds_obj$MY_obj[[s]]$es_q*es[2,]
       xds_obj$MY_obj[[s]]$es_g <- xds_obj$MY_obj[[s]]$es_g*es[3,]
+
       return(xds_obj)
     })
 })}
@@ -81,8 +82,8 @@ compute_bednet_effect_sizes_lemenach = function(ix, phi, ff, qq, gg, tau0_frac=c
 
   p0 <- pexp(q = g*tau0, lower.tail = FALSE)
   Q0 <- q
-  W <- (1-Q0) + Q0*(1-phi) + Q0*phi*ss
-  Z <- Q0*phi*rr
+  W <- (1-Q0) + Q0*(1-phi[ix]) + Q0*phi[ix]*ss
+  Z <- Q0*phi[ix]*rr
 
   tau_phi <- tau0
   tau_phi[1] <- tau0[1]/(1-Z)
@@ -93,7 +94,7 @@ compute_bednet_effect_sizes_lemenach = function(ix, phi, ff, qq, gg, tau0_frac=c
   p_phi[1] <- (p0[1] * W) / (1 - Z*p0[1])
 
   g_phi <- -f_phi*log(prod(p_phi)) # mortality under control
-  q_phi <- (Q0*(1-phi) + Q0*phi*ss)/W # human feeding fraction under control
+  q_phi <- (Q0*(1-phi[ix]) + Q0*phi[ix]*ss)/W # human feeding fraction under control
   return(c(es_f = f_phi/f, es_q = q_phi/q, es_g = g_phi/g))
 }
 

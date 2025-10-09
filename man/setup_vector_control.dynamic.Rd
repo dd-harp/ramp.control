@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_control.R
 \name{setup_vector_control.dynamic}
 \alias{setup_vector_control.dynamic}
-\title{Vector Control is Turned On}
+\title{Set Up Vector Control}
 \usage{
 \method{setup_vector_control}{dynamic}(xds_obj)
 }
@@ -14,7 +14,7 @@ a \strong{\code{ramp.xds}} model object
 }
 \description{
 If
-\code{class(xds_obj$vector_control) == 'dynamic'}
-then dynamic vector control has been turned
-on. The unmodified \strong{\code{ramp.xds}} model object is returned.
+\code{class(xds_obj$vector_control_obj) == 'none'}
+this function sets up the
+objects for all implemented modes of vector control.
 }

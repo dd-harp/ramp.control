@@ -18,5 +18,6 @@ a \strong{\code{ramp.xds}} model object
 }
 \description{
 Set up an object to model
-bed net coverage
+bed net effective coverage, which is defined
+as the product of access and use.
 }
