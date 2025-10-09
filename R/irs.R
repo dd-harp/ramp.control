@@ -43,7 +43,7 @@ setup_irs = function(xds_obj,
                          spray_houses_name = 'none', spray_houses_opts = list(),
                          effects_name = 'none', effects_opts = list(),
                          coverage_name = 'none', coverage_opts = list(),
-                         contact_name = 'none', contact_opts = list(),
+                         contact_name = 'linear', contact_opts = list(cp=1),
                          effect_sizes_name = 'none', effect_sizes_opts = list()){
 
   xds_obj <- setup_vector_control(xds_obj)
