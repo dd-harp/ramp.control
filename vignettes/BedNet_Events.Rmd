@@ -12,7 +12,6 @@ vignette: >
 ```{r}
 library(ramp.xds)
 library(ramp.control)
-devtools::load_all()
 ```
 
 **`ramp.control`** has utilities to set up and simulate mulitple rounds of mass bednet distributions.
