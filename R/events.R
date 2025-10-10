@@ -105,17 +105,16 @@ add_bednet_events = function(xds_obj, jdates, net_type, peak_access) {
 #'
 #' @export
 show_bednet_events = function(xds_obj, mn=0, mx=1, clr="#E4460AFF"){
-  with(xds_obj$events_obj$bednet,{
-    for(i in 1:N){
-      if(jdate[i]>0){
-        points(peak[i]*mx, jdate[i], pch = 19, col = clr)
-        segments(jdate[i], mn, jdate[i], mx, col = clr)
-        label = paste(i, "-", type[i])
-        text(jdate[i], .1*mx, label, pos=4, srt=90, col = clr)
-      }
-    }
-  })
-}
+  if(with(xds_obj, exists("events_obj")))
+    if(with(xds_obj$events_obj, exists("bednet")))
+      with(xds_obj$events_obj$bednet,{
+        for(i in 1:N){
+          if(jdate[i]>0){
+            points(peak[i]*mx, jdate[i], pch = 19, col = clr)
+            segments(jdate[i], mn, jdate[i], mx, col = clr)
+            label = paste(i, "-", type[i])
+            text(jdate[i], .1*mx, label, pos=4, srt=90, col = clr)
+}}})}
 
 #' Set Up IRS Evaluation
 #'
@@ -191,17 +190,16 @@ add_irs_events = function(xds_obj, jdate, net_type, peak) {
 #'
 #' @export
 show_irs_events = function(xds_obj, mn=0, mx=1, clr="#4686FBFF", add=FALSE){
-  with(xds_obj$events_obj$irs,{
-    for(i in 1:N){
-      if(jdate[i]>0){
-        points(mx, jdate[i])
-        segments(jdate[i], mn, jdate[i], mx, col = clr)
-        label = paste(i, "-", type[i])
-        text(jdate[i], .8*mx, label, pos=2, srt=90, col = clr)
-      }
-    }
-  })
-}
+  if(with(xds_obj, exists("events_obj")))
+    if(with(xds_obj$events_obj, exists("irs")))
+      with(xds_obj$events_obj$irs,{
+        for(i in 1:N){
+          if(jdate[i]>0){
+            points(mx, jdate[i])
+            segments(jdate[i], mn, jdate[i], mx, col = clr)
+            label = paste(i, "-", type[i])
+            text(jdate[i], .8*mx, label, pos=2, srt=90, col = clr)
+}}})}
 
 
 #' Set Up Mass Treatment Events
