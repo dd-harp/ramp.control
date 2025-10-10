@@ -28,7 +28,7 @@ setup_irs_coverage = function(name, xds_obj, options=list()){
 #' @export
 setup_irs_coverage.none = function(name, xds_obj, options=list()){
   xds_obj$irs_obj$cover_obj = make_none_object()
-  xds_obj$irs_obj$coverage = list()
+  xds_obj$irs_obj$coverage = rep(0, xds_obj$nPatches)
   return(xds_obj)
 }
 

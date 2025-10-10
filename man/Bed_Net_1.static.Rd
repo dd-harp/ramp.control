@@ -4,10 +4,12 @@
 \alias{Bed_Net_1.static}
 \title{Set the bednet}
 \usage{
-\method{Bed_Net_1}{static}(t, xds_obj)
+\method{Bed_Net_1}{static}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state variables}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }

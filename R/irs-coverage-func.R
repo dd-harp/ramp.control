@@ -8,6 +8,7 @@
 #' @inheritParams setup_irs_coverage
 #' @export
 setup_irs_coverage.func = function(name="func", xds_obj, options=list()){
+  class(xds_obj$vector_control_obj) = "dynamic"
   class(xds_obj$irs_obj) = "dynamic"
   xds_obj$irs_obj$cover_obj <- make_irs_coverage_func(options)
   return(xds_obj)

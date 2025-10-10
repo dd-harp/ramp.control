@@ -4,10 +4,12 @@
 \alias{Bed_Net_1}
 \title{Bednet, Stage 1}
 \usage{
-Bed_Net_1(t, xds_obj)
+Bed_Net_1(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state variables}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }

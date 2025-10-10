@@ -10,7 +10,10 @@ vignette: >
 
 ```{r}
 library(ramp.xds)
-#library(ramp.control)
+library(ramp.control)
+library(MASS)
+library(deSolve)
+library(viridisLite)
 ```
 
 ```{r}
@@ -92,7 +95,7 @@ model <- setup_irs(model, coverage_name = "func", coverage_opts=list(trend_par =
 
 
 ```{r}
-show_irs_coverage(tt, model)
+show_irs_contact(tt, model)
 ```
 
 ```{r}
@@ -114,126 +117,3 @@ $$ \frac{g + fq\phi}{g} = 1 + \phi \frac{fq}{g}.$$
 The effect size is computed relative to a baseline bionomic parameter set, and it is returned by models for *independent* effect sizes. The effect size is returned, rather than the modified parameters, in case multiple modes of control are operating.  Later, the baseline is modified by control by taking the product of the baseline and all the independent effect sizes. 
 
 
-
-# Multiple Spray Rounds 
-
-We want to be able to simulate multiple spray rounds, possibly with different `zap` parameters for the different insecticides:
-
-
-
-```{r, fig.height=4, fig.width=6}
-round1 <- make_irs_round("actellic", 50, .95, 1)
-round2 <- make_irs_round("sumishield", 415, .95)
-F1 <- make_function(round1)
-F2 <- make_function(round2)
-tt <- seq(0, 1095, by=5) 
-plot(tt, 1-(1-F1(tt))*(1-F2(tt)), type = "l", main="Coverage", ylab = "A Sharkfin Function", xlab = "Time")
-lines(tt, F1(tt), col = "darkred")
-lines(tt, F2(tt), col = "darkblue")
-```
-
-
-```{r}
-test_irs = list(
-t_init = c(60, 240, 420, 785)+730,
-type = c("bendiocarb", "bendiocarb", "actellic", "sumishield"),
-coverage = c(.9, .85, .9, .9),
-contact = c(.95, .8, 0.8, .4)
-)
-```
-
-```{r}
-m1 <- make_irs_round("actellic", 500, .9)
-Fm1 <- make_function(m1)
-plot(tt, Fm1(tt), type = "l")
-```
-
-
-
-Now, we pass these to `setup_irs_multiround` 
-
-```{r}
-nullit = make_irs_multiround()
-Fn <- make_function(nullit$rounds_par)
-
-Fn(c(1:5))
-```
-
-```{r}
-multi4 = make_irs_multiround(options = test_irs)
-```
-
-
-```{r}
-F4r <- make_function(multi4$rounds_par)
-```
-
-
-```{r, fig.height=4, fig.width=6, echo=F}
-tt = seq(0, 3650, by=10)
-plot(tt, F4r(tt), type = "l", main="Mulitple Rounds of IRS", ylab = "Sharkfins", xlab = "Time")
-```
-
-# Adding IRS to a Model
-
-We are now to the point where we can add IRS. 
-
-```{r}
-tt0 <-  365*(0:10)
-yy0 <-  c(.7, 2, 1.4, 1.8, 0.6, .8, 1.1, 2, 1, .5, .5)
-Lo <- list(
-  Lambda = 50,
-  season_par = makepar_F_sin(),
-  trend_par = makepar_F_spline(tt=tt0, yy=yy0) 
-)
-mod <- xds_setup(Loptions=Lo, MYname = "SI")
-mod <- xds_solve(mod)
-mod <- last_to_inits(mod) 
-mod <- xds_solve(mod, 10*365, 10)
-xds_plot_PR(mod)
-```
-
-```{r}
-mod_irs <- setup_irs(mod, effect_sizes_name = "simple", coverage_name = "multiround", coverage_opts = test_irs)
-```
-
-```{r}
-show_irs_coverage(tt, mod_irs)
-```
-```{r, eval=F}
-mod_irs$irs_obj$cover_obj$coverage[2] = 0.3
-mod_irs$irs_obj$cover_obj <- make_F_cover_irs(mod_irs$irs_obj$cover_obj)
-show_irs_coverage(tt, mod_irs)
-```
-
-```{r}
-mod_irs <- xds_solve(mod_irs, Tmax=365*8, dt=1)
-```
-
-
-```{r}
-xds_plot_PR(mod_irs, clrs="darkblue")
-xds_plot_PR(mod, add=T)
-```
-
-```{r}
-mod_irs1 <- add_irs_round(mod_irs, "bendiocarb", 300, .9, .9)
-```
-
-
-```{r}
-mod_irs1$irs_obj$cover_obj$type
-mod_irs1$irs_obj$cover_obj$t_init
-mod_irs1$irs_obj$cover_obj$coverage
-mod_irs1$irs_obj$cover_obj$zap
-```
-
-```{r}
-mod_irs1 <- xds_solve(mod_irs1, 10*365, 10)
-```
-
-```{r}
-xds_plot_PR(mod_irs, clrs="darkblue")
-xds_plot_PR(mod, add=T)
-xds_plot_PR(mod_irs1, clrs= "darkred", add=T)
-```

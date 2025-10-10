@@ -4,10 +4,12 @@
 \alias{SprayHouses.none}
 \title{No House Spraying}
 \usage{
-\method{SprayHouses}{none}(t, xds_obj)
+\method{SprayHouses}{none}(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state variables}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }
