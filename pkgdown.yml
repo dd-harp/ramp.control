@@ -6,9 +6,10 @@ articles:
   BedNets: BedNets.html
   IRS_Events: IRS_Events.html
   IRS-insectides: IRS-insectides.html
+  IRS: IRS.html
   MassTreatment: MassTreatment.html
   vc_lemenach: vc_lemenach.html
-last_built: 2025-10-10T17:34Z
+last_built: 2025-10-13T04:27Z
 urls:
   reference: https://dd-harp.github.io/ramp.control/reference
   article: https://dd-harp.github.io/ramp.control/articles
