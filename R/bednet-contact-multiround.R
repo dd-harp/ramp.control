@@ -11,8 +11,8 @@
 #' @inheritParams setup_bednet_contact
 #' @export
 setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=list()){
-  class(xds_obj$vector_control_obj) = "dynamic"
-  class(xds_obj$bednet_obj) = "dynamic"
+  class(xds_obj$vector_control_obj) <- "dynamic"
+  class(xds_obj$bednet_obj) <- "dynamic"
   xds_obj$bednet_obj$contact_obj = list()
   class(xds_obj$bednet_obj$contact_obj) = "multiround"
   if(with(xds_obj$events_obj$bednet, exists("contact")))

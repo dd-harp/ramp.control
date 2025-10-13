@@ -17,7 +17,7 @@ library(viridisLite)
 ```
 
 ```{r}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 **`ramp.control`** handles IRS in a flexible way. 
