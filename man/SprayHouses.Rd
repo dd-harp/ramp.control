@@ -4,10 +4,12 @@
 \alias{SprayHouses}
 \title{Spray Houses}
 \usage{
-SprayHouses(t, xds_obj)
+SprayHouses(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state variables}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 }

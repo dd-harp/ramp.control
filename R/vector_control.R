@@ -81,8 +81,8 @@ setup_vector_control.dynamic = function(xds_obj){
 #' @return a named [list]
 #' @export
 VectorControl1.dynamic <- function(t, y, xds_obj) {
-  xds_obj = Bed_Net_1(t, xds_obj)
-  xds_obj = IRS_1(t, xds_obj)
+  xds_obj = Bed_Net_1(t, y, xds_obj)
+  xds_obj = IRS_1(t, y, xds_obj)
   return(xds_obj)
 }
 

@@ -67,45 +67,50 @@ setup_irs = function(xds_obj,
 #' @description Set the value of exogenous variables related to
 #' irs
 #' @param t current simulation time
+#' @param y state variables
 #' @param xds_obj a **`ramp.xds`**  model object
 #' @return a **`ramp.xds`** model object
 #' @export
-IRS_1 <- function(t, xds_obj){
+IRS_1 <- function(t, y, xds_obj){
   UseMethod("IRS_1", xds_obj$irs_obj)
 }
 
 #' @title Set the irs
 #' @description Set the value of exogenous variables related to
 #' irs
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @inheritParams IRS_1
+#'
 #' @return a **`ramp.xds`** model object
 #' @export
-IRS_1.none <- function(t, xds_obj){
+IRS_1.none <- function(t, y, xds_obj){
   return(xds_obj)
 }
 
 #' @title Set the irs
 #' @description Set the value of exogenous variables related to
 #' irs
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#' @inheritParams IRS_1
+#'
 #' @return a **`ramp.xds`** model object
 #' @export
-IRS_1.static <- function(t, xds_obj){
+IRS_1.static <- function(t, y, xds_obj){
   return(xds_obj)
 }
 
 #' @title Set the irs
+#'
 #' @description Set the value of exogenous variables related to
 #' irs
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @inheritParams IRS_1
+#'
 #' @return a **`ramp.xds`** model object
 #' @export
-IRS_1.dynamic <- function(t, xds_obj){
-  xds_obj <- SprayHouses(t, xds_obj)
-  xds_obj <- IRS_Effects(t, xds_obj)
+IRS_1.dynamic <- function(t, y, xds_obj){
+  xds_obj <- SprayHouses(t, y, xds_obj)
+  xds_obj <- IRS_Effects(t, y, xds_obj)
+  return(xds_obj)
 }
 
 
@@ -155,10 +160,11 @@ IRS_2.static <- function(t, y, xds_obj){
 #' @return a **`ramp.xds`** model object
 #' @export
 IRS_2.dynamic <- function(t, y, xds_obj){
-  xds_obj <- IRS_Coverage(t, xds_obj)
-  xds_obj <- IRS_Contact(t, xds_obj)
+  xds_obj <- IRS_Coverage(t, y, xds_obj)
+  xds_obj <- IRS_Contact(t, y, xds_obj)
   for(s in 1:xds_obj$nVectorSpecies)
     xds_obj <- IRS_Effect_Sizes(t, y, xds_obj, s)
+  return(xds_obj)
 }
 
 

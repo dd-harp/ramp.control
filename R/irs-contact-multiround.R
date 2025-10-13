@@ -44,7 +44,7 @@ change_irs_contact_multiround = function(contact, xds_obj){
 #' @export
 IRS_Contact.multiround <- function(t, y, xds_obj) {
   with(xds_obj$irs_obj$contact_obj,{
-    xds_obj$irs_obj$contact = F_cover(t)
+    xds_obj$irs_obj$contact = F_contact(t)
     return(xds_obj)
   })}
 

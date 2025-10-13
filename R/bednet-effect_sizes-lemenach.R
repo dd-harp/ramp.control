@@ -6,6 +6,7 @@
 #' @inheritParams setup_bednet_effect_sizes
 #' @export
 setup_bednet_effect_sizes.lemenach = function(name, xds_obj, s=1, options=list()){
+  class(xds_obj$bednet_obj$eff_sz_obj) = "lemenach"
   xds_obj$bednet_obj$eff_sz_obj[[s]] = make_bednet_effect_sizes_lemenach(options)
   return(xds_obj)
 }
@@ -49,6 +50,7 @@ Bed_Net_Effect_Sizes.lemenach <- function(t, y, xds_obj, s){
       es <- sapply(1:xds_obj$nPatches,
                    compute_bednet_effect_sizes_lemenach,
                    phi=phi, ff=f_t, qq=q_t, gg=g_t, tau0_frac=tau0_frac, rr=rr, ss=ss)
+
       xds_obj$MY_obj[[s]]$es_f <- xds_obj$MY_obj[[s]]$es_f*es[1,]
       xds_obj$MY_obj[[s]]$es_q <- xds_obj$MY_obj[[s]]$es_q*es[2,]
       xds_obj$MY_obj[[s]]$es_g <- xds_obj$MY_obj[[s]]$es_g*es[3,]

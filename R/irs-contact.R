@@ -73,6 +73,7 @@ change_irs_contact = function(contact, xds_obj){
 #' @export
 show_irs_contact = function(tt, xds_obj, clr="black", add=FALSE){
   y <- get_inits(xds_obj, flatten=TRUE)
+  xds_obj <- IRS_Coverage(tt, y, xds_obj)
   xds_obj <- IRS_Contact(tt, y, xds_obj)
   if(add==FALSE)
     graphics::plot(tt, xds_obj$irs_obj$contact, type = "n", xlab="Time (Days)", ylab = "Contact")

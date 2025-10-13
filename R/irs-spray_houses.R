@@ -37,12 +37,13 @@ setup_spray_houses.none = function(name, xds_obj, options=list()){
 #' @description The model
 #'
 #' @param t current simulation time
+#' @param y state variables
 #' @param xds_obj a **`ramp.xds`** model object
 #'
 #' @return a **`ramp.xds`** model object
 #'
 #' @export
-SprayHouses <- function(t, xds_obj) {
+SprayHouses <- function(t, y, xds_obj) {
   UseMethod("SprayHouses", xds_obj$irs_obj$spray_obj)
 }
 
@@ -54,6 +55,6 @@ SprayHouses <- function(t, xds_obj) {
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
-SprayHouses.none <- function(t, xds_obj) {
+SprayHouses.none <- function(t, y, xds_obj) {
   return(xds_obj)
 }

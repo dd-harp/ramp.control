@@ -4,10 +4,12 @@
 \alias{IRS_1}
 \title{Set the irs}
 \usage{
-IRS_1(t, xds_obj)
+IRS_1(t, y, xds_obj)
 }
 \arguments{
 \item{t}{current simulation time}
+
+\item{y}{state variables}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }

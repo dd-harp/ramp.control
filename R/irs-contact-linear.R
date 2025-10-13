@@ -26,12 +26,13 @@ IRS_Contact.linear <- function(t, y, xds_obj) {
 #' @return a **`ramp.xds`** model object
 #'
 #' @export
-setup_irs_contact.linear= function(name, xds_obj, options=list()){
+setup_irs_contact.linear= function(name, xds_obj, options=list(cp=1)){
   contact_obj <- list()
   class(contact_obj) <- "linear"
-  cp <- min(max(cp,0),1)
+  cp <- with(options, min(max(cp,0),1))
   contact_obj$contact_parameter <- with(options, cp)
   xds_obj$irs_obj$contact_obj = contact_obj
+  xds_obj$irs_obj$contact = cp
   xds_obj$irs_obj$contact = xds_obj$irs_obj$coverage*cp
   return(xds_obj)
 }

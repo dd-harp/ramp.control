@@ -73,34 +73,35 @@ setup_bednets = function(xds_obj,
 #' bed nets
 #'
 #' @param t current simulation time
+#' @param y state variables
 #' @param xds_obj a **`ramp.xds`**  model object
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
-Bed_Net_1 <- function(t, xds_obj){
+Bed_Net_1 <- function(t, y, xds_obj){
   UseMethod("Bed_Net_1", xds_obj$bednet_obj)
 }
 
 #' @title Set the bednet
 #' @description Set the value of exogenous variables related to
 #' bednet
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @inheritParams Bed_Net_1
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
-Bed_Net_1.none <- function(t, xds_obj){
+Bed_Net_1.none <- function(t, y, xds_obj){
   return(xds_obj)
 }
 
 #' @title Set the bednet
 #' @description Set the value of exogenous variables related to
 #' bednet
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#' @inheritParams Bed_Net_1
+#'
 #' @return a **`ramp.xds`** model object
 #' @export
-Bed_Net_1.static<- function(t, xds_obj){
+Bed_Net_1.static<- function(t, y, xds_obj){
   return(xds_obj)
 }
 
@@ -108,12 +109,11 @@ Bed_Net_1.static<- function(t, xds_obj){
 #' @description Set the value of exogenous variables related to
 #' bednet
 #'
-#' @param t current simulation time
-#' @param xds_obj a **`ramp.xds`**  model object
+#' @inheritParams Bed_Net_1
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
-Bed_Net_1.dynamic <- function(t, xds_obj){
+Bed_Net_1.dynamic <- function(t, y, xds_obj){
   xds_obj <- Bed_Net_Access(t, xds_obj)
   xds_obj <- Use_Bed_Net(t, xds_obj)
   xds_obj <- Bed_Net_Effects(t, xds_obj)

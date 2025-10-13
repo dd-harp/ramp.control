@@ -4,7 +4,7 @@
 \alias{setup_irs_contact.linear}
 \title{Set Up the Null IRS Contact Object}
 \usage{
-\method{setup_irs_contact}{linear}(name, xds_obj, options = list())
+\method{setup_irs_contact}{linear}(name, xds_obj, options = list(cp = 1))
 }
 \arguments{
 \item{name}{the name of a model to set up}
