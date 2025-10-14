@@ -4,17 +4,17 @@
 \alias{make_irs_multiround}
 \title{Set up dynamic forcing}
 \usage{
-make_irs_multiround(xds_obj, use_contact = TRUE)
+make_irs_multiround(contact, xds_obj)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
+\item{contact}{the contact parameters to use}
 
-\item{use_contact}{TRUE uses contact parameters from the events object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
-an IRS coverage model object
+an IRS multi_objage / contact model object
 }
 \description{
 Set up a function that computes
-irs coverage over time.
+irs multi_objage over time.
 }

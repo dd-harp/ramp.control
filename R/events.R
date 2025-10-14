@@ -50,7 +50,6 @@ setup_bednet_events = function(xds_obj, jdates, net_type, peak_access, contact=1
   xds_obj$events_obj$bednet$type  = net_type
   xds_obj$events_obj$bednet$peak  = peak_access
   xds_obj$events_obj$bednet$contact = checkIt(contact, N)
-  xds_obj$events_obj$bednet$include = rep(TRUE, N)
 
   xds_obj <- setup_bednet_coverage("multiround", xds_obj)
   xds_obj <- setup_bednet_contact("multiround", xds_obj)
@@ -141,7 +140,6 @@ setup_irs_events = function(xds_obj, jdates, pesticides, frac_sprayed, contact=1
   xds_obj$events_obj$irs$type  = pesticides
   xds_obj$events_obj$irs$peak  = frac_sprayed
   xds_obj$events_obj$irs$contact = checkIt(contact, N)
-  xds_obj$events_obj$irs$include = rep(TRUE, N)
 
   xds_obj <- setup_irs_coverage("multiround", xds_obj)
   xds_obj <- setup_irs_contact("multiround", xds_obj)

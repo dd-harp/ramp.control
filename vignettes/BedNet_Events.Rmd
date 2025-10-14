@@ -57,13 +57,8 @@ itn_model <- setup_bednets(base_model, effect_sizes_name = "lemenach")
 bednet_jdates <- c(180, 1275)
 bednet_type <- rep("pbo", 2)
 peak_access <- rep(0.7, 2)
-itn_model <- setup_bednet_events(itn_model, bednet_jdates, bednet_type, peak_access)
-```
-
-
-
-```{r bed net contact}
-itn_model <- setup_bednet_contact("multiround", itn_model, options=list(contact = rep(0.2, 2))) 
+contact <- c(0.2, 0.2)
+itn_model <- setup_bednet_events(itn_model, bednet_jdates, bednet_type, peak_access, contact)
 ```
 
 ```{r, fig.height=4, fig.width=7}

@@ -4,16 +4,16 @@
 \alias{make_irs_round.none}
 \title{Set up dynamic forcing}
 \usage{
-\method{make_irs_round}{none}(type, t_init, coverage, zap = 1)
+\method{make_irs_round}{none}(type, t_init, coverage, contact = 1)
 }
 \arguments{
 \item{type}{the name of the IRS type}
 
 \item{t_init}{the time when IRS started}
 
-\item{coverage}{the coverage achieved}
+\item{coverage}{effective coverage}
 
-\item{zap}{contact scaling}
+\item{contact}{effective contact}
 }
 \value{
 a \strong{\code{xds}} object

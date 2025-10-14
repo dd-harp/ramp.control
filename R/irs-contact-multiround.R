@@ -1,4 +1,4 @@
-# Irs Multi-Round configures F_cover
+# Irs Multi-Round configures
 
 #' @title Set up dynamic forcing
 #'
@@ -12,7 +12,12 @@
 setup_irs_contact.multiround = function(name, xds_obj, options=list()){
   class(xds_obj$vector_control_obj) = "dynamic"
   class(xds_obj$irs_obj) = "dynamic"
-  xds_obj$irs_obj$contact_obj <- make_irs_multiround(xds_obj, use_contact=TRUE)
+  contact_obj <- list()
+  contact_obj$class = "multiround"
+  class(contact_obj) = "multiround"
+  xds_obj$irs_obj$contact_obj = contact_obj
+  contact <- xds_obj$events_obj$irs$contact
+  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(contact, xds_obj)
   return(xds_obj)
 }
 
@@ -31,7 +36,7 @@ change_irs_contact_multiround = function(contact, xds_obj){
   stopifnot(with(xds_obj$events_obj, exists("irs")))
   stopifnot(length(contact) == xds_obj$events_obj$irs$N)
   xds_obj$events_obj$irs$contact = contact
-  xds_obj$irs_obj$contact_obj <- make_irs_multiround(xds_obj, use_contact=TRUE)
+  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(contact, xds_obj)
   return(xds_obj)
 }
 

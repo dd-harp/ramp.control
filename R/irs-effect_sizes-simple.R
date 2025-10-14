@@ -9,6 +9,7 @@
 #'
 #' @export
 setup_irs_effect_sizes.simple = function(name, xds_obj, s=1, options=list()){
+  class(xds_obj$irs_obj$eff_sz_obj) = "simple"
   xds_obj$irs_obj$eff_sz_obj = make_irs_effect_sizes_simple(options)
   return(xds_obj)
 }

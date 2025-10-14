@@ -10,7 +10,7 @@ make_irs_round_generic(
   L = 365,
   dk = 1/60,
   coverage = 0.7,
-  zap = 1
+  contact = 1
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ make_irs_round_generic(
 
 \item{coverage}{the coverage achieved}
 
-\item{zap}{contact scaling parameter}
+\item{contact}{contact}
 }
 \value{
 a \strong{\code{xds}} object
