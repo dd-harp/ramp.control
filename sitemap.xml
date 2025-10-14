@@ -71,9 +71,11 @@
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_contact_multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.control/reference/change_bednet_coverage_multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_contact_multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_coverage.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.control/reference/change_irs_coverage_multiround.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/compute_bednet_effect_sizes_lemenach.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/compute_irs_effect_sizes_simple.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/get_bednet_contact.html</loc></url>
@@ -81,9 +83,9 @@
 <url><loc>https://dd-harp.github.io/ramp.control/reference/get_irs_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/get_irs_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/index.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.control/reference/make_F_cover_bednet.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.control/reference/make_F_cover_irs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/make_F_mass_treat.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.control/reference/make_F_multi_bednet.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.control/reference/make_F_multi_irs.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/make_bednet_coverage_function.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/make_bednet_effect_sizes_lemenach.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.control/reference/make_bednet_multiround.html</loc></url>
