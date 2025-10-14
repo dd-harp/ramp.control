@@ -15,11 +15,7 @@ setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=l
   class(xds_obj$bednet_obj) <- "dynamic"
   xds_obj$bednet_obj$contact_obj = list()
   class(xds_obj$bednet_obj$contact_obj) = "multiround"
-  if(with(xds_obj$events_obj$bednet, exists("contact")))
-    contact = xds_obj$events_obj$bednet$contact
-  contact <- with(options, contact)
-  if(!exists("contact")) contact <- rep(1, xds_obj$events_obj$bednet$N)
-  xds_obj$events_obj$bednet$contact <- contact
+  contact <- with(xds_obj$events_obj$bednet, with(options, contact))
   xds_obj <- change_bednet_contact_multiround(contact, xds_obj)
   return(xds_obj)
 }
@@ -40,7 +36,7 @@ change_bednet_contact_multiround = function(contact, xds_obj){
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(contact) == xds_obj$events_obj$bednet$N)
   xds_obj$events_obj$bednet$contact = contact
-  xds_obj$bednet_obj$contact_obj <- make_bednet_multiround(xds_obj, use_contact=TRUE)
+  xds_obj$bednet_obj$contact_obj$F_contact <- make_bednet_multiround(contact, xds_obj)
   return(xds_obj)
 }
 

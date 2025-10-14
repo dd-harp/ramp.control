@@ -4,12 +4,12 @@
 \alias{make_bednet_multiround}
 \title{Make the Multiround Bednet Coverage Object}
 \usage{
-make_bednet_multiround(xds_obj, use_contact = FALSE)
+make_bednet_multiround(contact, xds_obj)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
+\item{contact}{a contact parameter}
 
-\item{use_contact}{TRUE uses contact parameters from the events object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 }
 \value{
 a \strong{\code{xds}} object

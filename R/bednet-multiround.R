@@ -1,22 +1,23 @@
 #' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @param cover a list with parameters for all the rounds
+#'
+#' @description Make a multiround function
+#'
+#' @param multi_obj a list with parameters for all the rounds
+#'
 #' @return a function
 #' @export
-make_F_cover_bednet = function(cover){
+make_F_multi_bednet = function(multi_obj){
 
   rounds <- list()
-  for(i in 1:cover$nRounds)
-    rounds[[i]] = with(cover, make_bednet_round(type[i], t_init[i], peak[i], contact[i]))
+  for(i in 1:multi_obj$N)
+    rounds[[i]] = with(multi_obj, make_bednet_round(type[i], jdate[i], peak[i], contact[i]))
 
-  rounds_par <- makepar_F_multiround(cover$nRounds, rounds)
-  cover$rounds <- rounds
-  cover$rounds_par <- rounds_par
-  F_cover <- make_function(rounds_par)
+  rounds_par <- makepar_F_multiround(multi_obj$N, rounds)
+  multi_obj$rounds <- rounds
+  multi_obj$rounds_par <- rounds_par
+  F_multi <- make_function(rounds_par)
 
-  return(F_cover)
+  return(F_multi)
 }
 
 #' @title Make the Multiround Bednet Coverage Object
@@ -27,36 +28,17 @@ make_F_cover_bednet = function(cover){
 #' including a parameter describing access, this makes a
 #' function that computes coverage over time.
 #'
-#'
-#'
+#' @param contact a contact parameter
 #' @param xds_obj a **`ramp.xds`**  model object
-#' @param use_contact TRUE uses contact parameters from the events object
 #'
 #' @return a **`xds`** object
 #' @export
-make_bednet_multiround = function(xds_obj, use_contact=FALSE){
+make_bednet_multiround = function(contact, xds_obj){
   with(xds_obj$events_obj, stopifnot(exists("bednet")))
-  with(xds_obj$events_obj$bednet,{
-    stopifnot(N>0)
-    if(!exists("include")) include = rep(TRUE, N)
-    nRounds <- sum(include)
-    cover <- list()
-    class(cover) <- "multiround"
-    cover$nRounds = nRounds
-    cover$t_init  = jdate[include]
-    cover$peak    = peak[include]
-    cover$type    = type[include]
-
-    if(use_contact==TRUE){
-      cover$contact = contact[include]
-      cover$F_contact <- make_F_cover_bednet(cover)
-    } else {
-      cover$contact = rep(1, nRounds)
-      cover$F_cover <- make_F_cover_bednet(cover)
-    }
-
-    return(cover)
-})}
+  bednet <- xds_obj$events_obj$bednet
+  bednet$contact <- contact
+  make_F_multi_bednet(bednet)
+}
 
 
 #' @title Set up dynamic forcing
