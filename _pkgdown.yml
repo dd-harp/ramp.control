@@ -12,6 +12,8 @@ navbar:
       href: articles/vc_lemenach.html
     - text: IRS
       href: articles/IRS.html
+    - text: IRS - Insecticides
+      href: articles/IRS-insectides.html
     - text: Mass Treatment
       href: articles/MassTreatment.html
   - text: Functions
