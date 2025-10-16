@@ -1,0 +1,200 @@
+
+
+
+
+
+## Spline-Based Evaluation
+
+```{r spline based evaluatioin}
+t0 <- Sys.time()
+sip_si_eir <- readRDS("./sip_si_eir_base.rds")
+sip_si_eir <- setup_fitting(sip_si_eir, prts$pfpr, prts$jdate)
+sip_si_eir <- setup_bednet_events(sip_si_eir, bednet_jdates, bednet_type, bednet_peak, bednet_contact)
+sip_si_eir <- setup_irs_events(sip_si_eir, irs_jdates, irs_rounds, irs_peak, irs_contact)
+ti <- event_chop_spline_t(sip_si_eir, fu=180, b4=20, mngp=120)
+sip_si_eir <- fitting_replace_spline_t(ti, sip_si_eir)
+sip_si_eir <- pr2history_xm(sip_si_eir)
+Sys.time()-t0
+```
+
+```{r prefit_eir}
+show_fit(sip_si_eir)
+show_events(sip_si_eir, mx = 0.4)
+```
+```{r pr2history_xm, eval=F}
+sip_si_eir <- pr2history_xm(sip_si_eir)
+```
+
+```{r, eval=F, echo=FALSE}
+saveRDS(sip_si_eir, "./sip_si_eir_terego.rds")
+```
+
+```{r, echo=FALSE}
+sip_si_eir <- readRDS("./sip_si_eir_terego.rds")
+```
+
+```{r post_fit_eir}
+show_fit(sip_si_eir)
+show_events(sip_si_eir, mx = 0.4)
+```
+
+
+
+## Counter-factual Baseline, Modified by Control
+
+
+```{r cfbmbc}
+t0 <- Sys.time()
+sip_si <- readRDS("./sip_si_base.rds")
+sip_si <- setup_fitting(sip_si, prts$pfpr, prts$jdate)
+sip_si <- setup_irs_events(sip_si, irs_jdates, irs_rounds, irs_peak, irs_contact*0)
+sip_si <- setup_bednet_events(sip_si, bednet_jdates, bednet_type, bednet_peak, bednet_contact*0)
+ti <- event_chop_spline_t(sip_si_eir, fu=180, b4=20, mngp=120)
+sip_si <- fitting_replace_spline_t(ti, sip_si)
+sip_si <- pr2history_xm(sip_si)
+Sys.time()-t0
+```
+
+```{r history}
+show_fit(sip_si)
+show_events(sip_si, mx = 0.4)
+```
+
+```{r, eval=F}
+saveRDS(sip_si, "./sip_si_terego.rds")
+```
+
+```{r, echo=F}
+sip_si_fit <- readRDS("sip_si_terego")
+```
+
+```{r cfbmbc 1}
+sip_si_fit$data$n_ty = sip_si$data$n_ty-1
+sip_si_fit$data$tt = sip_si_fit$data$tt[-7]
+sip_si_fit$data$yy = sip_si_fit$data$yy[-7]
+sip_si_fit$events_obj$bednet$include = c(FALSE, FALSE, TRUE, FALSE)
+```
+
+```{r}
+show_fit(sip_si_fit)
+show_events(sip_si_fit)
+```
+
+```{r cfbmbc 2}
+sip_si_fit <- setup_bednets(sip_si_fit, effect_sizes_name = "lemenach", contact_name = "multiround")
+sip_si_round2 <- fit_bednet_contact(sip_si_fit, options = list(bednet_ix=3))
+```
+
+```{r}
+show_fit(sip_si_round2)
+show_events(sip_si_round2)
+```
+
+
+```{r}
+tt <- seq(0, 3650, by = 10)
+show_bednet_contact(tt, sip_si_round2)
+```
+
+```{r cfbmbc 3}
+sip_si_fit <- readRDS("sip_si_terego")
+show_fit(sip_si_fit)
+show_events(sip_si_fit, mx = 0.4)
+```
+
+
+```{r cfbmbc 4}
+sip_si_fit$data$n_ty = sip_si$data$n_ty-4
+sip_si_fit$data$tt = sip_si_fit$data$tt[-c(9:12)]
+sip_si_fit$data$yy = sip_si_fit$data$yy[-c(9:12)]
+sip_si_fit <- update_fitting_ty(sip_si_fit)
+sip_si_fit <- setup_trend_par(sip_si_fit)
+```
+
+
+```{r prefit 1}
+sip_si_fit <- xds_solve(sip_si_fit, 3650, 10)
+show_fit(sip_si_fit)
+show_events(sip_si_fit, mx = 0.4)
+```
+```{r}
+sip_si_fit <- setup_irs(sip_si_fit, effect_sizes_name = "simple", coverage_name = "multiround", contact_name = "multiround")
+sip_si_fit <- change_irs_contact_multiround(c(0.04, 0.24, 0), sip_si_fit)
+sip_si_fit <- xds_solve(sip_si_fit, 3650, 10)
+show_fit(sip_si_fit)
+show_events(sip_si_fit)
+```
+
+
+```{r}
+library(ramp.library)
+devtools::load_all("~/git/ramp.control")
+devtools::load_all("~/git/ramp.work")
+sip_si_irs <- fit_irs_contact(sip_si_fit, options = list(irs_ix=c(1,2)))
+```
+```{r}
+show_fit(sip_si_irs)
+show_events(sip_si_irs, mx=0.6)
+```
+
+```{r}
+tt <- seq(0, 3650, by=10)
+show_irs_contact(tt, sip_si_irs)
+```
+
+```{r}
+show_fit(sip_si_irs)
+```
+
+
+```{r irs 1}
+library(ramp.library)
+devtools::load_all("~/git/ramp.control")
+devtools::load_all("~/git/ramp.work")
+sip_si_fit <- setup_irs(sip_si_fit, effect_sizes_name = "simple", coverage_name = "multiround", contact_name = "multiround")
+sip_si_fit <- sip_si_fit()
+xds_plot_PR(sip_si_fit)
+```
+
+
+```{r irs}
+devtools::load_all("~/git/ramp.work")
+devtools::load_all("~/git/ramp.control")
+sip_si_irs2 <- sip_si_fit
+sip_si_irs2 <- change_irs_contact_multiround(c(0, 0.2, 0), sip_si_irs2)
+```
+
+
+```{r}
+tt <- seq(0, 3650, by=10)
+show_irs_contact(tt, sip_si_irs2)
+```
+```{r prefit}
+sip_si_irs2 <- fit_irs_contact(sip_si_irs2, options = list(irs_ix=2))
+show_fit(sip_si_irs2)
+show_events(sip_si_irs2, mx = 0.4)
+```
+```{r}
+compute_gof(sip_si_irs2)
+```
+
+```{r}
+devtools::load_all("~/git/ramp.control")
+devtools::load_all("~/git/ramp.work")
+sip_si_irs3 <- sip_si_irs2
+```
+
+
+```{r}
+sip_si_irs3$events_obj$irs$contact <- sip_si_irs2$events_obj$irs$contact*0.2
+sip_si_irs3 <- change_irs_contact_multiround(c(0, 0.2, 0), sip_si_irs3)
+```
+
+```{r}
+show_irs_coverage(tt, sip_si_irs3)
+show_irs_contact(tt, sip_si_irs3, add=T, clr="darkred")
+```
+
+```{r}
+compute_gof(sip_si_irs3)
+```
