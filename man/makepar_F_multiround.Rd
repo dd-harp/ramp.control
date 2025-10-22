@@ -17,5 +17,5 @@ a multiround function
 \description{
 Return an object to configure
 multiple \code{sharkfin} functions representing
-coverage levels over many mass
+coverage levels over many mass distribution events
 }

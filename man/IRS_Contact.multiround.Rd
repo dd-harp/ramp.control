@@ -2,7 +2,7 @@
 % Please edit documentation in R/irs-contact-multiround.R
 \name{IRS_Contact.multiround}
 \alias{IRS_Contact.multiround}
-\title{IRS contact with Multiple Rounds}
+\title{IRS Contact for Multiround Models}
 \usage{
 \method{IRS_Contact}{multiround}(t, y, xds_obj)
 }
@@ -18,5 +18,5 @@ a \strong{\code{ramp.xds}} model object
 }
 \description{
 A model for IRS contact over time
-when there have been several, different IRS models
+when there have been several rounds of IRS
 }

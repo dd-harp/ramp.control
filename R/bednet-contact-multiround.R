@@ -15,28 +15,64 @@ setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=l
   class(xds_obj$bednet_obj) <- "dynamic"
   xds_obj$bednet_obj$contact_obj = list()
   class(xds_obj$bednet_obj$contact_obj) = "multiround"
-  contact <- with(xds_obj$events_obj$bednet, with(options, contact))
-  xds_obj <- change_bednet_contact_multiround(contact, xds_obj)
+  N <- xds_obj$events_obj$bednet$N
+
+  contact <-  rep(0, N)
+  contact <-  with(options, contact)
+  xds_obj$events_obj$bednet$contact = contact
+
+  pw <-  rep(1, N)
+  pw <-  with(options, pw)
+  xds_obj$events_obj$bednet$pw = pw
+
+  xds_obj$bednet_obj$contact_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
+
   return(xds_obj)
 }
 
-#' @title Setup Muti-Round Bed Net Contact
+#' @title Setup Muti-Round bednet Contact
 #'
 #' @description
-#' With multi-round bed net contact, there
+#' With multi-round bednet contact, there
 #' is a different relationship between coverage
 #' and contact in each round
 #'
-#' @param contact the contact parametter
-#' @param xds_obj an **`xds`** model object
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param contact the new contact parameter
+#'
+#' @return a **`ramp.xds`**  model object
 #'
 #' @export
-change_bednet_contact_multiround = function(contact, xds_obj){
+change_bednet_contact_multiround = function(xds_obj, contact){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(contact) == xds_obj$events_obj$bednet$N)
   xds_obj$events_obj$bednet$contact = contact
-  xds_obj$bednet_obj$contact_obj$F_contact <- make_bednet_multiround(contact, xds_obj)
+  pw <- xds_obj$events_obj$bednet$pw
+  xds_obj$bednet_obj$contact_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
+  return(xds_obj)
+}
+
+#' @title Setup Muti-Round bednet Shape
+#'
+#' @description
+#' With multi-round bednet pw, there
+#' is a different relationship between coverage
+#' and pw in each round
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param pw the new shape parameter
+#'
+#' @return a **`ramp.xds`**  model object
+#'
+#' @export
+change_bednet_pw_multiround = function(xds_obj, pw){
+  stopifnot(with(xds_obj, exists("events_obj")))
+  stopifnot(with(xds_obj$events_obj, exists("bednet")))
+  stopifnot(length(pw) == xds_obj$events_obj$bednet$N)
+  xds_obj$events_obj$bednet$pw = pw
+  contact <- xds_obj$events_obj$bednet$contact
+  xds_obj$bednet_obj$conatct_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
   return(xds_obj)
 }
 

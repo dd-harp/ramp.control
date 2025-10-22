@@ -4,7 +4,7 @@
 \alias{setup_irs_events}
 \title{Set Up IRS Evaluation}
 \usage{
-setup_irs_events(xds_obj, jdates, pesticides, frac_sprayed, contact = 1)
+setup_irs_events(xds_obj, jdates, pesticides, frac_sprayed, event_length = 20)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -15,7 +15,7 @@ setup_irs_events(xds_obj, jdates, pesticides, frac_sprayed, contact = 1)
 
 \item{frac_sprayed}{the fraction of houses sprayed}
 
-\item{contact}{the contact parameter}
+\item{event_length}{the length of the distribution event}
 }
 \value{
 a \strong{\code{ramp.xds}}  model object

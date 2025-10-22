@@ -16,8 +16,17 @@ setup_irs_contact.multiround = function(name, xds_obj, options=list()){
   contact_obj$class = "multiround"
   class(contact_obj) = "multiround"
   xds_obj$irs_obj$contact_obj = contact_obj
-  contact <- xds_obj$events_obj$irs$contact
-  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(contact, xds_obj)
+  N <- xds_obj$events_obj$irs$N
+
+  contact <-  rep(0, N)
+  contact <-  with(options, contact)
+  xds_obj$events_obj$irs$contact = contact
+
+  pw <-  rep(1, N)
+  pw <-  with(options, pw)
+  xds_obj$events_obj$irs$pw = pw
+
+  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
   return(xds_obj)
 }
 
@@ -28,22 +37,52 @@ setup_irs_contact.multiround = function(name, xds_obj, options=list()){
 #' is a different relationship between coverage
 #' and contact in each round
 #'
-#' @inheritParams change_irs_contact
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param contact the new contact parameter
+#'
+#' @return a **`ramp.xds`**  model object
 #'
 #' @export
-change_irs_contact_multiround = function(contact, xds_obj){
+change_irs_contact_multiround = function(xds_obj, contact){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("irs")))
   stopifnot(length(contact) == xds_obj$events_obj$irs$N)
   xds_obj$events_obj$irs$contact = contact
-  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(contact, xds_obj)
+  pw <- xds_obj$events_obj$irs$pw
+  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
+  return(xds_obj)
+}
+
+#' @title Setup Muti-Round IRS Shape
+#'
+#' @description
+#' With multi-round irs pw, there
+#' is a different relationship between coverage
+#' and pw in each round
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param pw the new shape parameter
+#'
+#' @return a **`ramp.xds`**  model object
+#'
+#' @export
+change_irs_pw_multiround = function(xds_obj, pw){
+  stopifnot(with(xds_obj, exists("events_obj")))
+  stopifnot(with(xds_obj$events_obj, exists("irs")))
+  stopifnot(length(pw) == xds_obj$events_obj$irs$N)
+  xds_obj$events_obj$irs$pw = pw
+  contact <- xds_obj$events_obj$irs$contact
+  xds_obj$irs_obj$conatct_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
   return(xds_obj)
 }
 
 
-#' @title IRS contact with Multiple Rounds
+
+#' @title IRS Contact for Multiround Models
+#'
 #' @description A model for IRS contact over time
-#' when there have been several, different IRS models
+#' when there have been several rounds of IRS
+#'
 #' @inheritParams IRS_Contact
 #' @return a **`ramp.xds`** model object
 #' @export

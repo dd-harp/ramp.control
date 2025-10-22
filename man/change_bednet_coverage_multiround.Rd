@@ -4,12 +4,12 @@
 \alias{change_bednet_coverage_multiround}
 \title{Setup Muti-Round Bed Net coverage}
 \usage{
-change_bednet_coverage_multiround(coverage, xds_obj)
+change_bednet_coverage_multiround(xds_obj, peak_access)
 }
 \arguments{
-\item{coverage}{the coverage parametter}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{peak_access}{peak access}
 }
 \description{
 With multi-round bed net coverage, there

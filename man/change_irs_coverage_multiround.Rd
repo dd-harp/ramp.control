@@ -2,14 +2,14 @@
 % Please edit documentation in R/irs-coverage-multiround.R
 \name{change_irs_coverage_multiround}
 \alias{change_irs_coverage_multiround}
-\title{Setup Muti-Round Bed Net coverage}
+\title{Change IRS Multiround Coverage}
 \usage{
-change_irs_coverage_multiround(coverage, xds_obj)
+change_irs_coverage_multiround(xds_obj, frac_sprayed)
 }
 \arguments{
-\item{coverage}{the coverage parametter}
-
 \item{xds_obj}{an \strong{\code{xds}} model object}
+
+\item{frac_sprayed}{the fraction of houses sprayed}
 }
 \description{
 With multi-round bed net coverage, there

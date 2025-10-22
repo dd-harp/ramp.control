@@ -2,21 +2,20 @@
 #' @title Set up dynamic forcing
 #'
 #' @description Set up a function that computes
-#' irs multi_objage over time.
+#' irs multi-round
 #'
-#' @param contact the contact parameters to use
 #' @param xds_obj a **`ramp.xds`**  model object
+#' @param peak the scaling parameter
+#' @param pw a shape parameter
 #'
 #' @return an IRS multi_objage / contact model object
 #'
 #' @export
-make_irs_multiround = function(contact, xds_obj){
+make_irs_multiround = function(xds_obj, peak, pw=1){
   with(xds_obj$events_obj, stopifnot(exists("irs")))
-  irs <- xds_obj$events_obj$irs
-  irs$contact <- contact
-  make_F_multi_irs(irs)
+  irs_events <- xds_obj$events_obj$irs
+  return(make_F_multiround_irs(irs_events, peak, pw))
 }
-
 
 #' @title Set up dynamic forcing
 #'
@@ -25,20 +24,23 @@ make_irs_multiround = function(contact, xds_obj){
 #' forcing and set all the
 #'
 #' @param multi_obj a multiround model object
+#' @param peak the scaling parameter
+#' @param pw a shape parameter
 #'
 #' @return a function
 #' @export
-make_F_multi_irs = function(multi_obj){
+make_F_multiround_irs = function(multi_obj, peak, pw=1){
+  with(multi_obj,{
+    stopifnot(length(peak)==N)
+    checkIt(pw, N)
 
-  rounds <- list()
-  if(multi_obj$N>0)
-    for(i in 1:multi_obj$N)
-      rounds[[i]] = with(multi_obj, make_irs_round(type[i], jdate[i], peak[i], contact[i]))
+    rounds <- list()
+    if(N>0)
+      for(i in 1:N)
+        rounds[[i]] = make_irs_round(irs_type[i], start_day[i], peak[i], event_length[i], pw[i])
 
-  rounds_par <- makepar_F_multiround(multi_obj$N, rounds)
-  multi_obj$rounds <- rounds
-  multi_obj$rounds_par <- rounds_par
-  F_multi <- make_function(rounds_par)
+    rounds_par <- makepar_F_multiround(multi_obj$N, rounds)
+    return(make_function(rounds_par))
+})}
 
-  return(F_multi)
-}
+

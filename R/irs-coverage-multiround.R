@@ -16,29 +16,28 @@ setup_irs_coverage.multiround = function(name, xds_obj, options=list()){
   cover_obj$class = "multiround"
   class(cover_obj) = "multiround"
   xds_obj$irs_obj$cover_obj <- cover_obj
-  contact = rep(1, xds_obj$events_obj$irs$N)
-  xds_obj$irs_obj$cover_obj$F_cover <- make_irs_multiround(contact, xds_obj)
+  peak = xds_obj$events_obj$irs$frac_sprayed
+  xds_obj$irs_obj$cover_obj$F_cover <- make_irs_multiround(xds_obj, peak)
   return(xds_obj)
 }
 
-#' @title Setup Muti-Round Bed Net coverage
+#' @title Change IRS Multiround Coverage
 #'
 #' @description
 #' With multi-round bed net coverage, there
 #' is a different relationship between coverage
 #' and coverage in each round
 #'
-#' @param coverage the coverage parametter
 #' @param xds_obj an **`xds`** model object
+#' @param frac_sprayed the fraction of houses sprayed
 #'
 #' @export
-change_irs_coverage_multiround = function(coverage, xds_obj){
+change_irs_coverage_multiround = function(xds_obj, frac_sprayed){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("irs")))
-  stopifnot(length(coverage) == xds_obj$events_obj$irs$N)
-  xds_obj$events_obj$irs$coverage = coverage
-  contact = rep(1, xds_obj$events_obj$irs$N)
-  xds_obj$irs_obj$coverage_obj <- make_irs_multiround(contact, xds_obj)
+  stopifnot(length(frac_sprayed) == xds_obj$events_obj$irs$N)
+  xds_obj$events_obj$irs$frac_sprayed = frac_sprayed
+  xds_obj$irs_obj$coverage_obj$F_cover <- make_irs_multiround(xds_obj, frac_sprayed)
   return(xds_obj)
 }
 

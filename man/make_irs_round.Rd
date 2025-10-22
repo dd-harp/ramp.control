@@ -2,24 +2,30 @@
 % Please edit documentation in R/irs-pesticides.R
 \name{make_irs_round}
 \alias{make_irs_round}
-\title{Set up dynamic forcing}
+\title{Make an IRS Round}
 \usage{
-make_irs_round(type, t_init, coverage, contact)
+make_irs_round(irs_type, start_day, peak, length = 20, pw = 1)
 }
 \arguments{
-\item{type}{the name of the IRS type}
+\item{irs_type}{the name of the IRS type}
 
-\item{t_init}{the time when IRS started}
+\item{start_day}{the start day for the IRS round}
 
-\item{coverage}{effective coverage}
+\item{peak}{the maximum value}
 
-\item{contact}{effective contact}
+\item{length}{the number of days it took to complete spraying}
+
+\item{pw}{a shape parameter}
 }
 \value{
-a \strong{\code{xds}} object
+a \code{sharkfin} function object
 }
 \description{
-If dynamic forcing has not
-already been set up, then turn on dynamic
-forcing and set all the
+Return the parameters
+to make sharkfin function for an irs round with one of the
+pesticides in the \code{irs_profiles} table.
+
+The parameters
+specify a model for the
+"killing potential" from the start of the spray round through the end.
 }

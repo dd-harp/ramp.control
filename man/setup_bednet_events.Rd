@@ -4,18 +4,27 @@
 \alias{setup_bednet_events}
 \title{Set Up Bed Net Evaluation}
 \usage{
-setup_bednet_events(xds_obj, jdates, net_type, peak_access, contact = 1)
+setup_bednet_events(
+  xds_obj,
+  start_day,
+  net_type,
+  coverage_profile,
+  peak_access,
+  event_length = 20
+)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{jdates}{the julian dates of bed net mass distribution events}
+\item{start_day}{the julian dates of bed net mass distribution events}
 
 \item{net_type}{the type of net used}
 
+\item{coverage_profile}{the type of net used}
+
 \item{peak_access}{the fraction of the population with access to a bed net}
 
-\item{contact}{the contact parameter}
+\item{event_length}{the length of the bed net distribution event}
 }
 \value{
 a \strong{\code{ramp.xds}}  model object
