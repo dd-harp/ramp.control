@@ -6,3 +6,4 @@
 ^pkgdown$
 ^LICENSE\.md$
 ^repair_shop$
+^data-raw$

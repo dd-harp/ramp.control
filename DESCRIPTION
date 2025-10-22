@@ -16,7 +16,8 @@ Remotes: github::dd-harp/ramp.xds
 RdMacros: Rdpack
 Roxygen: list(markdown = TRUE)
 Depends:
-  ramp.xds
+    R (>= 3.5),
+    ramp.xds
 Imports:
   Rdpack
 Suggests:

@@ -1,97 +1,131 @@
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @param type the name of the IRS type
-#' @param t_init the time when IRS started
-#' @param coverage effective coverage
-#' @param contact effective contact
-#' @return a **`xds`** object
+#' @title Make an IRS Round
+#'
+#' @description Return the parameters
+#' to make sharkfin function for an irs round with one of the
+#' pesticides in the `irs_profiles` table.
+#'
+#' The parameters
+#' specify a model for the
+#' "killing potential" from the start of the spray round through the end.
+#'
+#' @param irs_type the name of the IRS type
+#' @param start_day the start day for the IRS round
+#' @param peak the maximum value
+#' @param length the number of days it took to complete spraying
+#' @param pw a shape parameter
+#'
+#' @return a `sharkfin` function object
+#'
 #' @export
-make_irs_round = function(type, t_init, coverage, contact) {
-  class(type) <- type
-  UseMethod("make_irs_round", type)
+make_irs_round = function(irs_type, start_day, peak, length=20, pw=1) {
+  profile = irs_profiles[irs_profiles$name == irs_type,]
+  D = start_day+length/2
+  uk = 10/length
+  L = profile$d_50
+  dk = 1/profile$d_shape
+  return(makepar_F_sharkfin(D=D, L=L, uk=uk,dk=dk, mx=peak, pw=pw))
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @param t_init the time when IRS started
-#' @param uk scale up rate
-#' @param L length of half-life
-#' @param dk decay shape parameter
-#' @param coverage the coverage achieved
-#' @param contact contact
-#' @return a **`xds`** object
-#' @export
-make_irs_round_generic = function(t_init, uk=1/5, L=365, dk=1/60, coverage=.7, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=uk, L=L, dk = dk, mx=coverage*contact)
-}
-
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
+#' @title Make an IRS Round
+#'
+#' @description Return the parameters
+#' to make sharkfin function for an irs round with one of the
+#' pesticides in the `irs_profiles` table.
+#'
+#' The parameters
+#' specify a model for the
+#' "killing potential" from the start of the spray round through the end.
+#'
 #' @inheritParams make_irs_round
-#' @return a **`xds`** object
+#'
+#' @return a `sharkbite` function object
+#'
 #' @export
-make_irs_round.none = function(type, t_init, coverage, contact=1) {
-  makepar_F_zero()
+make_irs_shock = function(irs_type, start_day, peak, length=20, pw=1) {
+  profile = irs_profiles[irs_profiles$name == irs_type,]
+  D = start_day+length/2
+  uk = 10/length
+  L = profile$d_50
+  dk = 1/profile$d_shape
+  return(makepar_F_sharkbite(D=D, L=L, uk=uk,dk=dk, mx=peak,pw=pw))
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @inheritParams make_irs_round
-#' @return a **`xds`** object
+#' @title Make an IRS Killing Profile
+#'
+#' @description Return the parameters
+#' to make sharkfin function for an irs round.
+#'
+#'
+#' @param d_50 the day when efficacy reaches 50%
+#' @param d_shape the decay shape
+#' @param start_day the start day for the IRS round
+#' @param peak the maximum value
+#' @param length the number of days it took to complete spraying
+#' @param pw a shape parameter
+#'
+#' @return a `sharkfin` function object
+#'
 #' @export
-make_irs_round.actellic = function(type, t_init, coverage, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=1/5, L=365, dk = 1/60, mx=coverage*contact)
+make_irs_killing_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
+  D = start_day+length/2
+  uk = 5/length
+  return(makepar_F_sharkfin(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak, pw=pw))
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @inheritParams make_irs_round
-#' @return a **`xds`** object
+#' @title Make an IRS Effect Size Curve
+#'
+#' @description Return the parameters
+#' to make sharkfin function for an irs round.
+#'
+#' @inheritParams make_irs_killing_profile
+#'
+#' @return a `sharkbite` function object
+#'
 #' @export
-make_irs_round.bendiocarb = function(type, t_init, coverage, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=1/5, L=100, dk = 1/25, mx=coverage*contact)
+make_irs_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
+  D = start_day+length/2
+  uk = 5/length
+  return(makepar_F_sharkbite(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak))
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @inheritParams make_irs_round
+#' @title Show an IRS Profile
+#'
+#' @description Return the parameters
+#' to call a sharkfin function to model
+#' a single round of IRS.
+#'
+#' @param irs_type the name of the IRS type
+#'
 #' @return a **`xds`** object
 #' @export
-make_irs_round.fludora_fusion = function(type, t_init, coverage, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=1/5, L=310, dk = 1/35, mx=coverage*contact)
+show_irs_profile = function(irs_type){
+ pars <- make_irs_round(irs_type, 10, 1)
+ mtl <- paste("IRS Killing Potential (", irs_type, ")", sep="")
+ ylb <- "Pr(Death)"
+  F_kill <- make_function(pars)
+  tt <- c(0:730)
+  plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @inheritParams make_irs_round
+#' @title Make Parameters for an IRS Round
+#'
+#' @description Return the parameters
+#' to call a sharkfin function to model
+#' a single round of IRS.
+#'
+#' @param irs_type the name of the IRS type
+#'
 #' @return a **`xds`** object
 #' @export
-make_irs_round.sumishield = function(type, t_init, coverage, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=1/5, L=365, dk = 1/75, mx=coverage*contact)
+show_irs_response_timeline = function(irs_type){
+  pars <- make_irs_shock(irs_type, 10, 1)
+  mtl <- paste("IRS - EIR Response Timeline (", irs_type, ")", sep="")
+  ylb <- "Relative Effect"
+  F_kill <- make_function(pars)
+  tt <- c(0:730)
+  plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
 }
 
-#' @title Set up dynamic forcing
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#' @inheritParams make_irs_round
-#' @return a **`xds`** object
-#' @export
-make_irs_round.pyrethroid = function(type, t_init, coverage, contact=1) {
-  makepar_F_sharkfin(D=t_init, uk=1/5, L=180, dk = 1/100, mx=coverage*contact)
-}
+
+

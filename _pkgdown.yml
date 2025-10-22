@@ -128,12 +128,9 @@ reference:
   - setup_bednet_coverage.multiround
   - make_bednet_multiround
   - Bed_Net_Coverage.multiround
-  - make_F_multi_bednet
   - change_bednet_contact_multiround
   - change_bednet_coverage_multiround
   - make_bednet_round
-  - make_bednet_round_generic
-  - make_bednet_round.pbo
   - get_bednet_contact
   - setup_bednet_events
   - show_bednet_events
@@ -236,13 +233,6 @@ reference:
     Profiles for common IRS pesticides
   contents:
   - make_irs_round
-  - make_irs_round_generic
-  - make_irs_round.none
-  - make_irs_round.actellic
-  - make_irs_round.bendiocarb
-  - make_irs_round.fludora_fusion
-  - make_irs_round.sumishield
-  - make_irs_round.pyrethroid
 - subtitle: IRS Multiround Coverage
   desc: |
     Specialized methods to model IRS coverage
@@ -250,7 +240,6 @@ reference:
   - setup_irs_coverage.multiround
   - IRS_Coverage.multiround
   - make_irs_multiround
-  - make_F_multi_irs
 - title: LSM
   desc: |
     Specialized methods to model LSM
@@ -272,5 +261,28 @@ reference:
   contents:
   - make_none_object
   - makepar_F_multiround
-
-
+  - bednet_profiles
+  - change_bednet_pw_multiround
+  - change_irs_pw_multiround
+  - change_irs_shock_multiround
+  - change_irs_shock_pw_multiround
+  - get_events
+  - get_events.bednet
+  - get_events.irs
+  - irs_profiles
+  - make_F_multiround_bednet
+  - make_F_multiround_irs
+  - make_F_multishock_irs
+  - make_bednet_coverage_profile
+  - make_bednet_efsz_profile
+  - make_bednet_shock
+  - make_irs_efsz_profile
+  - make_irs_killing_profile
+  - make_irs_shock
+  - makepar_F_multishock
+  - setup_irs_shock_multiround
+  - show_bednet_response_timeline
+  - show_coverage_profile
+  - show_irs_profile
+  - show_irs_response_timeline
+  - show_irs_shock

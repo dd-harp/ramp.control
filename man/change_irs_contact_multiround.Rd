@@ -4,12 +4,15 @@
 \alias{change_irs_contact_multiround}
 \title{Setup Muti-Round IRS Contact}
 \usage{
-change_irs_contact_multiround(contact, xds_obj)
+change_irs_contact_multiround(xds_obj, contact)
 }
 \arguments{
-\item{contact}{contact parameters}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{contact}{the new contact parameter}
+}
+\value{
+a \strong{\code{ramp.xds}}  model object
 }
 \description{
 With multi-round irs contact, there

@@ -4,16 +4,18 @@
 \alias{add_irs_events}
 \title{Add IRS rounds}
 \usage{
-add_irs_events(xds_obj, jdate, net_type, peak)
+add_irs_events(xds_obj, jdates, pesticides, frac_sprayed, contact)
 }
 \arguments{
 \item{xds_obj}{the \code{ramp.xds} object}
 
-\item{jdate}{the julian date of the bed net mass distribution round}
+\item{jdates}{the julian dates of IRS events}
 
-\item{net_type}{the type of net used}
+\item{pesticides}{the pesticide used}
 
-\item{peak}{the fraction of houses sprayed}
+\item{frac_sprayed}{the fraction of houses sprayed}
+
+\item{contact}{the contact parameter}
 }
 \value{
 a \strong{\code{xds}} object

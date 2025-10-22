@@ -2,17 +2,20 @@
 % Please edit documentation in R/bednet-contact-multiround.R
 \name{change_bednet_contact_multiround}
 \alias{change_bednet_contact_multiround}
-\title{Setup Muti-Round Bed Net Contact}
+\title{Setup Muti-Round bednet Contact}
 \usage{
-change_bednet_contact_multiround(contact, xds_obj)
+change_bednet_contact_multiround(xds_obj, contact)
 }
 \arguments{
-\item{contact}{the contact parametter}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{xds_obj}{an \strong{\code{xds}} model object}
+\item{contact}{the new contact parameter}
+}
+\value{
+a \strong{\code{ramp.xds}}  model object
 }
 \description{
-With multi-round bed net contact, there
+With multi-round bednet contact, there
 is a different relationship between coverage
 and contact in each round
 }

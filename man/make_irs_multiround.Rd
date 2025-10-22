@@ -4,17 +4,19 @@
 \alias{make_irs_multiround}
 \title{Set up dynamic forcing}
 \usage{
-make_irs_multiround(contact, xds_obj)
+make_irs_multiround(xds_obj, peak, pw = 1)
 }
 \arguments{
-\item{contact}{the contact parameters to use}
-
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
+
+\item{peak}{the scaling parameter}
+
+\item{pw}{a shape parameter}
 }
 \value{
 an IRS multi_objage / contact model object
 }
 \description{
 Set up a function that computes
-irs multi_objage over time.
+irs multi-round
 }

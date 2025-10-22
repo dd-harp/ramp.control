@@ -2,20 +2,21 @@
 % Please edit documentation in R/bednet-multiround.R
 \name{make_bednet_multiround}
 \alias{make_bednet_multiround}
-\title{Make the Multiround Bednet Coverage Object}
+\title{Set up dynamic forcing}
 \usage{
-make_bednet_multiround(contact, xds_obj)
+make_bednet_multiround(xds_obj, peak, pw = 1)
 }
 \arguments{
-\item{contact}{a contact parameter}
-
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
+
+\item{peak}{the scaling parameter}
+
+\item{pw}{a shape parameter}
 }
 \value{
-a \strong{\code{xds}} object
+an bednet multi_objage / contact model object
 }
 \description{
-Using information about the events (see \link{setup_bednet_events}),
-including a parameter describing access, this makes a
-function that computes coverage over time.
+Set up a function that computes
+bednet multi-round
 }
