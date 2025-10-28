@@ -25,7 +25,7 @@ makepar_F_multiround = function(nRounds, rounds){
 #' @title Make Parameters for a multishock Function
 #'
 #' @description Return an object to configure
-#' multiple `sharkfin` functions representing
+#' multiple `sharkbite` functions representing
 #' coverage levels over many mass distribution events
 #'
 #' @param nRounds the rate parameter

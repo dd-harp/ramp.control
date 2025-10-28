@@ -4,18 +4,18 @@
 \alias{add_irs_events}
 \title{Add IRS rounds}
 \usage{
-add_irs_events(xds_obj, jdates, pesticides, frac_sprayed, contact)
+add_irs_events(xds_obj, start_day, pesticides, frac_sprayed, event_length = 20)
 }
 \arguments{
-\item{xds_obj}{the \code{ramp.xds} object}
+\item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{jdates}{the julian dates of IRS events}
+\item{start_day}{the Julian start dates of IRS events}
 
 \item{pesticides}{the pesticide used}
 
 \item{frac_sprayed}{the fraction of houses sprayed}
 
-\item{contact}{the contact parameter}
+\item{event_length}{the length of the distribution event}
 }
 \value{
 a \strong{\code{xds}} object

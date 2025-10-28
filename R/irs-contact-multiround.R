@@ -20,11 +20,13 @@ setup_irs_contact.multiround = function(name, xds_obj, options=list()){
 
   contact <-  rep(0, N)
   contact <-  with(options, contact)
-  xds_obj$events_obj$irs$contact = contact
+  stopifnot(length(contact) == N)
+  xds_obj$events_obj$irs$contact <- contact
 
   pw <-  rep(1, N)
   pw <-  with(options, pw)
-  xds_obj$events_obj$irs$pw = pw
+  stopifnot(length(pw) == N)
+  xds_obj$events_obj$irs$pw <- pw
 
   xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
   return(xds_obj)

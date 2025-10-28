@@ -4,10 +4,12 @@
 \alias{make_bednet_shock}
 \title{Make a Bed Net Round}
 \usage{
-make_bednet_shock(coverage_profile, start_day, peak, length = 20, pw = 1)
+make_bednet_shock(d_50, d_shape, start_day, peak, length = 20, pw = 1)
 }
 \arguments{
-\item{coverage_profile}{the name of the bednet type}
+\item{d_50}{the half-saturation day}
+
+\item{d_shape}{the shape}
 
 \item{start_day}{the start day for the bednet round}
 

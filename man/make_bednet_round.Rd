@@ -4,10 +4,12 @@
 \alias{make_bednet_round}
 \title{Make an Bed Net Round}
 \usage{
-make_bednet_round(coverage_profile, start_day, peak, length = 20, pw = 1)
+make_bednet_round(d_50, d_shape, start_day, peak, length = 20, pw = 1)
 }
 \arguments{
-\item{coverage_profile}{the name of the bednet type}
+\item{d_50}{the half-saturation day}
+
+\item{d_shape}{the shape}
 
 \item{start_day}{the start day for the bednet round}
 
@@ -22,8 +24,8 @@ a \code{sharkfin} function object
 }
 \description{
 Return the parameters
-to make sharkfin function for an bednet round with one of the
-pesticides in the \code{coverage_profiles} table.
+to make sharkfin function for a bed net round with one of the
+effective coverage profiles in the \code{bednet_profiles} table.
 
 The parameters
 specify a model for the

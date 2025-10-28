@@ -263,26 +263,34 @@ reference:
   - makepar_F_multiround
   - bednet_profiles
   - change_bednet_pw_multiround
-  - change_irs_pw_multiround
-  - change_irs_shock_multiround
-  - change_irs_shock_pw_multiround
   - get_events
   - get_events.bednet
   - get_events.irs
+
   - irs_profiles
-  - make_F_multiround_bednet
   - make_F_multiround_irs
   - make_F_multishock_irs
-  - make_bednet_coverage_profile
-  - make_bednet_efsz_profile
-  - make_bednet_shock
+  - change_irs_pw_multiround
+  - change_irs_shock_multiround
+  - change_irs_shock_pw_multiround
   - make_irs_efsz_profile
   - make_irs_killing_profile
   - make_irs_shock
-  - makepar_F_multishock
   - setup_irs_shock_multiround
-  - show_bednet_response_timeline
-  - show_coverage_profile
+  - show_irs_shock
   - show_irs_profile
   - show_irs_response_timeline
-  - show_irs_shock
+
+  - make_F_multiround_bednet
+  - make_bednet_coverage_profile
+  - make_bednet_efsz_profile
+  - make_bednet_shock
+  - setup_bednet_shock_multiround.Rd
+  - change_bednet_shock_multiround.Rd
+  - change_bednet_shock_pw_multiround.Rd
+  - show_bednet_response_timeline
+  - make_F_multishock_bednet.Rd
+  - show_bednet_shock.Rd
+
+  - show_coverage_profile
+  - makepar_F_multishock

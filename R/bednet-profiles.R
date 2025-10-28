@@ -2,14 +2,15 @@
 #' @title Make an Bed Net Round
 #'
 #' @description Return the parameters
-#' to make sharkfin function for an bednet round with one of the
-#' pesticides in the `coverage_profiles` table.
+#' to make sharkfin function for a bed net round with one of the
+#' effective coverage profiles in the `bednet_profiles` table.
 #'
 #' The parameters
 #' specify a model for the
 #' "effective coverage" after a mass bed net distribution
 #'
-#' @param coverage_profile the name of the bednet type
+#' @param d_50 the half-saturation day
+#' @param d_shape the shape
 #' @param start_day the start day for the bednet round
 #' @param peak the maximum value
 #' @param length the number of days it took to complete spraying
@@ -18,13 +19,12 @@
 #' @return a `sharkfin` function object
 #'
 #' @export
-make_bednet_round = function(coverage_profile, start_day, peak, length=20, pw=1) {
-  profile = ramp.control::bednet_profiles[bednet_profiles$name == coverage_profile,]
+make_bednet_round = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
   D = start_day+length/2
   uk = 10/length
-  L = profile$d_50
-  dk = 1/profile$d_shape
-  return(makepar_F_sharkfin(D=D, L=L, uk=uk,dk=dk, mx=peak, pw=pw))
+  L = d_50
+  dk = d_shape
+  return(makepar_F_sharkfin(D=D, L=L, uk=uk, dk=dk, mx=peak, pw=pw))
 }
 
 #' @title Make a Bed Net Round
@@ -42,13 +42,12 @@ make_bednet_round = function(coverage_profile, start_day, peak, length=20, pw=1)
 #' @return a `sharkbite` function object
 #'
 #' @export
-make_bednet_shock = function(coverage_profile, start_day, peak, length=20, pw=1) {
-  profile = bednet_profiles[bednet_profiles$name == coverage_profile,]
+make_bednet_shock = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
   D = start_day+length/2
   uk = 10/length
-  L = profile$d_50
-  dk = 1/profile$d_shape
-  return(makepar_F_sharkbite(D=D, L=L, uk=uk,dk=dk, mx=peak,pw=pw))
+  L = d_50
+  dk = d_shape
+  return(makepar_F_sharkbite(D=D, L=d_50, uk=uk, dk=d_shape, mx=peak, pw=pw))
 }
 
 #' @title Make an Bed Net Coverage Profile
@@ -67,7 +66,7 @@ make_bednet_shock = function(coverage_profile, start_day, peak, length=20, pw=1)
 #' @return a `sharkfin` function object
 #'
 #' @export
-make_bednet_coverage_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
+make_bednet_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
   D = start_day+length/2
   uk = 5/length
   return(makepar_F_sharkfin(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak, pw=pw))
@@ -78,7 +77,7 @@ make_bednet_coverage_profile = function(d_50, d_shape, start_day, peak, length=2
 #' @description Return the parameters
 #' to make sharkfin function for an bednet round.
 #'
-#' @inheritParams make_bednet_coverage_profile
+#' @inheritParams make_bednet_profile
 #'
 #' @return a `sharkbite` function object
 #'
@@ -95,17 +94,20 @@ make_bednet_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, p
 #' to call a sharkfin function to model
 #' a single round of bednet.
 #'
-#' @param coverage_profile the name of the bednet type
+#' @param d_50 the half-saturation parameter
+#' @param d_shape the shape parameter
+#' @param clr the line color
+#' @param add if TRUE, add to an existing plot
 #'
 #' @return a **`xds`** object
 #' @export
-show_coverage_profile = function(coverage_profile){
-  pars <- make_bednet_round(coverage_profile, 10, 1)
-  mtl <- paste("Bed Net Coverage(", coverage_profile, ")", sep="")
-  ylb <- "Pr(Death)"
+show_bednet_profile = function(d_50, d_shape, clr="black", add=FALSE){
+  pars <- make_bednet_round(d_50, d_shape, 10, 1)
+  ylb <- "Effective Coverage"
   F_kill <- make_function(pars)
-  tt <- c(0:730)
-  plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
+  tt <- c(0:(4*pars$L))
+  if(add==FALSE) plot(tt, F_kill(tt), ylab=ylb, type = "n")
+  lines(tt, F_kill(tt), col = clr)
 }
 
 #' @title Make Parameters for an bednet Round
@@ -114,17 +116,20 @@ show_coverage_profile = function(coverage_profile){
 #' to call a sharkfin function to model
 #' a single round of bednet.
 #'
-#' @param coverage_profile the name of the bednet type
+#' @param d_50 the half-saturation parameter
+#' @param d_shape the shape parameter
+#' @param clr the line color
+#' @param add if TRUE, add to an existing plot
 #'
 #' @return a **`xds`** object
 #' @export
-show_bednet_response_timeline = function(coverage_profile){
-  pars <- make_bednet_shock(coverage_profile, 10, 1)
-  mtl <- paste("Bed Net - EIR Response Timeline (", coverage_profile, ")", sep="")
+show_bednet_response_timeline = function(d_50, d_shape, clr="black", add=FALSE){
+  pars <- make_bednet_shock(d_50, d_shape, 10, 1)
   ylb <- "Relative Effect"
   F_kill <- make_function(pars)
-  tt <- c(0:730)
-  plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
+  tt <- c(0:(4*pars$L))
+  if(add==FALSE) plot(tt, F_kill(tt), ylab=ylb, type = "n")
+  lines(tt, F_kill(tt), col = clr)
 }
 
 

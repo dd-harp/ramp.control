@@ -8,8 +8,9 @@ setup_bednet_events(
   xds_obj,
   start_day,
   net_type,
-  coverage_profile,
   peak_access,
+  d_50 = 365,
+  d_shape = 1/100,
   event_length = 20
 )
 }
@@ -20,9 +21,11 @@ setup_bednet_events(
 
 \item{net_type}{the type of net used}
 
-\item{coverage_profile}{the type of net used}
-
 \item{peak_access}{the fraction of the population with access to a bed net}
+
+\item{d_50}{the half-saturation parameter}
+
+\item{d_shape}{the access parameter}
 
 \item{event_length}{the length of the bed net distribution event}
 }
