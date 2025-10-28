@@ -16,6 +16,6 @@ a multishock function
 }
 \description{
 Return an object to configure
-multiple \code{sharkfin} functions representing
+multiple \code{sharkbite} functions representing
 coverage levels over many mass distribution events
 }

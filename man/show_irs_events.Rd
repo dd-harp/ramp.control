@@ -4,7 +4,14 @@
 \alias{show_irs_events}
 \title{Show IRS Events}
 \usage{
-show_irs_events(xds_obj, mn = 0, mx = 1, clr = "#4686FBFF", add = FALSE)
+show_irs_events(
+  xds_obj,
+  mn = 0,
+  mx = 1,
+  laby = 1,
+  clr = "#4686FBFF",
+  add = FALSE
+)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -12,6 +19,8 @@ show_irs_events(xds_obj, mn = 0, mx = 1, clr = "#4686FBFF", add = FALSE)
 \item{mn}{the bottom of the segment}
 
 \item{mx}{the top of the segment}
+
+\item{laby}{the height of the labels}
 
 \item{clr}{a color for the line segments}
 

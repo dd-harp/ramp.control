@@ -4,10 +4,16 @@
 \alias{show_bednet_response_timeline}
 \title{Make Parameters for an bednet Round}
 \usage{
-show_bednet_response_timeline(coverage_profile)
+show_bednet_response_timeline(d_50, d_shape, clr = "black", add = FALSE)
 }
 \arguments{
-\item{coverage_profile}{the name of the bednet type}
+\item{d_50}{the half-saturation parameter}
+
+\item{d_shape}{the shape parameter}
+
+\item{clr}{the line color}
+
+\item{add}{if TRUE, add to an existing plot}
 }
 \value{
 a \strong{\code{xds}} object

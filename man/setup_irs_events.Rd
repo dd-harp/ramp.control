@@ -4,12 +4,18 @@
 \alias{setup_irs_events}
 \title{Set Up IRS Evaluation}
 \usage{
-setup_irs_events(xds_obj, jdates, pesticides, frac_sprayed, event_length = 20)
+setup_irs_events(
+  xds_obj,
+  start_day,
+  pesticides,
+  frac_sprayed,
+  event_length = 20
+)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
 
-\item{jdates}{the julian dates of IRS events}
+\item{start_day}{the Julian start dates of IRS events}
 
 \item{pesticides}{the pesticide used}
 

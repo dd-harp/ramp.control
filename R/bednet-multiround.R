@@ -32,12 +32,12 @@ make_bednet_multiround = function(xds_obj, peak, pw=1){
 make_F_multiround_bednet = function(multi_obj, peak, pw=1){
   with(multi_obj,{
     stopifnot(length(peak)==N)
-    checkIt(pw, N)
+    pw <- checkIt(pw, N)
 
     rounds <- list()
     if(N>0)
       for(i in 1:N)
-        rounds[[i]] = make_bednet_round(bednet_profile[i], start_day[i], peak[i], event_length[i], pw[i])
+        rounds[[i]] = make_bednet_round(d_50[i], d_shape[i], start_day[i], peak[i], event_length[i], pw[i])
 
     rounds_par <- makepar_F_multiround(multi_obj$N, rounds)
     return(make_function(rounds_par))

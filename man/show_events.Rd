@@ -8,6 +8,9 @@ show_events(
   xds_obj,
   mn = 0,
   mx = 1,
+  ypos = 0,
+  bny = 0,
+  irsy = 1,
   bclr = "#E4460AFF",
   iclr = "#4686FBFF",
   add = FALSE
@@ -19,6 +22,12 @@ show_events(
 \item{mn}{the bottom of the segment}
 
 \item{mx}{the top of the segment}
+
+\item{ypos}{the position of the interpolation points}
+
+\item{bny}{the position of bednet labels}
+
+\item{irsy}{the position of irs labels}
 
 \item{bclr}{a color for the bednet line segments}
 

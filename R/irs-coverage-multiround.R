@@ -16,7 +16,7 @@ setup_irs_coverage.multiround = function(name, xds_obj, options=list()){
   cover_obj$class = "multiround"
   class(cover_obj) = "multiround"
   xds_obj$irs_obj$cover_obj <- cover_obj
-  peak = xds_obj$events_obj$irs$frac_sprayed
+  xds_obj$events_obj$irs$frac_sprayed -> peak
   xds_obj$irs_obj$cover_obj$F_cover <- make_irs_multiround(xds_obj, peak)
   return(xds_obj)
 }
@@ -36,8 +36,8 @@ change_irs_coverage_multiround = function(xds_obj, frac_sprayed){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("irs")))
   stopifnot(length(frac_sprayed) == xds_obj$events_obj$irs$N)
-  xds_obj$events_obj$irs$frac_sprayed = frac_sprayed
-  xds_obj$irs_obj$coverage_obj$F_cover <- make_irs_multiround(xds_obj, frac_sprayed)
+  xds_obj$events_obj$irs$frac_sprayed -> peak
+  xds_obj$irs_obj$coverage_obj$F_cover <- make_irs_multiround(xds_obj, peak)
   return(xds_obj)
 }
 

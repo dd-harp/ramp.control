@@ -4,7 +4,14 @@
 \alias{show_bednet_events}
 \title{Show bednet Events}
 \usage{
-show_bednet_events(xds_obj, mn = 0, mx = 1, clr = "#E4460AFF")
+show_bednet_events(
+  xds_obj,
+  mn = 0,
+  mx = 1,
+  laby = 0.1,
+  clr = "#E4460AFF",
+  add = FALSE
+)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -13,7 +20,11 @@ show_bednet_events(xds_obj, mn = 0, mx = 1, clr = "#E4460AFF")
 
 \item{mx}{the top of the segment}
 
+\item{laby}{the height of the labels}
+
 \item{clr}{a color for the line segments}
+
+\item{add}{if TRUE, add to an existing plot}
 }
 \value{
 a \strong{\code{ramp.xds}}  model object
