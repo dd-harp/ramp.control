@@ -217,7 +217,7 @@ add_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_le
   event_length= checkIt(event_length, M)
 
   if(with(xds_obj$events_obj, !exists("irs")))
-         return(setup_irs_events(xds_obj, start_day, pesticides, frac_sprayed, contact))
+         return(setup_irs_events(xds_obj, start_day, pesticides, frac_sprayed, event_length))
 
   new_start = c(xds_obj$events_obj$irs$start_day, start_day)
   new_type = c(xds_obj$events_obj$irs$type, pesticides)

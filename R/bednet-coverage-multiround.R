@@ -36,8 +36,8 @@ change_bednet_coverage_multiround = function(xds_obj, peak_access){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(peak_access) == xds_obj$events_obj$bednet$N)
-  xds_obj$events_obj$bednet$peak_access = peak_access
-  xds_obj$bednet_obj$coverage_obj  <- make_bednet_multiround(xds_obj, peak)
+  xds_obj$events_obj$bednet$peak_access <- peak_access
+  xds_obj$bednet_obj$coverage_obj  <- make_bednet_multiround(xds_obj, peak_access)
   return(xds_obj)
 }
 

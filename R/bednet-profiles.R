@@ -99,7 +99,10 @@ make_bednet_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, p
 #' @param clr the line color
 #' @param add if TRUE, add to an existing plot
 #'
+#' @importFrom graphics lines
+#'
 #' @return a **`xds`** object
+#'
 #' @export
 show_bednet_profile = function(d_50, d_shape, clr="black", add=FALSE){
   pars <- make_bednet_round(d_50, d_shape, 10, 1)
@@ -120,6 +123,8 @@ show_bednet_profile = function(d_50, d_shape, clr="black", add=FALSE){
 #' @param d_shape the shape parameter
 #' @param clr the line color
 #' @param add if TRUE, add to an existing plot
+#'
+#' @importFrom graphics lines
 #'
 #' @return a **`xds`** object
 #' @export
