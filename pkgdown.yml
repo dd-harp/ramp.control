@@ -3,12 +3,13 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   BedNets: BedNets.html
+  Events: Events.html
   IRS_Events: IRS_Events.html
   IRS-insectides: IRS-insectides.html
   IRS: IRS.html
   MassTreatment: MassTreatment.html
   vc_lemenach: vc_lemenach.html
-last_built: 2025-10-22T17:41Z
+last_built: 2025-10-28T05:56Z
 urls:
   reference: https://dd-harp.github.io/ramp.control/reference
   article: https://dd-harp.github.io/ramp.control/articles

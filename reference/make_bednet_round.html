@@ -6,13 +6,13 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make an Bed Net Round — make_bednet_round"><meta name="description" content='Return the parameters
-to make sharkfin function for an bednet round with one of the
-pesticides in the coverage_profiles table.
+to make sharkfin function for a bed net round with one of the
+effective coverage profiles in the bednet_profiles table.
 The parameters
 specify a model for the
 "effective coverage" after a mass bed net distribution'><meta property="og:description" content='Return the parameters
-to make sharkfin function for an bednet round with one of the
-pesticides in the coverage_profiles table.
+to make sharkfin function for a bed net round with one of the
+effective coverage profiles in the bednet_profiles table.
 The parameters
 specify a model for the
 "effective coverage" after a mass bed net distribution'></head><body>
@@ -56,8 +56,8 @@ specify a model for the
 
     <div class="ref-description section level2">
     <p>Return the parameters
-to make sharkfin function for an bednet round with one of the
-pesticides in the <code>coverage_profiles</code> table.</p>
+to make sharkfin function for a bed net round with one of the
+effective coverage profiles in the <code>bednet_profiles</code> table.</p>
 <p>The parameters
 specify a model for the
 "effective coverage" after a mass bed net distribution</p>
@@ -65,15 +65,19 @@ specify a model for the
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_bednet_round</span><span class="op">(</span><span class="va">coverage_profile</span>, <span class="va">start_day</span>, <span class="va">peak</span>, length <span class="op">=</span> <span class="fl">20</span>, pw <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_bednet_round</span><span class="op">(</span><span class="va">d_50</span>, <span class="va">d_shape</span>, <span class="va">start_day</span>, <span class="va">peak</span>, length <span class="op">=</span> <span class="fl">20</span>, pw <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-coverage-profile">coverage_profile<a class="anchor" aria-label="anchor" href="#arg-coverage-profile"></a></dt>
-<dd><p>the name of the bednet type</p></dd>
+<dl><dt id="arg-d-">d_50<a class="anchor" aria-label="anchor" href="#arg-d-"></a></dt>
+<dd><p>the half-saturation day</p></dd>
+
+
+<dt id="arg-d-shape">d_shape<a class="anchor" aria-label="anchor" href="#arg-d-shape"></a></dt>
+<dd><p>the shape</p></dd>
 
 
 <dt id="arg-start-day">start_day<a class="anchor" aria-label="anchor" href="#arg-start-day"></a></dt>

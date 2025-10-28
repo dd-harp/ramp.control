@@ -57,8 +57,9 @@ rounds to the the events list</p>
 <span>  <span class="va">xds_obj</span>,</span>
 <span>  <span class="va">start_day</span>,</span>
 <span>  <span class="va">net_type</span>,</span>
-<span>  <span class="va">coverage_profile</span>,</span>
 <span>  <span class="va">peak_access</span>,</span>
+<span>  d_50 <span class="op">=</span> <span class="fl">365</span>,</span>
+<span>  d_shape <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>,</span>
 <span>  event_length <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -79,12 +80,16 @@ rounds to the the events list</p>
 <dd><p>the type of net used</p></dd>
 
 
-<dt id="arg-coverage-profile">coverage_profile<a class="anchor" aria-label="anchor" href="#arg-coverage-profile"></a></dt>
-<dd><p>the type of net used</p></dd>
-
-
 <dt id="arg-peak-access">peak_access<a class="anchor" aria-label="anchor" href="#arg-peak-access"></a></dt>
 <dd><p>the fraction of the population with access to a bed net</p></dd>
+
+
+<dt id="arg-d-">d_50<a class="anchor" aria-label="anchor" href="#arg-d-"></a></dt>
+<dd><p>the half-saturation parameter</p></dd>
+
+
+<dt id="arg-d-shape">d_shape<a class="anchor" aria-label="anchor" href="#arg-d-shape"></a></dt>
+<dd><p>the access parameter</p></dd>
 
 
 <dt id="arg-event-length">event_length<a class="anchor" aria-label="anchor" href="#arg-event-length"></a></dt>
