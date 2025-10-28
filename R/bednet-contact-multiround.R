@@ -66,7 +66,7 @@ change_bednet_contact_multiround = function(xds_obj, contact){
 #' @return a **`ramp.xds`**  model object
 #'
 #' @export
-change_bednet_contact_d_50_multiround = function(xds_obj, d_50){
+change_bednet_contact_d50_multiround = function(xds_obj, d_50){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(d_50) == xds_obj$events_obj$bednet$N)
