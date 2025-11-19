@@ -12,6 +12,15 @@ show_irs_events(
   clr = "#4686FBFF",
   add = FALSE
 )
+
+show_irs_events(
+  xds_obj,
+  mn = 0,
+  mx = 1,
+  laby = 1,
+  clr = "#4686FBFF",
+  add = FALSE
+)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -28,7 +37,11 @@ show_irs_events(
 }
 \value{
 a \strong{\code{ramp.xds}}  model object
+
+a \strong{\code{ramp.xds}}  model object
 }
 \description{
+Show IRS Events
+
 Show IRS Events
 }

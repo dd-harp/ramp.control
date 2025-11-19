@@ -28,7 +28,8 @@ setup_irs_contact.multiround = function(name, xds_obj, options=list()){
   stopifnot(length(pw) == N)
   xds_obj$events_obj$irs$pw <- pw
 
-  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
+  xds_obj <- setup_F_contact_irs_multiround(xds_obj)
+
   return(xds_obj)
 }
 
@@ -50,34 +51,26 @@ change_irs_contact_multiround = function(xds_obj, contact){
   stopifnot(with(xds_obj$events_obj, exists("irs")))
   stopifnot(length(contact) == xds_obj$events_obj$irs$N)
   xds_obj$events_obj$irs$contact = contact
-  pw <- xds_obj$events_obj$irs$pw
-  xds_obj$irs_obj$contact_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
+  xds_obj <- setup_F_contact_irs_multiround(xds_obj)
   return(xds_obj)
 }
 
-#' @title Setup Muti-Round IRS Shape
+#' @title Make `F_contact` for IRS
 #'
-#' @description
-#' With multi-round irs pw, there
-#' is a different relationship between coverage
-#' and pw in each round
+#' @description Set up the IRS rounds
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
-#' @param pw the new shape parameter
 #'
-#' @return a **`ramp.xds`**  model object
+#' @return set up the rounds
 #'
 #' @export
-change_irs_pw_multiround = function(xds_obj, pw){
-  stopifnot(with(xds_obj, exists("events_obj")))
-  stopifnot(with(xds_obj$events_obj, exists("irs")))
-  stopifnot(length(pw) == xds_obj$events_obj$irs$N)
-  xds_obj$events_obj$irs$pw = pw
-  contact <- xds_obj$events_obj$irs$contact
-  xds_obj$irs_obj$conatct_obj$F_contact = make_irs_multiround(xds_obj, contact, pw)
-  return(xds_obj)
-}
-
+setup_F_contact_irs_multiround = function(xds_obj){
+  xds_obj <- setup_irs_rounds(xds_obj, xds_obj$events_obj$irs$contact)
+  with(xds_obj$events_obj$irs,{
+    rounds_par <- makepar_F_multiround(N, rounds)
+    xds_obj$irs_obj$contact_obj$F_contact = make_function(rounds_par)
+    return(xds_obj)
+})}
 
 
 #' @title IRS Contact for Multiround Models

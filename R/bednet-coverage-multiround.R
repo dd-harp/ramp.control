@@ -16,7 +16,8 @@ setup_bednet_coverage.multiround = function(name="multiround", xds_obj, options=
   class(cover_obj) = "multiround"
   xds_obj$bednet_obj$cover_obj <- cover_obj
   peak = xds_obj$events_obj$bednet$peak_access
-  xds_obj$bednet_obj$cover_obj$F_cover <- make_bednet_multiround(xds_obj, peak)
+
+  xds_obj <- setup_F_coverage_bednet_multiround(xds_obj)
 
   return(xds_obj)
 }
@@ -37,9 +38,26 @@ change_bednet_coverage_multiround = function(xds_obj, peak_access){
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(peak_access) == xds_obj$events_obj$bednet$N)
   xds_obj$events_obj$bednet$peak_access <- peak_access
-  xds_obj$bednet_obj$coverage_obj  <- make_bednet_multiround(xds_obj, peak_access)
+  xds_obj <- setup_F_coverage_bednet_multiround(xds_obj)
   return(xds_obj)
 }
+
+#' @title Make `F_coverage` for bednet
+#'
+#' @description Set up the bednet rounds
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @return set up the rounds
+#'
+#' @export
+setup_F_coverage_bednet_multiround = function(xds_obj){
+  xds_obj <- setup_bednet_rounds(xds_obj, xds_obj$events_obj$bednet$coverage)
+  with(xds_obj$events_obj$bednet,{
+    rounds_par <- makepar_F_multiround(N, rounds)
+    xds_obj$bednet_obj$coverage_obj$F_coverage = make_function(rounds_par)
+    return(xds_obj)
+})}
 
 #' @title Set no bednet_coverage
 #' @description The null model for bednet_coverage

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bednet-contact-multiround.R
 \name{Bed_Net_Contact.multiround}
 \alias{Bed_Net_Contact.multiround}
-\title{Set no bednet_coverage}
+\title{Set no bednet_contact}
 \usage{
 \method{Bed_Net_Contact}{multiround}(t, y, xds_obj)
 }
@@ -17,5 +17,5 @@
 a \strong{\code{xds}} object
 }
 \description{
-The null model for bednet_coverage
+The null model for bed net contact
 }

@@ -16,6 +16,8 @@ navbar:
       href: articles/IRS-insectides.html
     - text: Mass Treatment
       href: articles/MassTreatment.html
+    - text: Response Timelines
+      href: articles/ResponseTimelines.html
   - text: Functions
     href: reference/index.html
   right:
@@ -126,7 +128,6 @@ reference:
     Specialized methods to model bed net coverage
   contents:
   - setup_bednet_coverage.multiround
-  - make_bednet_multiround
   - Bed_Net_Coverage.multiround
   - change_bednet_contact_multiround
   - change_bednet_coverage_multiround
@@ -239,7 +240,6 @@ reference:
   contents:
   - setup_irs_coverage.multiround
   - IRS_Coverage.multiround
-  - make_irs_multiround
 - title: LSM
   desc: |
     Specialized methods to model LSM
@@ -261,35 +261,30 @@ reference:
   contents:
   - make_none_object
   - makepar_F_multiround
-  - change_bednet_pw_multiround
   - get_events
   - get_events.bednet
   - get_events.irs
-
   - irs_profiles
-  - make_F_multiround_irs
-  - make_F_multishock_irs
-  - change_irs_pw_multiround
   - change_irs_shock_multiround
-  - change_irs_shock_pw_multiround
   - make_irs_efsz_profile
   - make_irs_killing_profile
   - make_irs_shock
-  - setup_irs_shock_multiround
   - show_irs_shock
   - show_irs_profile
   - show_irs_response_timeline
-  - make_F_multiround_bednet
   - make_bednet_efsz_profile
   - make_bednet_shock
-  - setup_bednet_shock_multiround
   - change_bednet_shock_multiround
-  - change_bednet_shock_pw_multiround
   - show_bednet_response_timeline
-  - make_F_multishock_bednet
   - show_bednet_shock
   - makepar_F_multishock
-  - change_bednet_contact_d50_multiround
-  - change_bednet_shock_d50_multiround
   - make_bednet_profile
   - show_bednet_profile
+  - setup_F_contact_bednet_multiround
+  - setup_F_contact_irs_multiround
+  - setup_F_coverage_bednet_multiround
+  - setup_F_coverage_irs_multiround
+  - setup_F_multishock
+  - setup_bednet_rounds
+  - setup_bednet_shock_multiround
+  - setup_irs_rounds

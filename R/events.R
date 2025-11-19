@@ -61,81 +61,32 @@ show_events = function(xds_obj, mn=0, mx=1, ypos=0, bny=0, irsy=1, bclr="#E4460A
 }
 
 
-#' Set Up Bed Net Evaluation
+#' Show IRS Events
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
-#' @param start_day the julian dates of bed net mass distribution events
-#' @param net_type the type of net used
-#' @param peak_access the fraction of the population with access to a bed net
-#' @param d_50 the half-saturation parameter
-#' @param d_shape the access parameter
-#' @param event_length the length of the bed net distribution event
+#' @param mn the bottom of the segment
+#' @param mx the top of the segment
+#' @param laby the height of the labels
+#' @param clr a color for the line segments
+#' @param add if TRUE, add to an existing plot
+#'
+#' @importFrom graphics points text segments
 #'
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-setup_bednet_events = function(xds_obj, start_day, net_type, peak_access, d_50=365, d_shape=1/100, event_length=20){
-
-  xds_obj <- setup_vector_control(xds_obj)
-
-  N = length(start_day)
-  stopifnot(length(net_type)==N)
-  stopifnot(length(peak_access)==N)
-  event_length=checkIt(event_length, N)
-  d_50 = checkIt(d_50, N)
-  d_shape = checkIt(d_shape, N)
-
-  if(with(xds_obj,!exists("events_obj")))
-    xds_obj$events_obj = list()
-
-
-  xds_obj$events_obj$bednet = list()
-  xds_obj$events_obj$bednet$N = N
-  xds_obj$events_obj$bednet$start_day = start_day
-  xds_obj$events_obj$bednet$net_type = net_type
-  xds_obj$events_obj$bednet$peak_access = peak_access
-  xds_obj$events_obj$bednet$d_50 = d_50
-  xds_obj$events_obj$bednet$d_shape = d_shape
-  xds_obj$events_obj$bednet$event_length = event_length
-
-  xds_obj <- setup_bednet_coverage("multiround", xds_obj)
-  xds_obj <- setup_bednet_contact("multiround", xds_obj)
-
-  return(xds_obj)
-}
-
-
-#' @title Add Bed Net Rounds
-#'
-#' @description Add one or more bed net
-#' rounds to the the events list
-#'
-#' @inheritParams setup_bednet_events
-#'
-#' @return a **`xds`** object
-#' @export
-add_bednet_events = function(xds_obj, start_day, net_type, peak_access, d_50=365, d_shape =1/100, event_length=20) {
-  M = length(start_day)
-  stopifnot(length(net_type)==M)
-  stopifnot(length(peak_access)==M)
-  d_50 = checkIt(d_50, M)
-  d_shape = checkIt(d_shape, M)
-  event_length = checkIt(event_length, M)
-
-  if(with(xds_obj$events_obj, !exists("bednet")))
-         return(setup_bednet_events(xds_obj, start_day, net_type, peak_access, d_50, d_shape, event_length))
-
-  new_start = c(xds_obj$events_obj$bednet$start_day, start_day)
-  new_type = c(xds_obj$events_obj$bednet$net_type, net_type)
-  new_50 = c(xds_obj$events_obj$bednet$d_50, d_50)
-  new_shape = c(xds_obj$events_obj$bednet$d_shape, d_shape)
-  new_peak = c(xds_obj$events_obj$bednet$peak_access, peak_access)
-  new_length = c(xds_obj$events_obj$bednet$event_length, event_length)
-
-  xds_obj <- setup_bednet_events(xds_obj, new_start, new_type, new_peak, new_50, new_shape, new_length)
-
-  return(xds_obj)
-}
+show_irs_events = function(xds_obj, mn=0, mx=1, laby = 1, clr="#4686FBFF", add=FALSE){
+  if(with(xds_obj, exists("events_obj")))
+    if(with(xds_obj$events_obj, exists("irs")))
+      with(xds_obj$events_obj$irs,{
+        for(i in 1:N){
+          segments(start_day[i], mn, start_day[i], mx, col = clr)
+          #          label = paste(i, "-", type[i])
+          #          text(start_day[i], .8*mx, label, pos=2, srt=90, col = clr)
+          ypos <- mn + (mx-mn)*laby
+          points(start_day[i], ypos, pch = 21, col = "white", bg="white", cex=3)
+          text(start_day[i], ypos, i, col = clr)
+        }})}
 
 #' Show bednet Events
 #'
@@ -157,76 +108,12 @@ show_bednet_events = function(xds_obj, mn=0, mx=1, laby=0.1, clr="#E4460AFF", ad
       with(xds_obj$events_obj$bednet,{
         for(i in 1:N){
           segments(start_day[i], mn, start_day[i], mx, col = clr)
-#          label = paste(i, "-", net_type[i])
-#          points(peak_access[i]*mx, start_day[i], pch = 19, col = clr)
+          #          label = paste(i, "-", net_type[i])
+          #          points(peak_access[i]*mx, start_day[i], pch = 19, col = clr)
           ypos <- mn + (mx-mn)*laby
           points(start_day[i], ypos, pch = 21, col = "white", bg="white", cex=3)
           text(start_day[i], ypos, i, col = clr)
-}})}
-
-#' Set Up IRS Evaluation
-#'
-#' @param xds_obj a **`ramp.xds`**  model object
-#' @param start_day the Julian start dates of IRS events
-#' @param pesticides the pesticide used
-#' @param frac_sprayed the fraction of houses sprayed
-#' @param event_length the length of the distribution event
-#'
-#' @returns a **`ramp.xds`**  model object
-#'
-#' @export
-setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_length=20){
-
-  xds_obj <- setup_vector_control(xds_obj)
-
-  if(with(xds_obj,!exists("events_obj")))
-    xds_obj$events_obj = list()
-
-  N = length(start_day)
-  stopifnot(length(pesticides)==N)
-  stopifnot(length(frac_sprayed)==N)
-  event_length=checkIt(event_length, N)
-
-  xds_obj$events_obj$irs = list()
-  xds_obj$events_obj$irs$N = N
-  xds_obj$events_obj$irs$start_day = start_day
-  xds_obj$events_obj$irs$type = pesticides
-  xds_obj$events_obj$irs$frac_sprayed = frac_sprayed
-  xds_obj$events_obj$irs$event_length = event_length
-
-  xds_obj <- setup_irs_coverage("multiround", xds_obj)
-  xds_obj <- setup_irs_contact("multiround", xds_obj)
-
-  return(xds_obj)
-}
-
-#' @title Add IRS rounds
-#'
-#' @description If dynamic forcing has not
-#' already been set up, then turn on dynamic
-#' forcing and set all the
-#'
-#' @inheritParams setup_irs_events
-#'
-#' @return a **`xds`** object
-#' @export
-add_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_length=20){
-  M = length(start_day)
-  stopifnot(length(pesticides)==M)
-  stopifnot(length(frac_sprayed)==M)
-  event_length= checkIt(event_length, M)
-
-  if(with(xds_obj$events_obj, !exists("irs")))
-         return(setup_irs_events(xds_obj, start_day, pesticides, frac_sprayed, event_length))
-
-  new_start = c(xds_obj$events_obj$irs$start_day, start_day)
-  new_type = c(xds_obj$events_obj$irs$type, pesticides)
-  new_frac = c(xds_obj$events_obj$irs$frac_sprayed, frac_sprayed)
-  new_length = c(xds_obj$events_obj$irs$event_length, event_length)
-
-  xds_obj <- setup_irs_events(xds_obj, new_start, new_type, new_frac, new_length)
-  return(xds_obj)
-}
+        }})}
 
 
 #' Show IRS Events
