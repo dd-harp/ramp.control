@@ -16,10 +16,27 @@ setup_irs_coverage.multiround = function(name, xds_obj, options=list()){
   cover_obj$class = "multiround"
   class(cover_obj) = "multiround"
   xds_obj$irs_obj$cover_obj <- cover_obj
-  xds_obj$events_obj$irs$frac_sprayed -> peak
-  xds_obj$irs_obj$cover_obj$F_cover <- make_irs_multiround(xds_obj, peak)
+  xds_obj <- setup_F_coverage_irs_multiround(xds_obj)
   return(xds_obj)
 }
+
+#' @title Make `F_coverage` for IRS
+#'
+#' @description Set up the IRS rounds
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @return set up the rounds
+#'
+#' @export
+setup_F_coverage_irs_multiround = function(xds_obj){
+  xds_obj <- setup_irs_rounds(xds_obj, xds_obj$events_obj$irs$coverage)
+  with(xds_obj$events_obj$irs,{
+    rounds_par <- makepar_F_multiround(1, rounds)
+    xds_obj$irs_obj$coverage_obj$F_cover = make_function(rounds_par)
+    return(xds_obj)
+  })}
+
 
 #' @title Change IRS Multiround Coverage
 #'
@@ -36,8 +53,8 @@ change_irs_coverage_multiround = function(xds_obj, frac_sprayed){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("irs")))
   stopifnot(length(frac_sprayed) == xds_obj$events_obj$irs$N)
-  xds_obj$events_obj$irs$frac_sprayed -> peak
-  xds_obj$irs_obj$coverage_obj$F_cover <- make_irs_multiround(xds_obj, peak)
+  xds_obj$events_obj$irs$frac_sprayed <- frac_sprayed
+  xds_obj <- setup_F_coverage_irs_multiround(xds_obj)
   return(xds_obj)
 }
 

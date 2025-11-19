@@ -89,6 +89,7 @@ make_irs_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1
   return(makepar_F_sharkbite(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak))
 }
 
+
 #' @title Show an IRS Profile
 #'
 #' @description Return the parameters
@@ -100,9 +101,9 @@ make_irs_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1
 #' @return a **`xds`** object
 #' @export
 show_irs_profile = function(irs_type){
- pars <- make_irs_round(irs_type, 10, 1)
- mtl <- paste("IRS Killing Potential (", irs_type, ")", sep="")
- ylb <- "Pr(Death)"
+  pars <- make_irs_round(irs_type, 10, 1)
+  mtl <- paste("IRS Killing Potential (", irs_type, ")", sep="")
+  ylb <- "Pr(Death)"
   F_kill <- make_function(pars)
   tt <- c(0:730)
   plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
@@ -126,6 +127,3 @@ show_irs_response_timeline = function(irs_type){
   tt <- c(0:730)
   plot(tt, F_kill(tt), main=mtl, ylab=ylb, type = "l")
 }
-
-
-

@@ -4,7 +4,7 @@
 #'
 #' @description
 #' With multi-round bed net contact, there
-#' is a different relationship between coverage
+#' is a different relationship between contact
 #' and contact in each round
 #'
 #'
@@ -21,11 +21,7 @@ setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=l
   contact <-  with(options, contact)
   xds_obj$events_obj$bednet$contact = contact
 
-  pw <-  rep(1, N)
-  pw <-  with(options, pw)
-  xds_obj$events_obj$bednet$pw = pw
-
-  xds_obj$bednet_obj$contact_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
+  xds_obj <- setup_F_contact_bednet_multiround(xds_obj)
 
   return(xds_obj)
 }
@@ -34,7 +30,7 @@ setup_bednet_contact.multiround = function(name="multiround", xds_obj, options=l
 #'
 #' @description
 #' With multi-round bednet contact, there
-#' is a different relationship between coverage
+#' is a different relationship between contact
 #' and contact in each round
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
@@ -47,61 +43,32 @@ change_bednet_contact_multiround = function(xds_obj, contact){
   stopifnot(with(xds_obj, exists("events_obj")))
   stopifnot(with(xds_obj$events_obj, exists("bednet")))
   stopifnot(length(contact) == xds_obj$events_obj$bednet$N)
-  contact -> xds_obj$events_obj$bednet$contact
-  xds_obj$events_obj$bednet$pw -> pw
-  xds_obj$bednet_obj$contact_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
+  xds_obj$events_obj$bednet$contact -> contact
+
+  xds_obj <- setup_F_contact_bednet_multiround(xds_obj)
+
   return(xds_obj)
 }
 
-#' @title Setup Muti-Round bednet Contact
+#' @title Make `F_contact` for bednet
 #'
-#' @description
-#' With multi-round bednet contact, there
-#' is a different relationship between coverage
-#' and contact in each round
+#' @description Set up the bednet rounds
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
-#' @param d_50 the new half saturation parameter
 #'
-#' @return a **`ramp.xds`**  model object
-#'
-#' @export
-change_bednet_contact_d50_multiround = function(xds_obj, d_50){
-  stopifnot(with(xds_obj, exists("events_obj")))
-  stopifnot(with(xds_obj$events_obj, exists("bednet")))
-  stopifnot(length(d_50) == xds_obj$events_obj$bednet$N)
-  d_50 -> xds_obj$events_obj$bednet$d_50
-  xds_obj$events_obj$bednet$contact -> contact
-  xds_obj$events_obj$bednet$pw -> pw
-  xds_obj$bednet_obj$contact_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
-  return(xds_obj)
-}
-
-#' @title Setup Muti-Round bednet Shape
-#'
-#' @description
-#' With multi-round bednet pw, there
-#' is a different relationship between coverage
-#' and pw in each round
-#'
-#' @param xds_obj a **`ramp.xds`**  model object
-#' @param pw the new shape parameter
-#'
-#' @return a **`ramp.xds`**  model object
+#' @return set up the rounds
 #'
 #' @export
-change_bednet_pw_multiround = function(xds_obj, pw){
-  stopifnot(with(xds_obj, exists("events_obj")))
-  stopifnot(with(xds_obj$events_obj, exists("bednet")))
-  stopifnot(length(pw) == xds_obj$events_obj$bednet$N)
-  pw -> xds_obj$events_obj$bednet$pw
-  xds_obj$events_obj$bednet$contact -> contact
-  xds_obj$bednet_obj$conatct_obj$F_contact = make_bednet_multiround(xds_obj, contact, pw)
-  return(xds_obj)
-}
+setup_F_contact_bednet_multiround = function(xds_obj){
+  xds_obj <- setup_bednet_rounds(xds_obj, xds_obj$events_obj$bednet$contact)
+  with(xds_obj$events_obj$bednet,{
+    rounds_par <- makepar_F_multiround(N, rounds)
+    xds_obj$bednet_obj$contact_obj$F_contact = make_function(rounds_par)
+    return(xds_obj)
+})}
 
-#' @title Set no bednet_coverage
-#' @description The null model for bednet_coverage
+#' @title Set no bednet_contact
+#' @description The null model for bed net contact
 #' @inheritParams Bed_Net_Contact
 #' @return a **`xds`** object
 #' @export

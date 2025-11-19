@@ -1,46 +1,130 @@
 
-#' @title Set up dynamic forcing
-#'
-#' @description Set up a function that computes
-#' irs multi-round
+#' Setup IRS Events
 #'
 #' @param xds_obj a **`ramp.xds`**  model object
-#' @param peak the scaling parameter
-#' @param pw a shape parameter
+#' @param start_day the Julian start dates of IRS events
+#' @param pesticides the pesticide used
+#' @param frac_sprayed the fraction of houses sprayed (if known)
+#' @param event_length the number of days it took to spray the houses
+#' @param contact maximum effective contact
+#' @param shock maximum shock size
 #'
-#' @return an IRS multi_objage / contact model object
+#' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-make_irs_multiround = function(xds_obj, peak, pw=1){
-  with(xds_obj$events_obj, stopifnot(exists("irs")))
-  irs_events <- xds_obj$events_obj$irs
-  return(make_F_multiround_irs(irs_events, peak, pw))
+setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_length=20, contact=1, shock=1){
+
+  xds_obj <- setup_vector_control(xds_obj)
+
+  if(with(xds_obj,!exists("events_obj")))
+    xds_obj$events_obj = list()
+
+  N = length(start_day)
+  stopifnot(length(pesticides)==N)
+  stopifnot(length(frac_sprayed)==N)
+  length=checkIt(event_length, N)
+
+  irs = list()
+  irs$N = N
+  irs$start_day = start_day
+  irs$type = pesticides
+  irs$coverage = frac_sprayed
+  irs$event_length = checkIt(length, N)
+  irs$contact = checkIt(contact, N)
+  irs$shock = checkIt(shock, N)
+  irs$pw = rep(1,N)
+
+  irs$D = start_day+length/2
+  irs$uk = 10/length
+  irs$d_50 = rep(0, N)
+  irs$d_shape = rep(0, N)
+
+  for(i in 1:N){
+    profile = irs_profiles[irs_profiles$name == pesticides[i],]
+    irs$d_50[i] = profile$d_50
+    irs$d_shape[i] = 1/profile$d_shape
+  }
+
+  xds_obj$events_obj$irs = irs
+
+  return(xds_obj)
 }
 
-#' @title Set up dynamic forcing
+#' @title Add IRS rounds
 #'
 #' @description If dynamic forcing has not
 #' already been set up, then turn on dynamic
 #' forcing and set all the
 #'
-#' @param multi_obj a multiround model object
-#' @param peak the scaling parameter
-#' @param pw a shape parameter
+#' @inheritParams setup_irs_events
 #'
-#' @return a function
+#' @return a **`xds`** object
 #' @export
-make_F_multiround_irs = function(multi_obj, peak, pw=1){
-  with(multi_obj,{
-    stopifnot(length(peak)==N)
-    pw = checkIt(pw, N)
+add_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_length=20, contact=1, shock=1){
+  M = length(start_day)
+  stopifnot(length(pesticides)==M)
+  stopifnot(length(frac_sprayed)==M)
+  event_length= checkIt(event_length, M)
+  coverage = checkIt(coverage, M)
+  contact = checkIt(contact, M)
+  shock = checkIt(shock, M)
 
-    rounds <- list()
-    if(N>0)
-      for(i in 1:N)
-        rounds[[i]] = make_irs_round(type[i], start_day[i], peak[i], event_length[i], pw[i])
+  if(with(xds_obj$events_obj, !exists("irs")))
+    return(setup_irs_events(xds_obj, start_day, pesticides, frac_sprayed, event_length, contact, shock))
 
-    rounds_par <- makepar_F_multiround(multi_obj$N, rounds)
-    return(make_function(rounds_par))
+  N = xds_obj$events_obj$irs$N
+
+  irs = xds_obj$events_obj$irs
+  irs$start_day = c(irs$start_day, start_day)
+  irs$type = c(irs$type, pesticides)
+  irs$event_length = c(irs$event_length, event_length)
+  irs$coverage = c(irs$coverage, frac_sprayed)
+  irs$contact = c(irs$contact, contact)
+  irs$shock = c(irs$shock, shock)
+  irs$pw = c(irs$pw, rep(1,M))
+
+  irs$D = c(irs$D, start_day+event_length/2)
+  irs$uk = c(irs$uk, 10/event_length)
+  d_50 = rep(0, M)
+  d_shape = rep(0, M)
+
+  for(i in 1:M){
+    profile = irs_profiles[irs_profiles$name == pesticides[i],]
+    d_50[i] = profile$d_50
+    d_shape[i] = 1/profile$d_shape
+  }
+  irs$d_50 = c(irs$d_50, d_50)
+  irs$d_shape = c(irs$d_shape, d_shape)
+
+  xds_obj$events_obj$irs = irs
+
+  return(xds_obj)
+}
+
+#' @title Set up dynamic forcing
+#'
+#' @description Set up the IRS rounds
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param mx the maximum
+#' @param as_shock set the function class to `sharkfin` (if `FALSE`) or `sharkbite` (if `TRUE`)
+#'
+#' @return set up the rounds
+#'
+#' @export
+setup_irs_rounds = function(xds_obj, mx, as_shock=FALSE){
+  xds_obj$events_obj$irs$rounds = list()
+  with(xds_obj$events_obj$irs,{
+    stopifnot(length(mx)==N)
+    for(i in 1:N){
+      round = list()
+      class(round) = ifelse(as_shock, "sharkbite", "sharkfin")
+      round$D = start_day[i]+length[i]/2
+      round$L = d_50[i]
+      round$uk = 10/length[i]
+      round$dk = d_shape[i]
+      round$pw = pw[i]
+      round$mx = mx[i]
+      xds_obj$events_obj$irs$rounds[[i]] = round
+    }
 })}
-
-

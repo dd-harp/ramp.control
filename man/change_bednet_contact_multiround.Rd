@@ -16,6 +16,6 @@ a \strong{\code{ramp.xds}}  model object
 }
 \description{
 With multi-round bednet contact, there
-is a different relationship between coverage
+is a different relationship between contact
 and contact in each round
 }
