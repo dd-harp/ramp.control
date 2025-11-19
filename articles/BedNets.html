@@ -43,6 +43,7 @@
     <li><a class="dropdown-item" href="../articles/IRS.html">IRS</a></li>
     <li><a class="dropdown-item" href="../articles/IRS-insectides.html">IRS - Insecticides</a></li>
     <li><a class="dropdown-item" href="../articles/MassTreatment.html">Mass Treatment</a></li>
+    <li><a class="dropdown-item" href="../articles/ResponseTimelines.html">Response Timelines</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
@@ -162,7 +163,7 @@ function and as set of options to set it up, passed as a list:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cov_opts</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/F_season.html" class="external-link">F_season</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="BedNets_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_bednets.html">setup_bednets</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>     coverage_name <span class="op">=</span> <span class="st">"func"</span>, coverage_opts <span class="op">=</span> <span class="va">cov_opts</span>, </span>
@@ -170,7 +171,7 @@ function and as set of options to set it up, passed as a list:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">730</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/show_bednet_coverage.html">show_bednet_coverage</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BedNets_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="BedNets_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="effect-sizes">Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"></a>
@@ -187,7 +188,7 @@ function and as set of options to set it up, passed as a list:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

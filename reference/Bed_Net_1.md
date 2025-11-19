@@ -1,0 +1,27 @@
+# Bednet, Stage 1
+
+Set the value of exogenous variables related to bed nets
+
+## Usage
+
+``` r
+Bed_Net_1(t, y, xds_obj)
+```
+
+## Arguments
+
+- t:
+
+  current simulation time
+
+- y:
+
+  state variables
+
+- xds_obj:
+
+  a **`ramp.xds`** model object
+
+## Value
+
+a **`ramp.xds`** model object

@@ -1,0 +1,120 @@
+# Bed Nets
+
+``` r
+library(ramp.xds)
+library(ramp.control)
+```
+
+Every bed net model has six configurable functions, each one dispatched
+and configured by a different object.
+
+------------------------------------------------------------------------
+
+The `bednets` model object:
+
+`bednets`
+
+- `$distribute_mod`
+
+- `$owner_mod`
+
+- `$user_mod`
+
+- `$effects_mod`
+
+- `$coverage_mod`
+
+- **coverage**
+
+- `$ef_sz_mod`
+
+  - \[\[1\]\] - for species 1
+
+  - …
+
+------------------------------------------------------------------------
+
+The models get called at two different points:
+
+- `VectorControl` dispatches on
+  `class(model$vector_control) == "dynamic"`
+
+  - `BedNet` dispatches on `class(model$bednets) == "dynamic"`
+
+    - `DistributeBedNets` dispatches on
+      `class(model$bednets$distribute_mod)` is there to model mass
+      distribution of ITNs that should sharply increase bednet ownership
+
+    - `OwnBedNets` dispatches on `class(model$bednets$owner_mod)` is a
+      model that can account for background net replacement and loss
+
+    - `UseBedNets` dispatches on `class(model$bednets$user_mod)` is a
+      model for bed net usage
+
+    - `BedNetEffects` dispatches on `class(model$bednets$effects_mod)`
+      is a function that modifies search weights
+
+- `VectorControlEffectSizes` dispatches on
+  `class(model$bednets) == "dynamic"`
+
+  - `BedNetCoverage` dispatches on `class(model$bednets$coverage_mod)`
+
+  - After evaluating `BedNetCoverage`, values are stored at
+    `model$bednets$coverage`
+
+  - `BedNetEffectSizes` dispatches on
+    `class(model$bednets$ef_sz_mod[[s]])` for the \\s^{th}\\ species
+
+To set all this up, we call a function with a name that calls a setup
+function and as set of options to set it up, passed as a list:
+
+    setup_bednets = function(..., 
+                            distribute_name = 'none', distribute_opts = list(),
+                            own_name = 'none', own_opts = list(),
+                            use_name = 'none', use_opts = list(),
+                            effects_name = 'none', effects_opts = list(),
+                            coverage_name = 'none', coverage_opts = list(),
+                            effect_sizes_name = 'none', effect_sizes_opts = list(), 
+                            ...
+
+## Coverage
+
+In the simplest models, we can simply set coverage
+
+``` r
+mod <- xds_setup(MYname = "SI")
+```
+
+``` r
+mod <- setup_vector_control(mod)
+mod <- xds_solve(mod)
+```
+
+``` r
+cov_opts <- list(
+  F_season = function(t)
+    {ifelse(t < 0, 0, (sin(2*pi*(t-365/4) / 365) + 1))}
+)
+```
+
+``` r
+tt = seq(0:730)
+with(cov_opts, plot(tt, F_season(tt), type = "l"))
+```
+
+![](BedNets_files/figure-html/unnamed-chunk-6-1.png)
+
+``` r
+mod <- setup_bednets(mod,
+     coverage_name = "func", coverage_opts = cov_opts, 
+     effect_sizes_name = "lemenach")
+```
+
+``` r
+tt = seq(0:730)
+show_bednet_coverage(tt, mod)
+```
+
+![](BedNets_files/figure-html/unnamed-chunk-8-1.png)
+
+## Effect Sizes

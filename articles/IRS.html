@@ -43,6 +43,7 @@
     <li><a class="dropdown-item" href="../articles/IRS.html">IRS</a></li>
     <li><a class="dropdown-item" href="../articles/IRS-insectides.html">IRS - Insecticides</a></li>
     <li><a class="dropdown-item" href="../articles/MassTreatment.html">Mass Treatment</a></li>
+    <li><a class="dropdown-item" href="../articles/ResponseTimelines.html">Response Timelines</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
@@ -146,23 +147,23 @@ reaching 50% on day 230, 180 days after the spray round.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">irs_par</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkfin.html" class="external-link">makepar_F_sharkfin</a></span><span class="op">(</span>D<span class="op">=</span><span class="fl">50</span>, uk<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, L<span class="op">=</span><span class="fl">180</span>, mx<span class="op">=</span><span class="fl">.9</span><span class="op">)</span></span>
 <span><span class="va">Fsf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">irs_par</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html" class="external-link">xds_setup</a></span><span class="op">(</span>MYname <span class="op">=</span> <span class="st">"SI"</span>, Loptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Lambda<span class="op">=</span><span class="fl">40</span>, season_par<span class="op">=</span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">2000</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html" class="external-link">last_to_inits</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.html" class="external-link">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_irs.html">setup_irs</a></span><span class="op">(</span><span class="va">model</span>, coverage_name <span class="op">=</span> <span class="st">"func"</span>, coverage_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trend_par <span class="op">=</span> <span class="va">irs_par</span>, mx<span class="op">=</span><span class="fl">1</span><span class="op">)</span>, effect_sizes_name <span class="op">=</span> <span class="st">"simple"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/show_irs_contact.html">show_irs_contact</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="700"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.html" class="external-link">xds_plot_EIR</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="IRS_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="IRS_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="effect-sizes">Effect Sizes<a class="anchor" aria-label="anchor" href="#effect-sizes"></a>
@@ -201,7 +202,7 @@ product of the baseline and all the independent effect sizes.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

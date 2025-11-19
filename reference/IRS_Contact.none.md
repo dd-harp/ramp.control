@@ -1,0 +1,28 @@
+# Set no use_irss
+
+The null model for use_irss
+
+## Usage
+
+``` r
+# S3 method for class 'none'
+IRS_Contact(t, y, xds_obj)
+```
+
+## Arguments
+
+- t:
+
+  current simulation time
+
+- y:
+
+  state variables
+
+- xds_obj:
+
+  a **`ramp.xds`** model object
+
+## Value
+
+[list](https://rdrr.io/r/base/list.html)

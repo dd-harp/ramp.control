@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   BedNets: BedNets.html
@@ -8,8 +8,9 @@ articles:
   IRS-insectides: IRS-insectides.html
   IRS: IRS.html
   MassTreatment: MassTreatment.html
+  ResponseTimelines: ResponseTimelines.html
   vc_lemenach: vc_lemenach.html
-last_built: 2025-10-28T05:56Z
+last_built: 2025-11-19T04:17Z
 urls:
   reference: https://dd-harp.github.io/ramp.control/reference
   article: https://dd-harp.github.io/ramp.control/articles
