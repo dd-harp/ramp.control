@@ -9,7 +9,7 @@ setup_irs_events(
   xds_obj,
   start_day,
   pesticides,
-  frac_sprayed,
+  frac_sprayed = 0.5,
   event_length = 20,
   contact = 1,
   shock = 1
