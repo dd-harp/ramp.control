@@ -12,7 +12,7 @@
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_length=20, contact=1, shock=1){
+setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, event_length=20, contact=1, shock=1){
 
   xds_obj <- setup_vector_control(xds_obj)
 
@@ -21,8 +21,8 @@ setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed, event_
 
   N = length(start_day)
   stopifnot(length(pesticides)==N)
-  stopifnot(length(frac_sprayed)==N)
-  length=checkIt(event_length, N)
+  frac_sprayed = checkIt(frac_sprayed, N)
+  length = checkIt(event_length, N)
 
   irs = list()
   irs$N = N
