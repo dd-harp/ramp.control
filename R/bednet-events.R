@@ -22,13 +22,17 @@ setup_bednet_events = function(xds_obj, start_day, type = "pbo", event_length=20
     xds_obj$events_obj = list()
 
   N = length(start_day)
-  stopifnot(length(type)==N)
+
   length=checkIt(event_length, N)
 
   bednet = list()
   bednet$N = N
   bednet$start_day = start_day
-  bednet$type = checkIt(type, N)
+
+  if(length(type)==1) type=rep(type, N)
+  stopifnot(length(type)==N)
+  bednet$type = type
+
   bednet$event_length = checkIt(length, N)
   bednet$coverage = checkIt(coverage, N)
   bednet$contact = checkIt(contact, N)
@@ -54,14 +58,15 @@ setup_bednet_events = function(xds_obj, start_day, type = "pbo", event_length=20
 #' @export
 add_bednet_events = function(xds_obj, start_day, type = "pbo", event_length=20, coverage=1, contact=1, shock=1, d_50 = 365, d_shape=1/365){
   M = length(start_day)
-  type = checkIt(type, M)
+  if(length(type)==1) type = rep(type, M)
+  stopifnot(length(type) == M)
   event_length= checkIt(event_length, M)
   coverage = checkIt(coverage, M)
   contact = checkIt(contact, M)
   shock = checkIt(shock, M)
-  bednet$d_50 = checkIt(d_50, N)
-  bednet$d_shape = checkIt(d_shape, N)
-  bednet$pw = rep(1,N)
+  bednet$d_50 = checkIt(d_50, M)
+  bednet$d_shape = checkIt(d_shape, M)
+  bednet$pw = rep(1,M)
 
   if(with(xds_obj$events_obj, !exists("bednet")))
     return(setup_bednet_events(xds_obj, start_day, type, event_length, coverage, contact, shock, d_50, d_shape))
