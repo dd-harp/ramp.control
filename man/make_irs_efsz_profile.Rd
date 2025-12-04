@@ -4,7 +4,7 @@
 \alias{make_irs_efsz_profile}
 \title{Make an IRS Effect Size Curve}
 \usage{
-make_irs_efsz_profile(d_50, d_shape, start_day, peak, length = 20, pw = 1)
+make_irs_efsz_profile(d_50, d_shape, start_day, peak, elength = 20, pw = 1)
 }
 \arguments{
 \item{d_50}{the day when efficacy reaches 50\%}
@@ -15,7 +15,7 @@ make_irs_efsz_profile(d_50, d_shape, start_day, peak, length = 20, pw = 1)
 
 \item{peak}{the maximum value}
 
-\item{length}{the number of days it took to complete spraying}
+\item{elength}{the number of days it took to complete spraying}
 
 \item{pw}{a shape parameter}
 }

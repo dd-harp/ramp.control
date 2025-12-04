@@ -12,7 +12,7 @@
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, event_length=20, contact=1, shock=1){
+setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, event_length=20, contact=.5, shock=.5){
 
   xds_obj <- setup_vector_control(xds_obj)
 
@@ -22,20 +22,20 @@ setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, ev
   N = length(start_day)
   stopifnot(length(pesticides)==N)
   frac_sprayed = checkIt(frac_sprayed, N)
-  length = checkIt(event_length, N)
+  elength = checkIt(event_length, N)
 
   irs = list()
   irs$N = N
   irs$start_day = start_day
   irs$type = pesticides
   irs$coverage = frac_sprayed
-  irs$event_length = checkIt(length, N)
+  irs$event_length = checkIt(elength, N)
   irs$contact = checkIt(contact, N)
   irs$shock = checkIt(shock, N)
   irs$pw = rep(1,N)
 
-  irs$D = start_day+length/2
-  irs$uk = 10/length
+  irs$D = start_day+elength/2
+  irs$uk = 10/elength
   irs$d_50 = rep(0, N)
   irs$d_shape = rep(0, N)
 
@@ -116,15 +116,18 @@ setup_irs_rounds = function(xds_obj, mx, as_shock=FALSE){
   xds_obj$events_obj$irs$rounds = list()
   with(xds_obj$events_obj$irs,{
     stopifnot(length(mx)==N)
+    if(N>0)
     for(i in 1:N){
-      round = list()
-      class(round) = ifelse(as_shock, "sharkbite", "sharkfin")
-      round$D = start_day[i]+length[i]/2
-      round$L = d_50[i]
-      round$uk = 10/length[i]
-      round$dk = d_shape[i]
-      round$pw = pw[i]
-      round$mx = mx[i]
-      xds_obj$events_obj$irs$rounds[[i]] = round
+      irs_round = list()
+      class(irs_round) = ifelse(as_shock, "sharkbite", "sharkfin")
+      irs_round$D = start_day[i]+event_length[i]/2
+      irs_round$L = d_50[i]
+      irs_round$uk = 10/event_length[i]
+      irs_round$dk = d_shape[i]
+      irs_round$pw = pw[i]
+      irs_round$mx = mx[i]
+      irs_round$N = xds_obj$nPatches
+      xds_obj$events_obj$irs$rounds[[i]] = irs_round
     }
+  return(xds_obj)
 })}

@@ -12,16 +12,16 @@
 #' @param irs_type the name of the IRS type
 #' @param start_day the start day for the IRS round
 #' @param peak the maximum value
-#' @param length the number of days it took to complete spraying
+#' @param elength the number of days it took to complete spraying
 #' @param pw a shape parameter
 #'
 #' @return a `sharkfin` function object
 #'
 #' @export
-make_irs_round = function(irs_type, start_day, peak, length=20, pw=1) {
+make_irs_round = function(irs_type, start_day, peak, elength=20, pw=1) {
   profile = irs_profiles[irs_profiles$name == irs_type,]
-  D = start_day+length/2
-  uk = 10/length
+  D = start_day+elength/2
+  uk = 10/elength
   L = profile$d_50
   dk = 1/profile$d_shape
   return(makepar_F_sharkfin(D=D, L=L, uk=uk,dk=dk, mx=peak, pw=pw))
@@ -42,10 +42,10 @@ make_irs_round = function(irs_type, start_day, peak, length=20, pw=1) {
 #' @return a `sharkbite` function object
 #'
 #' @export
-make_irs_shock = function(irs_type, start_day, peak, length=20, pw=1) {
+make_irs_shock = function(irs_type, start_day, peak, elength=20, pw=1) {
   profile = irs_profiles[irs_profiles$name == irs_type,]
-  D = start_day+length/2
-  uk = 10/length
+  D = start_day+elength/2
+  uk = 10/elength
   L = profile$d_50
   dk = 1/profile$d_shape
   return(makepar_F_sharkbite(D=D, L=L, uk=uk,dk=dk, mx=peak,pw=pw))
@@ -61,15 +61,15 @@ make_irs_shock = function(irs_type, start_day, peak, length=20, pw=1) {
 #' @param d_shape the decay shape
 #' @param start_day the start day for the IRS round
 #' @param peak the maximum value
-#' @param length the number of days it took to complete spraying
+#' @param elength the number of days it took to complete spraying
 #' @param pw a shape parameter
 #'
 #' @return a `sharkfin` function object
 #'
 #' @export
-make_irs_killing_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
-  D = start_day+length/2
-  uk = 5/length
+make_irs_killing_profile = function(d_50, d_shape, start_day, peak, elength=20, pw=1) {
+  D = start_day+elength/2
+  uk = 5/elength
   return(makepar_F_sharkfin(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak, pw=pw))
 }
 
@@ -83,9 +83,9 @@ make_irs_killing_profile = function(d_50, d_shape, start_day, peak, length=20, p
 #' @return a `sharkbite` function object
 #'
 #' @export
-make_irs_efsz_profile = function(d_50, d_shape, start_day, peak, length=20, pw=1) {
-  D = start_day+length/2
-  uk = 5/length
+make_irs_efsz_profile = function(d_50, d_shape, start_day, peak, elength=20, pw=1) {
+  D = start_day+elength/2
+  uk = 5/elength
   return(makepar_F_sharkbite(D=D, uk=uk, L=d_50, dk=1/d_shape, mx=peak))
 }
 

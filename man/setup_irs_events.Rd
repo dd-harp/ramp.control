@@ -10,8 +10,8 @@ setup_irs_events(
   pesticides,
   frac_sprayed = 0.5,
   event_length = 20,
-  contact = 1,
-  shock = 1
+  contact = 0.5,
+  shock = 0.5
 )
 }
 \arguments{

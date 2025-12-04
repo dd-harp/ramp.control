@@ -23,7 +23,7 @@ setup_bednet_events = function(xds_obj, start_day, type = "pbo", event_length=20
 
   N = length(start_day)
 
-  length=checkIt(event_length, N)
+  elength=checkIt(event_length, N)
 
   bednet = list()
   bednet$N = N
@@ -33,7 +33,7 @@ setup_bednet_events = function(xds_obj, start_day, type = "pbo", event_length=20
   stopifnot(length(type)==N)
   bednet$type = type
 
-  bednet$event_length = checkIt(length, N)
+  bednet$event_length = checkIt(elength, N)
   bednet$coverage = checkIt(coverage, N)
   bednet$contact = checkIt(contact, N)
   bednet$shock = checkIt(shock, N)
@@ -107,13 +107,15 @@ setup_bednet_rounds = function(xds_obj, mx, as_shock=FALSE){
     for(i in 1:N){
       round = list()
       class(round) = ifelse(as_shock, "sharkbite", "sharkfin")
-      round$D = start_day[i]+length[i]/2
+      round$D = start_day[i]+event_length[i]/2
       round$L = d_50[i]
-      round$uk = 10/length[i]
+      round$uk = 10/event_length[i]
       round$dk = d_shape[i]
       round$pw = pw[i]
       round$mx = mx[i]
+      round$N = xds_obj$nPatches
       xds_obj$events_obj$bednet$rounds[[i]] = round
-    }
-  })}
+  }
+  return(xds_obj)
+})}
 

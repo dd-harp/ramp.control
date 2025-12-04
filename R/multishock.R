@@ -12,7 +12,6 @@
 #'
 #' @export
 makepar_F_multishock = function(nRounds, rounds){
-
   if(nRounds ==1) rounds_par = rounds[[1]]
   if(nRounds > 1) rounds_par = makepar_F_product(rounds[[1]], rounds[[2]])
   if(nRounds > 2)
@@ -41,10 +40,11 @@ setup_F_multishock = function(xds_obj){
     xds_obj <- setup_bednet_rounds(xds_obj, xds_obj$events_obj$bednet$shock, as_shock=TRUE)
     rounds = c(rounds, xds_obj$events_obj$bednet$rounds)
   }
+  N = length(rounds)
+  pars  <- makepar_F_multishock(N, rounds)
 
-  rounds_par <- makepar_F_multiround(1, rounds)
-  xds_obj$EIR_obj$shock_par <- rounds_par
-  xds_obj$EIR_obj$F_shock <- make_function(rounds_par)
+  xds_obj$EIR_obj$shock_par <- pars
+  xds_obj$EIR_obj$F_shock <- make_function(pars)
 
   return(xds_obj)
 }
