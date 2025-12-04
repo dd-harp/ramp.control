@@ -5,7 +5,7 @@ Return the parameters to make sharkfin function for an irs round.
 ## Usage
 
 ``` r
-make_irs_efsz_profile(d_50, d_shape, start_day, peak, length = 20, pw = 1)
+make_irs_efsz_profile(d_50, d_shape, start_day, peak, elength = 20, pw = 1)
 ```
 
 ## Arguments
@@ -26,7 +26,7 @@ make_irs_efsz_profile(d_50, d_shape, start_day, peak, length = 20, pw = 1)
 
   the maximum value
 
-- length:
+- elength:
 
   the number of days it took to complete spraying
 

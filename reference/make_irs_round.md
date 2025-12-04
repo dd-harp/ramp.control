@@ -9,7 +9,7 @@ start of the spray round through the end.
 ## Usage
 
 ``` r
-make_irs_round(irs_type, start_day, peak, length = 20, pw = 1)
+make_irs_round(irs_type, start_day, peak, elength = 20, pw = 1)
 ```
 
 ## Arguments
@@ -26,7 +26,7 @@ make_irs_round(irs_type, start_day, peak, length = 20, pw = 1)
 
   the maximum value
 
-- length:
+- elength:
 
   the number of days it took to complete spraying
 
