@@ -4,7 +4,7 @@
 \alias{make_irs_round}
 \title{Make an IRS Round}
 \usage{
-make_irs_round(irs_type, start_day, peak, length = 20, pw = 1)
+make_irs_round(irs_type, start_day, peak, elength = 20, pw = 1)
 }
 \arguments{
 \item{irs_type}{the name of the IRS type}
@@ -13,7 +13,7 @@ make_irs_round(irs_type, start_day, peak, length = 20, pw = 1)
 
 \item{peak}{the maximum value}
 
-\item{length}{the number of days it took to complete spraying}
+\item{elength}{the number of days it took to complete spraying}
 
 \item{pw}{a shape parameter}
 }

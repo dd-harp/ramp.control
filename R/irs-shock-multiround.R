@@ -17,6 +17,7 @@ change_irs_shock_multiround = function(xds_obj, shock){
   stopifnot(length(shock) == xds_obj$events_obj$irs$N)
   xds_obj$events_obj$irs$shock = shock
 
+  xds_obj <- setup_irs_rounds(xds_obj, shock, TRUE)
   xds_obj = setup_F_multishock(xds_obj)
   return(xds_obj)
 }
