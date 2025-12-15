@@ -10,4 +10,4 @@ irs_profiles
 
 ## Format
 
-An object of class `data.frame` with 5 rows and 3 columns.
+An object of class `data.frame` with 6 rows and 3 columns.

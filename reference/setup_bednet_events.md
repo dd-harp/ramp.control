@@ -12,7 +12,7 @@ setup_bednet_events(
   event_length = 20,
   coverage = 1,
   contact = 1,
-  shock = 1,
+  shock = 0.5,
   d_50 = 365,
   d_shape = 1/365
 )
