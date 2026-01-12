@@ -41,6 +41,10 @@ setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, ev
 
   for(i in 1:N){
     profile = irs_profiles[irs_profiles$name == pesticides[i],]
+    if(dim(profile)[1] == 0){
+      print(pesticides[i])
+      browser()
+    }
     irs$d_50[i] = profile$d_50
     irs$d_shape[i] = 1/profile$d_shape
   }
@@ -117,17 +121,17 @@ setup_irs_rounds = function(xds_obj, mx, as_shock=FALSE){
   with(xds_obj$events_obj$irs,{
     stopifnot(length(mx)==N)
     if(N>0)
-    for(i in 1:N){
-      irs_round = list()
-      class(irs_round) = ifelse(as_shock, "sharkbite", "sharkfin")
-      irs_round$D = start_day[i]+event_length[i]/2
-      irs_round$L = d_50[i]
-      irs_round$uk = 10/event_length[i]
-      irs_round$dk = d_shape[i]
-      irs_round$pw = pw[i]
-      irs_round$mx = mx[i]
-      irs_round$N = xds_obj$nPatches
-      xds_obj$events_obj$irs$rounds[[i]] = irs_round
+      for(i in 1:N){
+        irs_round = list()
+        class(irs_round) = ifelse(as_shock, "sharkbite", "sharkfin")
+        irs_round$D = start_day[i]+event_length[i]/2
+        irs_round$L = d_50[i]
+        irs_round$uk = 10/event_length[i]
+        irs_round$dk = d_shape[i]
+        irs_round$pw = pw[i]
+        irs_round$mx = mx[i]
+        irs_round$N = xds_obj$nPatches
+        xds_obj$events_obj$irs$rounds[[i]] = irs_round
     }
   return(xds_obj)
 })}

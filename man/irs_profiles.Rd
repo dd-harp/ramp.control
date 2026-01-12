@@ -5,7 +5,7 @@
 \alias{irs_profiles}
 \title{IRS Profiles}
 \format{
-An object of class \code{data.frame} with 5 rows and 3 columns.
+An object of class \code{data.frame} with 6 rows and 3 columns.
 }
 \usage{
 irs_profiles
