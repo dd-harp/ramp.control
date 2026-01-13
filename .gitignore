@@ -52,3 +52,7 @@ docs
 /.Rproj.user/BAB4038F
 *.pper
 *.pper
+/.Rproj.user
+/.Rproj.user
+.Rhistory
+.RData
