@@ -32,16 +32,19 @@ The software was designed around a rigorous mathematical framework for modular m
 
 **`ramp.control`** is a code library with models of vector control that can be used by **`ramp.xds`.** These packages are part of a suite of R packages developed to support RAMP: 
 
-+ [**`ramp.xds`.**](https://dd-harp.github.io/ramp.xds/) is the core computational engine for simulation-based analytics. It includes a basic set of models -- enough to design, verify, and demonstrate the basic features of modular software. 
+1. **`ramp.xds`** handles setup, solving, plotting, and some analysis. 
+It was developed to build and solve dynamical systems models for the epidemiology, transmission dynamics, and control of malaria and other mosquito-transmitted pathogens based on a well-defined mathematical framework.
+It includes a basic set of models -- enough to design, verify, and demonstrate the basic features of modular software. 
 
-+  [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`** The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
+2. [**`ramp.library`**](https://dd-harp.github.io/ramp.library/) is an extended library of models -- stable code that has been tested and verified. It includes a large set of model families published in peer review that are not included in **`ramp.xds`** The ability to reuse code reduces the costs of replicating studies. Through this library, **`ramp.xds`** also supports nimble model building and analytics for other mosquito-borne pathogens. 
 
-- **`ramp.control`** is a collection of disease control models for **`ramp.xds`** 
+3. **`ramp.control`** is a collection of disease control models for **`ramp.xds`** 
 
-+ [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, include code to fit models to data and to do constrained optimization 
+4. [**`ramp.forcing`**](https://dd-harp.github.io/ramp.forcing/) is a collection of utilities to model exogenous forcing in models for **`ramp.xds`** 
 
-+ [**`ramp.models`**](https://dd-harp.github.io/ramp.models/) includes a large set of models illustrating capabilities of **`ramp.xds`**
-**`ramp.library`**  is under active development. 
+5. [**`ramp.demog`**](ramp.demog.html) is is a supplementary code library for **`ramp.xds`** that handles human demography and stratification, including vital dynamics and age structure.
+
+6. [**`ramp.work`**](https://dd-harp.github.io/ramp.work/) includes algorithms to apply the framework, include code to fit models to data and to do constrained optimization 
 
 # **`ramp.library`** <br><br> A Model Library for RAMP
 

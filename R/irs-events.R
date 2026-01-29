@@ -41,10 +41,10 @@ setup_irs_events = function(xds_obj, start_day, pesticides, frac_sprayed=0.5, ev
 
   for(i in 1:N){
     profile = irs_profiles[irs_profiles$name == pesticides[i],]
-    if(dim(profile)[1] == 0){
-      print(pesticides[i])
-      browser()
-    }
+#    if(dim(profile)[1] == 0){
+#      print(pesticides[i])
+#      browser()
+#    }
     irs$d_50[i] = profile$d_50
     irs$d_shape[i] = 1/profile$d_shape
   }
