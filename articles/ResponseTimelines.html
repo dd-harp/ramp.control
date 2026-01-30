@@ -142,7 +142,7 @@ maximum after 365 days.</p>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sharkbite.html" class="external-link">makepar_F_sharkbite</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">365</span>, dk <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">100</span>, mx<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="va">F1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">F1</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, xlab <span class="op">=</span> <span class="st">"Time"</span>, ylab <span class="op">=</span> <span class="st">"Effect Size"</span>, main <span class="op">=</span> <span class="st">"Response Timeline"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" width="672">
+<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="672">
 We can use it to modify exposure in a model, and see how malaria
 prevalence responds.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -152,7 +152,7 @@ prevalence responds.</p>
 <span><span class="va">sis_si_eir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">sis_si_eir</span>, <span class="fl">5</span><span class="op">*</span><span class="fl">365</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.html" class="external-link">xds_plot_EIR</a></span><span class="op">(</span><span class="va">sis_si_eir</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">eir</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">sis_si_eir</span><span class="op">)</span>  <span class="op">-&gt;</span> <span class="va">pr</span></span></code></pre></div>
-<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="672"></p>
+<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="672"></p>
 <p>What we observe is a decline in <em>Pf</em>PR starting shortly after
 the perturbation happens, and then a recovery to the steady state.</p>
 <p>What if malaria is seasonal?</p>
@@ -168,7 +168,7 @@ the perturbation happens, and then a recovery to the steady state.</p>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_EIR.html" class="external-link">xds_plot_EIR</a></span><span class="op">(</span><span class="va">sis_si_eir_2</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">eir2</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/get_EIR.html" class="external-link">get_EIR</a></span><span class="op">(</span><span class="va">sis_si_eir_1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">eir1</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">sis_si_eir_2</span><span class="op">)</span>  <span class="op">-&gt;</span> <span class="va">pr2</span></span></code></pre></div>
-<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="672"></p>
+<p><img src="ResponseTimelines_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="672"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/get_PR.html" class="external-link">get_PR</a></span><span class="op">(</span><span class="va">sis_si_eir_1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pr1</span> </span></code></pre></div>
 <p>Now, the effect is modulated by the seasonal pattern. Here we show
@@ -180,7 +180,7 @@ the effects on EIR and PR as ratios and differences.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">eir1</span><span class="op">-</span><span class="va">eir2</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"EIR Differences"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr1</span><span class="op">/</span><span class="va">pr2</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"PR ratios"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr1</span><span class="op">-</span><span class="va">pr2</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"PR differences"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ResponseTimelines_files/figure-html/response%20timeline%20panel-1.png" class="r-plt" width="864"></p>
+<p><img src="ResponseTimelines_files/figure-html/response%20timeline%20panel-1.png" class="r-plt" alt="" width="864"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
