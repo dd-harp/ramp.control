@@ -25,7 +25,7 @@ whether the `SIS` supports MDA or MSAT.
 skill_set_XH("SIS")$mda
 ```
 
-    ## [1] TRUE
+    ## NULL
 
 The `SIS` module supports MDA.
 
