@@ -53,3 +53,6 @@ docs
 *.pper
 *.pper
 .RData
+*.Rd
+.Rhistory
+.RData

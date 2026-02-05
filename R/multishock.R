@@ -17,7 +17,6 @@ makepar_F_multishock = function(nRounds, rounds){
   if(nRounds > 2)
     for(i in 3:nRounds)
       rounds_par = makepar_F_product(rounds_par, rounds[[i]])
-
   return(rounds_par)
 }
 

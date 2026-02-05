@@ -51,15 +51,28 @@ get_events.bednet = function(xds_obj, type){
 #' @returns a **`ramp.xds`**  model object
 #'
 #' @export
-show_events = function(xds_obj, mn=0, mx=1, ypos=0, bny=0, irsy=1, bclr="#E4460AFF", iclr = "#4686FBFF", add=FALSE){
+show_events = function(xds_obj, mn=0, mx=1, ypos=0, bny=0, irsy=1,
+                       bclr="#E4460AFF", iclr = "#4686FBFF", add=FALSE){
   show_bednet_events(xds_obj, mn, mx, bny, bclr)
   show_irs_events(xds_obj, mn, mx, irsy, iclr, add=TRUE)
-  xds_obj$data$tt -> tt
-  xds_obj$data$yy -> yy
-  points(tt, yy*0+ypos, pch=10, cex=1.5, col ="#30123BFF")
-  text(tt, yy*0+ypos, 1:length(tt), pos=3, col = "#30123BFF")
 }
 
+#' Show Events
+#'
+#' @param xds_obj a **`ramp.xds`**  model object
+#' @param yval the position of the interpolation points
+#'
+#' @importFrom graphics points text
+#'
+#' @returns a **`ramp.xds`**  model object
+#'
+#' @export
+show_spline_points = function(xds_obj, yval=0){
+  xds_obj$data$tt -> tt
+  xds_obj$data$yy -> yy
+  points(tt, yy*0+yval, pch=10, cex=1.5, col ="#30123BFF")
+  text(tt, yy*0+yval, 1:length(tt), pos=3, col = "#30123BFF")
+}
 
 #' Show IRS Events
 #'
