@@ -52,7 +52,12 @@ docs
 /.Rproj.user/BAB4038F
 *.pper
 *.pper
+<<<<<<< HEAD
 /.Rproj.user
 /.Rproj.user
+=======
+.RData
+*.Rd
+>>>>>>> b387881211edbe1075faf10685de5d29c1130ea5
 .Rhistory
 .RData
